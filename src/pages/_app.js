@@ -1,3 +1,4 @@
+import { GlobalStorage } from 'context/GlobalContext'
 import Head from 'next/head'
 
 import GlobalStyles from 'styles/global'
@@ -14,7 +15,9 @@ function App({ Component, pageProps }) {
         />
       </Head>
       <GlobalStyles />
-      <Component {...pageProps} />
+      <GlobalStorage>
+        <Component {...pageProps} />
+      </GlobalStorage>
     </>
   )
 }
