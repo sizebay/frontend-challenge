@@ -7,6 +7,7 @@ function App({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <link rel="shortcut icon" href="/favicon-96x96.png" />
         <title>Sizebay Frontend Challenge</title>
         <meta
           author="@SantosMaycon"
