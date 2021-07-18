@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Form = styled.form`
   width: 100%;
@@ -22,15 +22,17 @@ export const Input = styled.input`
 `
 
 export const Button = styled.button`
-  width: 3rem;
-  height: 3rem;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  background-image: url(/img/search.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
+  ${({ icon }) => css`
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    background-image: url(/img/${icon}.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+  `}
 `

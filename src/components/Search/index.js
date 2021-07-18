@@ -12,6 +12,11 @@ const Index = ({ filter, search, searchRef, setSearch, setHidden }) => {
     changeSearch(target.value, filter, setSearch, setHidden)
   }
 
+  function handleReset() {
+    setSearch('')
+    searchRef.current.reset()
+  }
+
   return (
     <S.Form onSubmit={handleSubmit} ref={searchRef}>
       <label htmlFor="text"></label>
@@ -21,7 +26,16 @@ const Index = ({ filter, search, searchRef, setSearch, setHidden }) => {
         text={search}
         onChange={handleChange}
       />
-      <S.Button type="submit" />
+      {search.length >= 1 ? (
+        <S.Button
+          type="reset"
+          defaultValue="Reset"
+          icon="x"
+          onClick={handleReset}
+        />
+      ) : (
+        <S.Button type="submit" icon="search" />
+      )}
     </S.Form>
   )
 }
