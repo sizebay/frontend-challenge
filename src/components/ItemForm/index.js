@@ -5,8 +5,14 @@ import * as S from './styles'
 import Button from 'components/Button'
 import Input from 'components/Input'
 
-const Index = ({ todo, setTodos, valid, setDisabled }) => {
+const Index = ({ todo, inputRef, setTodos, valid, setDisabled }) => {
   const [text, setText] = useState('')
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    editText()
+    inputRef.current.focus()
+  }
 
   function changeState() {
     setTodos((list) => [
@@ -15,12 +21,14 @@ const Index = ({ todo, setTodos, valid, setDisabled }) => {
     ])
     setText('')
     setDisabled(false)
+    inputRef.current.focus()
   }
 
   function remove() {
     setTodos((list) => [...list.filter((toDo) => todo.id != toDo.id)])
     setText('')
     setDisabled(false)
+    inputRef.current.focus()
   }
 
   function editText() {
@@ -46,14 +54,7 @@ const Index = ({ todo, setTodos, valid, setDisabled }) => {
   }
 
   return (
-    <S.Form
-      onSubmit={(event) => {
-        event.preventDefault()
-        editText()
-      }}
-      onBlur={editText}
-      onFocus={handleFocus}
-    >
+    <S.Form onSubmit={handleSubmit} onBlur={editText} onFocus={handleFocus}>
       <label htmlFor="text"></label>
       <Input valid={valid} todo={todo} text={text} setText={setText} />
       <Button type="button" onClick={remove} styleButton="Remove" />
