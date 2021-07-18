@@ -35,6 +35,7 @@ const Index = ({
     setTodos([])
     setFilter('Pending')
     setHidden(false)
+    setDisabled(false)
   }
 
   return (
