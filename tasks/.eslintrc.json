@@ -7,7 +7,8 @@
         "plugin:react/recommended",
         "airbnb",
         "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -27,6 +28,8 @@
       "react-hooks/rules-of-hooks": "error",
 	    "react-hooks/exhaustive-deps": "warn",
       "prettier/prettier": "error",
+      "import/prefer-default-export": "off",
+      "import/no-extraneous-dependencies": "off",
 	    "react/jsx-filename-extension": [
 	      1,
 	      {
