@@ -7,12 +7,37 @@ import searchIcon from '../../assets/searchIcon.png';
 export const Container = styled.section`
   display: flex;
 
-  /* border: 2px solid red; */
   margin-top: 2rem;
   margin-bottom: 2rem;
 `;
 
+export const Form = styled.form`
+  display: flex;
+  flex-grow: 3;
+  justify-content: flex-end;
+
+  & input {
+    width: 60%;
+    color: #848484;
+    width: 80%;
+    height: 100%;
+
+    background-image: url(${searchIcon});
+    background-position: right;
+    background-size: 2rem;
+    background-repeat: no-repeat;
+
+    height: 2rem;
+    border-radius: 4px;
+    border: 1px solid #DBDBDB;
+    opacity: 1;
+    padding-left: 12px;
+  }
+`;
+
 export const DoneButton = styled.button`
+  flex-grow: 0;
+
   border: 1px solid #DBDBDB;
   border-radius: 25px;
   background: #FFF;
@@ -23,6 +48,8 @@ export const DoneButton = styled.button`
 `;
 
 export const PendingButton = styled(DoneButton)`
+  flex-grow: 0;
+
   border: 1px solid #4DA6B3;
   background: #F7F7F8;
   margin-left: 0.5rem;
@@ -31,26 +58,5 @@ export const PendingButton = styled(DoneButton)`
 
   &::before {
     content: "✓\t"
-  }
-`;
-
-export const Form = styled.form`
-  flex-grow: 2;
-  margin: auto;
-
-  & input {
-    width: 60%;
-    margin-left: 4rem;
-    color: #848484;
-
-    background-image: url(${searchIcon});
-    background-position: 5px 5px;
-    background-repeat: no-repeat;
-
-    height: 2rem;
-    border-radius: 4px;
-    border: 1px solid #DBDBDB;
-    opacity: 1;
-    padding-left: 12px;
   }
 `;

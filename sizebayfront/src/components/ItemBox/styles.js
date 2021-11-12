@@ -1,31 +1,19 @@
 import styled from 'styled-components';
 
-export const Form = styled.form`
-  input {
-    border: 1px solid #DBDBDB;
-    border-radius: 4px;
-    padding: 1rem;
-    width: 92%;
+export const Wrapper = styled.div`
+  display: inline-flex;
+  font-size: 20px;
+`;
 
-    background: #F7F7F7;
+export const Input = styled.input`
+  font-size: inherit;
+  border: 0.2em solid #ddd;
+  border-radius: 0.5em 0 0 0.5em;
+  padding: 0.2em 0.5em;
+`;
 
-    font-family: "Roboto";
-    font-size: 14px;
-    text-align: left;
-  }
+export const Button = styled.button`
 
-  button {
-    border: 1px solid #DBDBDB;
-    border-radius: 4px;
-
-    padding: 1rem;
-    width: 5%;
-
-    background-color: #4DA6B3;
-    color: #fff;
-
-    font-size: 1rem;
-  }
 `;
 
 export const Item = styled.span`

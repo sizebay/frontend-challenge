@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Form, Item } from './styles';
+import { Wrapper, Form, Item, Input, Button } from './styles';
 
 export default function ItemBox() {
   const [item, setItem] = useState('');
@@ -19,25 +19,15 @@ export default function ItemBox() {
   }
 
   return (
-    <>
-      <Form>
-        <input
-          type="text"
-          onChange={e => handleItem(e.target.value)}
-          placeholder="Add new item..."
-        />
-        <button
-          onClick={handleAddItem}
-        >
-          +
-        </button>
-      </Form>
-
-      {itemsInventory.map(item => (
-        <Item key={Math.random() * Math.random()} >
-          {item}
-        </Item>
-      ))}
-    </>
+    <Wrapper>
+      <Input
+        type="text"
+        onChange={e => handleItem(e.target.value)}
+        placeholder="Add new item..."
+      />
+      <Button onClick={handleAddItem}>
+        +
+      </Button>
+    </Wrapper>
   );
 }
