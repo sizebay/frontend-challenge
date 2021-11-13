@@ -21,17 +21,20 @@ export const Form = styled.form`
     color: #848484;
     width: 80%;
     height: 100%;
-
     background-image: url(${searchIcon});
     background-position: right;
     background-size: 2rem;
     background-repeat: no-repeat;
-
     height: 2rem;
     border-radius: 4px;
     border: 1px solid #DBDBDB;
     opacity: 1;
     padding-left: 12px;
+    outline: 0;
+
+    &:hover, &:focus {
+      border-color: #a8a8a8;
+    }
   }
 `;
 

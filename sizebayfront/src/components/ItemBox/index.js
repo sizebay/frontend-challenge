@@ -26,7 +26,9 @@ export default function ItemBox() {
         placeholder="Add new item..."
       />
       <Button onClick={handleAddItem}>
-        +
+        <div id="border">
+          +
+        </div>
       </Button>
     </Wrapper>
   );
