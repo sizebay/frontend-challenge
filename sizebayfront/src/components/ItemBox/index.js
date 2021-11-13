@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React from 'react';
 
 import ItemBar from './ItemBar';
 
 import { Item } from './styles';
 
 export default function ItemBox() {
-  const [item, setItem] = useState('');
-  const [itemsInventory, setItemsInventory] = useState([]);
+  // const [item, setItem] = useState('');
+  // const [itemsInventory, setItemsInventory] = useState([]);
 
-  function handleItem(e) {
-    setItem(e);
-  }
+  // function handleItem(e) {
+  //   setItem(e);
+  // }
 
-  function handleAddItem(e) {
-    e.preventDefault();
+  // function handleAddItem(e) {
+  //   e.preventDefault();
 
-    if (item) {
-      setItemsInventory(prevState => [...prevState, item])
-    }
-  }
+  //   if (item) {
+  //     setItemsInventory(prevState => [...prevState, item])
+  //   }
+  // }
 
   return (
     <>
