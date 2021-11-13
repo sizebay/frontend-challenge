@@ -13,6 +13,6 @@ export const ProgressBar = styled.div`
     background: ${colors.greenProgressBar};
     height: 100%;
     width: 50%;
-    border-radius: 4px;
+    border-radius: 4px 0 0 4px;
   }
 `;

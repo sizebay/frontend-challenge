@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-import { Wrapper, Form, Item, Input, Button } from './styles';
+import ItemBar from './ItemBar';
+
+import { Item } from './styles';
 
 export default function ItemBox() {
   const [item, setItem] = useState('');
@@ -19,17 +21,18 @@ export default function ItemBox() {
   }
 
   return (
-    <Wrapper>
-      <Input
-        type="text"
-        onChange={e => handleItem(e.target.value)}
-        placeholder="Add new item..."
-      />
-      <Button onClick={handleAddItem}>
-        <div id="border">
-          +
-        </div>
-      </Button>
-    </Wrapper>
+    <>
+      <ItemBar />
+
+      <Item>
+        Drive a Cadillac across the Irish Sea
+      </Item>
+      <Item>
+        Sell an elevator to Geronimo
+      </Item>
+      <Item>
+        Take a pound of love and cook it in the stew
+      </Item>
+    </>
   );
 }
