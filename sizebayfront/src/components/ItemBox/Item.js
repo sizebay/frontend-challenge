@@ -16,5 +16,11 @@ export const Item = styled.span`
     &:last-child {
       margin-bottom: 0;
     }
+
+    @media screen and (max-width: 768px) {
+      &:last-child {
+        margin-bottom: 1rem;
+      }
+    }
   }
 `;

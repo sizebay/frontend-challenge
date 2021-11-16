@@ -1,39 +1,22 @@
-// import React, { useState } from 'react';
-import React from 'react';
+import React, { useState, useContext } from 'react';
 
-import ItemBar from './ItemBar';
+import { itemContext } from '../../contexts/ItemProvider';
 
-import { Item } from './styles';
+import ItemBar from '../ItemBar';
+import { Item } from './Item';
 
 export default function ItemBox() {
-  // const [item, setItem] = useState('');
-  // const [itemsInventory, setItemsInventory] = useState([]);
-
-  // function handleItem(e) {
-  //   setItem(e);
-  // }
-
-  // function handleAddItem(e) {
-  //   e.preventDefault();
-
-  //   if (item) {
-  //     setItemsInventory(prevState => [...prevState, item])
-  //   }
-  // }
+  const { itemsCollection } = useContext(itemContext);
 
   return (
     <>
       <ItemBar />
 
-      <Item>
-        Drive a Cadillac across the Irish Sea
-      </Item>
-      <Item>
-        Sell an elevator to Geronimo
-      </Item>
-      <Item>
-        Take a pound of love and cook it in the stew
-      </Item>
+      {itemsCollection.map((item, index) => (
+        <Item key={index}>
+          {item}
+        </Item>
+      ))}
     </>
   );
 }
