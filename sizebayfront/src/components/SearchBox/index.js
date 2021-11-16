@@ -6,9 +6,12 @@ export default function SearchBox() {
   return (
     <Container>
       <DoneButton>
-        Clicar
+        Done
       </DoneButton>
-      <PendingButton onClick={() => console.log('clicado')}>
+
+      <PendingButton
+        onClick={e => console.log(e)}
+      >
         Pending
       </PendingButton>
 

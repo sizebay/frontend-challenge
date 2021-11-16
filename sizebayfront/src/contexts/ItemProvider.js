@@ -14,7 +14,7 @@ export function ItemProvider(props) {
         itemText,
         setText: setItemText,
         itemsCollection,
-        setItemsCollection
+        setItemsCollection,
       }}
     >
       {props.children}
