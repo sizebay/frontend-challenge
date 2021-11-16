@@ -12,6 +12,8 @@ export default function ItemBar() {
   }
 
   function addItem() {
+    if (!itemText) return;
+
     setItemsCollection(prevState => {
       return [...prevState, itemText]
     });
