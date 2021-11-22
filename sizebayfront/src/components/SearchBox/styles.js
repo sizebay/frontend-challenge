@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { colors } from '../Header/helpers/colors';
 
@@ -48,18 +48,21 @@ export const DoneButton = styled.button`
   text-align: center;
   font-size: 14px;
   color: ${colors.grey};
+
+  ${props => props.status && css`
+    & {
+      background: #F7F7F8;
+      color: #4DA6B3;
+      border: 1px solid #4DA6B3;
+
+      &::before {
+        content: "✓\t"
+      }
+    }
+  `}
 `;
 
 export const PendingButton = styled(DoneButton)`
   flex-grow: 0;
-
-  border: 1px solid #4DA6B3;
-  background: #F7F7F8;
   margin-left: 0.5rem;
-  color: #4DA6B3;
-  text-align: center;
-
-  &::before {
-    content: "✓\t"
-  }
 `;
