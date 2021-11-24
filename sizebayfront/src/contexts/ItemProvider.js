@@ -1,7 +1,5 @@
 import React, { useState, createContext } from 'react';
 
-// Contexto irá centralizar os states e compartilhar ele entre os componentes.
-
 export const itemContext = createContext();
 
 export function ItemProvider(props) {

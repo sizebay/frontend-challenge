@@ -48,12 +48,14 @@ export const DoneButton = styled.button`
   text-align: center;
   font-size: 14px;
   color: ${colors.grey};
+  cursor: pointer;
 
   ${props => props.status && css`
     & {
       background: #F7F7F8;
       color: #4DA6B3;
       border: 1px solid #4DA6B3;
+      flex-grow: 0;
 
       &::before {
         content: "✓\t"

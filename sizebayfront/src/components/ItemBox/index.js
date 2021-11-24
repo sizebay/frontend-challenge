@@ -4,6 +4,7 @@ import { itemContext } from '../../contexts/ItemProvider';
 
 import ItemBar from '../ItemBar';
 import Item from '../Item';
+import { ItemsArea } from './styles';
 
 export default function ItemBox() {
   const { itemsCollection } = useContext(itemContext);
@@ -12,9 +13,11 @@ export default function ItemBox() {
     <>
       <ItemBar />
 
-      {itemsCollection.map((item, index) => (
-        <Item key={index} content={item} />
-      ))}
+      <ItemsArea>
+        {itemsCollection.map((item, index) => (
+          <Item key={index} content={item} />
+        ))}
+      </ItemsArea>
     </>
   );
 }
