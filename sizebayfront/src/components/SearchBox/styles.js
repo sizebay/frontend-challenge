@@ -9,6 +9,20 @@ export const Container = styled.section`
 
   margin-top: 2rem;
   margin-bottom: 2rem;
+
+  // Mobile
+  @media (max-width: 728px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+
+    nav {
+      display: flex;
+      width: 100%;
+      margin-top: 0.85rem;
+      justify-content: flex-end;
+    }
+  }
 `;
 
 export const Form = styled.form`
@@ -34,6 +48,16 @@ export const Form = styled.form`
 
     &:hover, &:focus {
       border-color: #a8a8a8;
+    }
+  }
+
+  // Mobile
+  @media (max-width: 728px) {
+    width: 100%;
+
+    input {
+      width: 100%;
+      padding: 0.6rem;
     }
   }
 `;
