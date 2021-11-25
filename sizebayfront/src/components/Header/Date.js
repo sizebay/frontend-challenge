@@ -34,5 +34,9 @@ export const Date = styled.section`
     & div {
       flex-grow: 3;
     }
+
+    a {
+      text-decoration: none;
+    }
   }
 `;
