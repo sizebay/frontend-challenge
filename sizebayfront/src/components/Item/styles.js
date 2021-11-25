@@ -50,7 +50,7 @@ export const ContentArea = styled.div`
   }
 `;
 
-export const ButtonArea = styled.div`
+export const ButtonContainer = styled.div`
   flex-grow: 0;
   visibility: hidden;
 
@@ -79,7 +79,6 @@ export const ButtonArea = styled.div`
   #doneButton {
     background: #51F881;
     color: #51F881;
-    font-size: 11px;
     border-radius: 0 3px 3px 0;
   }
 `;

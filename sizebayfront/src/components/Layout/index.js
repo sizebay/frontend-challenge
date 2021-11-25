@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { ItemProvider } from '../../contexts/ItemProvider';
+import { ItemProvider } from '../../contexts/ItemContext';
 
 import Header from '../Header';
 import SearchBox from '../SearchBox';

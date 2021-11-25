@@ -11,7 +11,7 @@ export const Container = styled.section`
   margin-bottom: 2rem;
 
   // Mobile
-  @media (max-width: 728px) {
+  @media (max-width: 768px) {
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
@@ -52,7 +52,7 @@ export const Form = styled.form`
   }
 
   // Mobile
-  @media (max-width: 728px) {
+  @media (max-width: 768px) {
     width: 100%;
 
     input {

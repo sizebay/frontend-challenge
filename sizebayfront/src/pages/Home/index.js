@@ -1,12 +1,12 @@
 import React from 'react';
 
 import ItemBox from '../../components/ItemBox';
-import ItemBar from '../../components/ItemBar';
+import ItemAddBar from '../../components/ItemAddBar';
 
 export default function Home() {
   return (
     <>
-      <ItemBar />
+      <ItemAddBar />
       <ItemBox />
     </>
   );

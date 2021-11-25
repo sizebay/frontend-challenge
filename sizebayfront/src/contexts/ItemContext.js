@@ -6,13 +6,23 @@ export function ItemProvider(props) {
   const [itemText, setItemText] = useState('');
   const [itemsCollection, setItemsCollection] = useState([]);
 
+  function handleText(text) {
+    setItemText(text);
+  }
+
+  function handleItemCollection(newItem) {
+    setItemsCollection(prevState => {
+      return [...prevState, newItem]
+    });
+  }
+
   return (
     <itemContext.Provider
       value={{
         itemText,
-        setText: setItemText,
+        handleText,
         itemsCollection,
-        setItemsCollection,
+        handleItemCollection,
       }}
     >
       {props.children}
