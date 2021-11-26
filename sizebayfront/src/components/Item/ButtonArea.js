@@ -5,7 +5,7 @@ import { itemContext } from '../../contexts/ItemContext';
 import { ButtonContainer } from "./styles";
 
 export default function ButtonArea({ item }) {
-  const { itemsCollection, handleItemCollection, handleRemoveItem, handleItemPending } = useContext(itemContext);
+  const { itemsCollection, handleRemoveItem, handleItemPending } = useContext(itemContext);
 
   function removeItem() {
     const filteredArr = itemsCollection.filter(itemCol => itemCol.id !== item.id);
@@ -13,7 +13,8 @@ export default function ButtonArea({ item }) {
   }
 
   function finishItem() {
-    console.log(itemsCollection);
+    itemsCollection.map(itemCol => itemCol.id === item.id ? item.isPending = false : item.isPending)
+    handleItemPending(itemsCollection);
   }
 
   return (

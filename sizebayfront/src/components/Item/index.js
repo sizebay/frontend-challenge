@@ -8,10 +8,18 @@ export default function Item(props) {
   return (
     <Container>
       <ContentArea>
-        <input type="text" value={props.data.content} readOnly />
+        {props.data.isPending && (
+          <input type="text" value={props.data.content} readOnly />
+          ) || (
+          <span>
+            {props.data.content}
+          </span>
+        )}
       </ContentArea>
 
-      <ButtonArea item={props.data} />
+      {props.data.isPending && (
+        <ButtonArea item={props.data} />
+      )}
     </Container>
   );
 }

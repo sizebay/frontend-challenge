@@ -42,11 +42,16 @@ export const ContentArea = styled.div`
     background: none;
     cursor: default;
     color: #848484;
+    font-size: 1rem;
 
     &:focus {
       border: none;
       outline: 0;
     }
+  }
+
+  span {
+    font-size: 1rem;
   }
 `;
 

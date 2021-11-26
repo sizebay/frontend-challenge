@@ -1,36 +1,29 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+import { itemContext } from '../../contexts/ItemContext';
 
 import { Container, DoneButton, Form, PendingButton } from './styles';
 
 export default function SearchBox() {
-  const [isClickedDone, setIsClickedDone] = useState(false);
-  const [isClickedPending, setIsClickedPending] = useState(false);
-
-  function handleClickDone() {
-    setIsClickedDone(prevState => prevState ? false : true);
-  }
-
-  function handleClickPending() {
-    setIsClickedPending(prevState => prevState ? false : true);
-  }
+  const { filterControl, handleClickDone, handleClickPending} = useContext(itemContext);
 
   return (
     <Container>
       <nav>
-        <Link to="/done">
+        <Link to={filterControl === 'default' ? '/done' : '/'}>
           <DoneButton
             onClick={handleClickDone}
-            status={isClickedDone}
+            status={filterControl}
             >
             Done
           </DoneButton>
         </Link>
 
-        <Link to="/pending">
+        <Link to={filterControl === 'default' ? '/pending' : '/'}>
           <PendingButton
             onClick={handleClickPending}
-            status={isClickedPending}
+            status={filterControl}
             >
             Pending
           </PendingButton>

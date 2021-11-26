@@ -1,30 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { itemContext } from '../../contexts/ItemContext';
-import { generateId } from '../../helpers/idGenerator';
 
 import { Wrapper, Input, Button } from './styles';
 
 export default function ItemAddBar() {
-  const { itemText, handleText, handleItemCollection } = useContext(itemContext);
+  const { handleAddItem } = useContext(itemContext);
+  const [inputText, setInputText] = useState('');
+
+  function handleInputText(text) {
+    setInputText(text);
+  }
 
   function addItem() {
-    if (!itemText) return;
+    if (!inputText) return;
 
-    const itemModel = {
-      id: generateId(),
-      content: itemText,
-      isPending: true
-    }
-
-    handleItemCollection(itemModel);
-    handleText('');
+    handleAddItem(inputText);
+    handleInputText('');
   }
 
   function addByPressEnter(e) {
     if (e.key === 'Enter') {
       addItem();
-      handleText('');
+      handleInputText('');
     }
   }
 
@@ -33,8 +31,8 @@ export default function ItemAddBar() {
       <Input
         type="text"
         placeholder="Add new item..."
-        onChange={e => handleText(e.target.value)}
-        value={itemText}
+        onChange={e => handleInputText(e.target.value)}
+        value={inputText}
         onKeyUp={addByPressEnter}
       />
       <Button
