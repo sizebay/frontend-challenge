@@ -20,12 +20,21 @@ export default function ItemAddBar() {
     handleItemCollection(itemModel);
   }
 
+  function addByPressEnter(e) {
+    if (e.key === 'Enter') {
+      addItem();
+      handleText('');
+    }
+  }
+
   return (
     <Wrapper>
       <Input
         type="text"
         placeholder="Add new item..."
         onChange={e => handleText(e.target.value)}
+        value={itemText}
+        onKeyUp={addByPressEnter}
       />
       <Button
         onClick={addItem}

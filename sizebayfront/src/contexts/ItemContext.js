@@ -16,6 +16,16 @@ export function ItemProvider(props) {
     });
   }
 
+  function handleRemoveItem(arr) {
+    setItemsCollection(arr);
+  }
+
+  function handleItemPending(modifiedItem) {
+    setItemsCollection(prevState => {
+      return [...prevState, modifiedItem]
+    });
+  }
+
   return (
     <itemContext.Provider
       value={{
@@ -23,6 +33,7 @@ export function ItemProvider(props) {
         handleText,
         itemsCollection,
         handleItemCollection,
+        handleRemoveItem,
       }}
     >
       {props.children}

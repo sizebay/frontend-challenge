@@ -8,10 +8,10 @@ export default function Item(props) {
   return (
     <Container>
       <ContentArea>
-        <input type="text" value={props.data.id} readOnly />
+        <input type="text" value={props.data.content} readOnly />
       </ContentArea>
 
-      <ButtonArea />
+      <ButtonArea item={props.data} />
     </Container>
   );
 }
