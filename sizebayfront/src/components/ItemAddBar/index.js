@@ -18,6 +18,7 @@ export default function ItemAddBar() {
     }
 
     handleItemCollection(itemModel);
+    handleText('');
   }
 
   function addByPressEnter(e) {
