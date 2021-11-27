@@ -43,6 +43,8 @@ export const ContentArea = styled.div`
     cursor: default;
     color: #848484;
     font-size: 1rem;
+    ${props => console.log(props.isPending)}
+    text-decoration: ${props => props.isPending ? 'none' : 'line-through'};
 
     &:focus {
       border: none;
@@ -52,6 +54,7 @@ export const ContentArea = styled.div`
 
   span {
     font-size: 1rem;
+    text-decoration: ${props => props.isPending ? 'none' : 'line-through'};
   }
 `;
 

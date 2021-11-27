@@ -6,6 +6,7 @@ export const itemContext = createContext();
 export function ItemProvider(props) {
   const [itemsCollection, setItemsCollection] = useState([]);
   const [filterControl, setFilterControl] = useState('default');
+  const [isSearch, setIsSearch] = useState(false);
 
   function handleAddItem(itemText) {
     const itemModel = {
@@ -43,6 +44,10 @@ export function ItemProvider(props) {
     }
   }
 
+  function handleIsSearch() {
+    setIsSearch(prevState => prevState ? true : false);
+  }
+
   return (
     <itemContext.Provider
       value={{
@@ -53,6 +58,8 @@ export function ItemProvider(props) {
         filterControl,
         handleClickDone,
         handleClickPending,
+        isSearch,
+        handleIsSearch,
       }}
     >
       {props.children}

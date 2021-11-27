@@ -14,7 +14,6 @@ export const ProgressBar = styled.div`
     height: 100%;
     width: ${props => {
       const { totalItem, doneItems } = props.itemQuantity;
-      console.log(props.itemQuantity)
 
       if (doneItems) {
         const done = totalItem - doneItems;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { colors } from './helpers/colors';
 
-export const Date = styled.section`
+export const DateContainer = styled.section`
   & {
     display: flex;
     justify-content: center;

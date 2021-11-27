@@ -3,24 +3,25 @@ import { Link } from 'react-router-dom';
 
 import { itemContext } from '../../contexts/ItemContext';
 
-import { Date } from './Date';
+import { day, getMonth, year } from '../../helpers/date';
+
+import { DateContainer } from './Date';
 import { ProgressBar } from './ProgressBar';
 
 export default function Header() {
   const { itemsCollection } = useContext(itemContext);
-
   return (
     <>
-      <Date>
+      <DateContainer>
         <Link to='/'>
-          <h1>07</h1>
+          <h1>{day}</h1>
         </Link>
         <div>
-          <h2>Jul</h2>
-          <h3>2021</h3>
+          <h2>{getMonth()}</h2>
+          <h3>{year}</h3>
         </div>
         <h2>Wednesday</h2>
-      </Date>
+      </DateContainer>
 
       <ProgressBar itemQuantity={itemsCollection}>
         <div id="filler"></div>
