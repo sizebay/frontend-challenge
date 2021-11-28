@@ -4,13 +4,11 @@ import GlobalStyle from './styles/global';
 
 import Layout from './components/Layout';
 
-function App() {
+export default function App() {
   return (
-    <div className="app">
+    <>
       <GlobalStyle />
       <Layout />
-    </div>
+    </>
   );
 }
-
-export default App;

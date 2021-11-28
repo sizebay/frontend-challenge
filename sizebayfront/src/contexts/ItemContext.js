@@ -7,6 +7,7 @@ export function ItemProvider(props) {
   const [itemsCollection, setItemsCollection] = useState([]);
   const [filterControl, setFilterControl] = useState('default');
   const [isSearch, setIsSearch] = useState(false);
+  const [searchText, setSearchText] = useState('');
 
   function handleAddItem(itemText) {
     const itemModel = {
@@ -44,8 +45,12 @@ export function ItemProvider(props) {
     }
   }
 
-  function handleIsSearch() {
-    setIsSearch(prevState => prevState ? true : false);
+  function handleIsSearch(value) {
+    setIsSearch(value);
+  }
+
+  function handleSearchText(text) {
+    setSearchText(text);
   }
 
   return (
@@ -60,6 +65,8 @@ export function ItemProvider(props) {
         handleClickPending,
         isSearch,
         handleIsSearch,
+        searchText,
+        handleSearchText,
       }}
     >
       {props.children}

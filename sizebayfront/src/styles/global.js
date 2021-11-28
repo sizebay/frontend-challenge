@@ -10,11 +10,8 @@ export default createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    /* border: 2px solid green; */
     width: 95vw;
     margin: auto;
-
     font-family: "Roboto", sans-serif;
     background: #fff;
     box-sizing: border-box;
