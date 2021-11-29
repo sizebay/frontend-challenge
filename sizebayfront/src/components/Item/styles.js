@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import checkImg from '../../assets/check.svg';
+import minusImg from '../../assets/minus.svg';
+
 export const Container = styled.div`
   display: flex;
   /* justify-content: space-between; */
@@ -48,7 +51,17 @@ export const Container = styled.div`
 
   button {
     width: 10%;
-    /* border: 2px solid blue; */
+    background: #BE1E2D;
+    cursor: pointer;
+    border: none;
+
+    &:before {
+      background-image: url(${minusImg});
+    }
+
+    & + button {
+      background: #51F881;
+    }
   }
 
   &:last-child {

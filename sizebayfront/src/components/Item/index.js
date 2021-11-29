@@ -4,6 +4,8 @@ import React, { useState, useContext } from "react";
 import { itemContext } from '../../contexts/ItemContext';
 
 import { Container, ContentArea } from "./styles";
+import checkImg from '../../assets/check.svg';
+import minusImg from '../../assets/minus.svg';
 
 export default function Item({ data }) {
   const [newText, setNewText] = useState(data.content);
@@ -37,8 +39,9 @@ export default function Item({ data }) {
         (
           <input
             type="text"
-            value={newText}
-            onChange={changeText}
+            value={data.content}
+            // onChange={changeText}
+            readOnly
           />
         )
         ||
@@ -51,12 +54,10 @@ export default function Item({ data }) {
       <button
         onClick={removeItem}
       >
-        -
       </button>
       <button
         onClick={finishItem}
       >
-        +
       </button>
     </Container>
   );
