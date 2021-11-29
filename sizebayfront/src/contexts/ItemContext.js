@@ -1,10 +1,11 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { generateId } from '../helpers/idGenerator';
 
 export const itemContext = createContext();
 
 export function ItemProvider(props) {
   const [itemsCollection, setItemsCollection] = useState([]);
+
   const [filterControl, setFilterControl] = useState('default');
   const [isSearch, setIsSearch] = useState(false);
   const [searchText, setSearchText] = useState('');
@@ -19,6 +20,11 @@ export function ItemProvider(props) {
     setItemsCollection(prevState => {
       return [...prevState, itemModel]
     });
+  }
+
+  function handleChangeItemName(itemModified) {
+    const updatedCollection = itemsCollection.map(itemCol => itemCol.id === itemModified.id ? itemModified : itemCol);
+    setItemsCollection(prevState => updatedCollection);
   }
 
   function handleRemoveItem(arr) {
@@ -67,6 +73,7 @@ export function ItemProvider(props) {
         handleIsSearch,
         searchText,
         handleSearchText,
+        handleChangeItemName,
       }}
     >
       {props.children}

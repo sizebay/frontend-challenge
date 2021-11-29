@@ -16,7 +16,7 @@ export default function ItemBox() {
     setFoundedItems(foundItemsArray);
   }
 
-  useEffect(searchItem, [searchText]);
+  useEffect(searchItem, [searchText, itemsCollection]);
 
   return (
     <ItemsArea>

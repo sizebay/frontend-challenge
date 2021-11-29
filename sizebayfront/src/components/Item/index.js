@@ -1,24 +1,63 @@
 /* eslint-disable no-mixed-operators */
-import React from "react";
+import React, { useState, useContext } from "react";
 
-import ButtonArea from "./ButtonArea";
+import { itemContext } from '../../contexts/ItemContext';
 
 import { Container, ContentArea } from "./styles";
 
-export default function Item(props) {
+export default function Item({ data }) {
+  const [newText, setNewText] = useState(data.content);
+
+  const { itemsCollection, handleRemoveItem, handleItemPending, handleChangeItemName } = useContext(itemContext);
+
+  function changeText(e) {
+    setNewText(e.target.value);
+
+    const itemModified = {
+      ...data,
+      content: e.target.value
+    }
+
+    handleChangeItemName(itemModified);
+  }
+
+  function removeItem() {
+    const filteredArr = itemsCollection.filter(itemCol => itemCol.id !== data.id);
+    handleRemoveItem(filteredArr);
+  }
+
+  function finishItem() {
+    itemsCollection.map(itemCol => itemCol.id === data.id ? data.isPending = false : data.isPending)
+    handleItemPending(itemsCollection);
+  }
+
   return (
     <Container>
-      <ContentArea isPending={props.data.isPending}>
-        {props.data.isPending && (
-          <input type="text" value={props.data.content} readOnly />
-          ) || (
-          <span>
-            {props.data.content}
-          </span>
-        )}
-      </ContentArea>
+      {data.isPending &&
+        (
+          <input
+            type="text"
+            value={newText}
+            onChange={changeText}
+          />
+        )
+        ||
+        (
+        <span>
+          {data.content}
+        </span>
+      )}
 
-      <ButtonArea item={props.data} />
+      <button
+        onClick={removeItem}
+      >
+        -
+      </button>
+      <button
+        onClick={finishItem}
+      >
+        +
+      </button>
     </Container>
   );
 }
