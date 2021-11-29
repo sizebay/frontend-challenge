@@ -6,7 +6,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { itemContext } from '../../contexts/ItemContext';
 
 import Item from '../../components/Item';
-import { ItemsArea } from '../../components/ItemBox/styles';
+import { ItemsArea } from '../../components/Item/styles';
 
 import { Container } from './styles';
 

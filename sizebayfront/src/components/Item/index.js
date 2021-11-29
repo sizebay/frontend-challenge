@@ -7,7 +7,6 @@ import { Container, ContentArea } from "./styles";
 
 export default function Item({ data }) {
   const [newText, setNewText] = useState(data.content);
-  const [showButtons, setShowButtons] = useState(true);
 
   const { itemsCollection, handleRemoveItem, handleItemPending, handleChangeItemName } = useContext(itemContext);
 

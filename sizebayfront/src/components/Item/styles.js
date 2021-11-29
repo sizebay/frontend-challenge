@@ -5,7 +5,6 @@ import minusImg from '../../assets/minus.svg';
 
 export const Container = styled.div`
   display: flex;
-  /* justify-content: space-between; */
 
   font-size: 19px;
   border: 1px solid #DBDBDB;
@@ -77,68 +76,25 @@ export const Container = styled.div`
   }
 `;
 
-export const ContentArea = styled.div`
-  display: flex;
-  flex-grow: 0;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 1rem;
+export const ItemsArea = styled.div`
+  height: 40vh;
+  overflow-x: hidden;
 
-  border: 2px solid blue;
-
-  &:hover {
-    background: #fff;
+  ::-webkit-scrollbar {
+    width: 9px;
   }
 
-  input {
-    border: none;
-    width: 100%;
-    background: none;
-    color: #848484;
-    font-size: 1rem;
-    text-decoration: ${props => props.isPending ? 'none' : 'line-through'};
-
-    &:focus {
-      border: none;
-      outline: 0;
-    }
+  ::-webkit-scrollbar-track {
+    background: #E4E4E4;
+    border-radius: 10px;
   }
 
-  span {
-    font-size: 1rem;
-    text-decoration: ${props => props.isPending ? 'none' : 'line-through'};
-  }
-`;
-
-export const ButtonContainer = styled.div`
-  flex-grow: 0;
-  visibility: hidden;
-
-  button {
-    border: none;
-    background: #FFF;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    text-align: center;
-    font-size: 14px;
-    cursor: pointer;
-    height: 100%;
-
-    .border {
-      background: #fff;
-      border: 1px solid #fff;
-      border-radius: 0.75rem;
-      padding: 0 0.3rem;
-    }
+  ::-webkit-scrollbar-thumb {
+    background: #848484;
+    border-radius: 10px;
   }
 
-  #removeButton {
-    background: #BE1E2D;
-    color: #BE1E2D;
-  }
-
-  #doneButton {
-    background: #51F881;
-    color: #51F881;
-    border-radius: 0 3px 3px 0;
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555555;
   }
 `;
