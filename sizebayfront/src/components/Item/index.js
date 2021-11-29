@@ -4,11 +4,10 @@ import React, { useState, useContext } from "react";
 import { itemContext } from '../../contexts/ItemContext';
 
 import { Container, ContentArea } from "./styles";
-import checkImg from '../../assets/check.svg';
-import minusImg from '../../assets/minus.svg';
 
 export default function Item({ data }) {
   const [newText, setNewText] = useState(data.content);
+  const [showButtons, setShowButtons] = useState(true);
 
   const { itemsCollection, handleRemoveItem, handleItemPending, handleChangeItemName } = useContext(itemContext);
 
@@ -34,13 +33,12 @@ export default function Item({ data }) {
   }
 
   return (
-    <Container>
+    <Container isPending={data.isPending}>
       {data.isPending &&
         (
           <input
             type="text"
             value={data.content}
-            // onChange={changeText}
             readOnly
           />
         )

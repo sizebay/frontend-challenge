@@ -21,13 +21,11 @@ export const Container = styled.div`
     height: 100%;
     padding: 1rem;
 
-    /* border: 2px solid red; */
     width: 100%;
     background: none;
     color: #848484;
     font-size: 1rem;
     border: none;
-    /* text-decoration: ${props => props.isPending ? 'none' : 'line-through'}; */
 
     &:focus {
       border: none;
@@ -40,13 +38,11 @@ export const Container = styled.div`
     height: 100%;
     padding: 1rem;
 
-    /* border: 2px solid red; */
     width: 100%;
     background: none;
     color: #848484;
     font-size: 1rem;
     border: none;
-    /* text-decoration: ${props => props.isPending ? 'none' : 'line-through'}; */
   }
 
   button {
