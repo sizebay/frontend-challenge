@@ -1,7 +1,4 @@
-import styled from 'styled-components';
-
-import checkImg from '../../assets/check.svg';
-import minusImg from '../../assets/minus.svg';
+import styled, {} from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -32,27 +29,11 @@ export const Container = styled.div`
     }
   }
 
-  span {
-    width: 100%;
-    height: 100%;
-    padding: 1rem;
-
-    width: 100%;
-    background: none;
-    color: #848484;
-    font-size: 1rem;
-    border: none;
-  }
-
   button {
     width: 10%;
     background: #BE1E2D;
     cursor: pointer;
     border: none;
-
-    &:before {
-      background-image: url(${minusImg});
-    }
 
     & + button {
       background: #51F881;

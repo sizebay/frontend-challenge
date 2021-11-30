@@ -3,50 +3,39 @@ import React, { useState, useContext } from "react";
 
 import { itemContext } from '../../contexts/ItemContext';
 
-import { Container, ContentArea } from "./styles";
+import { Container } from "./styles";
 
-export default function Item({ data }) {
-  const [newText, setNewText] = useState(data.content);
+export default function Item(props) {
+  const [itemText, setItemText] = useState(props.data.content);
+  const [isPending, setIsPending] = useState(props.data.isPending);
 
   const { itemsCollection, handleRemoveItem, handleItemPending, handleChangeItemName } = useContext(itemContext);
 
-  function changeText(e) {
-    setNewText(e.target.value);
-
-    const itemModified = {
-      ...data,
-      content: e.target.value
-    }
-
-    handleChangeItemName(itemModified);
-  }
-
   function removeItem() {
-    const filteredArr = itemsCollection.filter(itemCol => itemCol.id !== data.id);
+    const filteredArr = itemsCollection.filter(itemCol => itemCol.id !== props.data.id);
     handleRemoveItem(filteredArr);
   }
 
   function finishItem() {
-    itemsCollection.map(itemCol => itemCol.id === data.id ? data.isPending = false : data.isPending)
+    itemsCollection.map(itemCol => itemCol.id === props.data.id ? props.data.isPending = false : props.data.isPending)
+    setIsPending(true);
     handleItemPending(itemsCollection);
   }
 
+   function renameItem(e) {
+    setItemText(prevState => e.target.value);
+    handleChangeItemName({ id: props.data.id, content: itemText, isPending });
+  }
+
   return (
-    <Container isPending={data.isPending}>
-      {data.isPending &&
-        (
-          <input
-            type="text"
-            value={data.content}
-            readOnly
-          />
-        )
-        ||
-        (
-        <span>
-          {data.content}
-        </span>
-      )}
+    <Container isPending={isPending}>
+      <input
+        type="text"
+        value={itemText}
+        onChange={renameItem}
+        onBlur={renameItem}
+        readOnly={isPending ? false : true}
+      />
 
       <button
         onClick={removeItem}

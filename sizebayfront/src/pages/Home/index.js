@@ -18,23 +18,23 @@ export default function Home() {
 
   useEffect(searchItem, [searchText, itemsCollection]);
 
-
   return (
     <>
       <ItemAddBar />
 
       <ItemsArea>
-        {isSearch && (
+        {isSearch &&
+        (
           foundedItems.map((item, index) => (
             <Item key={index} data={item} />
           ))
         )
           ||
-          (
-            itemsCollection.map((item, index) => (
-              <Item key={index} data={item} />
-            ))
-          )}
+        (
+          itemsCollection.map((item, index) => (
+            <Item key={index} data={item} />
+          ))
+        )}
       </ItemsArea>
     </>
   );

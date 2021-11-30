@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext } from 'react';
 import { generateId } from '../helpers/idGenerator';
 
 export const itemContext = createContext();
@@ -24,7 +24,7 @@ export function ItemProvider(props) {
 
   function handleChangeItemName(itemModified) {
     const updatedCollection = itemsCollection.map(itemCol => itemCol.id === itemModified.id ? itemModified : itemCol);
-    setItemsCollection(prevState => updatedCollection);
+    setItemsCollection(updatedCollection);
   }
 
   function handleRemoveItem(arr) {
