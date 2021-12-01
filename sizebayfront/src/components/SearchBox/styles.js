@@ -1,28 +1,9 @@
-import styled, { css } from 'styled-components';
-
-import { colors } from '../Header/helpers/colors';
+import styled from 'styled-components';
 
 import searchIcon from '../../assets/searchIcon.png';
 
 export const Container = styled.section`
-  display: flex;
-
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-
-  // Mobile
-  @media (max-width: 768px) {
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-
-    nav {
-      display: flex;
-      width: 100%;
-      margin-top: 0.85rem;
-      justify-content: flex-end;
-    }
-  }
+  flex-grow: 3;
 `;
 
 export const Form = styled.div`
@@ -33,7 +14,7 @@ export const Form = styled.div`
   & input {
     width: 60%;
     color: #848484;
-    width: 80%;
+    width: 100%;
     height: 100%;
     background-image: url(${searchIcon});
     background-position: right;
@@ -60,57 +41,4 @@ export const Form = styled.div`
       padding: 0.6rem;
     }
   }
-`;
-
-export const DoneButton = styled.button`
-  flex-grow: 0;
-
-  border: 1px solid #DBDBDB;
-  border-radius: 25px;
-  background: #FFF;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  text-align: center;
-  font-size: 14px;
-  color: ${colors.grey};
-  cursor: pointer;
-
-  ${props => (props.status === 'done') && css`
-    & {
-      background: #F7F7F8;
-      color: #4DA6B3;
-      border: 1px solid #4DA6B3;
-      flex-grow: 0;
-
-      &::before {
-        content: "✓\t"
-      }
-    }
-  `}
-`;
-
-export const PendingButton = styled.button`
-  flex-grow: 0;
-
-  border: 1px solid #DBDBDB;
-  border-radius: 25px;
-  background: #FFF;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  text-align: center;
-  font-size: 14px;
-  color: ${colors.grey};
-  cursor: pointer;
-  margin-left: 0.5rem;
-
-  ${props => (props.status === 'pending') && css`
-    & {
-      background: #F7F7F8;
-      color: #4DA6B3;
-      border: 1px solid #4DA6B3;
-      flex-grow: 0;
-
-      &::before {
-        content: "✓\t"
-      }
-    }
-  `}
 `;

@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { ItemProvider } from '../../contexts/ItemContext';
 
 import Header from '../Header';
-import SearchBox from '../SearchBox';
+import Navigation from '../Navigation';
 import Routes from '../../Routes';
 
 export default function Layout() {
@@ -12,7 +12,7 @@ export default function Layout() {
     <ItemProvider>
       <BrowserRouter>
         <Header />
-        <SearchBox />
+        <Navigation />
         <Routes />
       </BrowserRouter>
     </ItemProvider>
