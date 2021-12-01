@@ -7,7 +7,7 @@ const months = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug",
 
 export function getDayName() {
   const numericDay = today.getDay();
-  return days[numericDay];
+  return days[numericDay - 1];
 }
 
 export function getMonth() {

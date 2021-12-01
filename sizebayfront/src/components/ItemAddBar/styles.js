@@ -39,12 +39,12 @@ export const Button = styled.button`
     border-color: #4DA6B3;
     background-color: #4DA6B3;
   }
+`;
 
-  div#border {
-    background: #fff;
-    color: #4DA6B3;
-    border: 1px solid #fff;
-    border-radius: 0.75rem;
-    padding: 0 0.3rem;
-  }
+export const ButtonAddBorder = styled.div`
+  background: #fff;
+  color: #4DA6B3;
+  border: 1px solid #fff;
+  border-radius: 0.75rem;
+  padding: 0 0.3rem;
 `;

@@ -2,27 +2,32 @@ import React, { useState, useContext } from 'react';
 
 import { itemContext } from '../../contexts/ItemContext';
 
-import { Wrapper, Input, Button } from './styles';
+import { Wrapper, Input, Button, ButtonAddBorder } from './styles';
 
 export default function ItemAddBar() {
-  const { handleAddItem } = useContext(itemContext);
   const [inputText, setInputText] = useState('');
+
+  const { handleAddItem } = useContext(itemContext);
 
   function handleInputText(text) {
     setInputText(text);
+  }
+
+  function clearInput() {
+    setInputText('');
   }
 
   function addItem() {
     if (!inputText) return;
 
     handleAddItem(inputText);
-    handleInputText('');
+    clearInput();
   }
 
   function addByPressEnter(e) {
     if (e.key === 'Enter') {
       addItem();
-      handleInputText('');
+      clearInput();
     }
   }
 
@@ -35,12 +40,8 @@ export default function ItemAddBar() {
         value={inputText}
         onKeyUp={addByPressEnter}
       />
-      <Button
-        onClick={addItem}
-      >
-        <div id="border">
-          +
-        </div>
+      <Button onClick={addItem}>
+        <ButtonAddBorder>+</ButtonAddBorder>
       </Button>
     </Wrapper>
   );

@@ -4,6 +4,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { itemContext } from '../../contexts/ItemContext';
 
 import ItemAddBar from '../../components/ItemAddBar';
+
 import Item from '../../components/Item';
 import { ItemsArea } from '../../components/Item/styles';
 
