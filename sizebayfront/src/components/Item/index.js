@@ -23,7 +23,7 @@ export default function Item(props) {
   }
 
    function renameItem(e) {
-    setItemText(prevState => e.target.value);
+    setItemText(e.target.value);
     handleChangeItemName({ id: props.data.id, content: itemText, isPending });
   }
 

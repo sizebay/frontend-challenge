@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 
 import { itemContext } from '../../contexts/ItemContext';
 
@@ -14,9 +13,7 @@ export default function Header() {
   return (
     <>
       <DateContainer>
-        <Link to='/'>
-          <h1>{numericDay}</h1>
-        </Link>
+        <h1>{numericDay}</h1>
         <div>
           <h2>{getMonth()}</h2>
           <h3>{year}</h3>
@@ -24,7 +21,7 @@ export default function Header() {
         <h2>{getDayName()}</h2>
       </DateContainer>
 
-      <ProgressBar itemQuantity={itemsCollection}>
+      <ProgressBar>
         <div id="filler"></div>
       </ProgressBar>
     </>

@@ -12,17 +12,7 @@ export const ProgressBar = styled.div`
   & > div#filler {
     background: ${colors.greenProgressBar};
     height: 100%;
-    width: ${props => {
-      const { totalItem, doneItems } = props.itemQuantity;
-
-      if (doneItems) {
-        const done = totalItem - doneItems;
-        const percentage = done ? 100 / done : 0;
-        return `${percentage}%`
-      }
-
-      return 0
-    }};
+    width: 100%;
     border-radius: 4px 0 0 4px;
   }
 `;
