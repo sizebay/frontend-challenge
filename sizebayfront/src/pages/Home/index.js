@@ -1,12 +1,12 @@
 /* eslint-disable no-mixed-operators */
 import React, { useState, useEffect } from 'react';
-
 import { useItem } from '../../contexts/item';
+import { ItemsArea } from '../../components/Item/styles';
 
 import ItemAddBar from '../../components/ItemAddBar';
-
 import Item from '../../components/Item';
-import { ItemsArea } from '../../components/Item/styles';
+
+import { HomeContainer } from './styles';
 
 export default function Home() {
   const { itemsCollection, isSearch, searchText } = useItem();
@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(searchItem, [searchText, itemsCollection]);
 
   return (
-    <>
+    <HomeContainer>
       <ItemAddBar />
 
       <ItemsArea>
@@ -37,6 +37,6 @@ export default function Home() {
           ))
         )}
       </ItemsArea>
-    </>
+    </HomeContainer>
   );
 }
