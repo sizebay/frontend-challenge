@@ -17,7 +17,10 @@ export default function Home() {
     setFoundedItems(foundItemsArray);
   }
 
-  useEffect(searchItem, [searchText, itemsCollection]);
+  useEffect(() => {
+    searchItem();
+    document.title = 'Home';
+  }, [searchText, itemsCollection]);
 
   return (
     <HomeContainer>

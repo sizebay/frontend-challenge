@@ -21,7 +21,10 @@ export default function Done() {
     setFoundedItems(foundItemsArray);
   }
 
-  useEffect(searchItem, [searchText]);
+  useEffect(() => {
+    searchItem();
+    document.title = 'Done Items'
+  }, [searchText]);
 
   return (
     <Container>

@@ -18,7 +18,10 @@ export default function Pending() {
     setFoundedItems(foundItemsArray);
   }
 
-  useEffect(searchItem, [searchText, itemsCollection]);
+  useEffect(() => {
+    searchItem();
+    document.title = 'Pending Items'
+  }, [searchText, itemsCollection]);
 
   return (
     <ItemsArea>
