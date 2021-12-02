@@ -1,12 +1,12 @@
 /* eslint-disable no-mixed-operators */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useItem } from '../../contexts/item';
 
-import { Container } from "./styles";
+import { ItemContainer } from "./styles";
 
 export default function Item(props) {
-  const [itemText, setItemText] = useState(props.data.content);
+  // const [itemText, setItemText] = useState(props.data.content);
   const [isPending, setIsPending] = useState(props.data.isPending);
 
   const { itemsCollection, handleRemoveItem, handleItemPending, handleChangeItemName } = useItem();
@@ -22,19 +22,25 @@ export default function Item(props) {
     handleItemPending(itemsCollection);
   }
 
-   function renameItem(e) {
-    setItemText(e.target.value);
-    handleChangeItemName({ id: props.data.id, content: itemText, isPending });
-  }
+  //  function renameItem(e) {
+  //   setItemText(e.target.value);
+  //   handleChangeItemName({ id: props.data.id, content: itemText, isPending });
+  // }
+
+  useEffect(() => {
+    console.log(`Item MONTADO - ${props.data.content}`)
+    // Ao componente Item ser desmontado irá rodar esta função
+    return () => {
+      console.log(`Item DESMONTADO - ${props.data.content}`)
+    }
+  })
 
   return (
-    <Container isPending={isPending}>
+    <ItemContainer>
       <input
         type="text"
-        value={itemText}
-        onChange={renameItem}
-        onBlur={renameItem}
-        readOnly={isPending ? false : true}
+        value={props.data.content}
+        readOnly
       />
 
       <button
@@ -45,6 +51,6 @@ export default function Item(props) {
         onClick={finishItem}
       >
       </button>
-    </Container>
+    </ItemContainer>
   );
 }

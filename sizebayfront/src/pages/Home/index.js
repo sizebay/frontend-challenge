@@ -18,9 +18,12 @@ export default function Home() {
   }
 
   useEffect(() => {
-    searchItem();
     document.title = 'Home';
-  }, [searchText, itemsCollection]);
+  })
+
+  useEffect(() => {
+    searchItem();
+  }, [])
 
   return (
     <HomeContainer>

@@ -1,6 +1,6 @@
 import styled, {} from 'styled-components';
 
-export const Container = styled.div`
+export const ItemContainer = styled.div`
   display: flex;
 
   font-size: 19px;
