@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 
-import { itemContext } from '../../contexts/ItemContext';
+import { ItemContext } from '../../contexts/item';
 
 import { Wrapper, Input, Button, ButtonAddBorder } from './styles';
 
 export default function ItemAddBar() {
   const [inputText, setInputText] = useState('');
 
-  const { handleAddItem } = useContext(itemContext);
+  const { handleAddItem } = useContext(ItemContext);
 
   function handleInputText(text) {
     setInputText(text);

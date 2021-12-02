@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import { ItemProvider } from '../../contexts/ItemContext';
+import { ItemProvider } from '../../contexts/item';
 
 import Header from '../Header';
 import Navigation from '../Navigation';

@@ -3,7 +3,7 @@
 /* eslint-disable no-mixed-operators */
 import React, { useContext, useState, useEffect } from 'react';
 
-import { itemContext } from '../../contexts/ItemContext';
+import { ItemContext } from '../../contexts/item';
 
 import Item from '../../components/Item';
 import { ItemsArea } from '../../components/Item/styles';
@@ -11,7 +11,7 @@ import { ItemsArea } from '../../components/Item/styles';
 import { Container } from './styles';
 
 export default function Done() {
-  const { itemsCollection, isSearch, searchText } = useContext(itemContext);
+  const { itemsCollection, isSearch, searchText } = useContext(ItemContext);
   const [foundedItems, setFoundedItems] = useState([]);
 
   const filteredCollection = itemsCollection.filter(item => item.isPending === false);

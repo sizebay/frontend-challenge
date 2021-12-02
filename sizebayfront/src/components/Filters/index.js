@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 import { Container, PendingButton, DoneButton } from './styles';
 
-import { itemContext } from '../../contexts/ItemContext';
+import { ItemContext } from '../../contexts/item';
 
 export default function Filters() {
-  const { filterControl, handleClickDone, handleClickPending } = useContext(itemContext);
+  const { filterControl, handleClickDone, handleClickPending } = useContext(ItemContext);
 
   return (
     <Container>

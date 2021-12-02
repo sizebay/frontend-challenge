@@ -1,7 +1,7 @@
-import React, { useState, createContext } from 'react';
+import React, { useState } from 'react';
 import { generateId } from '../helpers/idGenerator';
 
-export const itemContext = createContext();
+export const ItemContext = React.createContext();
 
 export function ItemProvider(props) {
   const [itemsCollection, setItemsCollection] = useState([]);
@@ -60,7 +60,7 @@ export function ItemProvider(props) {
   }
 
   return (
-    <itemContext.Provider
+    <ItemContext.Provider
       value={{
         itemsCollection,
         handleAddItem,
@@ -77,6 +77,6 @@ export function ItemProvider(props) {
       }}
     >
       {props.children}
-    </itemContext.Provider>
+    </ItemContext.Provider>
   );
 }
