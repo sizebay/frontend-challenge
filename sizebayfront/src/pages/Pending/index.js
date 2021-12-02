@@ -1,14 +1,14 @@
 /* eslint-disable no-mixed-operators */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { ItemContext } from '../../contexts/item';
+import { useItem } from '../../contexts/item';
 
 import Item from '../../components/Item';
 import { ItemsArea } from '../../components/Item/styles';
 
 export default function Pending() {
-  const { itemsCollection, isSearch, searchText } = useContext(ItemContext);
+  const { itemsCollection, isSearch, searchText } = useItem();
   const [foundedItems, setFoundedItems] = useState([]);
 
   const filteredCollection = itemsCollection.filter(item => item.isPending === true);

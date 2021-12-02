@@ -80,3 +80,6 @@ export function ItemProvider(props) {
     </ItemContext.Provider>
   );
 }
+
+// Creating a custom hook to acess the ItemContext
+export const useItem = () => React.useContext(ItemContext);

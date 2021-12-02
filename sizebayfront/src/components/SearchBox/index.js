@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { ItemContext } from '../../contexts/item';
+import { useItem } from '../../contexts/item';
 
 import { Container, Form } from './styles';
 
 export default function SearchBox() {
-  const { handleIsSearch, searchText, handleSearchText } = useContext(ItemContext);
+  const { handleIsSearch, searchText, handleSearchText } = useItem();
 
   function handleSearch(e) {
     handleSearchText(e.target.value);

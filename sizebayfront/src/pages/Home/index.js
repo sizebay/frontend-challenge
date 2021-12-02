@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-operators */
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { ItemContext } from '../../contexts/item';
+import { useItem } from '../../contexts/item';
 
 import ItemAddBar from '../../components/ItemAddBar';
 
@@ -9,7 +9,7 @@ import Item from '../../components/Item';
 import { ItemsArea } from '../../components/Item/styles';
 
 export default function Home() {
-  const { itemsCollection, isSearch, searchText } = useContext(ItemContext);
+  const { itemsCollection, isSearch, searchText } = useItem();
   const [foundedItems, setFoundedItems] = useState([]);
 
   function searchItem() {

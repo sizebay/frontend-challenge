@@ -1,6 +1,4 @@
-import React, { useContext } from 'react';
-
-import { ItemContext } from '../../contexts/item';
+import React from 'react';
 
 import { getDayName, getMonth, numericDay, year } from '../../helpers/date';
 
@@ -8,8 +6,6 @@ import { DateContainer } from './Date';
 import { ProgressBar } from './ProgressBar';
 
 export default function Header() {
-  const { itemsCollection } = useContext(ItemContext);
-
   return (
     <>
       <DateContainer>

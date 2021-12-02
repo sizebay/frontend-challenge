@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-operators */
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
-import { ItemContext } from '../../contexts/item';
+import { useItem } from '../../contexts/item';
 
 import { Container } from "./styles";
 
@@ -9,7 +9,7 @@ export default function Item(props) {
   const [itemText, setItemText] = useState(props.data.content);
   const [isPending, setIsPending] = useState(props.data.isPending);
 
-  const { itemsCollection, handleRemoveItem, handleItemPending, handleChangeItemName } = useContext(ItemContext);
+  const { itemsCollection, handleRemoveItem, handleItemPending, handleChangeItemName } = useItem();
 
   function removeItem() {
     const filteredArr = itemsCollection.filter(itemCol => itemCol.id !== props.data.id);
