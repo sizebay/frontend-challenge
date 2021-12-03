@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+
+import { useItem } from '../../contexts/item';
 
 import { Container, PendingButton, DoneButton } from './styles';
 
@@ -7,6 +9,7 @@ export default function Filters() {
   const history = useHistory();
   const [doneActive, setDoneActive] = useState(false);
   const [pendingActive, setPendingActive] = useState(false);
+  const { disableDone, setDisableDone } = useItem();
 
   const handleClickDone = () => {
     if (pendingActive) {
@@ -43,6 +46,12 @@ export default function Filters() {
       setPendingActive(false);
     }
   }
+
+  useEffect(() => {
+    if (disableDone) {
+      setDoneActive(false);
+    }
+  })
 
   return (
     <Container>

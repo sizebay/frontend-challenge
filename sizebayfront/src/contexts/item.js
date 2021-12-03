@@ -6,6 +6,8 @@ export const ItemContext = React.createContext();
 export function ItemProvider(props) {
   const [itemsCollection, setItemsCollection] = useState([]);
 
+  const [disableDone, setDisableDone] = useState(false);
+
   const [isSearch, setIsSearch] = useState(false);
   const [searchText, setSearchText] = useState('');
 
@@ -46,6 +48,8 @@ export function ItemProvider(props) {
         searchText,
         handleSearchText,
         handleChangeItemName,
+        disableDone,
+        setDisableDone,
       }}
     >
       {props.children}
