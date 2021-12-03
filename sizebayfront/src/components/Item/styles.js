@@ -1,4 +1,4 @@
-import styled, {} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ItemContainer = styled.div`
   display: flex;
@@ -22,6 +22,7 @@ export const ItemContainer = styled.div`
     color: #848484;
     font-size: 1rem;
     border: none;
+    cursor: pointer;
 
     &:focus {
       border: none;
@@ -29,6 +30,7 @@ export const ItemContainer = styled.div`
     }
   }
 
+  ${props => props.showbuttons ? css`
   button {
     // Done button
     border: 1px solid transparent;
@@ -52,6 +54,11 @@ export const ItemContainer = styled.div`
       border-radius: 0 0.2em 0.2em 0;
     }
   }
+
+  `
+
+  : ''};
+
 
   &:last-child {
     margin-bottom: 1rem;
