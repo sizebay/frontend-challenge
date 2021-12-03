@@ -7,10 +7,12 @@ export function ItemProvider(props) {
   const [itemsCollection, setItemsCollection] = useState([]);
 
   const [filterControl, setFilterControl] = useState('default');
+
   const [isSearch, setIsSearch] = useState(false);
   const [searchText, setSearchText] = useState('');
 
-  function handleAddItem(itemText) {
+  // * Item Actions
+  const handleAddItem = itemText => {
     const itemModel = {
       id: generateId(),
       content: itemText,
@@ -22,20 +24,16 @@ export function ItemProvider(props) {
     });
   }
 
-  function handleChangeItemName(itemModified) {
+  const handleChangeItemName = itemModified => {
     const updatedCollection = itemsCollection.map(itemCol => itemCol.id === itemModified.id ? itemModified : itemCol);
     setItemsCollection(updatedCollection);
   }
 
-  function handleRemoveItem(arr) {
-    setItemsCollection(arr);
-  }
+  const handleRemoveItem = arr => setItemsCollection(arr);
+  const handleItemPending = newArr => setItemsCollection(newArr);
 
-  function handleItemPending(newArr) {
-    setItemsCollection(newArr);
-  }
-
-  function handleClickDone() {
+  // * Filter Actions
+  const handleClickDone = () => {
     if (filterControl !== 'default' && filterControl !== 'pending') {
       setFilterControl('default');
     } else {
@@ -43,7 +41,7 @@ export function ItemProvider(props) {
     }
   }
 
-  function handleClickPending() {
+  const handleClickPending = () => {
     if (filterControl !== 'default' && filterControl !== 'done') {
       setFilterControl('default');
     } else {
@@ -51,13 +49,9 @@ export function ItemProvider(props) {
     }
   }
 
-  function handleIsSearch(value) {
-    setIsSearch(value);
-  }
-
-  function handleSearchText(text) {
-    setSearchText(text);
-  }
+  // * Search Actions
+  const handleIsSearch = value => setIsSearch(value);
+  const handleSearchText = text => setSearchText(text);
 
   return (
     <ItemContext.Provider
@@ -81,5 +75,5 @@ export function ItemProvider(props) {
   );
 }
 
-// Creating a custom hook to acess the ItemContext
+// Creating a custom hook to access the ItemContext
 export const useItem = () => React.useContext(ItemContext);
