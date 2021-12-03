@@ -30,13 +30,26 @@ export const ItemContainer = styled.div`
   }
 
   button {
-    width: 10%;
+    // Done button
+    border: 1px solid transparent;
+    border-radius: 0 0 0 0;
     background: #BE1E2D;
+    border-left: 0;
+    padding: 0.6em 30px;
+    color: #fff;
+    outline: 0;
     cursor: pointer;
-    border: none;
 
+    .filler {
+      background: #fff;
+      border-radius: 1rem;
+      padding-top: 0.15rem;
+    }
+
+    // Finish button
     & + button {
       background: #51F881;
+      border-radius: 0 0.2em 0.2em 0;
     }
   }
 

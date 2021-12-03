@@ -1,13 +1,15 @@
 /* eslint-disable no-mixed-operators */
 import React, { useEffect, useState } from "react";
 
+import check from '../../assets/check.svg';
+import minus from '../../assets/minus.svg';
+
 import { useItem } from '../../contexts/item';
 
 import { ItemContainer } from "./styles";
 
 export default function Item(props) {
-  // const [itemText, setItemText] = useState(props.data.content);
-  const { itemsCollection, handleRemoveItem, handleItemPending, handleChangeItemName } = useItem();
+  const { itemsCollection, handleRemoveItem, handleItemPending } = useItem();
 
   function removeItem() {
     const filteredArr = itemsCollection.filter(itemCol => itemCol.id !== props.data.id);
@@ -19,14 +21,6 @@ export default function Item(props) {
     handleItemPending(itemsCollection);
   }
 
-  useEffect(() => {
-    console.log(`Item MONTADO - ${props.data.content}`)
-    // Ao componente Item ser desmontado irá rodar esta função
-    return () => {
-      console.log(`Item DESMONTADO - ${props.data.content}`)
-    }
-  })
-
   return (
     <ItemContainer>
       <input
@@ -35,13 +29,15 @@ export default function Item(props) {
         readOnly
       />
 
-      <button
-        onClick={removeItem}
-      >
+      <button onClick={removeItem}>
+        <div className="filler">
+          <img src={minus} />
+        </div>
       </button>
-      <button
-        onClick={finishItem}
-      >
+      <button onClick={finishItem}>
+        <div className="filler">
+         <img src={check} />
+        </div>
       </button>
     </ItemContainer>
   );
