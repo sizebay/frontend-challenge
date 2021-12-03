@@ -25,7 +25,12 @@ export const PendingButton = styled.button`
   margin-left: 0.5rem;
   height: 100%;
 
-  ${props => (props.status === 'pending') && css`
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ${props => props.isActive && css`
   & {
     background: #F7F7F8;
     color: #4DA6B3;
@@ -52,7 +57,12 @@ export const DoneButton = styled.button`
   cursor: pointer;
   height: 100%;
 
-  ${props => (props.status === 'done') && css`
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ${props => props.isActive && css`
     & {
       background: #F7F7F8;
       color: #4DA6B3;
@@ -64,4 +74,5 @@ export const DoneButton = styled.button`
       }
     }
   `}
+
 `;

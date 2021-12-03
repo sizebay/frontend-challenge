@@ -6,8 +6,6 @@ export const ItemContext = React.createContext();
 export function ItemProvider(props) {
   const [itemsCollection, setItemsCollection] = useState([]);
 
-  const [filterControl, setFilterControl] = useState('default');
-
   const [isSearch, setIsSearch] = useState(false);
   const [searchText, setSearchText] = useState('');
 
@@ -32,23 +30,6 @@ export function ItemProvider(props) {
   const handleRemoveItem = arr => setItemsCollection(arr);
   const handleItemPending = newArr => setItemsCollection(newArr);
 
-  // * Filter Actions
-  const handleClickDone = () => {
-    if (filterControl !== 'default' && filterControl !== 'pending') {
-      setFilterControl('default');
-    } else {
-      setFilterControl(prevState => (prevState !== 'done') ? 'done' : prevState);
-    }
-  }
-
-  const handleClickPending = () => {
-    if (filterControl !== 'default' && filterControl !== 'done') {
-      setFilterControl('default');
-    } else {
-      setFilterControl(prevState => (prevState !== 'pending') ? 'pending' : prevState);
-    }
-  }
-
   // * Search Actions
   const handleIsSearch = value => setIsSearch(value);
   const handleSearchText = text => setSearchText(text);
@@ -60,9 +41,6 @@ export function ItemProvider(props) {
         handleAddItem,
         handleRemoveItem,
         handleItemPending,
-        filterControl,
-        handleClickDone,
-        handleClickPending,
         isSearch,
         handleIsSearch,
         searchText,

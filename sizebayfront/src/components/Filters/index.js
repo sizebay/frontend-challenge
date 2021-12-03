@@ -1,32 +1,62 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import { Container, PendingButton, DoneButton } from './styles';
 
-import { useItem } from '../../contexts/item';
-
 export default function Filters() {
-  const { filterControl, handleClickDone, handleClickPending } = useItem();
+  const history = useHistory();
+  const [doneActive, setDoneActive] = useState(false);
+  const [pendingActive, setPendingActive] = useState(false);
+
+  const handleClickDone = () => {
+    if (pendingActive) {
+      setPendingActive(false);
+    }
+
+    if (!doneActive) {
+      history.push({
+        pathname: '/done'
+      });
+      setDoneActive(true);
+    } else {
+      history.push({
+        pathname: '/'
+      });
+      setDoneActive(false);
+    }
+  }
+
+  const handleClickPending = () => {
+    if (doneActive) {
+      setDoneActive(false);
+    }
+
+    if (!pendingActive) {
+      history.push({
+        pathname: '/pending'
+      });
+      setPendingActive(true);
+    } else {
+      history.push({
+        pathname: '/'
+      });
+      setPendingActive(false);
+    }
+  }
 
   return (
     <Container>
-      <Link to={filterControl === 'default' ? '/done' : '/'}>
-        <DoneButton
-          onClick={handleClickDone}
-          status={filterControl}
-        >
+      <DoneButton onClick={handleClickDone} isActive={doneActive}>
+        <Link to={history.location.pathname}>
           Done
-        </DoneButton>
-      </Link>
+        </Link>
+      </DoneButton>
 
-      <Link to={filterControl === 'default' ? '/pending' : '/'}>
-        <PendingButton
-          onClick={handleClickPending}
-          status={filterControl}
-        >
+      <PendingButton onClick={handleClickPending} isActive={pendingActive}>
+        <Link to={history.location.pathname}>
           Pending
-        </PendingButton>
-      </Link>
+        </Link>
+      </PendingButton>
     </Container>
   );
 }
