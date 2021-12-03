@@ -19,6 +19,7 @@ export default function ItemAddBar() {
 
   function addItem() {
     if (!inputText) return;
+    if (inputText.startsWith(' ')) return;
 
     handleAddItem(inputText);
     clearInput();
