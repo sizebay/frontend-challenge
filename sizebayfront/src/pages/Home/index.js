@@ -13,17 +13,17 @@ export default function Home() {
   const [foundedItems, setFoundedItems] = useState([]);
 
   function searchItem() {
-    const foundItemsArray = itemsCollection.filter(item => item.content.toLowerCase().includes(searchText));
+    const foundItemsArray = itemsCollection.filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()));
     setFoundedItems(foundItemsArray);
   }
 
   useEffect(() => {
     document.title = 'Home';
-  })
+  });
 
   useEffect(() => {
     searchItem();
-  }, [])
+  }, [searchText])
 
   return (
     <HomeContainer>

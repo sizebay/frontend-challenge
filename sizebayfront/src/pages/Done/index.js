@@ -17,13 +17,16 @@ export default function Done() {
   const filteredCollection = itemsCollection.filter(item => item.isPending === false);
 
   function searchItem() {
-    const foundItemsArray = filteredCollection.filter(item => item.content.toLowerCase().includes(searchText));
+    const foundItemsArray = filteredCollection.filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()));
     setFoundedItems(foundItemsArray);
   }
 
   useEffect(() => {
+    document.title = 'Done Items';
+  });
+
+  useEffect(() => {
     searchItem();
-    document.title = 'Done Items'
   }, [searchText]);
 
   return (

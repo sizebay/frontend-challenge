@@ -14,14 +14,17 @@ export default function Pending() {
   const filteredCollection = itemsCollection.filter(item => item.isPending === true);
 
   function searchItem() {
-    const foundItemsArray = filteredCollection.filter(item => item.content.toLowerCase().includes(searchText));
+    const foundItemsArray = filteredCollection.filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()));
     setFoundedItems(foundItemsArray);
   }
 
   useEffect(() => {
+    document.title = 'Pending Items';
+  });
+
+  useEffect(() => {
     searchItem();
-    document.title = 'Pending Items'
-  }, [searchText, itemsCollection]);
+  }, [searchText]);
 
   return (
     <ItemsArea>
