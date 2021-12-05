@@ -1,7 +1,6 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-mixed-operators */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 
 import { useItem } from '../../contexts/item';
@@ -13,15 +12,10 @@ import { Container } from './styles';
 
 export default function Done() {
   const history = useHistory();
-  const { itemsCollection, isSearch, searchText, setDisableDone } = useItem();
-  const [foundedItems, setFoundedItems] = useState([]);
-
+  const { itemsCollection, isSearch, searchText, setDisableDone, foundedCollection, setDoneTasks } = useItem();
   const filteredCollection = itemsCollection.filter(item => item.isPending === false);
 
-  function searchItem() {
-    const foundItemsArray = filteredCollection.filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()));
-    setFoundedItems(foundItemsArray);
-  }
+  setDoneTasks(filteredCollection.length);
 
   const disableFilter = () => {
     history.push('/');
@@ -33,8 +27,6 @@ export default function Done() {
   });
 
   useEffect(() => {
-    searchItem();
-
     return () => {
       setDisableDone(false);
     }
@@ -45,11 +37,11 @@ export default function Done() {
       <ItemsArea>
         {!filteredCollection.length && (
           <p>
-            There are no items marked as done. <a onClick={disableFilter}>Clear the filter here</a> to see all items.
+            There are no items marked as done. <span onClick={disableFilter}>Clear the filter here</span> to see all items.
           </p>
         ) ||
           isSearch && (
-            foundedItems.map((item, index) => (
+            foundedCollection.map((item, index) => (
               <Item key={index} data={item} />
             ))
           )

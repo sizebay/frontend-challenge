@@ -8,7 +8,7 @@ import Item from '../../components/Item';
 import { ItemsArea } from '../../components/Item/styles';
 
 export default function Pending() {
-  const { itemsCollection, isSearch, searchText } = useItem();
+  const { itemsCollection, isSearch, searchText, foundedCollection } = useItem();
   const [foundedItems, setFoundedItems] = useState([]);
 
   const filteredCollection = itemsCollection.filter(item => item.isPending === true);
@@ -35,7 +35,7 @@ export default function Pending() {
       )
         ||
         (
-          filteredCollection.map((item, index) => (
+          foundedCollection.map((item, index) => (
             <Item key={index} data={item} />
           ))
         )}

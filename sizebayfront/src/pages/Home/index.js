@@ -1,5 +1,4 @@
-/* eslint-disable no-mixed-operators */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useItem } from '../../contexts/item';
 import { ItemsArea } from '../../components/Item/styles';
 
@@ -9,35 +8,25 @@ import Item from '../../components/Item';
 import { HomeContainer } from './styles';
 
 export default function Home() {
-  const { itemsCollection, isSearch, searchText } = useItem();
-  const [foundedItems, setFoundedItems] = useState([]);
+  const { itemsCollection, isSearch, foundedCollection, setDoneTasks } = useItem();
+  const doneCollection = itemsCollection.filter(item => item.isPending === false);
 
-  function searchItem() {
-    const foundItemsArray = itemsCollection.filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()));
-    setFoundedItems(foundItemsArray);
-  }
+  setDoneTasks(doneCollection.length);
 
   useEffect(() => {
     document.title = 'Home';
   });
-
-  useEffect(() => {
-    searchItem();
-  }, [searchText])
 
   return (
     <HomeContainer>
       <ItemAddBar />
 
       <ItemsArea>
-        {isSearch &&
-        (
-          foundedItems.map((item, index) => (
+        {isSearch ? (
+          foundedCollection.map((item, index) => (
             <Item key={index} data={item} />
           ))
-        )
-          ||
-        (
+        ) : (
           itemsCollection.map((item, index) => (
             <Item key={index} data={item} />
           ))

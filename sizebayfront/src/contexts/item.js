@@ -5,11 +5,14 @@ export const ItemContext = React.createContext();
 
 export function ItemProvider(props) {
   const [itemsCollection, setItemsCollection] = useState([]);
+  const [foundedCollection, setFoundedCollection] = useState([]);
 
   const [disableDone, setDisableDone] = useState(false);
 
   const [isSearch, setIsSearch] = useState(false);
   const [searchText, setSearchText] = useState('');
+
+  const [doneTasks, setDoneTasks] = useState(0);
 
   // * Item Actions
   const handleAddItem = itemText => {
@@ -30,11 +33,20 @@ export function ItemProvider(props) {
   }
 
   const handleRemoveItem = arr => setItemsCollection(arr);
-  const handleItemPending = newArr => setItemsCollection(newArr);
+  const handleDoneItem = newArr => setItemsCollection(newArr);
 
   // * Search Actions
-  const handleIsSearch = value => setIsSearch(value);
-  const handleSearchText = text => setSearchText(text);
+  const handleSearch = e => {
+    setSearchText(e.target.value)
+
+    if (e.target.value) {
+      setIsSearch(true)
+      const foundItemsArray = itemsCollection.filter(itemCollection => itemCollection.content.toLowerCase().includes(searchText.toLowerCase()));
+      setFoundedCollection(foundItemsArray);
+    } else {
+      setIsSearch(false)
+    }
+  }
 
   return (
     <ItemContext.Provider
@@ -42,14 +54,16 @@ export function ItemProvider(props) {
         itemsCollection,
         handleAddItem,
         handleRemoveItem,
-        handleItemPending,
-        isSearch,
-        handleIsSearch,
+        handleDoneItem,
         searchText,
-        handleSearchText,
+        isSearch,
+        foundedCollection,
+        handleSearch,
         handleChangeItemName,
         disableDone,
         setDisableDone,
+        doneTasks,
+        setDoneTasks,
       }}
     >
       {props.children}

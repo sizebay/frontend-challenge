@@ -2,10 +2,14 @@ import React from 'react';
 
 import { getDayName, getMonth, numericDay, year } from '../../helpers/date';
 
+import { useItem } from '../../contexts/item';
+
 import { DateContainer } from './Date';
 import { ProgressBar } from './ProgressBar';
 
 export default function Header() {
+  const { doneTasks, itemsCollection } = useItem();
+
   return (
     <>
       <DateContainer>
@@ -17,7 +21,7 @@ export default function Header() {
         <h2>{getDayName()}</h2>
       </DateContainer>
 
-      <ProgressBar>
+      <ProgressBar doneTasks={doneTasks} totalItems={itemsCollection.length}>
         <div id="filler"></div>
       </ProgressBar>
     </>

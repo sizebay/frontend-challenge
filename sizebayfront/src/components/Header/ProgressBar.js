@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { colors } from './helpers/colors';
 
@@ -13,6 +13,7 @@ export const ProgressBar = styled.div`
     background: ${colors.greenProgressBar};
     height: 100%;
     width: 100%;
+    width: ${props => props.doneTasks ? `${(props.doneTasks * 100) / props.totalItems}%` : '0%'};
     border-radius: 4px 0 0 4px;
   }
 `;

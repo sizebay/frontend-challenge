@@ -5,7 +5,7 @@ export const Container = styled.div`
   font-size: 0.85rem;
   padding: 1rem 0 0 0.3rem;
 
-  a {
+  span {
     text-decoration: underline;
     cursor: pointer;
   }
