@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-mixed-operators */
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 
@@ -12,6 +10,7 @@ import { Container } from './styles';
 
 export default function Done() {
   const history = useHistory();
+
   const { itemsCollection, isSearch, searchText, setDisableDone, foundedCollection, handleDoneTasks } = useItem();
   const [filteredCollection, setFilteredCollection] = useState([]);
 
@@ -22,10 +21,13 @@ export default function Done() {
 
   useEffect(() => {
     document.title = 'Done Items';
+  });
+
+  useEffect(() => {
     const filtered = itemsCollection.filter(item => item.isPending === false);
     setFilteredCollection(filtered);
     handleDoneTasks(filteredCollection.length);
-  });
+  }, [])
 
   useEffect(() => {
     return () => {

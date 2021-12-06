@@ -22,14 +22,11 @@ export default function Home() {
 
   const { itemsCollection, isSearch, foundedCollection, handleDoneTasks } = useItem();
 
-
   useEffect(() => {
     document.title = 'Home';
   });
 
   useEffect(() => {
-    // console.log('HOME renderizada')
-
     const doneCollection = itemsCollection.filter(item => item.isPending === false);
     handleDoneTasks(doneCollection.length);
   })

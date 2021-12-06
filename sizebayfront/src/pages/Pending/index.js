@@ -1,5 +1,3 @@
-/* eslint-disable no-mixed-operators */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 
 import { useItem } from '../../contexts/item';
@@ -18,12 +16,12 @@ export default function Pending() {
     - Ao trocar para página de HOME ou DONE
   */
 
-  const { itemsCollection, isSearch, foundedCollection } = useItem();
+  const { itemsCollection, isSearch, searchText } = useItem();
   const [filteredCollection, setFilteredCollection] = useState([]);
+  const [searchedItems, setSearchedItems] = useState([]);
 
   useEffect(() => {
     document.title = 'Pending Items';
-    console.log('PENDING renderizado')
   });
 
   useEffect(() => {
@@ -31,10 +29,16 @@ export default function Pending() {
     setFilteredCollection(filtered);
   }, [])
 
+  useEffect(() => {
+    const foundItemsArray = filteredCollection.filter(itemCollection => itemCollection.content.toLowerCase().includes(searchText.toLowerCase()));
+
+    setSearchedItems(foundItemsArray);
+  }, [searchText])
+
   return (
     <ItemsArea>
       {isSearch ? (
-        foundedCollection.map((item, index) => (
+        searchedItems.map((item, index) => (
           <Item key={index} data={item} />
         ))
       ) : (
