@@ -20,7 +20,7 @@ export default function Home() {
     - Ao concluir um ITEM [trocar isto!!!]
   */
 
-  const { itemsCollection, isSearch, foundedCollection, handleDoneTasks } = useItem();
+  const { itemsCollection, isSearch, searchText, handleDoneTasks } = useItem();
 
   useEffect(() => {
     document.title = 'Home';
@@ -37,7 +37,7 @@ export default function Home() {
 
       <ItemsArea>
         {isSearch ? (
-          foundedCollection.map((item, index) => (
+          (itemsCollection.filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()))).map((item, index) => (
             <Item key={index} data={item} />
           ))
         ) : (

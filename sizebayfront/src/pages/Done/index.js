@@ -21,19 +21,26 @@ export default function Done() {
 
   useEffect(() => {
     document.title = 'Done Items';
-  });
+ });
 
   useEffect(() => {
     const filtered = itemsCollection.filter(item => item.isPending === false);
     setFilteredCollection(filtered);
-    handleDoneTasks(filteredCollection.length);
   }, [])
 
+  // useEffect(() => {
+  //   const foundItemsArray = filteredCollection.push(itemCollection => itemCollection.content.toLowerCase().includes(searchText.toLowerCase()));
+  //   setSearchedItems(foundItemsArray);
+
+  //   return () => {
+  //     setDisableDone(false);
+  //   }
+  // }, [searchText]);
   useEffect(() => {
     return () => {
       setDisableDone(false);
     }
-  }, [searchText]);
+  }, [])
 
   return (
     <Container>
@@ -44,17 +51,16 @@ export default function Done() {
           </p>
         ) ||
           isSearch && (
-            foundedCollection.map((item, index) => (
+            ((itemsCollection.filter(item => item.isPending === false)).filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()))).map((item, index) => (
               <Item key={index} data={item} />
             ))
           )
           ||
           (
-            filteredCollection.map((item, index) => (
+            (itemsCollection.filter(item => item.isPending === false)).map((item, index) => (
               <Item key={index} data={item} />
             ))
-          )
-        }
+          )}
       </ItemsArea>
     </Container>
   );

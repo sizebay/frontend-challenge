@@ -38,7 +38,7 @@ export default function Pending() {
   return (
     <ItemsArea>
       {isSearch ? (
-        searchedItems.map((item, index) => (
+        ((itemsCollection.filter(item => item.isPending)).filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()))).map((item, index) => (
           <Item key={index} data={item} />
         ))
       ) : (
