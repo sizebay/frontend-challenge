@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-mixed-operators */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 
 import { useItem } from '../../contexts/item';
@@ -12,10 +12,8 @@ import { Container } from './styles';
 
 export default function Done() {
   const history = useHistory();
-  const { itemsCollection, isSearch, searchText, setDisableDone, foundedCollection, setDoneTasks } = useItem();
-  const filteredCollection = itemsCollection.filter(item => item.isPending === false);
-
-  setDoneTasks(filteredCollection.length);
+  const { itemsCollection, isSearch, searchText, setDisableDone, foundedCollection, handleDoneTasks } = useItem();
+  const [filteredCollection, setFilteredCollection] = useState([]);
 
   const disableFilter = () => {
     history.push('/');
@@ -24,6 +22,9 @@ export default function Done() {
 
   useEffect(() => {
     document.title = 'Done Items';
+    const filtered = itemsCollection.filter(item => item.isPending === false);
+    setFilteredCollection(filtered);
+    handleDoneTasks(filteredCollection.length);
   });
 
   useEffect(() => {

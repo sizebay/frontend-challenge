@@ -8,14 +8,31 @@ import Item from '../../components/Item';
 import { HomeContainer } from './styles';
 
 export default function Home() {
-  const { itemsCollection, isSearch, foundedCollection, setDoneTasks } = useItem();
-  const doneCollection = itemsCollection.filter(item => item.isPending === false);
+  /*
+    SITUAÇÕES QUE SERÁ RENDERIZADO NOVAMENTE:
+    - Ao acessar novamente a HOME
+    - Ao digitar qualquer caractere na barra da busca
+    - Ao adicionar um novo ITEM
+    - Ao eliminar um ITEM
 
-  setDoneTasks(doneCollection.length);
+    SITUAÇṌES QUE NÃO SERÁ RENDERIZADO:
+    - Ao trocar para página de PENDING ou DONE
+    - Ao concluir um ITEM [trocar isto!!!]
+  */
+
+  const { itemsCollection, isSearch, foundedCollection, handleDoneTasks } = useItem();
+
 
   useEffect(() => {
     document.title = 'Home';
   });
+
+  useEffect(() => {
+    // console.log('HOME renderizada')
+
+    const doneCollection = itemsCollection.filter(item => item.isPending === false);
+    handleDoneTasks(doneCollection.length);
+  })
 
   return (
     <HomeContainer>

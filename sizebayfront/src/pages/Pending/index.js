@@ -8,37 +8,40 @@ import Item from '../../components/Item';
 import { ItemsArea } from '../../components/Item/styles';
 
 export default function Pending() {
-  const { itemsCollection, isSearch, searchText, foundedCollection } = useItem();
-  const [foundedItems, setFoundedItems] = useState([]);
+  /*
+    SITUAÇÕES QUE SERÁ RENDERIZADO NOVAMENTE:
+    - Ao acessar a página PENDING.
+    - Ao digitar qualquer caractere na barra da busca
+    - Ao finalizar um ITEM na aba de Pending
 
-  const filteredCollection = itemsCollection.filter(item => item.isPending === true);
+    SITUAÇṌES QUE NÃO SERÁ RENDERIZADO:
+    - Ao trocar para página de HOME ou DONE
+  */
 
-  function searchItem() {
-    const foundItemsArray = filteredCollection.filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()));
-    setFoundedItems(foundItemsArray);
-  }
+  const { itemsCollection, isSearch, foundedCollection } = useItem();
+  const [filteredCollection, setFilteredCollection] = useState([]);
 
   useEffect(() => {
     document.title = 'Pending Items';
+    console.log('PENDING renderizado')
   });
 
   useEffect(() => {
-    searchItem();
-  }, [searchText]);
+    const filtered = itemsCollection.filter(item => item.isPending);
+    setFilteredCollection(filtered);
+  }, [])
 
   return (
     <ItemsArea>
-      {isSearch && (
-        foundedItems.map((item, index) => (
+      {isSearch ? (
+        foundedCollection.map((item, index) => (
           <Item key={index} data={item} />
         ))
-      )
-        ||
-        (
-          foundedCollection.map((item, index) => (
-            <Item key={index} data={item} />
-          ))
-        )}
+      ) : (
+        filteredCollection.map((item, index) => (
+          <Item key={index} data={item} />
+        ))
+      )}
     </ItemsArea>
   );
 }

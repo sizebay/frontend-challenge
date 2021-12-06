@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { getDayName, getMonth, numericDay, year } from '../../helpers/date';
 
@@ -8,7 +8,18 @@ import { DateContainer } from './Date';
 import { ProgressBar } from './ProgressBar';
 
 export default function Header() {
+  /*
+    SITUAÇÕES QUE SERÁ RENDERIZADO NOVAMENTE:
+    - Ao adicionar um novo ITEM
+  */
+
   const { doneTasks, itemsCollection } = useItem();
+
+  useEffect(() => {
+    // rodará sempre que for renderizado novamente
+    // console.log('Fui renderizado novamente');
+    // console.log(doneTasks);
+  })
 
   return (
     <>

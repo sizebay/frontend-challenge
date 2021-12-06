@@ -35,6 +35,11 @@ export function ItemProvider(props) {
   const handleRemoveItem = arr => setItemsCollection(arr);
   const handleDoneItem = newArr => setItemsCollection(newArr);
 
+  // * Done Tasks
+  const handleDoneTasks = (tasksFinished) => {
+    setDoneTasks(tasksFinished);
+  }
+
   // * Search Actions
   const handleSearch = e => {
     setSearchText(e.target.value)
@@ -63,7 +68,7 @@ export function ItemProvider(props) {
         disableDone,
         setDisableDone,
         doneTasks,
-        setDoneTasks,
+        handleDoneTasks,
       }}
     >
       {props.children}

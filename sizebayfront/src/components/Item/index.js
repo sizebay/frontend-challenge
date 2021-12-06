@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-operators */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,6 +12,20 @@ import { useItem } from '../../contexts/item';
 import { ItemContainer } from "./styles";
 
 export default function Item(props) {
+    /*
+    SITUAÇÕES QUE SERÁ RENDERIZADO NOVAMENTE:
+    - Ao ser criado um novo ITEM
+    - Quando um ITEM é CLICADO
+    - Quando um ITEM é FINALIZADO
+
+    SITUAÇṌES QUE NÃO SERÁ RENDERIZADO:
+    - Ao trocar para página de PENDING ou DONE
+  */
+
+  useEffect(() => {
+    // console.log('ITEM renderizado');
+  })
+
   const { itemsCollection, handleRemoveItem, handleDoneItem } = useItem();
   const [showButtons, setShowButtons] = useState(false);
 
@@ -31,8 +45,16 @@ export default function Item(props) {
   }
 
   function finishItem() {
-    itemsCollection.map(itemCol => itemCol.id === props.data.id ? props.data.isPending = false : props.data.isPending)
-    handleDoneItem(itemsCollection);
+    const updatedCollection = [];
+    itemsCollection.forEach(itemFromCollection => {
+      if (itemFromCollection.id === props.data.id) {
+        updatedCollection.push({ ...itemFromCollection, isPending: false });
+      } else {
+        updatedCollection.push(itemFromCollection);
+      }
+    })
+
+    handleDoneItem(updatedCollection);
 
     toast.success('Tarefa concluída', {
       position: "top-right",
