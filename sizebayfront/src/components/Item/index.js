@@ -70,6 +70,8 @@ export default function Item(props) {
         <input
           type="text"
           value={props.data.content}
+          // Talvez aqui vá o futuro "state"
+          readOnly
         />
       ) : (
         <input
