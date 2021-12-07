@@ -12,8 +12,6 @@ export function ItemProvider(props) {
   const [isSearch, setIsSearch] = useState(false);
   const [searchText, setSearchText] = useState('');
 
-  const [doneTasks, setDoneTasks] = useState(0);
-
   // * Item Actions
   const handleAddItem = itemText => {
     const itemModel = {
@@ -32,13 +30,8 @@ export function ItemProvider(props) {
     setItemsCollection(updatedCollection);
   }
 
-  const handleRemoveItem = arr => setItemsCollection(arr);
+  const handleRemoveItem = updatedCollection => setItemsCollection(updatedCollection);
   const handleDoneItem = newArr => setItemsCollection(newArr);
-
-  // * Done Tasks
-  const handleDoneTasks = (tasksFinished) => {
-    setDoneTasks(tasksFinished);
-  }
 
   // * Search Actions
   const handleSearch = e => {
@@ -67,8 +60,6 @@ export function ItemProvider(props) {
         handleChangeItemName,
         disableDone,
         setDisableDone,
-        doneTasks,
-        handleDoneTasks,
       }}
     >
       {props.children}

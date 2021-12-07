@@ -9,7 +9,7 @@ export default function Filters() {
   const history = useHistory();
   const [doneActive, setDoneActive] = useState(false);
   const [pendingActive, setPendingActive] = useState(false);
-  const { disableDone, setDisableDone } = useItem();
+  const { disableDone } = useItem();
 
   const handleClickDone = () => {
     if (pendingActive) {
@@ -51,7 +51,7 @@ export default function Filters() {
     if (disableDone) {
       setDoneActive(false);
     }
-  })
+  }, [disableDone]);
 
   return (
     <Container>

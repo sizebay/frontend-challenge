@@ -1,36 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-
 import 'react-toastify/dist/ReactToastify.css';
-
 import check from '../../assets/check.svg';
 import minus from '../../assets/minus.svg';
-
 import { useItem } from '../../contexts/item';
-
 import { ItemContainer } from "./styles";
 
 export default function Item(props) {
-    /*
-    SITUAÇÕES QUE SERÁ RENDERIZADO NOVAMENTE:
-    - Ao ser criado um novo ITEM
-    - Quando um ITEM é CLICADO
-    - Quando um ITEM é FINALIZADO
-
-    SITUAÇṌES QUE NÃO SERÁ RENDERIZADO:
-    - Ao trocar para página de PENDING ou DONE
-  */
-
-  useEffect(() => {
-    // console.log('ITEM renderizado');
-  })
-
   const { itemsCollection, handleRemoveItem, handleDoneItem } = useItem();
   const [showButtons, setShowButtons] = useState(false);
 
   function removeItem() {
-    const filteredArr = itemsCollection.filter(itemCol => itemCol.id !== props.data.id);
-    handleRemoveItem(filteredArr);
+    const filteredArray = itemsCollection.filter(itemCol => itemCol.id !== props.data.id);
+    handleRemoveItem(filteredArray);
 
     toast.error('Tarefa deletada', {
       position: "top-right",
@@ -51,7 +33,7 @@ export default function Item(props) {
       } else {
         updatedCollection.push(itemFromCollection);
       }
-    })
+    });
 
     handleDoneItem(updatedCollection);
 
@@ -68,7 +50,6 @@ export default function Item(props) {
 
   const handleShowButtons = () => setShowButtons(prevState => prevState ? false : true);
 
-  // Ao passar o mouse por cima do ItemContainer, habilita uma flag que mostra um input editavel, ao tirar o mouse de cima, ele desabilita a flag e renderiza um input não editável.
   return (
     <ItemContainer
       onClick={handleShowButtons}
@@ -86,20 +67,17 @@ export default function Item(props) {
         pauseOnHover={false}
       />
       {showButtons ? (
-        // Editável
         <input
           type="text"
           value={props.data.content}
         />
       ) : (
-        // Não-editável
         <input
           type="text"
           value={props.data.content}
           readOnly
         />
       )}
-
 
       {showButtons && props.data.isPending && (
         <>
