@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { useItem } from '../../contexts/item';
-
 import { Container, Form } from './styles';
 
 export default function SearchBox() {

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
 import { useItem } from '../../contexts/item';
-
 import { Container, PendingButton, DoneButton } from './styles';
 
 export default function Filters() {
