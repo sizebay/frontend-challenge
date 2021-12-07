@@ -22,7 +22,7 @@ export default function Item(props) {
       pauseOnHover: false,
       draggable: false,
       progress: undefined,
-      });
+    });
   }
 
   function finishItem() {
