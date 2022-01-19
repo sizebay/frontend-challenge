@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import check from '../../assets/check.svg';
 import minus from '../../assets/minus.svg';
 import { useItem } from '../../contexts/item';
@@ -13,16 +11,6 @@ export default function Item(props) {
   function removeItem() {
     const filteredArray = itemsCollection.filter(itemCol => itemCol.id !== props.data.id);
     handleRemoveItem(filteredArray);
-
-    toast.error('Tarefa deletada', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-    });
   }
 
   function finishItem() {
@@ -36,16 +24,6 @@ export default function Item(props) {
     });
 
     handleDoneItem(updatedCollection);
-
-    toast.success('Tarefa concluída', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      });
   }
 
   const handleShowButtons = () => setShowButtons(prevState => prevState ? false : true);
@@ -55,17 +33,6 @@ export default function Item(props) {
       onClick={handleShowButtons}
       showbuttons={showButtons}
     >
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable={false}
-        pauseOnHover={false}
-      />
       {showButtons ? (
         <input
           type="text"
