@@ -8,7 +8,7 @@ export default function Pending() {
 
   useEffect(() => {
     document.title = 'Pending Items';
-  });
+  }, []);
 
   return (
     <ItemsArea>

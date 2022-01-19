@@ -17,7 +17,7 @@ export default function Done() {
 
   useEffect(() => {
     document.title = 'Done Items';
- });
+  }, []);
 
   useEffect(() => {
     return () => {

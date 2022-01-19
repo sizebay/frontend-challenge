@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { generateId } from '../helpers/idGenerator';
 
-export const ItemContext = React.createContext();
+export const ItemContext = createContext();
 
 export function ItemProvider(props) {
   const [itemsCollection, setItemsCollection] = useState([]);
@@ -67,5 +67,4 @@ export function ItemProvider(props) {
   );
 }
 
-// Creating a custom hook to access the ItemContext
-export const useItem = () => React.useContext(ItemContext);
+export const useItem = () => useContext(ItemContext);

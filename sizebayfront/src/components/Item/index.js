@@ -37,7 +37,6 @@ export default function Item(props) {
         <input
           type="text"
           value={props.data.content}
-          // Talvez aqui vá o futuro "state"
           readOnly
         />
       ) : (
@@ -57,7 +56,7 @@ export default function Item(props) {
           </button>
           <button onClick={finishItem}>
             <div className="filler">
-            <img src={check} alt="finish button" />
+              <img src={check} alt="finish button" />
             </div>
           </button>
         </>
