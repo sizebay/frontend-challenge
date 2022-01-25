@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
 export const ItemsArea = styled.div`
+  height: 100%;
 
-  border: 2px solid red;
+  margin-top: 1rem;
 
+  overflow: auto;
 
   ::-webkit-scrollbar {
     width: 9px;

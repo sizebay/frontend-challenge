@@ -29,7 +29,7 @@ export const ItemContainer = styled.div`
     }
   }
 
-  ${props => props.showbuttons ? css`
+  ${props => props.showbuttons && css`
   button {
     // Done button
     border: 1px solid transparent;
@@ -52,9 +52,7 @@ export const ItemContainer = styled.div`
       background: #51F881;
       border-radius: 0 0.2em 0.2em 0;
     }
-  }
-  `
-  : ''};
+  }`};
 
 
   &:last-child {

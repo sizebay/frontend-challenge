@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 
-// import { useItem } from '../../contexts/ItemProvider';
+import { useItem } from '../../contexts/ItemProvider';
 
-// import Item from '../../components/Item';
-// import { ItemsArea } from '../../components/Item/styles';
+import Item from '../../components/Item';
 
-import { PendingContainer } from './styles';
+import { PendingContainer, CustomItemsArea } from './styles';
 
 export default function Pending() {
-  // const { itemsCollection, isSearch, searchText } = useItem();
+  const { itemsCollection, isSearch, searchText } = useItem();
 
   useEffect(() => {
     document.title = 'Pending Items';
@@ -16,19 +15,18 @@ export default function Pending() {
 
   return (
     <PendingContainer>
-
+      <CustomItemsArea>
+        {isSearch ? (
+          ((itemsCollection.filter(item => item.isPending)).filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()))).map((item, index) => (
+            <Item key={index} data={item} />
+          ))
+        ) : (
+          (itemsCollection.filter(item => item.isPending)).map((item, index) => (
+            <Item key={index} data={item} />
+          ))
+        )}
+      </CustomItemsArea>
     </PendingContainer>
   )
 }
 
-    // <ItemsArea>
-    //   {isSearch ? (
-    //     ((itemsCollection.filter(item => item.isPending)).filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()))).map((item, index) => (
-    //       <Item key={index} data={item} />
-    //     ))
-    //   ) : (
-    //     (itemsCollection.filter(item => item.isPending)).map((item, index) => (
-    //       <Item key={index} data={item} />
-    //     ))
-    //   )}
-    // </ItemsArea>

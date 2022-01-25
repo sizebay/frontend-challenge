@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { ItemProvider } from '../../contexts/ItemProvider';
+import { SearchProvider } from '../../contexts/SearchProvider';
 
 import Header from '../Header';
 import Navigation from '../Navigation';
@@ -12,9 +13,11 @@ export default function Layout() {
   return (
     <MainContainer>
       <ItemProvider>
-        <Header />
-        <Navigation />
-        <Routes />
+        <SearchProvider>
+          <Header />
+          <Navigation />
+          <Routes />
+        </SearchProvider>
       </ItemProvider>
     </MainContainer>
   );

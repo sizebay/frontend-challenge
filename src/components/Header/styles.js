@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.div`
-  /* border: 4px solid blue; */
   margin-bottom: 1rem;
   cursor: default;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 export const ProgressBar = styled.div`

@@ -4,15 +4,16 @@ import { generateId } from '../helpers/idGenerator';
 export const ItemContext = createContext();
 
 export function ItemProvider(props) {
-  const [itemsCollection, setItemsCollection] = useState([]);
-  const [foundedCollection, setFoundedCollection] = useState([]);
+  const [itemsCollection, setItemsCollection] = useState(() => {
+    const dataStoraged = JSON.parse(localStorage.getItem('itemCollection'));
+
+    if (dataStoraged === null) return [];
+
+    return dataStoraged;
+  });
 
   const [disableDone, setDisableDone] = useState(false);
 
-  const [isSearch, setIsSearch] = useState(false);
-  const [searchText, setSearchText] = useState('');
-
-  // * Item Actions
   const createNewItem = itemText => {
     const item = {
       id: generateId(),
@@ -28,25 +29,18 @@ export function ItemProvider(props) {
     });
   }
 
+  const removeItem = updatedCollection => {
+    setItemsCollection(() => {
+      localStorage.setItem("itemCollection", JSON.stringify(updatedCollection));
+      return updatedCollection
+    });
+  }
+
+  const finishItem = newArr => setItemsCollection(newArr);
+
   const handleChangeItemName = itemModified => {
     const updatedCollection = itemsCollection.map(itemCol => itemCol.id === itemModified.id ? itemModified : itemCol);
     setItemsCollection(updatedCollection);
-  }
-
-  const handleRemoveItem = updatedCollection => setItemsCollection(updatedCollection);
-  const handleDoneItem = newArr => setItemsCollection(newArr);
-
-  // * Search Actions
-  const handleSearch = e => {
-    setSearchText(e.target.value)
-
-    if (e.target.value) {
-      setIsSearch(true)
-      const foundItemsArray = itemsCollection.filter(itemCollection => itemCollection.content.toLowerCase().includes(searchText.toLowerCase()));
-      setFoundedCollection(foundItemsArray);
-    } else {
-      setIsSearch(false)
-    }
   }
 
   return (
@@ -54,12 +48,8 @@ export function ItemProvider(props) {
       value={{
         itemsCollection,
         createNewItem,
-        handleRemoveItem,
-        handleDoneItem,
-        searchText,
-        isSearch,
-        foundedCollection,
-        handleSearch,
+        removeItem,
+        finishItem,
         handleChangeItemName,
         disableDone,
         setDisableDone,

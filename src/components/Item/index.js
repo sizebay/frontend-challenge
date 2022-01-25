@@ -8,25 +8,17 @@ import { useItem } from '../../contexts/ItemProvider';
 import { ItemContainer } from "./styles";
 
 export default function Item(props) {
-  const { itemsCollection, handleRemoveItem, handleDoneItem } = useItem();
+  const { itemsCollection, removeItem, finishItem } = useItem();
   const [showButtons, setShowButtons] = useState(false);
 
-  function removeItem() {
+  function handleRemoveItem() {
     const filteredArray = itemsCollection.filter(itemCol => itemCol.id !== props.data.id);
-    handleRemoveItem(filteredArray);
+    removeItem(filteredArray);
   }
 
-  function finishItem() {
-    const updatedCollection = [];
-    itemsCollection.forEach(itemFromCollection => {
-      if (itemFromCollection.id === props.data.id) {
-        updatedCollection.push({ ...itemFromCollection, isPending: false });
-      } else {
-        updatedCollection.push(itemFromCollection);
-      }
-    });
-
-    handleDoneItem(updatedCollection);
+  function handleFinishItem() {
+    const updatedCollection = itemsCollection.map(item => item.id === props.data.id ? {...item, isPending: false} : item);
+    finishItem(updatedCollection);
   }
 
   const handleShowButtons = () => setShowButtons(prevState => prevState ? false : true);
@@ -34,30 +26,21 @@ export default function Item(props) {
   return (
     <ItemContainer
       onClick={handleShowButtons}
-      showbuttons={showButtons}
+      showbuttons={{ showButtons, isPending: props.data.isPending }}
     >
-      {showButtons ? (
         <input
           type="text"
           value={props.data.content}
           readOnly
         />
-      ) : (
-        <input
-          type="text"
-          value={props.data.content}
-          readOnly
-        />
-      )}
-
       {showButtons && props.data.isPending && (
         <>
-          <button onClick={removeItem}>
+          <button onClick={handleRemoveItem}>
             <div className="filler">
               <img src={minus} alt="remove button" />
             </div>
           </button>
-          <button onClick={finishItem}>
+          <button onClick={handleFinishItem}>
             <div className="filler">
               <img src={check} alt="finish button" />
             </div>
@@ -66,13 +49,7 @@ export default function Item(props) {
       )}
 
       {showButtons && !props.data.isPending && (
-        <>
-          <button onClick={removeItem}>
-            <div className="filler">
-              <img src={minus} alt="remove button" />
-            </div>
-          </button>
-        </>
+        <button onClick={handleRemoveItem} />
       )}
     </ItemContainer>
   );

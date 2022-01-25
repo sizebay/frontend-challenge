@@ -7,6 +7,7 @@ import { Container, PendingButton, DoneButton } from './styles';
 
 export default function Filters() {
   const history = useHistory();
+
   const [doneActive, setDoneActive] = useState(false);
   const [pendingActive, setPendingActive] = useState(false);
   const { disableDone } = useItem();

@@ -22,11 +22,11 @@ export default function Header() {
         <p id="dayName">{dayName}</p>
       </DateContainer>
 
-      <ProgressBar
-        doneTasks={(itemsCollection.filter(item => item.isPending === false)).length}
-        totalItems={itemsCollection.length}
-      >
-        <FillingProgressBar />
+      <ProgressBar>
+        <FillingProgressBar
+          doneTasks={(itemsCollection.filter(item => item.isPending === false)).length}
+          totalItems={itemsCollection.length}
+        />
       </ProgressBar>
     </HeaderContainer>
   );
