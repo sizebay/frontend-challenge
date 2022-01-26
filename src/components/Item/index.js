@@ -1,61 +1,77 @@
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-
-import check from '../../assets/check.svg';
-import minus from '../../assets/minus.svg';
-
 import { useItem } from '../../contexts/ItemProvider';
 
-import { ItemContainer } from './styles';
+import {
+  ItemContainer, ItemContainerNoEdit, RemoveButton, DoneButton,
+} from './styles';
 
-export default function Item(props) {
-  const { itemsCollection, removeItem, finishItem } = useItem();
+export default function Item({ data, isEditable = true }) {
+  const {
+    itemsCollection, removeItem, finishItem, renameItem,
+  } = useItem();
   const [showButtons, setShowButtons] = useState(false);
+  const [newDescription, setNewDescription] = useState(data.content);
 
-  function handleRemoveItem() {
-    const filteredArray = itemsCollection.filter((itemCol) => itemCol.id !== props.data.id);
+  const handleRemoveItem = (e) => {
+    e.preventDefault();
+
+    const filteredArray = itemsCollection.filter((itemCol) => itemCol.id !== data.id);
     removeItem(filteredArray);
-  }
+  };
 
-  function handleFinishItem() {
+  const handleFinishItem = (e) => {
+    e.preventDefault();
+
     const updatedCollection = itemsCollection.map((item) => (
-      (item.id === props.data.id ? { ...item, isPending: false } : item)
+      (item.id === data.id ? { ...item, isPending: false } : item)
     ));
     finishItem(updatedCollection);
-  }
+  };
 
-  const handleShowButtons = () => setShowButtons((prevState) => (!prevState));
+  const handleShowButtons = (status) => {
+    setShowButtons(status);
+  };
+
+  const handleRename = (e) => {
+    setNewDescription(() => e.target.value);
+    renameItem({ ...data, content: e.target.value });
+  };
 
   return (
-    <ItemContainer
-      onClick={handleShowButtons}
-      showbuttons={{ showButtons, isPending: props.data.isPending }}
-    >
-      <input
-        type="text"
-        value={props.data.content}
-        readOnly
-      />
-      {showButtons && props.data.isPending && (
-        <>
-          <button type="button" onClick={handleRemoveItem}>
-            <div className="filler">
-              <img src={minus} alt="remove button" />
-            </div>
-          </button>
-          <button type="button" onClick={handleFinishItem}>
-            <div className="filler">
-              <img src={check} alt="finish button" />
-            </div>
-          </button>
-        </>
+    <>
+      {isEditable ? (
+        <ItemContainer
+          onFocus={() => handleShowButtons(true)}
+          onBlur={() => handleShowButtons(false)}
+        >
+          <input
+            type="text"
+            value={newDescription}
+            onChange={handleRename}
+          />
+          <RemoveButton
+            show={showButtons}
+            onClick={handleRemoveItem}
+          />
+          <DoneButton
+            show={showButtons}
+            onClick={handleFinishItem}
+          />
+        </ItemContainer>
+      ) : (
+        <ItemContainerNoEdit>
+          <input
+            type="text"
+            value={data.content}
+            readOnly
+          />
+        </ItemContainerNoEdit>
       )}
-
-      {showButtons && !props.data.isPending && (
-        <button type="button" onClick={handleRemoveItem} />
-      )}
-    </ItemContainer>
+    </>
   );
 }

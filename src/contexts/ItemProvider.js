@@ -41,12 +41,20 @@ export function ItemProvider(props) {
 
   const finishItem = (newArr) => setItemsCollection(newArr);
 
-  const handleChangeItemName = (itemModified) => {
-    const updatedCollection = itemsCollection.map((itemCol) => (
-      (itemCol.id === itemModified.id ? itemModified : itemCol)
-    ));
-    setItemsCollection(updatedCollection);
-  };
+  function renameItem(item) {
+    setItemsCollection((prevCollection) => {
+      const itemIndex = prevCollection.findIndex((itemCol) => itemCol.id === item.id);
+
+      // eslint-disable-next-line no-param-reassign
+      prevCollection[itemIndex] = {
+        ...prevCollection[itemIndex],
+        content: item.content,
+      };
+
+      localStorage.setItem('itemCollection', JSON.stringify(prevCollection));
+      return prevCollection;
+    });
+  }
 
   return (
     <ItemContext.Provider
@@ -55,7 +63,7 @@ export function ItemProvider(props) {
         createNewItem,
         removeItem,
         finishItem,
-        handleChangeItemName,
+        renameItem,
         disableDone,
         setDisableDone,
       }}

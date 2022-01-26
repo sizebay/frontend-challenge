@@ -27,15 +27,12 @@ export default function Home() {
     setSearchBoxInputText('');
   };
 
-  // Quando estou utilizando a caixa de busca
-  // Quando estou utilizando a caixa de busca e não tenho resultados, limpar o filtro da caixa e exibir todos os itens
-  // Quando não estou utilizando a caixa de busca
   return (
     <HomeContainer>
       <AddingBar />
       <ItemsArea>
         {
-          userSearching && foundedItems.map((item) => <Item key={item.id} data={item} />)
+          userSearching && foundedItems.map((item) => <Item key={item.id} data={item} isEditable={false} />)
         }
 
         {
@@ -51,7 +48,7 @@ export default function Home() {
         }
 
         {
-          !userSearching && itemsCollection.map((item) => <Item key={item.id} data={item} />)
+          !userSearching && itemsCollection.map((item) => <Item key={item.id} data={item} isEditable={false} />)
         }
       </ItemsArea>
     </HomeContainer>

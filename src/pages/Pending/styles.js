@@ -9,6 +9,16 @@ export const PendingContainer = styled.div`
   overflow: hidden;
   height: 400px;
   width: 100%;
+
+  p#searchAndClean {
+    color: #848484;
+    font-size: 0.85rem;
+
+    span {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
 `;
 
 export const CustomItemsArea = styled(ItemsArea)`

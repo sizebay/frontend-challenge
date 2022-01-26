@@ -13,13 +13,16 @@ export const HeaderContainer = styled.div`
 `;
 
 export const ProgressBar = styled.div`
+  position: relative;
   height: 24px;
   background: #E4E4E4;
   border-radius: 4px;
   margin-top: 1rem;
+  overflow: hidden;
 `;
 
 export const FillingProgressBar = styled.div`
+  display: block;
   background: #5DE290;
   height: 100%;
   width: 100%;
