@@ -1,10 +1,12 @@
-import React from 'react';
-
-import { getDayName, getMonth, numericDay, year } from '../../helpers/date';
+import {
+  getDayName, getMonth, numericDay, year,
+} from '../../helpers/date';
 
 import { useItem } from '../../contexts/ItemProvider';
 
-import { HeaderContainer, DateContainer, ProgressBar, FillingProgressBar } from './styles';
+import {
+  HeaderContainer, DateContainer, ProgressBar, FillingProgressBar,
+} from './styles';
 
 export default function Header() {
   const { itemsCollection } = useItem();
@@ -24,7 +26,7 @@ export default function Header() {
 
       <ProgressBar>
         <FillingProgressBar
-          doneTasks={(itemsCollection.filter(item => item.isPending === false)).length}
+          doneTasks={(itemsCollection.filter((item) => item.isPending === false)).length}
           totalItems={itemsCollection.length}
         />
       </ProgressBar>

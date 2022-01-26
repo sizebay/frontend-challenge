@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react/jsx-no-bind */
+import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { useItem } from '../../contexts/ItemProvider';
@@ -19,12 +20,12 @@ export default function Filters() {
 
     if (!doneActive) {
       history.push({
-        pathname: '/done'
+        pathname: '/done',
       });
       setDoneActive(true);
     } else {
       history.push({
-        pathname: '/'
+        pathname: '/',
       });
       setDoneActive(false);
     }
@@ -37,16 +38,16 @@ export default function Filters() {
 
     if (!pendingActive) {
       history.push({
-        pathname: '/pending'
+        pathname: '/pending',
       });
       setPendingActive(true);
     } else {
       history.push({
-        pathname: '/'
+        pathname: '/',
       });
       setPendingActive(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (disableDone) {

@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable max-len */
+import { useEffect } from 'react';
 
 import { useItem } from '../../contexts/ItemProvider';
 
@@ -17,16 +19,15 @@ export default function Pending() {
     <PendingContainer>
       <CustomItemsArea>
         {isSearch ? (
-          ((itemsCollection.filter(item => item.isPending)).filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()))).map((item, index) => (
+          ((itemsCollection.filter((item) => item.isPending)).filter((item) => item.content.toLowerCase().includes(searchText.toLowerCase()))).map((item, index) => (
             <Item key={index} data={item} />
           ))
         ) : (
-          (itemsCollection.filter(item => item.isPending)).map((item, index) => (
+          (itemsCollection.filter((item) => item.isPending)).map((item, index) => (
             <Item key={index} data={item} />
           ))
         )}
       </CustomItemsArea>
     </PendingContainer>
-  )
+  );
 }
-

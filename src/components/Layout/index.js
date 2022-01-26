@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ItemProvider } from '../../contexts/ItemProvider';
 import { SearchProvider } from '../../contexts/SearchProvider';
 

@@ -29,7 +29,7 @@ export const ItemContainer = styled.div`
     }
   }
 
-  ${props => props.showbuttons && css`
+  ${(props) => props.showbuttons && css`
   button {
     // Done button
     border: 1px solid transparent;

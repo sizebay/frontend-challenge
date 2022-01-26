@@ -1,9 +1,9 @@
 const today = new Date();
 
-const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-const months = ["Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug",
-"Sep", "Oct", "Nov", "Dec"];
+const months = ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug',
+  'Sep', 'Oct', 'Nov', 'Dec'];
 
 export function getDayName() {
   const numericDay = today.getDay();

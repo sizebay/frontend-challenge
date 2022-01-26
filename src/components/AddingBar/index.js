@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+/* eslint-disable react/jsx-no-bind */
+import { useState } from 'react';
 
 import { useItem } from '../../contexts/ItemProvider';
 
-import { AddingBarContainer, Input, Button, ButtonAddBorder } from './styles';
+import {
+  AddingBarContainer, Input, Button, ButtonAddBorder,
+} from './styles';
 
 export default function AddingBar() {
   const [inputText, setInputText] = useState('');
@@ -18,19 +21,19 @@ export default function AddingBar() {
     setInputText('');
   }
 
-  function addByPressEnter(e) {
-    if (e.key === 'Enter') {
-      addItem();
-      clearInput();
-    }
-  }
-
   function addItem() {
     if (!inputText) return;
     if (inputText.startsWith(' ')) return;
 
     createNewItem(inputText);
     clearInput();
+  }
+
+  function addByPressEnter(e) {
+    if (e.key === 'Enter') {
+      addItem();
+      clearInput();
+    }
   }
 
   return (

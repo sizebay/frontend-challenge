@@ -4,6 +4,13 @@ export const Container = styled.div`
   display: flex;
   flex-grow: 1;
 
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   // Mobile Configuration
   @media (max-width: 768px) {
     margin-top: 1rem;
@@ -30,7 +37,7 @@ export const PendingButton = styled.button`
     color: inherit;
   }
 
-  ${props => props.isActive && css`
+  ${(props) => props.isActive && css`
   & {
     background: #F7F7F8;
     color: #4DA6B3;
@@ -62,7 +69,7 @@ export const DoneButton = styled.button`
     color: inherit;
   }
 
-  ${props => props.isActive && css`
+  ${(props) => props.isActive && css`
     & {
       background: #F7F7F8;
       color: #4DA6B3;

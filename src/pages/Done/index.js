@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router';
+/* eslint-disable */
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { useItem } from '../../contexts/ItemProvider';
 
@@ -10,7 +11,9 @@ import { DoneContainer, CustomItemsArea } from './styles';
 export default function Done() {
   const history = useHistory();
 
-  const { itemsCollection, isSearch, searchText, setDisableDone } = useItem();
+  const {
+    itemsCollection, isSearch, searchText, setDisableDone,
+  } = useItem();
 
   const disableFilter = () => {
     history.push('/');
@@ -21,25 +24,27 @@ export default function Done() {
     document.title = 'Done Items';
   }, []);
 
-  useEffect(() => {
-    return () => {
-      setDisableDone(false);
-    }
-  }, [setDisableDone])
+  useEffect(() => () => {
+    setDisableDone(false);
+  }, [setDisableDone]);
 
   return (
     <DoneContainer>
       <CustomItemsArea>
-        {!(itemsCollection.filter(item => item.isPending === false)).length ? (
+        {!(itemsCollection.filter((item) => item.isPending === false)).length ? (
           <p>
-            There are no items marked as done. <span onClick={disableFilter}>Clear the filter here</span> to see all items.
+            There are no items marked as done.
+            {' '}
+            <span onClick={disableFilter}>Clear the filter here</span>
+            {' '}
+            to see all items.
           </p>
         ) : isSearch ? (
-          ((itemsCollection.filter(item => item.isPending === false)).filter(item => item.content.toLowerCase().includes(searchText.toLowerCase()))).map((item, index) => (
+          ((itemsCollection.filter((item) => item.isPending === false)).filter((item) => item.content.toLowerCase().includes(searchText.toLowerCase()))).map((item, index) => (
             <Item key={index} data={item} />
           ))
         ) : (
-          (itemsCollection.filter(item => item.isPending === false)).map((item, index) => (
+          (itemsCollection.filter((item) => item.isPending === false)).map((item, index) => (
             <Item key={index} data={item} />
           ))
         )}
@@ -47,4 +52,3 @@ export default function Done() {
     </DoneContainer>
   );
 }
-

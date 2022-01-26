@@ -1,3 +1,6 @@
+/* eslint-disable max-len */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useState } from 'react';
 
 import { useItem } from './ItemProvider';
@@ -15,24 +18,27 @@ export function SearchProvider(props) {
   const [userSearching, setUserSearching] = useState(false);
   const [cleanUserSearching, setCleanUserSearching] = useState(false);
 
-  const searchItems = text => {
+  const searchItems = (text) => {
     setFoundedItems(() => {
-      const filtered = itemsCollection.filter(item => item.content.toLowerCase().includes(text.toLowerCase()));
+      const filtered = itemsCollection.filter((item) => (
+        item.content.toLowerCase().includes(text.toLowerCase())
+      ));
 
       return filtered;
     });
-  }
+  };
 
-  const handleSearching = searchStatus => {
+  const handleSearching = (searchStatus) => {
     setUserSearching(searchStatus);
-  }
+  };
 
   const handleCleanUserSearching = () => {
-    setCleanUserSearching(prevState => !prevState);
-  }
+    setCleanUserSearching((prevState) => !prevState);
+  };
 
   return (
     <SearchContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         searchItems,
         foundedItems,
@@ -42,12 +48,12 @@ export function SearchProvider(props) {
         cleanUserSearching,
 
         searchBoxInputText,
-        setSearchBoxInputText
+        setSearchBoxInputText,
       }}
     >
       {props.children}
     </SearchContext.Provider>
-  )
+  );
 }
 
 export const useSearch = () => useContext(SearchContext);

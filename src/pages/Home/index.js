@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react';
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { useEffect } from 'react';
 
 import { useItem } from '../../contexts/ItemProvider';
 import { useSearch } from '../../contexts/SearchProvider';
@@ -11,7 +14,9 @@ import { ItemsArea } from '../../styles/ItemsArea';
 
 export default function Home() {
   const { itemsCollection } = useItem();
-  const { foundedItems, userSearching, handleSearching, setSearchBoxInputText } = useSearch();
+  const {
+    foundedItems, userSearching, handleSearching, setSearchBoxInputText,
+  } = useSearch();
 
   useEffect(() => {
     document.title = 'Home';
@@ -20,7 +25,7 @@ export default function Home() {
   const cleanSearch = () => {
     handleSearching(false);
     setSearchBoxInputText('');
-  }
+  };
 
   // Quando estou utilizando a caixa de busca
   // Quando estou utilizando a caixa de busca e não tenho resultados, limpar o filtro da caixa e exibir todos os itens
@@ -30,19 +35,23 @@ export default function Home() {
       <AddingBar />
       <ItemsArea>
         {
-          userSearching && foundedItems.map((item, index) => <Item key={index} data={item} />)
+          userSearching && foundedItems.map((item) => <Item key={item.id} data={item} />)
         }
 
         {
           userSearching && (foundedItems.length === 0) && (
             <p id="searchAndClean">
-              Your search found no results. <span onClick={cleanSearch}>Clean the search here</span> to see all items.
+              Your search found no results.
+              {' '}
+              <span onClick={cleanSearch}>Clean the search here</span>
+              {' '}
+              to see all items.
             </p>
           )
         }
 
         {
-          !userSearching && itemsCollection.map((item, index) => <Item key={index} data={item} />)
+          !userSearching && itemsCollection.map((item) => <Item key={item.id} data={item} />)
         }
       </ItemsArea>
     </HomeContainer>

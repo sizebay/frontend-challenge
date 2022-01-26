@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { NotFoundContainer } from './styles';
 
 export default function PageNotFound() {
-
   useEffect(() => {
-    document.title = 'Page not found'
+    document.title = 'Page not found';
   }, []);
 
   return (
