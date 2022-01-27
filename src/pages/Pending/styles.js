@@ -22,5 +22,5 @@ export const PendingContainer = styled.div`
 `;
 
 export const CustomItemsArea = styled(ItemsArea)`
-  margin-top: 0;
+  margin-top: 1rem;
 `;

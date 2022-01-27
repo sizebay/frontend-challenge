@@ -8,6 +8,7 @@ export default createGlobalStyle`
 
   body {
     font-family: "Roboto", sans-serif;
+    font-size: 14px;
     background: #555555;
     box-sizing: border-box;
 

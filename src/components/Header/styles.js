@@ -28,6 +28,8 @@ export const FillingProgressBar = styled.div`
   width: 100%;
   width: ${(props) => (props.doneTasks ? `${(props.doneTasks * 100) / props.totalItems}%` : '0%')};
   border-radius: 4px 0 0 4px;
+
+  transition: width 1s ease-in-out;
 `;
 
 export const DateContainer = styled.section`

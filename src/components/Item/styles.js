@@ -13,7 +13,7 @@ export const ItemContainer = styled.form`
   margin-bottom: 1rem;
   margin-right: 10px;
 
-  height: 3rem;
+  height: 3.5rem;
 
   input {
     width: 100%;
@@ -50,7 +50,7 @@ export const ItemContainerNoEdit = styled.form`
   margin-bottom: 1rem;
   margin-right: 10px;
 
-  height: 3rem;
+  height: 3.5rem;
 
   input {
     width: 100%;
@@ -59,7 +59,7 @@ export const ItemContainerNoEdit = styled.form`
     font-size: 1rem;
     border: none;
     padding-left: 1rem;
-    cursor: default;
+    cursor: not-allowed;
 
     &:focus {
       outline: none;

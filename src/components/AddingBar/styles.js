@@ -4,7 +4,8 @@ export const AddingBarContainer = styled.div`
   display: inline-flex;
   font-size: 1rem;
   width: 100%;
-  /* height: 100%; */
+  box-sizing: border-box;
+  height: 7.25vh;
 `;
 
 export const Input = styled.input`
@@ -16,10 +17,15 @@ export const Input = styled.input`
   width: 100%;
   background: #F7F7F7;
   color: #848484;
+  font-size: 14px;
 
   &:focus {
     border-color: #4DA6B3;
     background: #fff;
+
+    button {
+      background: red !important;
+    }
   }
 `;
 
@@ -34,11 +40,6 @@ export const Button = styled.button`
   font-weight: bold;
   outline: 0;
   cursor: pointer;
-
-  &:hover, &:focus {
-    border-color: #4DA6B3;
-    background-color: #4DA6B3;
-  }
 `;
 
 export const ButtonAddBorder = styled.div`

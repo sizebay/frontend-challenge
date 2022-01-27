@@ -45,14 +45,14 @@ export function ItemProvider(props) {
     setItemsCollection((prevCollection) => {
       const itemIndex = prevCollection.findIndex((itemCol) => itemCol.id === item.id);
 
-      // eslint-disable-next-line no-param-reassign
-      prevCollection[itemIndex] = {
-        ...prevCollection[itemIndex],
+      const updatedCollection = prevCollection;
+      updatedCollection[itemIndex] = {
+        ...updatedCollection[itemIndex],
         content: item.content,
       };
 
-      localStorage.setItem('itemCollection', JSON.stringify(prevCollection));
-      return prevCollection;
+      localStorage.setItem('itemCollection', JSON.stringify(updatedCollection));
+      return updatedCollection;
     });
   }
 

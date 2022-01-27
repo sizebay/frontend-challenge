@@ -10,6 +10,7 @@ import { useSearch } from '../../contexts/SearchProvider';
 import Item from '../../components/Item';
 
 import { PendingContainer, CustomItemsArea } from './styles';
+import AddingBar from '../../components/AddingBar';
 
 export default function Pending() {
   const { itemsCollection } = useItem();
@@ -35,6 +36,8 @@ export default function Pending() {
 
   return (
     <PendingContainer>
+      <AddingBar />
+
       <CustomItemsArea>
         {
           userSearching && foundedItems.map((item) => item.isPending && <Item key={item.id} data={item} />)

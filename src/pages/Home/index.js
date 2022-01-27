@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { useItem } from '../../contexts/ItemProvider';
 import { useSearch } from '../../contexts/SearchProvider';
 
-import AddingBar from '../../components/AddingBar';
 import Item from '../../components/Item';
 
 import { HomeContainer } from './styles';
@@ -29,7 +28,6 @@ export default function Home() {
 
   return (
     <HomeContainer>
-      <AddingBar />
       <ItemsArea>
         {
           userSearching && foundedItems.map((item) => <Item key={item.id} data={item} isEditable={false} />)
