@@ -1,12 +1,12 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import { useState, createContext, useContext } from 'react';
+import {
+  useState, createContext, useContext,
+} from 'react';
 import { generateId } from '../helpers/idGenerator';
 
 export const ItemContext = createContext();
 
-export function ItemProvider(props) {
+export function ItemProvider({ children }) {
   const [itemsCollection, setItemsCollection] = useState(() => {
     const dataStoraged = JSON.parse(localStorage.getItem('itemCollection'));
 
@@ -68,7 +68,7 @@ export function ItemProvider(props) {
         setDisableDone,
       }}
     >
-      {props.children}
+      {children}
     </ItemContext.Provider>
   );
 }

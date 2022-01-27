@@ -1,15 +1,12 @@
-/* eslint-disable max-len */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect } from 'react';
 
 import { useItem } from '../../contexts/ItemProvider';
 import { useSearch } from '../../contexts/SearchProvider';
 
 import Item from '../../components/Item';
+import { ItemsArea } from '../../styles/ItemsArea';
 
 import { HomeContainer } from './styles';
-import { ItemsArea } from '../../styles/ItemsArea';
 
 export default function Home() {
   const { itemsCollection } = useItem();
@@ -30,7 +27,9 @@ export default function Home() {
     <HomeContainer>
       <ItemsArea>
         {
-          userSearching && foundedItems.map((item) => <Item key={item.id} data={item} isEditable={false} />)
+          userSearching && foundedItems.map((item) => (
+            <Item key={item.id} data={item} isEditable={false} />
+          ))
         }
 
         {
@@ -46,7 +45,9 @@ export default function Home() {
         }
 
         {
-          !userSearching && itemsCollection.map((item) => <Item key={item.id} data={item} isEditable={false} />)
+          !userSearching && itemsCollection.map((item) => (
+            <Item key={item.id} data={item} isEditable={false} />
+          ))
         }
       </ItemsArea>
     </HomeContainer>

@@ -7,8 +7,6 @@ export default function SearchBox() {
     searchItems, handleSearching, cleanUserSearching, searchBoxInputText, setSearchBoxInputText,
   } = useSearch();
 
-  // console.log(cleanUserSearching);
-
   const handleSearch = (event) => {
     if (cleanUserSearching) {
       setSearchBoxInputText('');
@@ -20,6 +18,7 @@ export default function SearchBox() {
       }
       return true;
     });
+
     searchItems(event.target.value);
     setSearchBoxInputText(event.target.value);
   };

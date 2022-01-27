@@ -1,8 +1,5 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/jsx-no-bind */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useItem } from '../../contexts/ItemProvider';
 

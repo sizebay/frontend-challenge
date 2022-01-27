@@ -63,6 +63,9 @@ export const DateContainer = styled.section`
       font-weight: 400;
       color: #848484;
 
+      @media (max-width: 768px) {
+        margin-top: 1.7rem;
+      }
     }
 
     & div {

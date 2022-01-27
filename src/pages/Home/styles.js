@@ -17,4 +17,8 @@ export const HomeContainer = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 768px) {
+    height: 600px;
+  }
 `;

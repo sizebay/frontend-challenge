@@ -1,19 +1,14 @@
-/* eslint-disable max-len */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useContext, useState } from 'react';
 
 import { useItem } from './ItemProvider';
 
 export const SearchContext = createContext();
 
-export function SearchProvider(props) {
+export function SearchProvider({ children }) {
   const { itemsCollection } = useItem();
-
-  // Estado do SearchBox
   const [searchBoxInputText, setSearchBoxInputText] = useState('');
 
-  // Pegara os itens criados que ficam no itemsCollection e retornara um array de encontrados, as páginas só exibirão os encontrados e não o itemsCollection
   const [foundedItems, setFoundedItems] = useState([]);
   const [userSearching, setUserSearching] = useState(false);
   const [cleanUserSearching, setCleanUserSearching] = useState(false);
@@ -38,7 +33,6 @@ export function SearchProvider(props) {
 
   return (
     <SearchContext.Provider
-      // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
         searchItems,
         foundedItems,
@@ -46,12 +40,11 @@ export function SearchProvider(props) {
         userSearching,
         handleCleanUserSearching,
         cleanUserSearching,
-
         searchBoxInputText,
         setSearchBoxInputText,
       }}
     >
-      {props.children}
+      {children}
     </SearchContext.Provider>
   );
 }

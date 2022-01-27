@@ -7,5 +7,6 @@ export const NavigationContainer = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column-reverse;
+    margin: 1rem 0 1rem 0;
   }
 `;

@@ -32,13 +32,13 @@ export const Form = styled.div`
     }
   }
 
-  // Mobile
   @media (max-width: 768px) {
     width: 100%;
 
     input {
       width: 100%;
-      padding: 0.6rem;
+      padding: 0.5rem 0.6rem 0.5rem 0.6rem;
+      background-size: 3rem;
     }
   }
 `;
