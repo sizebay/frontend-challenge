@@ -120,6 +120,11 @@ export const DoneButton = styled.button`
 `;
 
 export const ItemTooltip = styled.div`
+  @keyframes showTooltip {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -134,6 +139,9 @@ export const ItemTooltip = styled.div`
   z-index: 1;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+
+  animation-name: showTooltip;
+  animation-duration: 2s;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
