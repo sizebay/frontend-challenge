@@ -4,15 +4,14 @@ import minusImg from '../../assets/minus.svg';
 import checkImg from '../../assets/check.svg';
 
 export const ItemContainer = styled.form`
+  position: relative;
   display: flex;
   border: 1px solid #DBDBDB;
-
   border-radius: 4px;
   background: #F4F4F4;
   color: #848484;
   margin-bottom: 1rem;
   margin-right: 10px;
-
   height: 3.5rem;
 
   input {
@@ -43,13 +42,11 @@ export const ItemContainer = styled.form`
 export const ItemContainerNoEdit = styled.form`
   display: flex;
   border: 1px solid #DBDBDB;
-
   border-radius: 4px;
   background: #F4F4F4;
   color: #848484;
   margin-bottom: 1rem;
   margin-right: 10px;
-
   height: 3.5rem;
 
   input {
@@ -101,11 +98,9 @@ export const RemoveButton = styled.button`
 
 export const DoneButton = styled.button`
   display: ${(props) => (props.show ? 'block' : 'none')};
-
   flex-direction: center;
   align-items: center;
   width: 3rem;
-
   cursor: pointer;
   border: transparent;
   outline: transparent;
@@ -121,5 +116,45 @@ export const DoneButton = styled.button`
     width: 1.34rem;
     height: 1.34rem;
     border-radius: 50%;
+  }
+`;
+
+export const ItemTooltip = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5.34vh;
+  width: 4.47vw;
+  background: #848484;
+  color: #fff;
+  top: 80%;
+  left: 40%;
+  border-radius: 4px;
+  z-index: 1;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -18%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #848484 transparent transparent transparent;
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;

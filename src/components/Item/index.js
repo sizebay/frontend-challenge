@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useItem } from '../../contexts/ItemProvider';
 
 import {
-  ItemContainer, ItemContainerNoEdit, RemoveButton, DoneButton,
+  ItemContainer, ItemContainerNoEdit, RemoveButton, DoneButton, ItemTooltip,
 } from './styles';
 
 export default function Item({ data, isEditable = true }) {
@@ -42,24 +42,31 @@ export default function Item({ data, isEditable = true }) {
   return (
     <>
       {isEditable ? (
-        <ItemContainer
-          onFocus={() => handleShowButtons(true)}
-          onBlur={() => handleShowButtons(false)}
-        >
-          <input
-            type="text"
-            value={newDescription}
-            onChange={handleRename}
-          />
-          <RemoveButton
-            show={showButtons}
-            onClick={handleRemoveItem}
-          />
-          <DoneButton
-            show={showButtons}
-            onClick={handleFinishItem}
-          />
-        </ItemContainer>
+        <>
+          <ItemContainer
+            onFocus={() => handleShowButtons(true)}
+            onBlur={() => handleShowButtons(false)}
+          >
+            <input
+              type="text"
+              value={newDescription}
+              onChange={handleRename}
+            />
+            <RemoveButton
+              show={showButtons}
+              onClick={handleRemoveItem}
+            />
+            <DoneButton
+              show={showButtons}
+              onClick={handleFinishItem}
+            />
+            {showButtons && (
+            <ItemTooltip>
+              Edit task
+            </ItemTooltip>
+            )}
+          </ItemContainer>
+        </>
       ) : (
         <ItemContainerNoEdit>
           <input
