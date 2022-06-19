@@ -27,7 +27,7 @@ export const TasksProvider = ({ children }: TasksContextProps) => {
 
   const getPercentageOfCompletedTasks = (tasks: Task[]) => {
     const doneTasks = tasks.filter(({ done }) => done);
-    return (100 * doneTasks.length) / tasks.length;
+    return (100 * doneTasks.length) / tasks.length || 0;
   };
 
   const [percentageCompletedTasks, setPercentageCompleteTasks] = useState(
