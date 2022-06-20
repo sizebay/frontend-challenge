@@ -17,7 +17,7 @@ const DateHeader = () => {
         <h2>{day}</h2>
         <div>
           <span className="month">{month}</span>
-          <span className="year">{year}</span>
+          <span>{year}</span>
         </div>
       </div>
       <div>
