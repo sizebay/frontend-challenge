@@ -15,6 +15,7 @@ export const Wrapper = styled.form`
       width: 100%;
       height: 100%;
       border: none;
+      color: #1c1c1c;
       &::placeholder {
         font-size: 14px;
         opacity: 0.5;
