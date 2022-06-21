@@ -30,14 +30,16 @@ export const TasksProvider = ({ children }: TasksContextProps) => {
     return (100 * doneTasks.length) / tasks.length || 0;
   };
 
-  const [percentageCompletedTasks, setPercentageCompleteTasks] = useState(
+  const [percentageCompletedTasks, setPercentageCompletedTasks] = useState(
     getPercentageOfCompletedTasks(tasks)
   );
 
   const addTask = (task: Task) => {
     setTasks([...tasks, task]);
     localStorage.setItem("tasks", JSON.stringify([...tasks, task]));
-    setPercentageCompleteTasks(getPercentageOfCompletedTasks([...tasks, task]));
+    setPercentageCompletedTasks(
+      getPercentageOfCompletedTasks([...tasks, task])
+    );
   };
 
   const removeTask = ({ id: idTaskToBeRemoved }: Task) => {
@@ -45,7 +47,7 @@ export const TasksProvider = ({ children }: TasksContextProps) => {
 
     setTasks(tasksUpdated);
     localStorage.setItem("tasks", JSON.stringify(tasksUpdated));
-    setPercentageCompleteTasks(getPercentageOfCompletedTasks(tasksUpdated));
+    setPercentageCompletedTasks(getPercentageOfCompletedTasks(tasksUpdated));
   };
 
   const completeTask = ({ id: idTaskToComplete }: Task) => {
@@ -53,7 +55,7 @@ export const TasksProvider = ({ children }: TasksContextProps) => {
 
     tasks[index].done = true;
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    setPercentageCompleteTasks(getPercentageOfCompletedTasks(tasks));
+    setPercentageCompletedTasks(getPercentageOfCompletedTasks(tasks));
   };
 
   const editTask = ({ id: idTaskToEdit }: Task, newDescription: string) => {
@@ -61,7 +63,7 @@ export const TasksProvider = ({ children }: TasksContextProps) => {
 
     tasks[index].description = newDescription;
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    setPercentageCompleteTasks(getPercentageOfCompletedTasks(tasks));
+    setPercentageCompletedTasks(getPercentageOfCompletedTasks(tasks));
   };
 
   return (
