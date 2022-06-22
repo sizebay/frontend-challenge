@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import { Wrapper } from "./styles";
 
-interface MainWrapperProps {
+interface iMainWrapperProps {
   children: ReactNode;
 }
 
-const MainWrapper = ({ children }: MainWrapperProps) => (
+const MainWrapper = ({ children }: iMainWrapperProps) => (
   <Wrapper>{children}</Wrapper>
 );
 

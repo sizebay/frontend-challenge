@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { ProgressBarProps } from ".";
+import { iProgressBarProps } from ".";
 
-export const Wrapper = styled.div<ProgressBarProps>`
+export const Wrapper = styled.div<iProgressBarProps>`
   height: 1.5rem;
   width: 100%;
   background-color: var(--secundary-gray);

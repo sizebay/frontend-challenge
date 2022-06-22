@@ -4,11 +4,11 @@ import { AiOutlineCheckCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { Task, useTasks } from "../../providers/Tasks";
 import { Wrapper } from "./styles";
 
-interface ListItemProps {
+interface iListItemProps {
   task: Task;
 }
 
-const ListItem = ({ task }: ListItemProps) => {
+const ListItem = ({ task }: iListItemProps) => {
   const [inputValue, setInputValue] = useState(task.description);
 
   const { editTask } = useTasks();

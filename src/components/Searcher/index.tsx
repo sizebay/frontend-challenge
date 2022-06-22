@@ -4,11 +4,11 @@ import { SearchState } from "../MainContent";
 
 import { Button, Wrapper } from "./styles";
 
-interface SearcherProps {
+interface iSearcherProps {
   changeSearchState: (newSearchState: SearchState) => void;
 }
 
-const Searcher = ({ changeSearchState }: SearcherProps) => {
+const Searcher = ({ changeSearchState }: iSearcherProps) => {
   const [inputValue, setInputValue] = useState("");
   const [doneFilter, setDoneFilter] = useState(false);
   const [pendingFilter, setPendingFilter] = useState(false);

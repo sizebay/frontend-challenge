@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import { TasksProvider } from "./Tasks";
 
-interface ProviderProps {
+interface iProviderProps {
   children: ReactNode;
 }
 
-const Providers = ({ children }: ProviderProps) => (
+const Providers = ({ children }: iProviderProps) => (
   <TasksProvider>{children}</TasksProvider>
 );
 

@@ -6,7 +6,7 @@ export type Task = {
   done: boolean;
 };
 
-interface TasksProviderData {
+interface iTasksProviderData {
   tasks: Task[];
   addTask: (task: Task) => void;
   removeTask: (task: Task) => void;
@@ -15,13 +15,15 @@ interface TasksProviderData {
   percentageCompletedTasks: number;
 }
 
-interface TasksContextProps {
+interface iTasksContextProps {
   children: ReactNode;
 }
 
-const TasksContext = createContext<TasksProviderData>({} as TasksProviderData);
+const TasksContext = createContext<iTasksProviderData>(
+  {} as iTasksProviderData
+);
 
-export const TasksProvider = ({ children }: TasksContextProps) => {
+export const TasksProvider = ({ children }: iTasksContextProps) => {
   const initialState = JSON.parse(localStorage.getItem("tasks") || "[]");
   const [tasks, setTasks] = useState<Task[]>(initialState as Task[]);
 

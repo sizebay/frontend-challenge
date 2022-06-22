@@ -38,11 +38,11 @@ export const Wrapper = styled.div`
   }
 `;
 
-interface ButtonProps {
+interface iButtonProps {
   activated: boolean;
 }
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.button<iButtonProps>`
   transition: 0.4s;
   display: flex;
   align-items: center;

@@ -1,10 +1,10 @@
 import { Wrapper } from "./styles";
 
-export interface ProgressBarProps {
+export interface iProgressBarProps {
   progress: number;
 }
 
-const ProgressBar = ({ progress }: ProgressBarProps) => {
+const ProgressBar = ({ progress }: iProgressBarProps) => {
   return (
     <Wrapper progress={progress}>
       <div></div>
