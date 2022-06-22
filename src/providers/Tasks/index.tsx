@@ -59,11 +59,13 @@ export const TasksProvider = ({ children }: TasksContextProps) => {
   };
 
   const editTask = ({ id: idTaskToEdit }: Task, newDescription: string) => {
-    const index = tasks.findIndex(({ id }) => id === idTaskToEdit);
+    if (newDescription) {
+      const index = tasks.findIndex(({ id }) => id === idTaskToEdit);
 
-    tasks[index].description = newDescription;
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    setPercentageCompletedTasks(getPercentageOfCompletedTasks(tasks));
+      tasks[index].description = newDescription;
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      setPercentageCompletedTasks(getPercentageOfCompletedTasks(tasks));
+    }
   };
 
   return (

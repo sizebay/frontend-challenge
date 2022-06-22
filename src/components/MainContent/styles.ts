@@ -8,4 +8,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   gap: 10px;
+  > ul {
+    display: flex;
+    flex-flow: column;
+    gap: 8px;
+  }
 `;
