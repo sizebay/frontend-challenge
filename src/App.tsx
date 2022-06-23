@@ -1,11 +1,9 @@
+import { Modal } from "./Components/Modal"
 
 
 function App() {
   return (
-    <div>
-      Wassuppp
-    </div>
-
+    <Modal />
   )
 }
 
