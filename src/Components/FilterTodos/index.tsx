@@ -5,7 +5,7 @@ import { FilterButtonsContainer, FilterInput, FilterInputContainer, FilterTodosC
 
 export function FilterTodos() {
 
-    const { setTodos, allTodos } = useAllTodos()
+    const { todos, setTodos, allTodos } = useAllTodos()
     const [searchTerm, setSearchTerm] = useState('')
     const [searchTag, setSearchTag] = useState('')
 

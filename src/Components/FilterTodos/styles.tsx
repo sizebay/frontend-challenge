@@ -15,6 +15,7 @@ export const FilterTodosContainer = styled.div`
     flex-direction: column-reverse;
     gap: .9rem;
     margin-bottom: 1rem;
+    align-items: flex-end;
   }
 `;
 
@@ -30,13 +31,15 @@ export const FilterButtonsContainer = styled.div`
 export const TagButton = styled.button<LabelTypes>`
     position: relative;
     border: 1px solid ${theme.colors.gray200};
+    background-color: transparent;
+    color: ${theme.colors.gray500};
     padding: .5rem 1rem;
     border-radius: 300px;
     transition: all 0.2s ease-in-out;
 
     ${props => props.selected && `
         border: 1px solid ${theme.colors.cyan500};
-        color ${theme.colors.cyan500};
+        color: ${theme.colors.cyan500};
         background-color: ${theme.colors.gray100};
         ::before{
             content: "✓";
