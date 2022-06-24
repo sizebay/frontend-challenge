@@ -11,7 +11,7 @@ interface iListItemProps {
 const ListItem = ({ task }: iListItemProps) => {
   const [inputValue, setInputValue] = useState(task.description);
 
-  const { editTask } = useTasks();
+  const { editTask, removeTask, completeTask } = useTasks();
 
   useEffect(() => {
     if (inputValue && inputValue !== task.description) {
@@ -28,15 +28,20 @@ const ListItem = ({ task }: iListItemProps) => {
           value={inputValue}
           onChange={({ target: { value } }) => setInputValue(value)}
         />
-        <div className="subtitle">Edit task</div>
       </div>
       <div className="buttons-container">
-        <button className="remove-task-btn">
+        <button className="remove-task-btn" onClick={() => removeTask(task)}>
           <AiOutlineMinusCircle />
         </button>
-        <button className="complete-task-btn">
+        <button
+          className="complete-task-btn"
+          onClick={() => completeTask(task)}
+        >
           <AiOutlineCheckCircle />
         </button>
+      </div>
+      <div className="tooltip">
+        <span>Edit task</span>
       </div>
     </Wrapper>
   );

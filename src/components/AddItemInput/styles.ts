@@ -5,6 +5,7 @@ export const Wrapper = styled.form`
   align-items: center;
   align-self: center;
   width: 100%;
+  max-width: 680px;
   > div {
     width: 100%;
     border: 1px solid var(--secundary-gray);
@@ -44,6 +45,9 @@ export const Wrapper = styled.form`
         transform: scale(1.1);
       }
       color: var(--secundary-gray);
+    }
+    &:disabled {
+      opacity: 0.5;
     }
   }
 `;

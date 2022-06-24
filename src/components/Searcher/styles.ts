@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   gap: 10px;
   margin-bottom: 6px;
   > div {
@@ -11,6 +11,8 @@ export const Wrapper = styled.div`
     border: 1px solid var(--secundary-gray);
     padding: 10px 10px 9px 15px;
     align-items: center;
+    max-width: 450px;
+    width: 100%;
     > input {
       border: none;
       width: 100%;
@@ -36,6 +38,10 @@ export const Wrapper = styled.div`
     display: flex;
     gap: 0.5rem;
   }
+  @media (min-width: 650px) {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
 `;
 
 interface iButtonProps {
@@ -49,6 +55,7 @@ export const Button = styled.button<iButtonProps>`
   justify-content: center;
   gap: 5px;
   background-color: #ffffff;
+  cursor: pointer;
   border: 1px solid
     ${({ activated }) =>
       activated ? css`var(--secundary-color)` : css`var(--secundary-gray)`};

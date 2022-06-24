@@ -5,7 +5,7 @@ import AddItemInput from "../AddItemInput";
 import { Wrapper } from "./styles";
 import Searcher from "../Searcher";
 import { useState } from "react";
-import ListItem from "../ListItem";
+import ListContainer from "../ListContainer";
 
 export type SearchState = {
   filter: boolean;
@@ -14,7 +14,7 @@ export type SearchState = {
 };
 
 const MainContent = () => {
-  const { tasks, percentageCompletedTasks } = useTasks();
+  const { percentageCompletedTasks } = useTasks();
   const [searchState, setSearchState] = useState<SearchState>({
     filter: false,
     searchByText: "",
@@ -31,15 +31,7 @@ const MainContent = () => {
       <ProgressBar progress={percentageCompletedTasks} />
       <Searcher changeSearchState={changeSearchState} />
       <AddItemInput />
-      {tasks.length ? (
-        <ul>
-          {tasks.map((task) => (
-            <ListItem key={task.id} task={task} />
-          ))}
-        </ul>
-      ) : (
-        "vc nao tem task"
-      )}
+      <ListContainer />
     </Wrapper>
   );
 };

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { iProgressBarProps } from ".";
 
 export const Wrapper = styled.div<iProgressBarProps>`
-  height: 1.5rem;
+  height: 2.4rem;
   width: 100%;
   background-color: var(--secundary-gray);
   border-radius: 0.25rem;

@@ -32,7 +32,7 @@ const AddItemInput = () => {
           onChange={({ target: { value } }) => setInputValue(value)}
         />
       </div>
-      <button type="submit">
+      <button type="submit" disabled={!inputValue}>
         <AiFillPlusCircle />
       </button>
     </Wrapper>
