@@ -1,7 +1,9 @@
 
 import { AddNewTodoInput } from '../AddNewTodoInput';
 import { Header } from '../Header';
+import { TodoList } from '../TodoList';
 import { ModalContainer } from './styles';
+
 
 export function Modal() {
 
@@ -9,6 +11,7 @@ export function Modal() {
         <ModalContainer>
             <Header />
             <AddNewTodoInput />
+            <TodoList />
         </ModalContainer>
     );
 }
