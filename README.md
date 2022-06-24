@@ -1,32 +1,60 @@
-# Sizebay Project - Create Sizebay App
+<p align="center">	
+   <a href="https://www.linkedin.com/in/vinicios-alves/">
+      <img alt="Vinicios Silva" src="https://img.shields.io/badge/-ViniciosAlves-5965e0?style=flat&logo=Linkedin&logoColor=white" />
+   </a>
+  <img alt="Languages" src="https://img.shields.io/github/languages/count/LeonneBrito/dt.money?color=%235963C5" />
+  <a href="mailto:viniciossilvadev@gmail.com">
+   <img alt="Email" src="https://img.shields.io/badge/-viniciossilvadev%40gmail.com-%23525DCB" />
+  </a>
+</p>
 
-This project was bootstrapped with [Create Sizebay App](https://github.com/sizebay/create-szb-app).
+<p align="center">
+  SIzebay Front-End Challenge.
+</p>
 
-## Available Scripts
+<div align="center">
+  <sub> Made by
+    <a href="https://github.com/VinewZ">Vinicios Silva.
+  </sub>
+</div>
 
-In the project directory, you can run:
+# 📌 Contents
 
-### `yarn start`
+* [Screenshots](#camera-screenshot) 
+* [Technologies](#rocket-technologies) 
+* [How to Run](#computer-how-to-run)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# :camera: Screenshots
+<div align="center">
+   <img src="./github/desk1.png" width="300px">
+   <img src="./github/desk2.png" width="300px">
+   <img src="./github/mobile1.png" width="300px">
+   <img src="./github/mobile2.png" width="300px">
+</div>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br/>
+<hr/>
 
-### `yarn build`
+# :rocket: Technologies
+This project was made using the follow technologies:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* [Yarn](https://yarnpkg.com/)      
+* [Sizebay-CRA](https://github.com/sizebay/cra-template-sizebay)      
+* [Typescript](https://www.typescriptlang.org/)      
+* [React](https://reactjs.org/)      
+* [Styled-Components](https://styled-components.com/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# :computer: How to run
 
-## Found a bug?
+```bash
+# Clone Repository
+$ git clone https://github.com/VinewZ/Sizebay-Front-Challenge.git
 
-Be sure to report it at our [Issues page](https://github.com/sizebay/create-szb-app/issues).
+# Install Dependencies and Run
+$ yarn wrap
+```
+Go to http://localhost:3000/ to see the result.
 
-## Learn More
+Made by [Vinicios Silva](https://www.linkedin.com/in/vinicios-alves/). 
 
-To learn about Sizebay, check out our [website](https://sizebay.com/).
-To learn React, check out the [React documentation](https://reactjs.org/).
+Thank you! 🌠

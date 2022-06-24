@@ -1,13 +1,9 @@
-import React from 'react'
+import { Modal } from "./Components/Modal"
 
-import { Container, Header, Logo } from './styles'
 
 function App() {
   return (
-    <div>
-      Wasuppppp
-    </div>
-
+    <Modal />
   )
 }
 
