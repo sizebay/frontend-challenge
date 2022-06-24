@@ -9,6 +9,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-flow: column;
   gap: 10px;
+  .blank-space {
+    margin-bottom: 48px;
+  }
   @media (min-width: 650px) {
     padding: 3rem 4rem;
   }

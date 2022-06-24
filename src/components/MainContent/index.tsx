@@ -41,7 +41,11 @@ const MainContent = () => {
         changeSearchState={changeSearchState}
         clearFilters={searchState.clearFilters}
       />
-      <AddItemInput />
+      {!searchState.searchByText ? (
+        <AddItemInput />
+      ) : (
+        <div className="blank-space"></div>
+      )}
       <ListContainer
         searchState={searchState}
         clearFiltersFunction={toggleClearFilterState}

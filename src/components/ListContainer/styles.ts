@@ -11,6 +11,8 @@ export const Wrapper = styled.ul`
   align-self: center;
   max-width: 680px;
   > p {
+    color: var(--primary-gray);
+    font-size: 14px;
     > span {
       text-decoration: underline;
       cursor: pointer;
