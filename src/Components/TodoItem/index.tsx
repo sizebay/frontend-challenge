@@ -5,21 +5,22 @@ import { theme } from '../../GlobaStyles/theme';
 import { ActionButtons, CompleteButton, DeleteButton, EditControls, EditInput, TodoContainer, TodoText } from './styles';
 
 interface TodoItemType {
-    id: number,
-    completed: boolean,
-    text: string,
+    todoId: number,
+    isTodoCompleted: boolean,
+    todoText: string,
 }
 
-export function TodoItem({ id, completed, text }: TodoItemType) {
+export function TodoItem({ todoId, isTodoCompleted, todoText }: TodoItemType) {
 
-    const { todos, setTodos } = useAllTodos()
+    const { todos, setTodos, setAllTodos } = useAllTodos()
     const [todoEditing, setTodoEditing] = useState<null | number>(null);
     const [isEditModeEnabled, setIsEditModeEnabled] = useState(false);
     const [editingText, setEditingText] = useState("");
 
     function deleteTodo(id: number) {
         let updatedTodos = [...todos].filter((todo) => todo.id !== id);
-        setTodos(updatedTodos);
+        setAllTodos(updatedTodos);
+        setIsEditModeEnabled(false);
     }
 
     function toggleComplete(id: number) {
@@ -30,6 +31,7 @@ export function TodoItem({ id, completed, text }: TodoItemType) {
             return todo;
         });
         setTodos(updatedTodos);
+        setIsEditModeEnabled(false);
     }
 
     function submitEdits(id: number) {
@@ -45,37 +47,37 @@ export function TodoItem({ id, completed, text }: TodoItemType) {
     }
 
     return (
-        <TodoContainer completed={completed}>
-            {id === todoEditing ? (
+        <TodoContainer completed={isTodoCompleted}>
+            {todoId === todoEditing ? (
                 <EditInput
                     type="text"
                     onChange={(e) => setEditingText(e.target.value)}
                 />
             ) : (
-                <TodoText onClick={() => { setIsEditModeEnabled(!isEditModeEnabled) }}>{text}</TodoText>
+                <TodoText onClick={() => { setIsEditModeEnabled(!isEditModeEnabled) }}>{todoText}</TodoText>
             )}
 
             {isEditModeEnabled ?
                 <ActionButtons>
-                    <DeleteButton onClick={() => deleteTodo(id)}>
+                    <DeleteButton onClick={() => deleteTodo(todoId)}>
                         <MinusCircle size={30} weight={'fill'} color={theme.colors.white} />
                     </DeleteButton>
 
                     <CompleteButton
                         type="checkbox"
                         id="completed"
-                        checked={completed}
-                        onChange={() => toggleComplete(id)}
+                        checked={isTodoCompleted}
+                        onChange={() => toggleComplete(todoId)}
                     />
                     <i><CheckCircle size={30} weight={'fill'} color={theme.colors.white} /></i>
                 </ActionButtons> : null}
 
             {isEditModeEnabled ?
                 <EditControls>
-                    {id === todoEditing ? (
-                        <button onClick={() => submitEdits(id)}>Submit Edits</button>
+                    {todoId === todoEditing ? (
+                        <button onClick={() => submitEdits(todoId)}>Submit Edits</button>
                     ) : (
-                        <button onClick={() => setTodoEditing(id)}>Edit</button>
+                        <button onClick={() => setTodoEditing(todoId)}>Edit</button>
                     )}
                 </EditControls>
                 : null

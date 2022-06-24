@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: ${theme.font.family.roboto};
   }
   html{
     @media(max-width: 1080px){
@@ -19,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
     color: ${theme.colors.gray500};
     background: ${theme.colors.gray800};
     -webkit-font-smoothing: antialiased;
-    font-family: ${theme.font.family.roboto};
     padding: 1rem;
     padding-bottom: 70px;
     width: 100vw;

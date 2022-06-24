@@ -8,5 +8,9 @@ export const ModalContainer = styled.main`
   background-color: ${theme.colors.white};
   border-radius: 4px;
   padding: 54px 60px;
-  overflow-y: auto;
+
+  
+  @media(max-width: 800px) {
+    height: 780px;
+  }
 `;

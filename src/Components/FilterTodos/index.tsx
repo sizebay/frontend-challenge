@@ -17,9 +17,9 @@ export function FilterTodos() {
     }
 
     function searchByTags() {
-        if (searchTag === 'reset') return setTodos(allTodos)
-        if (searchTag === 'done') return setTodos(allTodos.filter(todo => todo.completed === true))
-        if (searchTag === 'pending') return setTodos(allTodos.filter(todo => todo.completed === false))
+        if (searchTag === 'reset') { return setTodos(allTodos) }
+        if (searchTag === 'done') { return setTodos(allTodos.filter(todo => todo.completed === true)) }
+        if (searchTag === 'pending') { return setTodos(allTodos.filter(todo => todo.completed === false)) }
     }
 
     useEffect(() => {

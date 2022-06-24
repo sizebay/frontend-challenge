@@ -8,7 +8,7 @@ interface TodoContainerType {
 export const TodoContainer = styled.div<TodoContainerType>`
   position: relative;
   width: 100%;
-  height: 48px;
+  min-height: 48px;
   background-color: ${theme.colors.gray100};
   border: 1px solid ${theme.colors.gray200};
   border-radius: 4px;
@@ -17,13 +17,10 @@ export const TodoContainer = styled.div<TodoContainerType>`
   padding-left: 1rem;
   justify-content: space-between;
 
-  :first-of-type{
-    margin-top: 1rem;
-  }
-
   ${props => props.completed && `
     opacity: 0.5;
     transition: opacity .2s ease-in-out;
+    z-index: 999;
   `}
 `;
 
@@ -41,7 +38,6 @@ export const Tooltip = styled.div`
   font-weight: bold;
   transition: opacity .2s ease-in-out;
   pointer-events: none;
-  z-index: 999;
 
   button{
     background-color: transparent;
@@ -120,6 +116,9 @@ export const EditControls = styled.div`
 
 export const TodoText = styled.p`
   width: calc(100% - 2rem);
+  height: 100%;
+  display: flex;
+  align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
