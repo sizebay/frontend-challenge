@@ -11,6 +11,7 @@ export const ModalContainer = styled.main`
 
   
   @media(max-width: 800px) {
-    height: 780px;
+    height: 90vh;
+    max-width: 90vw;
   }
 `;
