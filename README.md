@@ -13,7 +13,7 @@
 </p>
 
 <div align="center">
-  <sub> Made with 💖 by
+  <sub> Made by
     <a href="https://github.com/VinewZ">Vinicios Silva.
   </sub>
 </div>
@@ -34,7 +34,6 @@
 
 <br/>
 <hr/>
-<br/>
 
 # :rocket: Technologies
 This project was made using the follow technologies:
@@ -43,16 +42,14 @@ This project was made using the follow technologies:
 * [Sizebay-CRA](https://github.com/sizebay/cra-template-sizebay)      
 * [Typescript](https://www.typescriptlang.org/)      
 * [React](https://reactjs.org/)      
-* [Tailwind](https://styled-components.com/)
+* [Styled-Components](https://styled-components.com/)
 
 # :computer: How to run
 
 ```bash
 # Clone Repository
 $ git clone https://github.com/VinewZ/Sizebay-Front-Challenge.git
-```
 
-```bash
 # Install Dependencies and Run
 $ yarn wrap
 ```
