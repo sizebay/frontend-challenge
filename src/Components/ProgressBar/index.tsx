@@ -13,6 +13,7 @@ export function ProgressBar() {
 
     const { allTodos, todos } = useAllTodos()
     const [doneTodos, setDoneTodos] = useState<TodosType[]>([])
+    const percentage = allTodos.length > 0 ? (doneTodos.length / allTodos.length) * 100 : 0
 
     function getDonePercentage() {
         setDoneTodos(todos.filter(todo => todo.completed === true))
@@ -22,7 +23,6 @@ export function ProgressBar() {
         getDonePercentage()
     }, [todos, allTodos])
 
-    const percentage = (doneTodos.length / allTodos.length) * 100
 
     return (
         <ProgressBarContainer>
