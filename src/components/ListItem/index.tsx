@@ -36,6 +36,7 @@ const ListItem = ({ task }: iListItemProps) => {
         <button
           className="complete-task-btn"
           onClick={() => completeTask(task)}
+          disabled={task.done}
         >
           <AiOutlineCheckCircle />
         </button>

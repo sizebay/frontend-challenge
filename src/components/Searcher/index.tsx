@@ -6,20 +6,27 @@ import { Button, Wrapper } from "./styles";
 
 interface iSearcherProps {
   changeSearchState: (newSearchState: SearchState) => void;
+  clearFilters: boolean;
 }
 
-const Searcher = ({ changeSearchState }: iSearcherProps) => {
+const Searcher = ({ changeSearchState, clearFilters }: iSearcherProps) => {
   const [inputValue, setInputValue] = useState("");
   const [doneFilter, setDoneFilter] = useState(false);
   const [pendingFilter, setPendingFilter] = useState(false);
 
   useEffect(() => {
     changeSearchState({
-      searchByText: inputValue,
+      searchByText: inputValue.toLowerCase(),
       filter: doneFilter || pendingFilter,
       filterBy: doneFilter ? "Done" : pendingFilter ? "Pending" : undefined,
+      clearFilters,
     });
-  }, [inputValue, doneFilter, pendingFilter]);
+    if (clearFilters) {
+      setInputValue("");
+      setDoneFilter(false);
+      setPendingFilter(false);
+    }
+  }, [inputValue, doneFilter, pendingFilter, clearFilters]);
 
   return (
     <Wrapper>

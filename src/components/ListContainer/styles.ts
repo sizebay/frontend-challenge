@@ -10,6 +10,12 @@ export const Wrapper = styled.ul`
   width: 100%;
   align-self: center;
   max-width: 680px;
+  > p {
+    > span {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
   @media (min-width: 680px) {
     ::-webkit-scrollbar {
       display: none;

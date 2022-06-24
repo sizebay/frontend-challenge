@@ -97,6 +97,10 @@ export const Wrapper = styled.li`
     }
     > .complete-task-btn {
       background-color: var(--primary-color);
+      &:disabled {
+        filter: grayscale(70%);
+        pointer-events: none;
+      }
     }
   }
   :hover > .buttons-container {
