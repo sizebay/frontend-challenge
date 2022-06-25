@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useReward } from 'react-rewards';
 import { useAllTodos } from '../../Contexts/AllTodos';
 import { Progress, ProgressBarContainer } from './styles';
-
 
 interface TodosType {
     id: number;
@@ -12,8 +12,11 @@ interface TodosType {
 export function ProgressBar() {
 
     const { allTodos, todos } = useAllTodos()
+    const { reward } = useReward('rewardId', 'confetti');
+
     const [doneTodos, setDoneTodos] = useState<TodosType[]>([])
-    const percentage = allTodos.length > 0 ? (doneTodos.length / allTodos.length) * 100 : 0
+
+    const percentage = (doneTodos.length / allTodos.length) * 100
 
     function getDonePercentage() {
         setDoneTodos(todos.filter(todo => todo.completed === true))
@@ -23,10 +26,17 @@ export function ProgressBar() {
         getDonePercentage()
     }, [todos, allTodos])
 
+    useEffect(() => {
+        percentage === 100 && reward()
+    }, [percentage])
+
 
     return (
-        <ProgressBarContainer>
-            <Progress percentage={percentage} />
-        </ProgressBarContainer>
+        <>
+            <ProgressBarContainer>
+                <Progress percentage={percentage} />
+                <span id="rewardId" style={{ width: 2, height: 2, background: "red" }} />
+            </ProgressBarContainer>
+        </>
     )
 }
