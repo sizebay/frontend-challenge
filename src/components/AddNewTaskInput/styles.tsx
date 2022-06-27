@@ -7,6 +7,7 @@ export const InputContainer = styled.form`
   height: 48px;
   border-radius: 4px;
   overflow: hidden;
+  margin-bottom: 16px;
 `;
 
 export const Input = styled.input`
@@ -16,9 +17,13 @@ export const Input = styled.input`
   border: 1px solid ${theme.colors.gray200};
   color: ${theme.colors.gray500};
   padding-left: 1rem;
-
+  
   ::placeholder{
     opacity: 0.5;
+  }
+
+  :active, :focus{
+    background-color: ${theme.colors.white};
   }
 `;
 

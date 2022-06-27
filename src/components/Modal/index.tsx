@@ -1,5 +1,6 @@
 import { AddNewTaskInput } from "../AddNewTaskInput";
 import { Header } from "../Header";
+import { TasksList } from "../TasksList";
 import { ModalContainer } from "./styles";
 
 export function Modal() {
@@ -7,6 +8,7 @@ export function Modal() {
         <ModalContainer>
             <Header />
             <AddNewTaskInput />
+            <TasksList />
         </ModalContainer>
     );
 }
