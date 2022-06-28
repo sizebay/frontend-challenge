@@ -26,7 +26,11 @@ const TasksContextContext = createContext({} as TasksContextContextType)
 
 export function TasksContextProvider({ children }: TasksContextProviderType) {
 
-    const [allTasks, setAllTasks] = useState<TasksType[]>([])
+    const [allTasks, setAllTasks] = useState<TasksType[]>(
+        localStorage.getItem('allTasks') ?
+            JSON.parse(localStorage.getItem('allTasks') || '[]') :
+            []
+    );
     const [completedTasks, setCompletedTasks] = useState<TasksType[]>([])
     const [pendingTasks, setPendingTasks] = useState<TasksType[]>([])
     const [activeFilter, setActiveFilter] = useState(allTasks)
@@ -65,6 +69,11 @@ export function TasksContextProvider({ children }: TasksContextProviderType) {
         if (tag === 'all') { return setActiveFilter(allTasks) }
         return allTasks
     }
+
+    useEffect(() => {
+        const json = JSON.stringify(allTasks)
+        localStorage.setItem('allTasks', json)
+    }, [allTasks])
 
     useEffect(() => {
         setCompletedTasks(allTasks.filter(task => task.completed === true))
