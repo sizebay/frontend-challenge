@@ -1,21 +1,18 @@
 import styled from 'styled-components'
 
 export const Container = styled.main`
-  text-align: center;
-`
-
-export const Logo = styled.img`
-  height: 10vmin;
-  pointer-events: none;
-`
-
-export const Header = styled.div`
-  background-color: #4da6b4;
+ background-color: #555555;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 `
+export const Modal = styled.div`
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 4px;
+    opacity: 1;
+    width: 800px;
+    height: 650px;
+`;
