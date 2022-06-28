@@ -17,6 +17,7 @@ export const Input = styled.input`
   border: 1px solid ${theme.colors.gray200};
   color: ${theme.colors.gray500};
   padding-left: 1rem;
+  transition: background-color 0.1s ease-in-out;
   
   ::placeholder{
     opacity: 0.5;

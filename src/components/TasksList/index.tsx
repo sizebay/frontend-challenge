@@ -1,3 +1,4 @@
+import { TaskItem } from '../TaskItem';
 import { TaskListContainer } from './styles';
 
 export function TasksList() {
@@ -19,7 +20,12 @@ export function TasksList() {
         <TaskListContainer>
             {
                 tasks.map(task => (
-                    <p key={task.id} >{task.title}</p>
+                    <TaskItem
+                        key={task.id}
+                        id={task.id}
+                        title={task.title}
+                        completed={task.completed}
+                    />
                 ))
             }
         </TaskListContainer>
