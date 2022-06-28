@@ -50,7 +50,7 @@ This project was made using the follow technologies:
 
 ```bash
 # Clone Repository
-$ git clone https://github.com/VinewZ/Sizebay-Front-Challenge.git
+$ git clone https://github.com/VinewZ/sizebay-v2.git
 
 # Install Dependencies and Run
 $ yarn wrap
