@@ -11,16 +11,24 @@ interface TaskItemProps {
 
 export function TaskItem({ id, title, completed }: TaskItemProps) {
 
+    const { deleteTask, completeTask, editTaskTitle } = useTasks()
     const [isEditingModeEnabled, setIsEditingModeEnabled] = useState(false);
-    const { deleteTask, completeTask } = useTasks()
+    const [newTitle, setnewTitle] = useState('')
+
+    function handleEditTaskTitle() {
+        setIsEditingModeEnabled(false)
+        editTaskTitle(newTitle)
+        console.log(newTitle)
+    }
 
     return (
         <TaskItemContainer completed={completed === true} >
             {isEditingModeEnabled ?
                 <NewTextInput
                     placeholder="Enter new task title"
-                    value={title}
-                    onChange={(e) => { }}
+                    value={newTitle}
+                    onChange={(e) => { setnewTitle(e.target.value) }}
+                    onBlur={handleEditTaskTitle}
                 /> :
                 <>
                     <TaskText onClick={() => setIsEditingModeEnabled(true)}>{title}</TaskText>

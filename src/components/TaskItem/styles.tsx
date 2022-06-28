@@ -13,6 +13,7 @@ export const ActionButtons = styled.div`
 `;
 
 export const TaskItemContainer = styled.div<TaskItemContainerType>`
+  position: relative;
   width: 100%;
   min-height: 48px;
   display: flex;
@@ -20,7 +21,6 @@ export const TaskItemContainer = styled.div<TaskItemContainerType>`
   background-color: ${theme.colors.gray100};
   border: 1px solid ${theme.colors.gray200};
   border-radius: 4px;
-  overflow: hidden;
   transition: background-color 0.1s ease-in-out, opacity 0.1s ease-in-out;
     
     &:hover {
@@ -29,6 +29,23 @@ export const TaskItemContainer = styled.div<TaskItemContainerType>`
         ${ActionButtons} {
           visibility: visible;
           opacity: 1;
+        }
+
+        ::after{
+            content: 'Edit Task';
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: ${theme.colors.gray500};
+            color: ${theme.colors.white};
+            clip-path: polygon(50% 0, 60% 15%, 100% 15%, 100% 100%, 0 100%, 0 15%, 40% 15%);
+            width: 86px;
+            height: 45px;
+            z-index: 2;
         }
     }
 

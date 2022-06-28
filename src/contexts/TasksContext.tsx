@@ -12,6 +12,7 @@ interface TasksContextContextType {
     deleteTask: (id: number) => void,
     completeTask: (id: number) => void,
     handleSetActiveFilters: (tag: string) => void,
+    editTaskTitle: (newTitle: string) => void,
 }
 
 interface TasksType {
@@ -50,6 +51,13 @@ export function TasksContextProvider({ children }: TasksContextProviderType) {
                 task))
     }
 
+    function editTaskTitle(newTitle: string) {
+        setAllTasks(allTasks.map(task =>
+            task.id === task.id ?
+                { ...task, title: newTitle } :
+                task))
+    }
+
     function handleSetActiveFilters(tag: string) {
         if (tag === 'done') { return setActiveFilter(completedTasks) }
         if (tag === 'pending') { return setActiveFilter(pendingTasks) }
@@ -74,7 +82,8 @@ export function TasksContextProvider({ children }: TasksContextProviderType) {
             createNewTask,
             deleteTask,
             completeTask,
-            handleSetActiveFilters
+            handleSetActiveFilters,
+            editTaskTitle
         }}>
             {children}
         </TasksContextContext.Provider>
