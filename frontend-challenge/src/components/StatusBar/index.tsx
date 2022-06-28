@@ -1,13 +1,14 @@
 import React from "react";
+import { Progress, Total } from "./styles";
 
 const StatusBar = () => {
   return (
     <div>
-      <div style={{backgroundColor: 'lightgray'}} className="total">
-        <div className="progress">
-          <span>AAAA</span>
-        </div>
-      </div>
+      <Total>
+        <Progress>
+          <span></span>
+        </Progress>
+      </Total>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import { TodoType } from "./types/TodoType";
 function App() {
   const [todosList, setTodos] = useState<TodoType[]>([]);
   const [filter, setFilter] = useState<FilterStatus>(FilterStatus.UNFILTERED);
+  const [search, setSearch] = useState<string>("");
 
   const onNewTodo = (newValue: string) => {
     var newList: TodoType[] = [
@@ -41,12 +42,17 @@ function App() {
     }
   }
 
+  const onSearch = (newSearch: string) => {
+    setSearch(newSearch);
+    console.log(newSearch);
+  }
+
   return (
     <Container>
       <Modal>
         <DayInfo />
         <StatusBar />
-        <FilterList onFilter={onFilter} />
+        <FilterList filter={filter} onFilter={onFilter} onSearch={onSearch} />
         <NewTodo onNewTodo={onNewTodo} />
         <TodoList todos={todosList} filter={filter} onToggle={onToggle} onRemove={onRemove} />
       </Modal>

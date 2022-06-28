@@ -29,11 +29,10 @@ const NewTodo = (props: NewTodoProps) => {
     }
   };
 
-  const onChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
+
   return (
     <>
       <div>
