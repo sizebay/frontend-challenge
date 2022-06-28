@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useTasks } from '../../contexts/TasksContext';
 import { TaskItem } from '../TaskItem';
 import { TaskListContainer } from './styles';
@@ -6,10 +5,6 @@ import { TaskListContainer } from './styles';
 export function TasksList() {
 
     const { activeFilter, allTasks } = useTasks();
-
-    useEffect(() => {
-        console.log(activeFilter, allTasks)
-    }, [activeFilter, allTasks])
 
     return (
         <TaskListContainer>

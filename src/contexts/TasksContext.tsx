@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from 'react';
 
 interface TasksContextProviderType {
     children: ReactNode
@@ -6,11 +6,12 @@ interface TasksContextProviderType {
 
 interface TasksContextContextType {
     allTasks: TasksType[],
-    completedTasks: TasksType[],
-    pendingTasks: TasksType[],
+    activeFilter: TasksType[],
+    setActiveFilter: Dispatch<SetStateAction<TasksType[]>>,
     createNewTask: (newTask: string) => void,
     deleteTask: (id: number) => void,
     completeTask: (id: number) => void,
+    handleSetActiveFilters: (tag: string) => void,
 }
 
 interface TasksType {
@@ -24,13 +25,13 @@ const TasksContextContext = createContext({} as TasksContextContextType)
 export function TasksContextProvider({ children }: TasksContextProviderType) {
 
     const [allTasks, setAllTasks] = useState<TasksType[]>([])
-    const [tasks, settasks] = useState<TasksType[]>([])
     const [completedTasks, setCompletedTasks] = useState<TasksType[]>([])
     const [pendingTasks, setPendingTasks] = useState<TasksType[]>([])
+    const [activeFilter, setActiveFilter] = useState(allTasks)
 
     function createNewTask(newTask: string) {
         setAllTasks([{
-            id: allTasks.length + 1,
+            id: Date.now(),
             title: newTask,
             completed: false
         }, ...allTasks])
@@ -49,13 +50,32 @@ export function TasksContextProvider({ children }: TasksContextProviderType) {
                 task))
     }
 
+    function handleSetActiveFilters(tag: string) {
+        if (tag === 'done') { return setActiveFilter(completedTasks) }
+        if (tag === 'pending') { return setActiveFilter(pendingTasks) }
+        if (tag === 'all') { return setActiveFilter(allTasks) }
+        return allTasks
+    }
+
     useEffect(() => {
         setCompletedTasks(allTasks.filter(task => task.completed === true))
         setPendingTasks(allTasks.filter(task => task.completed === false))
     }, [allTasks])
 
+    useEffect(() => {
+        setActiveFilter(allTasks)
+    }, [allTasks])
+
     return (
-        <TasksContextContext.Provider value={{ allTasks, pendingTasks, completedTasks, createNewTask, deleteTask, completeTask }}>
+        <TasksContextContext.Provider value={{
+            allTasks,
+            activeFilter,
+            setActiveFilter,
+            createNewTask,
+            deleteTask,
+            completeTask,
+            handleSetActiveFilters
+        }}>
             {children}
         </TasksContextContext.Provider>
     );

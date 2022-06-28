@@ -5,7 +5,7 @@ import { Input, InputContainer, SubmitButton } from "./styles";
 
 export function AddNewTaskInput() {
 
-    const { createNewTask, completedTasks, pendingTasks } = useTasks()
+    const { createNewTask } = useTasks()
     const [newItem, setNewItem] = useState('')
 
     function addNewTask(e: FormEvent) {

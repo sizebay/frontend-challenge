@@ -1,18 +1,24 @@
 import { MagnifyingGlass } from 'phosphor-react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { useTasks } from '../../contexts/TasksContext';
 import { theme } from '../../globalStyles/theme';
 import { FilterButton, FilterButtonsContainer, FilterContainer, FilterInput, InputContainer, SearchButton } from './styles';
 
 export function FilterTasks() {
 
+    const { handleSetActiveFilters, allTasks, setActiveFilter } = useTasks()
     const [searchTerm, setSearchTerm] = useState('')
-    const [filterTag, setFilterTag] = useState<'done' | 'pending' | 'all'>('done')
+    const [filterTag, setFilterTag] = useState('all')
 
     function searchByTerm(e: FormEvent) {
         e.preventDefault()
-        console.log(searchTerm)
+        setActiveFilter(allTasks.filter(task => task.title.includes(searchTerm.toLowerCase())))
         setSearchTerm('')
     }
+
+    useEffect(() => {
+        handleSetActiveFilters(filterTag)
+    }, [filterTag])
 
     return (
         <FilterContainer>
@@ -20,14 +26,18 @@ export function FilterTasks() {
                 <FilterButton
                     value="done"
                     active={filterTag === 'done'}
-                    onClick={() => setFilterTag(filterTag === 'done' ? 'all' : 'done')}
+                    onClick={(e) => (
+                        setFilterTag(filterTag !== (e.target as HTMLButtonElement).value ? (e.target as HTMLButtonElement).value : 'all')
+                    )}
                 >
                     Done
                 </FilterButton>
                 <FilterButton
                     value="pending"
                     active={filterTag === 'pending'}
-                    onClick={() => setFilterTag(filterTag === 'pending' ? 'all' : 'pending')}
+                    onClick={(e) => (
+                        setFilterTag(filterTag !== (e.target as HTMLButtonElement).value ? (e.target as HTMLButtonElement).value : 'all')
+                    )}
                 >
                     Pending
                 </FilterButton>
