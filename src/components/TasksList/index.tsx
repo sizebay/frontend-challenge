@@ -1,32 +1,29 @@
+import { useEffect } from 'react';
+import { useTasks } from '../../contexts/TasksContext';
 import { TaskItem } from '../TaskItem';
 import { TaskListContainer } from './styles';
 
 export function TasksList() {
 
-    const tasks = [
-        {
-            id: 1,
-            title: 'Task 1',
-            completed: false
-        },
-        {
-            id: 2,
-            title: 'Task 2',
-            completed: false
-        },
-    ]
+    const { activeFilter, allTasks } = useTasks();
+
+    useEffect(() => {
+        console.log(activeFilter, allTasks)
+    }, [activeFilter, allTasks])
 
     return (
         <TaskListContainer>
             {
-                tasks.map(task => (
-                    <TaskItem
-                        key={task.id}
-                        id={task.id}
-                        title={task.title}
-                        completed={task.completed}
-                    />
-                ))
+                activeFilter.length > 0 ?
+                    activeFilter.map(task => (
+                        <TaskItem
+                            key={task.id}
+                            id={task.id}
+                            title={task.title}
+                            completed={task.completed}
+                        />
+                    )) :
+                    <p>No tasks found</p>
             }
         </TaskListContainer>
     );

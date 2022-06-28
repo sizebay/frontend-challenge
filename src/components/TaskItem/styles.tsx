@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { theme } from '../../globalStyles/theme';
 
+interface TaskItemContainerType {
+  completed: boolean;
+}
 
 export const ActionButtons = styled.div`
   visibility: hidden;
@@ -9,16 +12,16 @@ export const ActionButtons = styled.div`
   transition: visibility 0s, opacity 0.15s ease-in-out;
 `;
 
-export const TaskItemContainer = styled.div`
+export const TaskItemContainer = styled.div<TaskItemContainerType>`
   width: 100%;
-  height: 48px;
+  min-height: 48px;
   display: flex;
   align-items: center;    
   background-color: ${theme.colors.gray100};
   border: 1px solid ${theme.colors.gray200};
   border-radius: 4px;
   overflow: hidden;
-  transition: background-color 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out, opacity 0.1s ease-in-out;
     
     &:hover {
         background-color: ${theme.colors.white};
@@ -28,6 +31,10 @@ export const TaskItemContainer = styled.div`
           opacity: 1;
         }
     }
+
+    ${props => props.completed && `
+        opacity: 0.5;
+      `}
 `;
 
 export const TaskText = styled.p`
