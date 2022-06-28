@@ -17,7 +17,7 @@ export function TaskItem({ id, title, completed }: TaskItemProps) {
 
     function handleEditTaskTitle() {
         setIsEditingModeEnabled(false)
-        editTaskTitle(newTitle)
+        editTaskTitle(id, newTitle)
         console.log(newTitle)
     }
 

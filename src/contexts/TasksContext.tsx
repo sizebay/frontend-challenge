@@ -6,13 +6,14 @@ interface TasksContextProviderType {
 
 interface TasksContextContextType {
     allTasks: TasksType[],
+    completedTasks: TasksType[],
     activeFilter: TasksType[],
     setActiveFilter: Dispatch<SetStateAction<TasksType[]>>,
     createNewTask: (newTask: string) => void,
     deleteTask: (id: number) => void,
     completeTask: (id: number) => void,
     handleSetActiveFilters: (tag: string) => void,
-    editTaskTitle: (newTitle: string) => void,
+    editTaskTitle: (id: number, newTitle: string) => void,
 }
 
 interface TasksType {
@@ -51,9 +52,9 @@ export function TasksContextProvider({ children }: TasksContextProviderType) {
                 task))
     }
 
-    function editTaskTitle(newTitle: string) {
+    function editTaskTitle(id: number, newTitle: string) {
         setAllTasks(allTasks.map(task =>
-            task.id === task.id ?
+            id === task.id ?
                 { ...task, title: newTitle } :
                 task))
     }
@@ -77,6 +78,7 @@ export function TasksContextProvider({ children }: TasksContextProviderType) {
     return (
         <TasksContextContext.Provider value={{
             allTasks,
+            completedTasks,
             activeFilter,
             setActiveFilter,
             createNewTask,

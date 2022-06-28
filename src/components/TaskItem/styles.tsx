@@ -46,12 +46,13 @@ export const TaskItemContainer = styled.div<TaskItemContainerType>`
             width: 86px;
             height: 45px;
             z-index: 2;
+            pointer-events: none;
         }
     }
 
     ${props => props.completed && `
-        opacity: 0.5;
-      `}
+      opacity: 0.5;
+    `}
 `;
 
 export const TaskText = styled.p`
