@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MdAddCircle } from "react-icons/md";
 
 type NewTodoProps = {
   onNewTodo: (newValue: string) => void;
@@ -43,7 +44,9 @@ const NewTodo = (props: NewTodoProps) => {
           onChange={onChange}
           onKeyDown={onKeyDown}
         />
-        <button onClick={submit}>+</button>
+        <button onClick={submit}>
+          <MdAddCircle />
+        </button>
       </div>
     </>
   );

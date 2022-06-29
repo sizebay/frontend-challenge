@@ -1,27 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.css";
 import { FilterStatus } from "../../types/FilterStatus";
+import { MdCheck, MdClose, MdSearch } from "react-icons/md";
 
 type FilterProps = {
   filter: FilterStatus;
+  inputValue: string;
   onFilter: (filter: FilterStatus) => void;
   onSearch: (newSearch: string) => void;
+  onNewInput: (newInput: string) => void;
 };
 
 const FilterList = (props: FilterProps) => {
-  const { filter, onFilter, onSearch } = props;
-  const [value, setValue] = useState("");
+  const { filter, inputValue, onFilter, onSearch, onNewInput } = props;
   const ESCAPE_KEY = 27;
   const ENTER_KEY = 13;
 
   const erase = () => {
-    setValue("");
     onSearch("");
   };
 
   const submit = () => {
     if (onSearch) {
-      onSearch(value);
+      onSearch(inputValue);
     }
   };
 
@@ -34,7 +35,7 @@ const FilterList = (props: FilterProps) => {
   };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    onNewInput(event.target.value);
   };
 
   return (
@@ -45,6 +46,7 @@ const FilterList = (props: FilterProps) => {
           type="button"
           onClick={() => onFilter(FilterStatus.DONE)}
         >
+          {filter === FilterStatus.DONE ? <MdCheck /> : ""}
           Done
         </button>
         <button
@@ -52,18 +54,19 @@ const FilterList = (props: FilterProps) => {
           type="button"
           onClick={() => onFilter(FilterStatus.PENDING)}
         >
+          {filter === FilterStatus.PENDING ? <MdCheck /> : ""}
           Pending
         </button>
       </div>
       <div>
         <input
           placeholder="Search items"
-          value={value}
+          value={inputValue}
           onChange={onChange}
           onKeyDown={onKeyDown}
         />
-        <button onClick={submit}>Search</button>
-        <button onClick={erase}>ESC</button>
+        <button onClick={submit}><MdSearch /></button>
+        <button onClick={erase}><MdClose /></button>
       </div>
     </div>
   );
