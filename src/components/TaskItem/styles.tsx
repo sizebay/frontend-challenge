@@ -52,6 +52,13 @@ export const TaskItemContainer = styled.div<TaskItemContainerType>`
 
     ${props => props.completed && `
       opacity: 0.5;
+
+      &:hover {
+        ::after{
+          content: '';
+          opacity: 0;
+        }
+      } 
     `}
 `;
 
