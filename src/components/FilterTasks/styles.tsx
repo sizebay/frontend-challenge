@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { theme } from '../../globalStyles/theme';
 
 export const FilterContainer = styled.div`
+    min-height: 48px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -10,14 +11,22 @@ export const FilterContainer = styled.div`
     width: 100%;
     height: 40px;
     gap: 4rem;
+
+    
+    @media (max-width: 800px) {
+        flex-direction: column-reverse;
+        gap: 1rem;
+        margin-top: 70px;
+        transform-origin: top;
+    }
 `;
 
 export const InputContainer = styled.form`
+    min-height: 48px;
     display: flex;
     flex: 1;
     align-items: center;
     width: 100%;
-    height: 40px;
     border: 1px solid ${theme.colors.gray200};
     border-radius: 4px;
     background-color: ${theme.colors.white};

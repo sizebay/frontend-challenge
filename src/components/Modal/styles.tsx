@@ -13,5 +13,6 @@ export const ModalContainer = styled.main`
 
   @media (max-width: 800px) {
     max-height: 90vh;
+    padding: 54px 2rem;
   }
 `;
