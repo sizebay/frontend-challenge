@@ -18,7 +18,7 @@ export function TasksList() {
                             completed={task.completed}
                         />
                     )) :
-                    <p>No tasks found</p>
+                    <p>No items found, <u>click the button above to add one</u> or <u>clear the filters</u>.</p>
             }
         </TaskListContainer>
     );
