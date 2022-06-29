@@ -13,6 +13,7 @@ function App() {
   const [todosList, setTodos] = useState<TodoType[]>([]);
   const [filter, setFilter] = useState<FilterStatus>(FilterStatus.UNFILTERED);
   const [search, setSearch] = useState<string>("");
+  const [inputValue, setInputValue] = useState("");
 
   const onNewTodo = (newValue: string) => {
     var newList: TodoType[] = [
@@ -27,7 +28,11 @@ function App() {
   };
 
   const onToggle = (todo: TodoType) => {
-    setTodos(todosList.map((obj) => (obj.id === todo.id ? { ...obj, done: !todo.done } : obj)));
+    setTodos(
+      todosList.map((obj) =>
+        obj.id === todo.id ? { ...obj, done: !todo.done } : obj
+      )
+    );
   };
 
   const onRemove = (todo: TodoType) => {
@@ -40,21 +45,40 @@ function App() {
     } else {
       setFilter(newFilter);
     }
+  };
+
+  const onNewInput = (newInput: string) => {
+    setInputValue(newInput);
   }
 
   const onSearch = (newSearch: string) => {
+    if (newSearch === "") {
+      setInputValue("");
+    }
     setSearch(newSearch);
-    console.log(newSearch);
-  }
+  };
 
   return (
     <Container>
       <Modal>
         <DayInfo />
-        <StatusBar />
-        <FilterList filter={filter} onFilter={onFilter} onSearch={onSearch} />
+        <StatusBar todos={todosList} />
+        <FilterList
+        filter={filter}
+        inputValue={inputValue}
+        onFilter={onFilter}
+        onSearch={onSearch}
+        onNewInput={onNewInput} />
         <NewTodo onNewTodo={onNewTodo} />
-        <TodoList todos={todosList} filter={filter} onToggle={onToggle} onRemove={onRemove} />
+        <TodoList
+          todos={todosList}
+          filter={filter}
+          search={search}
+          onToggle={onToggle}
+          onRemove={onRemove}
+          onFilter={onFilter}
+          onSearch={onSearch}
+        />
       </Modal>
     </Container>
   );
