@@ -22,6 +22,7 @@ export const FilterContainer = styled.div`
 `;
 
 export const InputContainer = styled.form`
+    height: 48px;
     min-height: 48px;
     display: flex;
     flex: 1;
