@@ -57,6 +57,7 @@ export function TasksContextProvider({ children }: TasksContextProviderType) {
     }
 
     function editTaskTitle(id: number, newTitle: string) {
+        if (newTitle.length === 0) return
         setAllTasks(allTasks.map(task =>
             id === task.id ?
                 { ...task, title: newTitle } :
