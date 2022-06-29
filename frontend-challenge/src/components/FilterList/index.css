@@ -3,3 +3,7 @@
     color: #4DA6B3;
     border: none;
 }
+
+.hidden {
+    display: none;
+}

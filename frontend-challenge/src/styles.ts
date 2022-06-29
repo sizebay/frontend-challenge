@@ -11,8 +11,16 @@ export const Container = styled.main`
 `
 export const Modal = styled.div`
     background: #FFFFFF 0% 0% no-repeat padding-box;
+    color: #848484;
     border-radius: 4px;
     opacity: 1;
-    width: 800px;
-    height: 650px;
+    width: 42%;
+    height: 60%;
+    button {
+      color: #848484;
+    }
+`;
+
+export const Panel = styled.div`
+  margin: 54px 60px 100px;
 `;

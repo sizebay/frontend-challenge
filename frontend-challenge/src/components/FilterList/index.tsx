@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import { FilterStatus } from "../../types/FilterStatus";
 import { MdCheck, MdClose, MdSearch } from "react-icons/md";
+
+import { FilterListButtons, FilterListContainer } from "./styles";
 
 type FilterProps = {
   filter: FilterStatus;
@@ -12,17 +14,20 @@ type FilterProps = {
 };
 
 const FilterList = (props: FilterProps) => {
+  const [hiddenIcon, setHiddenIcon] = useState(false);
   const { filter, inputValue, onFilter, onSearch, onNewInput } = props;
   const ESCAPE_KEY = 27;
   const ENTER_KEY = 13;
 
   const erase = () => {
     onSearch("");
+    setHiddenIcon(false);
   };
 
   const submit = () => {
     if (onSearch) {
       onSearch(inputValue);
+      setHiddenIcon(true);
     }
   };
 
@@ -39,8 +44,8 @@ const FilterList = (props: FilterProps) => {
   };
 
   return (
-    <div>
-      <div>
+    <FilterListContainer>
+      <FilterListButtons>
         <button
           className={filter === FilterStatus.DONE ? "active" : ""}
           type="button"
@@ -57,7 +62,7 @@ const FilterList = (props: FilterProps) => {
           {filter === FilterStatus.PENDING ? <MdCheck /> : ""}
           Pending
         </button>
-      </div>
+      </FilterListButtons>
       <div>
         <input
           placeholder="Search items"
@@ -65,10 +70,10 @@ const FilterList = (props: FilterProps) => {
           onChange={onChange}
           onKeyDown={onKeyDown}
         />
-        <button onClick={submit}><MdSearch /></button>
-        <button onClick={erase}><MdClose /></button>
+        <button className={hiddenIcon ? "hidden" : ""} onClick={submit}><MdSearch /></button>
+        <button className={hiddenIcon ? "" : "hidden"} onClick={erase}><MdClose /></button>
       </div>
-    </div>
+    </FilterListContainer>
   );
 };
 

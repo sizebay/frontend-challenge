@@ -5,7 +5,7 @@ import NewTodo from "./components/NewTodo";
 import StatusBar from "./components/StatusBar";
 import TodoList from "./components/ToDoList";
 
-import { Container, Modal } from "./styles";
+import { Container, Modal, Panel } from "./styles";
 import { FilterStatus } from "./types/FilterStatus";
 import { TodoType } from "./types/TodoType";
 
@@ -49,7 +49,7 @@ function App() {
 
   const onNewInput = (newInput: string) => {
     setInputValue(newInput);
-  }
+  };
 
   const onSearch = (newSearch: string) => {
     if (newSearch === "") {
@@ -61,24 +61,27 @@ function App() {
   return (
     <Container>
       <Modal>
-        <DayInfo />
-        <StatusBar todos={todosList} />
-        <FilterList
-        filter={filter}
-        inputValue={inputValue}
-        onFilter={onFilter}
-        onSearch={onSearch}
-        onNewInput={onNewInput} />
-        <NewTodo onNewTodo={onNewTodo} />
-        <TodoList
-          todos={todosList}
-          filter={filter}
-          search={search}
-          onToggle={onToggle}
-          onRemove={onRemove}
-          onFilter={onFilter}
-          onSearch={onSearch}
-        />
+        <Panel>
+          <DayInfo />
+          <StatusBar todos={todosList} />
+          <FilterList
+            filter={filter}
+            inputValue={inputValue}
+            onFilter={onFilter}
+            onSearch={onSearch}
+            onNewInput={onNewInput}
+          />
+          <NewTodo onNewTodo={onNewTodo} />
+          <TodoList
+            todos={todosList}
+            filter={filter}
+            search={search}
+            onToggle={onToggle}
+            onRemove={onRemove}
+            onFilter={onFilter}
+            onSearch={onSearch}
+          />
+        </Panel>
       </Modal>
     </Container>
   );
