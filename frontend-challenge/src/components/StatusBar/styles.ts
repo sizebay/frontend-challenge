@@ -8,5 +8,5 @@ export const Total = styled.div`
 export const Progress = styled.div`
     height: 100%;
     background-color: #5DE290;
-    border-radius: 4px 0px 0px 4px;
+    border-radius: 4px;
 `;

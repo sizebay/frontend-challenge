@@ -2,12 +2,35 @@
   padding: 0;
   margin: 8px 0;
   list-style: none;
+  overflow: auto;
+  height: 216px;
+}
+.todo-list::-webkit-scrollbar {
+  margin-left: 10px;
+  width: 8px;
+}
+
+.todo-list::-webkit-scrollbar-track {
+  background-color: #E4E4E4;
+  border-radius: 9px;
+}
+
+.todo-list::-webkit-scrollbar-thumb {
+  background-color: #848484;
+  border-radius: 9px;
 }
 
 .todo-list li {
   display: flex;
   align-items: center;
-  margin: 8px 0;
+  margin: 8.5px 0;
+  margin-right: 5px;
+}
+.todo-list li:first-child {
+  margin-top: 0;
+}
+.todo-list li:last-child {
+  margin-bottom: 0;
 }
 
 .todo-list li button {
@@ -15,20 +38,20 @@
   padding: 11px 10px 5px;
   outline: none;
 }
-
 .todo-list li button svg {
+  color: white;
+}
+
+.hidden-remove-button{
+  background-color: #E34F4F;
+  color: #ffffff;
+}
+
+.hidden-done-button{
+  background-color: #5DE290;
   color: #ffffff;
 }
 
 .done {
   text-decoration: line-through;
-}
-
-.colorful {
-  background-color: #F7F7F7 !important;
-  color: #F7F7F7 !important;
-}
-
-.colorful svg {
-  color: #F7F7F7 !important;
 }

@@ -1,28 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdAddCircle } from "react-icons/md";
 import { ButtonAddTodo, NewTodoContainer, NewTodoInput } from "./styles";
-import './index.css';
+import "./index.css";
 import { FilterStatus } from "../../types/FilterStatus";
 
 type NewTodoProps = {
   filter: FilterStatus;
   search: string;
+  editTodo: string;
   onNewTodo: (newValue: string) => void;
 };
 
 const NewTodo = (props: NewTodoProps) => {
-  const { filter, search, onNewTodo } = props;
+  const { filter, search, editTodo, onNewTodo } = props;
   const [value, setValue] = useState("");
   const [active, setActive] = useState(false);
   const ESCAPE_KEY = 27;
   const ENTER_KEY = 13;
+
+  useEffect(() => {
+    setValue(editTodo);
+
+  }, [editTodo])
+
 
   const erase = () => {
     setValue("");
   };
 
   const submit = () => {
-    if (onNewTodo) {
+    if (value.length > 0) {
       onNewTodo(value);
       erase();
     }
@@ -42,29 +49,31 @@ const NewTodo = (props: NewTodoProps) => {
 
   const removeOpacity = () => {
     setActive(true);
-  }
+  };
 
   const addOpacity = () => {
     setActive(false);
-  }
+  };
 
   return (
     <>
-      {filter !== FilterStatus.UNFILTERED || search !== "" ? <></> : (
+      {filter !== FilterStatus.UNFILTERED || search !== "" ? (
+        <></>
+      ) : (
         <NewTodoContainer>
-        <NewTodoInput
-          className={active ? "focused" : ""}
-          placeholder="Add new item..."
-          value={value}
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-          onFocus={removeOpacity}
-          onBlur={addOpacity}
-        />
-        <ButtonAddTodo className={active ? "focused" : ""} onClick={submit}>
-          <MdAddCircle />
-        </ButtonAddTodo>
-      </NewTodoContainer>
+          <NewTodoInput
+            className={active ? "focused" : ""}
+            placeholder="Add new item..."
+            value={value}
+            onChange={onChange}
+            onKeyDown={onKeyDown}
+            onFocus={removeOpacity}
+            onBlur={addOpacity}
+          />
+          <ButtonAddTodo className={active ? "focused" : ""} onClick={submit}>
+            <MdAddCircle />
+          </ButtonAddTodo>
+        </NewTodoContainer>
       )}
     </>
   );

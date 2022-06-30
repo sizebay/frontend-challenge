@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DayInfo from "./components/DayInfo";
 import FilterList from "./components/FilterList";
 import NewTodo from "./components/NewTodo";
@@ -14,9 +14,14 @@ function App() {
   const [filter, setFilter] = useState<FilterStatus>(FilterStatus.UNFILTERED);
   const [search, setSearch] = useState<string>("");
   const [inputValue, setInputValue] = useState("");
+  const [editTodo, setEditTodo] = useState("");
+
+  useEffect(() => {
+    setTodos(JSON.parse(localStorage.getItem("todos") || "[]"));
+  }, []);
 
   const onNewTodo = (newValue: string) => {
-    var newList: TodoType[] = [
+    let newList: TodoType[] = [
       ...todosList,
       {
         id: new Date().getTime(),
@@ -24,19 +29,25 @@ function App() {
         done: false,
       },
     ];
+    localStorage.setItem("todos", JSON.stringify(newList));
+    setEditTodo("");
     setTodos(newList);
   };
 
   const onToggle = (todo: TodoType) => {
-    setTodos(
-      todosList.map((obj) =>
-        obj.id === todo.id ? { ...obj, done: !todo.done } : obj
-      )
+    localStorage.removeItem("todos");
+    let newList: TodoType[] = todosList.map((obj) =>
+      obj.id === todo.id ? { ...obj, done: !todo.done } : obj
     );
+    setTodos(newList);
+    localStorage.setItem("todos", JSON.stringify(newList));
   };
 
   const onRemove = (todo: TodoType) => {
-    setTodos(todosList.filter((obj) => obj.id !== todo.id));
+    localStorage.removeItem("todos");
+    let newList: TodoType[] = todosList.filter((obj) => obj.id !== todo.id);
+    setTodos(newList);
+    localStorage.setItem("todos", JSON.stringify(newList));
   };
 
   const onFilter = (newFilter: FilterStatus) => {
@@ -58,6 +69,11 @@ function App() {
     setSearch(newSearch);
   };
 
+  const onEditTodo = (todo: TodoType) => {
+    onRemove(todo);
+    setEditTodo(todo.value);
+  }
+
   return (
     <Container>
       <Modal>
@@ -71,7 +87,7 @@ function App() {
             onSearch={onSearch}
             onNewInput={onNewInput}
           />
-          <NewTodo filter={filter} search={search} onNewTodo={onNewTodo} />
+          <NewTodo filter={filter} search={search} editTodo={editTodo} onNewTodo={onNewTodo} />
           <TodoList
             todos={todosList}
             filter={filter}
@@ -80,6 +96,7 @@ function App() {
             onRemove={onRemove}
             onFilter={onFilter}
             onSearch={onSearch}
+            editTodo={onEditTodo}
           />
         </Panel>
       </Modal>

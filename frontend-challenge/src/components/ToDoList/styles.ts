@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const ClearButton = styled.span`
+    font-size: 14px;
     text-decoration: underline;
     cursor: pointer;
 `

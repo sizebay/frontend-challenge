@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./index.css";
 import { TodoType } from "../../types/TodoType";
 import { FilterStatus } from "../../types/FilterStatus";
@@ -9,6 +9,7 @@ import {
   TodoItem,
 } from "./styles";
 import { MdCheckCircle, MdRemoveCircle } from "react-icons/md";
+import ReactTooltip from "react-tooltip";
 
 type TodoProps = {
   todos: Array<TodoType>;
@@ -18,12 +19,20 @@ type TodoProps = {
   onToggle: (todo: TodoType) => void;
   onFilter: (newFilter: FilterStatus) => void;
   onSearch: (newSearch: string) => void;
+  editTodo: (todo: TodoType) => void;
 };
 
 const TodoList = (props: TodoProps) => {
-  const { todos, filter, search, onRemove, onToggle, onFilter, onSearch } =
-    props;
-  const [onFocusUp, setOnFocusUp] = useState(false);
+  const {
+    todos,
+    filter,
+    search,
+    onRemove,
+    onToggle,
+    onFilter,
+    onSearch,
+    editTodo,
+  } = props;
 
   const filteredTodos = todos.filter((todo) => {
     if (filter === FilterStatus.DONE) {
@@ -46,13 +55,6 @@ const TodoList = (props: TodoProps) => {
     onFilter(FilterStatus.UNFILTERED);
   };
 
-  const addColorful = () => {
-    setOnFocusUp(true);
-  };
-  const rmColorful = () => {
-    setOnFocusUp(false);
-  };
-
   return (
     <>
       <ul className="todo-list">
@@ -67,24 +69,28 @@ const TodoList = (props: TodoProps) => {
         ) : (
           searchedTodos.map((todo: TodoType) => {
             return (
-              <li
-                key={todo.id}
-                onMouseEnter={addColorful}
-                onMouseLeave={rmColorful}
-              >
-                <TodoItem className={todo.done ? "done" : ""}>
+              <li key={todo.id}>
+                <ReactTooltip id="editTip" place="bottom" effect="solid">
+                  Editar
+                </ReactTooltip>
+                <TodoItem
+                  data-tip
+                  data-for="editTip"
+                  onClick={() => editTodo(todo)}
+                  className={["todo-item", todo.done ? "done" : ""].join(" ")}
+                >
                   {todo.value}
                 </TodoItem>
                 <ButtonRemoveTodo
                   type="button"
-                  className={onFocusUp ? "" : "colorful"}
+                  className="hidden-remove-button"
                   onClick={() => onRemove(todo)}
                 >
                   <MdRemoveCircle />
                 </ButtonRemoveTodo>
                 <ButtonDoneTodo
                   type="button"
-                  className={onFocusUp ? "" : "colorful"}
+                  className="hidden-done-button"
                   onClick={() => onToggle(todo)}
                 >
                   <MdCheckCircle />
