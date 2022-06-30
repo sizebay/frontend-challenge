@@ -1,0 +1,12 @@
+.focused {
+  color: #848484;
+  outline: none;
+  opacity: 1 !important;
+}
+
+.focused ::placeholder {
+  border: none !important;
+  color: #848484;
+  outline: none;
+  opacity: 1 !important;
+}

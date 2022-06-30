@@ -14,8 +14,8 @@ export const Modal = styled.div`
     color: #848484;
     border-radius: 4px;
     opacity: 1;
-    width: 42%;
-    height: 60%;
+    width: 800px;
+    height: 650px;
     button {
       color: #848484;
     }

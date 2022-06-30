@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { MdAddCircle } from "react-icons/md";
+import { ButtonAddTodo, NewTodoContainer, NewTodoInput } from "./styles";
+import './index.css';
+import { FilterStatus } from "../../types/FilterStatus";
 
 type NewTodoProps = {
+  filter: FilterStatus;
+  search: string;
   onNewTodo: (newValue: string) => void;
 };
 
 const NewTodo = (props: NewTodoProps) => {
+  const { filter, search, onNewTodo } = props;
   const [value, setValue] = useState("");
-  const { onNewTodo } = props;
+  const [active, setActive] = useState(false);
   const ESCAPE_KEY = 27;
   const ENTER_KEY = 13;
 
@@ -34,20 +40,32 @@ const NewTodo = (props: NewTodoProps) => {
     setValue(event.target.value);
   };
 
+  const removeOpacity = () => {
+    setActive(true);
+  }
+
+  const addOpacity = () => {
+    setActive(false);
+  }
+
   return (
     <>
-      <div>
-        <input
-          className="new-todo"
+      {filter !== FilterStatus.UNFILTERED || search !== "" ? <></> : (
+        <NewTodoContainer>
+        <NewTodoInput
+          className={active ? "focused" : ""}
           placeholder="Add new item..."
           value={value}
           onChange={onChange}
           onKeyDown={onKeyDown}
+          onFocus={removeOpacity}
+          onBlur={addOpacity}
         />
-        <button onClick={submit}>
+        <ButtonAddTodo className={active ? "focused" : ""} onClick={submit}>
           <MdAddCircle />
-        </button>
-      </div>
+        </ButtonAddTodo>
+      </NewTodoContainer>
+      )}
     </>
   );
 };

@@ -1,9 +1,30 @@
+.filterButton {
+  background-color: #ffffff;
+  height: 35px;
+  margin-right: 8px;
+  padding: 0px 16px;
+  font-size: 14px;
+  border-radius: 17px;
+  border: 1px solid #dbdbdb;
+}
+
+.buttonSearch {
+    background-color: #FFFFFF;
+    color: #848484;
+    font-size: 24px;
+    padding-top: 5px;
+    border: 1px solid #DBDBDB;
+    border-radius: 0px 4px 4px 0px;
+    border-left: none;
+    outline: none;
+}
+
 .active {
-    background-color: #f5f5f5;
-    color: #4DA6B3;
-    border: none;
+  background-color: #f7f7f8;
+  border: 1px solid #4da6b3 !important;
+  color: #4da6b3 !important;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }

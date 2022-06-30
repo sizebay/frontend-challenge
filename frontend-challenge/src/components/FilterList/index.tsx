@@ -3,7 +3,7 @@ import "./index.css";
 import { FilterStatus } from "../../types/FilterStatus";
 import { MdCheck, MdClose, MdSearch } from "react-icons/md";
 
-import { FilterListButtons, FilterListContainer } from "./styles";
+import { FilterListActions, FilterListContainer, FilterListInput, FilterListSearch } from "./styles";
 
 type FilterProps = {
   filter: FilterStatus;
@@ -45,9 +45,9 @@ const FilterList = (props: FilterProps) => {
 
   return (
     <FilterListContainer>
-      <FilterListButtons>
+      <FilterListActions>
         <button
-          className={filter === FilterStatus.DONE ? "active" : ""}
+          className={['filterButton', filter === FilterStatus.DONE ? "active" : ""].join(' ')}
           type="button"
           onClick={() => onFilter(FilterStatus.DONE)}
         >
@@ -55,24 +55,24 @@ const FilterList = (props: FilterProps) => {
           Done
         </button>
         <button
-          className={filter === FilterStatus.PENDING ? "active" : ""}
+          className={['filterButton', filter === FilterStatus.PENDING ? "active" : ""].join(' ')}
           type="button"
           onClick={() => onFilter(FilterStatus.PENDING)}
         >
           {filter === FilterStatus.PENDING ? <MdCheck /> : ""}
           Pending
         </button>
-      </FilterListButtons>
-      <div>
-        <input
+      </FilterListActions>
+      <FilterListSearch>
+        <FilterListInput
           placeholder="Search items"
           value={inputValue}
           onChange={onChange}
           onKeyDown={onKeyDown}
         />
-        <button className={hiddenIcon ? "hidden" : ""} onClick={submit}><MdSearch /></button>
-        <button className={hiddenIcon ? "" : "hidden"} onClick={erase}><MdClose /></button>
-      </div>
+        <button className={["buttonSearch" ,hiddenIcon ? "hidden" : ""].join(' ')} onClick={submit}><MdSearch /></button>
+        <button className={["buttonSearch" ,hiddenIcon ? "" : "hidden"].join(' ')} onClick={erase}><MdClose /></button>
+      </FilterListSearch>
     </FilterListContainer>
   );
 };

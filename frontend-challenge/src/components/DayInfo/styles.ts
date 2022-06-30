@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const DateContainer = styled.div`
     display: flex;
     margin-bottom: 24px;
+    justify-content: space-between;
 `;
 
 export const DayInfoContainer = styled.div`

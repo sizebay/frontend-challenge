@@ -71,7 +71,7 @@ function App() {
             onSearch={onSearch}
             onNewInput={onNewInput}
           />
-          <NewTodo onNewTodo={onNewTodo} />
+          <NewTodo filter={filter} search={search} onNewTodo={onNewTodo} />
           <TodoList
             todos={todosList}
             filter={filter}

@@ -1,3 +1,34 @@
+.todo-list {
+  padding: 0;
+  margin: 8px 0;
+  list-style: none;
+}
+
+.todo-list li {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+}
+
+.todo-list li button {
+  font-size: 24px;
+  padding: 11px 10px 5px;
+  outline: none;
+}
+
+.todo-list li button svg {
+  color: #ffffff;
+}
+
 .done {
-    text-decoration: line-through;
+  text-decoration: line-through;
+}
+
+.colorful {
+  background-color: #F7F7F7 !important;
+  color: #F7F7F7 !important;
+}
+
+.colorful svg {
+  color: #F7F7F7 !important;
 }
