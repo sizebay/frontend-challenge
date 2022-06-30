@@ -1,0 +1,47 @@
+.todo-list li {
+  display: flex;
+  align-items: center;
+  margin: 8.5px 0;
+  margin-right: 5px;
+}
+
+.todo-list li:first-child {
+  margin-top: 0;
+}
+
+.todo-list li:last-child {
+  margin-bottom: 0;
+}
+
+.todo-item:hover {
+  background-color: #FFFFFF;
+}
+
+.todo-list li button {
+  font-size: 24px;
+  padding: 11px 10px 5px;
+  outline: none;
+  background-color: #f7f7f7;
+  color: #f7f7f7;
+}
+.todo-list li button svg {
+  color: #F7F7F7;
+}
+
+.hidden-remove-button {
+  background-color: #e34f4f !important;
+  color: #ffffff !important;
+}
+
+.hidden-done-button {
+  background-color: #5de290 !important;
+  color: #ffffff !important;
+}
+
+.hidden-done-button svg, .hidden-remove-button svg {
+  color: #FFFFFF !important;
+}
+
+.done {
+  text-decoration: line-through;
+}
