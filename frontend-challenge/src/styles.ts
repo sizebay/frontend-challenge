@@ -16,6 +16,12 @@ export const Modal = styled.div`
     opacity: 1;
     width: 800px;
     height: 650px;
+
+    @media(max-width: 375px) {
+      width: 341px;
+      height: 780px;
+    }
+
     button {
       color: #848484;
     }
@@ -23,4 +29,7 @@ export const Modal = styled.div`
 
 export const Panel = styled.div`
   margin: 54px 60px 100px;
+  @media(max-width: 375px) {
+    margin: 48px 16px 100px;
+  }
 `;

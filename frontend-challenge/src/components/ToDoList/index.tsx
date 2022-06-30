@@ -6,7 +6,9 @@ import {
   ButtonDoneTodo,
   ButtonRemoveTodo,
   ClearButton,
+  ClearFilterText,
   TodoItem,
+  ToDoListContainer,
 } from "./styles";
 import { MdCheckCircle, MdRemoveCircle } from "react-icons/md";
 import ReactTooltip from "react-tooltip";
@@ -20,6 +22,7 @@ type TodoProps = {
   onFilter: (newFilter: FilterStatus) => void;
   onSearch: (newSearch: string) => void;
   editTodo: (todo: TodoType) => void;
+  toggleFocus: (todo: TodoType, inFocus: boolean) => void;
 };
 
 const TodoList = (props: TodoProps) => {
@@ -32,6 +35,7 @@ const TodoList = (props: TodoProps) => {
     onFilter,
     onSearch,
     editTodo,
+    toggleFocus,
   } = props;
 
   const filteredTodos = todos.filter((todo) => {
@@ -57,19 +61,24 @@ const TodoList = (props: TodoProps) => {
 
   return (
     <>
-      <ul className="todo-list">
+      <ToDoListContainer className="todo-list">
         {searchedTodos.length === 0 && todos.length > 0 ? (
           <li>
-            <span>
+            <ClearFilterText>
               Your search found no results.{" "}
               <ClearButton onClick={erase}>Clean the search here</ClearButton>{" "}
               to see all items.
-            </span>
+            </ClearFilterText>
           </li>
         ) : (
           searchedTodos.map((todo: TodoType) => {
             return (
-              <li key={todo.id}>
+              <li
+                key={todo.id}
+                className={todo.focused ? "onFocus" : ""}
+                onMouseEnter={() => toggleFocus(todo, true)}
+                onMouseLeave={() => toggleFocus(todo, false)}
+              >
                 <ReactTooltip id="editTip" place="bottom" effect="solid">
                   Editar
                 </ReactTooltip>
@@ -83,14 +92,14 @@ const TodoList = (props: TodoProps) => {
                 </TodoItem>
                 <ButtonRemoveTodo
                   type="button"
-                  className="hidden-remove-button"
+                  className={todo.focused ? "hidden-remove-button" : ""}
                   onClick={() => onRemove(todo)}
                 >
                   <MdRemoveCircle />
                 </ButtonRemoveTodo>
                 <ButtonDoneTodo
                   type="button"
-                  className="hidden-done-button"
+                  className={todo.focused ? "hidden-done-button" : ""}
                   onClick={() => onToggle(todo)}
                 >
                   <MdCheckCircle />
@@ -99,7 +108,7 @@ const TodoList = (props: TodoProps) => {
             );
           })
         )}
-      </ul>
+      </ToDoListContainer>
     </>
   );
 };

@@ -1,5 +1,27 @@
 import styled from 'styled-components'
 
+export const ToDoListContainer = styled.ul`
+    padding: 0;
+    margin: 8px 0;
+    list-style: none;
+    overflow: auto;
+    height: 216px;
+    &::-webkit-scrollbar {
+        margin-left: 10px;
+        width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #848484;
+        border-radius: 9px;
+    }
+    @media(max-width: 375px) {
+        margin-top: 16px;
+    }
+`;
+
+export const ClearFilterText = styled.span`
+    font-size: 14px;
+`
 export const ClearButton = styled.span`
     font-size: 14px;
     text-decoration: underline;

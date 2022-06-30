@@ -27,6 +27,7 @@ function App() {
         id: new Date().getTime(),
         value: newValue,
         done: false,
+        focused: false
       },
     ];
     localStorage.setItem("todos", JSON.stringify(newList));
@@ -74,6 +75,15 @@ function App() {
     setEditTodo(todo.value);
   }
 
+  const toggleFocus = (todo: TodoType, inFocus: boolean) => {
+    localStorage.removeItem("todos");
+    let newList: TodoType[] = todosList.map((obj) =>
+      obj.id === todo.id ? { ...obj, focused: inFocus } : obj
+    );
+    setTodos(newList);
+    localStorage.setItem("todos", JSON.stringify(newList));
+  };
+
   return (
     <Container>
       <Modal>
@@ -97,6 +107,7 @@ function App() {
             onFilter={onFilter}
             onSearch={onSearch}
             editTodo={onEditTodo}
+            toggleFocus={toggleFocus}
           />
         </Panel>
       </Modal>
