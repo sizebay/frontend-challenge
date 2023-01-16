@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import DateHeader from "./components/DateHeader";
 import ProgressBar from "./components/ProgressBar";
-import SearchBar from "./components/SearchBar";
+import Search from "./components/Search";
 
 const Background = styled.main`
     background-color: #555555;
@@ -28,7 +28,7 @@ function App() {
             <Container>
                 <DateHeader />
                 <ProgressBar progress={30} />
-                <SearchBar />
+                <Search />
             </Container>
         </Background>
     );
