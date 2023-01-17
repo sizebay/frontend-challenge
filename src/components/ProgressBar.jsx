@@ -6,8 +6,6 @@ const Parent = styled.div`
     height: 24px;
     background-color: #e0e0e0;
     border-radius: 4px;
-    margin-top: 20px;
-    margin-bottom: 20px;
 `;
 
 const Child = styled.div`
