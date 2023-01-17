@@ -5,6 +5,7 @@ import DateHeader from "./components/DateHeader";
 import ProgressBar from "./components/ProgressBar";
 import Search from "./components/Search";
 import AddTask from "./components/AddTask";
+import Task from "./components/Task";
 
 const Background = styled.main`
     background-color: #555555;
@@ -19,8 +20,11 @@ const Container = styled.section`
     width: 800px;
     height: 650px;
     border-radius: 4px;
-
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     padding: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 `;
 
 const Head = styled.div`
@@ -28,6 +32,37 @@ const Head = styled.div`
     flex-direction: column;
     justify-content: space-between;
     gap: 24px;
+`;
+
+const Tasks = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    max-height: 230px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-right: -12px;
+    padding-right: 6px;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background: #e4e4e4;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background: #848484;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: #848484;
+    }
+    &::-webkit-scrollbar-thumb:active {
+        background: #848484;
+    }
 `;
 
 function App() {
@@ -40,6 +75,15 @@ function App() {
                     <Search />
                     <AddTask />
                 </Head>
+                <Tasks>
+                    <Task>Drive a Cadillac across the Indiac sea</Task>
+                    <Task>Drive a Cadillac across the Indiac sea</Task>
+                    <Task>Drive a Cadillac across the Indiac sea</Task>
+                    <Task>Drive a Cadillac across the Indiac sea</Task>
+                    <Task>Drive a Cadillac across the Indiac sea</Task>
+                    <Task>Drive a Cadillac across the Indiac sea</Task>
+                    <Task>Drive a Cadillac across the Indiac sea</Task>
+                </Tasks>
             </Container>
         </Background>
     );
