@@ -21,7 +21,7 @@ export const DateContainer = styled.div`
 
   span {
     font-size: 3rem;
-    font-weight: 500;
+    font-weight: 700;
   }
 
   aside {
