@@ -13,7 +13,8 @@ export default function Todo() {
     { name: "Abc 4", status: "Pending" },
   ]);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState();
+  const [status, setStatus] = useState();
   const [filteredTodos, setFilteredTodos] = useState(todos);
 
   function handleAddTodo(todo) {
@@ -31,69 +32,56 @@ export default function Todo() {
   function handleSearchTodo(word, status) {
     let todosCopy = [...todos];
 
-    // if (status && word) {
-    //   let result = [];
-    //   let filtered = todosCopy.filter((el) => {
-    //     return el.name.toLowerCase().includes(word.toLowerCase());
-    //   });
-    //   result.push(filtered);
-
-    //   let statusFilter = todosCopy.filter((el) => {
-    //     return el.status === status;
-    //   });
-
-    //   result.push(statusFilter);
-    // }
-
-    if (word) {
+    if (status && word) {
+      let filter = todosCopy.filter((el) => {
+        return (
+          el.name.toLowerCase().includes(word.toLowerCase()) &&
+          el.status === status
+        );
+      });
+      todosCopy = filter;
+    } else if (word) {
       let filtered = todosCopy.filter((el) => {
         return el.name.toLowerCase().includes(word.toLowerCase());
       });
       todosCopy = filtered;
-    }
-
-    if (status) {
+    } else if (status) {
       let statusFilter = todosCopy.filter((el) => {
         return el.status === status;
       });
       todosCopy = statusFilter;
     }
-    // Object.keys(todosCopy).filter();
-    // if (word) {
-    //   todosCopyCopy.forEach((el, index) => {
-    //     if (el.name.toLowerCase().includes(word.toLowerCase())) {
-    //       todosCopy.splice(index, 1);
-    //     }
-    //   });
-    // }
-    // const filteredTodosCopy = [];
-    // if (word) {
-    //   todosCopy.forEach((el) => {
-    //     el.name.toLowerCase().includes(word) && filteredTodosCopy.push(el);
-    //   });
-    // }
 
-    // if (status) {
-    //   todosCopy.forEach((el) => {
-    //     el.status === status && filteredTodosCopy.push(el);
-    //   });
-    // }
-    console.log(todosCopy);
     setFilteredTodos(todosCopy);
+  }
+
+  function handleEditTodo(id, newName) {
+    let todosCopy = [...todos];
+    todosCopy[id].name = newName;
+    console.log(todosCopy);
+    setTodos(todosCopy);
   }
 
   return (
     <div>
       <Calendar />
       <ProgressBar todos={todos} />
-      <Searchbar handleSearchTodo={handleSearchTodo} setSearch={setSearch} />
+      <Searchbar
+        handleSearchTodo={handleSearchTodo}
+        setSearch={setSearch}
+        setStatus={setStatus}
+        search={search}
+        status={status}
+      />
       <AddItem handleAddTodo={handleAddTodo} />
       <TodoList
         filteredTodos={filteredTodos}
         todos={todos}
         handleRemoveTodo={handleRemoveTodo}
         search={search}
+        status={status}
         handleSearchTodo={handleSearchTodo}
+        handleEditTodo={handleEditTodo}
       />
     </div>
   );
