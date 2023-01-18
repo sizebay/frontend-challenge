@@ -65,8 +65,12 @@ export default function TodoList(props) {
             Your search found no results.{" "}
             <span
               onClick={() => {
-                props.handleSearchTodo("");
+                const empty = "";
+                props.handleSearchTodo(empty);
+                props.setStatus(empty);
+                props.setSearch(empty);
               }}
+              className='link'
             >
               Clean the search here
             </span>

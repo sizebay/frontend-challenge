@@ -13,8 +13,8 @@ export default function Todo() {
     { name: "Abc 4", status: "Pending" },
   ]);
 
-  const [search, setSearch] = useState();
-  const [status, setStatus] = useState();
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
   const [filteredTodos, setFilteredTodos] = useState(todos);
 
   function handleAddTodo(todo) {
@@ -80,6 +80,8 @@ export default function Todo() {
         handleRemoveTodo={handleRemoveTodo}
         search={search}
         status={status}
+        setSearch={setSearch}
+        setStatus={setStatus}
         handleSearchTodo={handleSearchTodo}
         handleEditTodo={handleEditTodo}
       />

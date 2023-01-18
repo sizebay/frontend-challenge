@@ -1,43 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Searchbar(props) {
-  const [name, setName] = useState("");
-  const [status, setStatus] = useState("");
-
   return (
-    <div>
-      {status !== "Done" ? (
-        <button
-          onClick={() => {
-            const newStatus = "Done";
-            setStatus(newStatus);
-            props.handleSearchTodo(name, newStatus);
-            props.setStatus(newStatus);
-          }}
-          className='Active'
-        >
-          Done
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            const newStatus = "Done";
-            setStatus(newStatus);
-            props.handleSearchTodo(name, newStatus);
-            props.setStatus(newStatus);
-          }}
-          className=''
-        >
-          Done
-        </button>
-      )}
+    <div className='search-container'>
+      <button
+        onClick={() => {
+          const newStatus = "Done";
+          props.handleSearchTodo(props.search, newStatus);
+          props.setStatus(newStatus);
+        }}
+        className={props.status === "Done" ? "active" : ""}
+      >
+        Done
+      </button>
       <button
         onClick={() => {
           const newStatus = "Pending";
-          setStatus(newStatus);
-          props.handleSearchTodo(name, newStatus);
+          props.handleSearchTodo(props.search, newStatus);
           props.setStatus(newStatus);
         }}
+        className={props.status === "Pending" ? "active" : ""}
       >
         Pending
       </button>
@@ -46,26 +28,23 @@ export default function Searchbar(props) {
         placeholder='Search items'
         onChange={(e) => {
           const newName = e.target.value;
-          setName(newName);
-          props.handleSearchTodo(newName, status);
+          props.handleSearchTodo(newName, props.status);
           props.setSearch(newName);
         }}
-        value={name}
+        value={props.search}
         className='search-input'
       />
-      <button
+      <div
         onClick={() => {
-          const newStatus = "";
-          setStatus(newStatus);
-          props.setStatus(newStatus);
-          const newName = "";
-          setName(newName);
-          props.setSearch(newName);
-          props.handleSearchTodo(newName);
+          const empty = "";
+          props.setStatus(empty);
+          props.setSearch(empty);
+          props.handleSearchTodo(empty);
         }}
+        className='clear-search-field'
       >
         X
-      </button>
+      </div>
     </div>
   );
 }
