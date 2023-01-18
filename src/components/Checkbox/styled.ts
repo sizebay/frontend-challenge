@@ -10,7 +10,7 @@ export const Container = styled.label<ContainerProps>`
   display: inline-flex;
   justify-content: center;
   padding: 0.5rem;
-  border-radius: 1rem;
+  border-radius: 100vh;
   border: 1px solid ${({checked}) => !checked ? '#848484' : '#4DA6B3'};
   font-family: "Roboto", sans-serif;
   background-color: ${({checked}) => checked ? '#F7F7F8' : '#fff'};
