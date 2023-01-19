@@ -18,6 +18,7 @@ export const TasksProvider = ({children}) => {
 
     const [pending, setPending] = useState(false);
     const [completed, setCompleted] = useState(false);
+    const [search, setSearch] = useState("");
 
     function pendingMarked() {
         setPending(!pending);
@@ -59,7 +60,7 @@ export const TasksProvider = ({children}) => {
     }
 
     return (
-        <TasksContext.Provider value={{tasks, pending, completed, createTask, deleteTask, markCompleteTask, completedMarked, pendingMarked}}>
+        <TasksContext.Provider value={{tasks, pending, completed, search, setSearch, createTask, deleteTask, markCompleteTask, completedMarked, pendingMarked}}>
             {children}
         </TasksContext.Provider>
     );
