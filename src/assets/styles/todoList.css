@@ -29,6 +29,7 @@
   outline: none;
   border: 0;
   color: #848484;
+  width: 100%;
 }
 
 .todo-buttons {
@@ -109,3 +110,9 @@
   border-bottom-color: #848484;
   filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.1));
 }
+
+/* @media screen and(max-width: 650px) {
+  .todo-list-container input {
+    background-color: #e34f4f !important;
+  }
+} */

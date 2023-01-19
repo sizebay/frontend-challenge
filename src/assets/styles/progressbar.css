@@ -6,3 +6,17 @@
   height: 24px;
   border-radius: 4px;
 }
+
+.confetti {
+  position: fixed !important;
+  left: 50% !important;
+  transform: translateX(70%);
+}
+
+@media screen and (max-width: 650px) {
+  .confetti {
+    position: fixed !important;
+    left: 20% !important;
+    transform: translateX(50%);
+  }
+}
