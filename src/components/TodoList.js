@@ -25,6 +25,14 @@ export default function TodoList(props) {
                 onChange={(e) => {
                   setInput(e.target.value);
                 }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    props.handleEditTodo(el.name, input);
+                    setInput("");
+                    let newIndex = "";
+                    setEditIndex(newIndex);
+                  }
+                }}
                 placeholder={el.name}
                 autoFocus
               />
@@ -42,7 +50,7 @@ export default function TodoList(props) {
                 <div
                   className='edit-container'
                   onClick={() => {
-                    props.handleEditTodo(index, input);
+                    props.handleEditStatus(el.name);
                     let newIndex = "";
                     setInput("");
                     setEditIndex(newIndex);

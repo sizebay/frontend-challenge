@@ -56,26 +56,25 @@ export default function Todo() {
     setFilteredTodos(todosCopy);
   }
 
-  function handleEditTodo(id, newName) {
+  function handleEditTodo(name, newName) {
     if (newName !== "") {
       let todosCopy = [...todos];
-      todosCopy[id].name = newName;
+      todosCopy.map((el) => el.name === name && (el.name = newName));
       setTodos(todosCopy);
     } else {
       return;
     }
   }
 
-  function handleEditStatus(id) {
-    // let todosCopy = [...todos];
-    console.log("asadasd");
-    // if (todosCopy[id].status === "Done") {
-    //   todosCopy[id].status = "Pending";
-    //   setTodos(todosCopy);
-    // } else {
-    //   todosCopy[id].status = "Done";
-    //   setTodos(todosCopy);
-    // }
+  function handleEditStatus(name) {
+    let todosCopy = [...todos];
+    todosCopy.map(
+      (el) =>
+        el.name === name &&
+        (el.status === "Done" ? (el.status = "Pending") : (el.status = "Done"))
+    );
+
+    setTodos(todosCopy);
   }
 
   return (
