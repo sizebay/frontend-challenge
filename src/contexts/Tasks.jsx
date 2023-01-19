@@ -3,18 +3,7 @@ import {createContext, useState, useEffect} from "react";
 export const TasksContext = createContext();
 
 export const TasksProvider = ({children}) => {
-    const [tasks, setTasks] = useState([
-        {
-            id: 1,
-            title: "Tarefa Concluida",
-            completed: true,
-        },
-        {
-            id: 2,
-            title: "Tarefa NÂO Concluida",
-            completed: false,
-        },
-    ]);
+    const [tasks, setTasks] = useState([]);
 
     const [pending, setPending] = useState(false);
     const [completed, setCompleted] = useState(false);

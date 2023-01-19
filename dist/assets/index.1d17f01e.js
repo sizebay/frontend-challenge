@@ -148,6 +148,11 @@ Error generating stack: `+o.message+`
 
     border-radius: 4px;
     width: 100%;
+    @media (max-width: 800px) {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: 10px;
+    }
 `,a0=G.div`
     display: flex;
     flex-direction: row;
@@ -260,6 +265,13 @@ Error generating stack: `+o.message+`
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    @media (max-width: 800px) {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding: 24px;
+    }
 `,E0=G.div`
     display: flex;
     flex-direction: column;
@@ -295,10 +307,11 @@ Error generating stack: `+o.message+`
         background: #848484;
     }
 `;function P0(){const{tasks:e,pending:t,completed:n,search:r}=te.exports.useContext(en),l=e.filter(u=>u.title.toLowerCase().includes(r.toLowerCase())),o=l.filter(u=>u.completed===!0),i=l.filter(u=>u.completed===!1);return F(x0,{children:me(C0,{children:[me(E0,{children:[F(Ym,{}),F(Xm,{}),F(c0,{}),F(m0,{})]}),me(_0,{children:[t==!0?F(ai,{tasks:i}):n?F(ai,{tasks:o}):F(ai,{tasks:l}),F(k0,{completedTasks:o,searchLength:l.length})]})]})})}const z0=jm`
-  * {
-    padding:0;
-    margin:0;
+ * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
   }
+ 
 `;ci.createRoot(document.getElementById("root")).render(F(_t.StrictMode,{children:me(Bh,{children:[F(z0,{}),F(P0,{})]})}));
