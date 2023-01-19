@@ -5,6 +5,8 @@ import ProgressBar from "./ProgressBar";
 import Searchbar from "./Searchbar";
 import TodoList from "./TodoList";
 
+import "../assets/styles/todo.css";
+
 export default function Todo() {
   const [todos, setTodos] = useState([
     { name: "Test 1", status: "Done" },
@@ -63,7 +65,7 @@ export default function Todo() {
   }
 
   return (
-    <div>
+    <div className='todo-container'>
       <Calendar />
       <ProgressBar todos={todos} />
       <Searchbar

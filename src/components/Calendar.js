@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../assets/styles/calendar.css";
+
 export default function Calendar() {
   const monthNames = [
     "Jan",
@@ -33,13 +35,17 @@ export default function Calendar() {
   const day = weekday[current.getDay()];
 
   return (
-    <div>
-      {date} <br />
-      {month}
-      <br />
-      {year}
-      <br />
-      {day}
+    <div className='calendar-container'>
+      <div className='calendar-left'>
+        <div className='date'>{date}</div>
+        <div className='month-and-year'>
+          <div className='month'>{month}</div>
+          <div className='year'>{year}</div>
+        </div>
+      </div>
+      <div className='calendar-right'>
+        <div className='day'>{day}</div>
+      </div>
     </div>
   );
 }

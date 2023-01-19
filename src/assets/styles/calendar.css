@@ -1,0 +1,41 @@
+.calendar-container {
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 1fr 1fr;
+  color: #848484;
+}
+
+.date {
+  font-size: 60px;
+}
+
+.month,
+.year,
+.day {
+  font-size: 24px;
+}
+
+.calendar-right {
+  justify-self: end;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.calendar-right .day {
+  margin-top: -15px;
+  grid-row: 2;
+}
+
+.calendar-left {
+  display: grid;
+  grid-template-columns: min-content min-content;
+  align-items: center;
+}
+
+.month {
+  margin-bottom: -10px;
+}
+
+.year {
+  font-weight: 300;
+}

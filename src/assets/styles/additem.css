@@ -1,0 +1,110 @@
+/* .add-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.add-container button {
+  border: 0;
+  width: 44px;
+  height: 48px;
+  background: #4da6b3 0% 0% no-repeat padding-box;
+  border-radius: 0px 4px 4px 0px;
+  opacity: 1;
+}
+
+.add-container button div {
+  width: 20px;
+  height: 20px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 1;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4da6b3 !important;
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 3px;
+}
+
+.add-container input {
+  outline: none;
+  width: 100%;
+  height: 48px;
+  background: #f7f7f7 0% 0% no-repeat padding-box;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px 0 0 4px;
+  opacity: 1;
+  font: normal normal normal 14px/19px Roboto;
+  letter-spacing: 0px;
+  padding-left: 15px;
+}
+
+.add-container:focus {
+  background: #ffffff 0% 0% no-repeat padding-box !important;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  opacity: 1;
+} */
+
+.add-container {
+  height: 48px;
+  display: flex;
+  flex-wrap: nowrap;
+  background: #f7f7f7 0% 0% no-repeat padding-box;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  opacity: 1;
+  padding: 0px;
+  align-items: center;
+}
+
+.add-container input {
+  outline: none;
+  border: 0;
+  flex-grow: 2;
+  font: normal normal normal 14px/19px Roboto;
+  border-radius: 4px;
+  background: #f7f7f7 0% 0% no-repeat padding-box;
+  padding: 0px 15px 0px 15px;
+}
+
+.add-container input:focus::-webkit-input {
+  color: #848484;
+}
+
+.add-container input:focus::-webkit-input-placeholder {
+  color: #84848477;
+}
+
+.add-container input:focus {
+  background: #ffffff 0% 0% no-repeat padding-box;
+}
+
+.add-container button {
+  border: 0;
+  width: 44px;
+  height: 48px;
+  background: #4da6b3 0% 0% no-repeat padding-box;
+  border-radius: 0px 4px 4px 0px;
+  opacity: 1;
+}
+
+.add-container button div {
+  width: 20px;
+  height: 20px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 1;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4da6b3 !important;
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 3px;
+}

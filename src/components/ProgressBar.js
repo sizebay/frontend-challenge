@@ -1,5 +1,7 @@
 import ProgressBar from "react-bootstrap/ProgressBar";
 
+import "../assets/styles/progressbar.css";
+
 function Progressbar(props) {
   let totalTodos = props.todos.length;
   function handleCompletedTodos() {
