@@ -1,7 +1,9 @@
 .search-container {
   display: flex;
+  flex-wrap: wrap-reverse;
   justify-content: space-between;
   padding: 25px 0px 25px;
+  gap: 10px;
 }
 
 .search-input-container {
@@ -54,4 +56,14 @@
 
 .icon {
   color: #848484;
+}
+
+.close {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 650px) {
+  .buttons {
+    margin-left: auto;
+  }
 }

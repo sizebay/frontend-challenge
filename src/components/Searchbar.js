@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
   faClose,
-  faCross,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -82,7 +81,7 @@ export default function Searchbar(props) {
           {props.search === "" ? (
             <FontAwesomeIcon icon={faMagnifyingGlass} className='icon' />
           ) : (
-            <FontAwesomeIcon icon={faClose} className='icon' />
+            <FontAwesomeIcon icon={faClose} className='icon close' />
           )}
         </div>
       </div>

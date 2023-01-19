@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "../assets/styles/additem.css";
+import "../assets/styles/addItem.css";
 
 export default function AddItem(props) {
   const [todo, setTodo] = useState("");
@@ -14,9 +14,13 @@ export default function AddItem(props) {
         type='text'
         placeholder='Add new item...'
         onChange={handleChange}
+        value={todo}
       />
       <button
-        onClick={() => props.handleAddTodo({ name: todo, status: "Pending" })}
+        onClick={() => {
+          props.handleAddTodo({ name: todo, status: "Pending" });
+          setTodo("");
+        }}
       >
         <div>+</div>
       </button>

@@ -10,7 +10,6 @@ import "../assets/styles/todo.css";
 export default function Todo() {
   const [todos, setTodos] = useState([
     { name: "Test 1", status: "Done" },
-    { name: "Test 2", status: "Pending" },
     { name: "Test 4", status: "Done" },
     { name: "Abc 4", status: "Pending" },
   ]);
@@ -20,7 +19,7 @@ export default function Todo() {
   const [filteredTodos, setFilteredTodos] = useState(todos);
 
   function handleAddTodo(todo) {
-    setTodos([...todos, todo]);
+    todo.name !== "" && setTodos([...todos, todo]);
   }
 
   function handleRemoveTodo(todo) {
@@ -58,10 +57,25 @@ export default function Todo() {
   }
 
   function handleEditTodo(id, newName) {
-    let todosCopy = [...todos];
-    todosCopy[id].name = newName;
-    console.log(todosCopy);
-    setTodos(todosCopy);
+    if (newName !== "") {
+      let todosCopy = [...todos];
+      todosCopy[id].name = newName;
+      setTodos(todosCopy);
+    } else {
+      return;
+    }
+  }
+
+  function handleEditStatus(id) {
+    // let todosCopy = [...todos];
+    console.log("asadasd");
+    // if (todosCopy[id].status === "Done") {
+    //   todosCopy[id].status = "Pending";
+    //   setTodos(todosCopy);
+    // } else {
+    //   todosCopy[id].status = "Done";
+    //   setTodos(todosCopy);
+    // }
   }
 
   return (
@@ -86,6 +100,7 @@ export default function Todo() {
         setStatus={setStatus}
         handleSearchTodo={handleSearchTodo}
         handleEditTodo={handleEditTodo}
+        handleEditStatus={handleEditStatus}
       />
     </div>
   );

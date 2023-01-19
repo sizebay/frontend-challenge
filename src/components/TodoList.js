@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+import "../assets/styles/todoList.css";
+
 export default function TodoList(props) {
   const [input, setInput] = useState("");
   const [editIndex, setEditIndex] = useState("");
@@ -13,47 +18,55 @@ export default function TodoList(props) {
       return props.filteredTodos.map((el, index) => {
         if (index === editIndex) {
           return (
-            <div key={index}>
+            <div key={index} className='todo-list-container'>
               <input
                 type='text'
                 value={input}
                 onChange={(e) => {
                   setInput(e.target.value);
                 }}
+                placeholder={el.name}
+                autoFocus
               />
-              <div className='remove-container'>
-                <button
+              <div className='todo-buttons'>
+                <div
+                  className='remove-container'
                   onClick={() => {
                     props.handleRemoveTodo(el);
-                  }}
-                >
-                  -
-                </button>
-              </div>
-              <div className='edit-container'>
-                <button
-                  onClick={() => {
-                    props.handleEditTodo(index, input);
                     let newIndex = "";
                     setEditIndex(newIndex);
                   }}
                 >
-                  V
-                </button>
+                  <button className='todo-button'>-</button>
+                </div>
+                <div
+                  className='edit-container'
+                  onClick={() => {
+                    props.handleEditTodo(index, input);
+                    let newIndex = "";
+                    setInput("");
+                    setEditIndex(newIndex);
+                  }}
+                >
+                  <button className='todo-button'>
+                    <FontAwesomeIcon icon={faCheck} className='check green' />
+                  </button>
+                </div>
               </div>
+              <p className='balloon'>Edit task</p>
             </div>
           );
         } else {
           return (
-            <div key={index}>
-              <p
-                onClick={() => {
-                  let newIndex = index;
-                  setEditIndex(newIndex);
-                }}
-              >
-                {el.name}
-              </p>
+            <div
+              key={index}
+              className='todo-list-container'
+              onClick={() => {
+                let newIndex = index;
+                setEditIndex(newIndex);
+              }}
+            >
+              <p>{el.name}</p>
             </div>
           );
         }

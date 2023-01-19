@@ -1,6 +1,6 @@
 .todo-container {
-  width: 800px;
-  height: 650px;
+  max-width: 90vw;
+  min-height: 650px;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 4px;
