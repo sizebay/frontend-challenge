@@ -4,7 +4,7 @@ import {keyframes} from "styled-components";
 import {useContext, useState} from "react";
 import {TasksContext} from "../contexts/Tasks";
 
-import {AiFillMinusCircle, AiFillPlusCircle} from "react-icons/ai";
+import {AiFillMinusCircle, AiFillCheckCircle} from "react-icons/ai";
 
 const TaskItem = styled.div`
     width: 100%;
@@ -43,7 +43,6 @@ const ButtonGroup = styled.div`
     height: 100%;
     opacity: 0;
     z-index: 1;
-    transition: 0.2s linear;
 
     ${TaskItem}:hover & {
         animation: ${slideIn} 0.2s linear;
@@ -84,7 +83,7 @@ function Task({task}) {
                     <AiFillMinusCircle />
                 </DeleteButton>
                 <AddButton onClick={() => markCompleteTask(task.id)}>
-                    <AiFillPlusCircle />
+                    <AiFillCheckCircle />
                 </AddButton>
             </ButtonGroup>
         </TaskItem>

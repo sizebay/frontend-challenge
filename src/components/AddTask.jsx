@@ -31,6 +31,11 @@ const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0.8;
+
+    &:hover {
+        opacity: 1;
+    }
 `;
 
 const Add = styled(MdAddCircle)`
