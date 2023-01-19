@@ -79,7 +79,7 @@ function App() {
             <Container>
                 <Head>
                     <DateHeader />
-                    <ProgressBar progress={30} />
+                    <ProgressBar />
                     <Search />
                     <AddTask />
                 </Head>
