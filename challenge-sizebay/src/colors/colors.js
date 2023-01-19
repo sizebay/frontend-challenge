@@ -1,5 +1,5 @@
 export const palette = {
-  white: "ffffff",
+  white: "#ffffff",
   black: "#555555",
   grey: "#848484",
   lightGrey: "#DBDBDB",

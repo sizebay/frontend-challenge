@@ -7,6 +7,8 @@ export const ButtonWrapper = styled.button`
   border-radius: 1rem;
   border: 1px solid ${palette.lightGrey};
   text-transform: capitalize;
-  background-color: transparent;
+  background-color: ${palette.white};
   font-size: 14px;
+  cursor: pointer;
+  padding: 8px 16px;
 `;
