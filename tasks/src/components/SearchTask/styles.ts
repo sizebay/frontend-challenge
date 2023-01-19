@@ -25,4 +25,9 @@ input {
 svg{
   color: ${(props) => props.theme["gray-100"]};
 }
+
+button{
+  border: 0;
+  background-color: transparent;
+}
 `
