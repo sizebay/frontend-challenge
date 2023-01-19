@@ -18,7 +18,13 @@ function Progressbar(props) {
 
   return (
     <>
-      <ProgressBar now={now} variant='green' label={`${now}%`} visuallyHidden />
+      <ProgressBar
+        now={now}
+        variant='green'
+        label={`${now}%`}
+        visuallyHidden
+        className='progressbar'
+      />
     </>
   );
 }

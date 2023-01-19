@@ -30,6 +30,7 @@
 }
 
 .add-container input:focus {
+  color: #848484;
   background: #ffffff 0% 0% no-repeat padding-box;
   opacity: 1;
 }

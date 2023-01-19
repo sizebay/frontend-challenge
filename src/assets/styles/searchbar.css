@@ -4,18 +4,25 @@
   padding: 25px 0px 25px;
 }
 
-.search-input {
-  outline: none;
-  width: 450px;
+.search-input-container {
   height: 40px;
+  width: 450px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #dbdbdb;
   border-radius: 4px;
   opacity: 1;
-  font: normal normal normal 14px/19px Roboto;
-  letter-spacing: 0px;
-  color: #848484;
+  align-items: center;
   padding: 15px;
+}
+
+.search-input {
+  outline: none;
+  border: 0;
+  font: normal normal normal 14px/19px Roboto;
+  color: #848484;
 }
 
 .buttons {
@@ -36,12 +43,12 @@
   padding: 0.5em 1em;
 }
 
-.clear-search-field {
-  position: fixed;
-}
-
 .active {
   background: #f7f7f8 0% 0% no-repeat padding-box !important;
   border: 1px solid #4da6b3 !important;
   color: #4da6b3 !important;
+}
+
+.icon {
+  color: #848484;
 }
