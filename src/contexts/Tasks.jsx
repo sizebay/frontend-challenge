@@ -30,6 +30,12 @@ export const TasksProvider = ({children}) => {
         setPending(false);
     }
 
+    function clearFilters() {
+        setCompleted(false);
+        setPending(false);
+        setSearch("");
+    }
+
     function createTask(title) {
         setTasks([
             ...tasks,
@@ -60,7 +66,9 @@ export const TasksProvider = ({children}) => {
     }
 
     return (
-        <TasksContext.Provider value={{tasks, pending, completed, search, setSearch, createTask, deleteTask, markCompleteTask, completedMarked, pendingMarked}}>
+        <TasksContext.Provider
+            value={{tasks, pending, completed, search, clearFilters, setSearch, createTask, deleteTask, markCompleteTask, completedMarked, pendingMarked}}
+        >
             {children}
         </TasksContext.Provider>
     );

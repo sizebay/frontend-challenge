@@ -7,7 +7,8 @@ import DateHeader from "./components/DateHeader";
 import ProgressBar from "./components/ProgressBar";
 import Search from "./components/Search";
 import AddTask from "./components/AddTask";
-import Task from "./components/Task";
+import List from "./components/List";
+import Messages from "./components/Messages";
 
 const Background = styled.main`
     background-color: #555555;
@@ -69,7 +70,6 @@ const Tasks = styled.div`
 
 function App() {
     const {tasks, pending, completed, search} = useContext(TasksContext);
-
     const filteredTasks = tasks.filter((task) => task.title.toLowerCase().includes(search.toLowerCase()));
     const completedTasks = filteredTasks.filter((task) => task.completed === true);
     const pendingTasks = filteredTasks.filter((task) => task.completed === false);
@@ -84,11 +84,8 @@ function App() {
                     <AddTask />
                 </Head>
                 <Tasks>
-                    {pending == true
-                        ? pendingTasks.map((task) => <Task key={task.id} task={task} />)
-                        : completed
-                        ? completedTasks.map((task) => <Task key={task.id} task={task} />)
-                        : filteredTasks.map((task) => <Task key={task.id} task={task} />)}
+                    {pending == true ? <List tasks={pendingTasks} /> : completed ? <List tasks={completedTasks} /> : <List tasks={filteredTasks} />}
+                    <Messages completedTasks={completedTasks} searchLength={filteredTasks.length} />
                 </Tasks>
             </Container>
         </Background>
