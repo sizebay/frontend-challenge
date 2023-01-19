@@ -1,4 +1,6 @@
-import React from "react";
+import {useContext} from "react";
+import {TasksContext} from "./contexts/Tasks";
+
 import styled from "styled-components";
 
 import DateHeader from "./components/DateHeader";
@@ -66,6 +68,7 @@ const Tasks = styled.div`
 `;
 
 function App() {
+    const {tasks} = useContext(TasksContext);
     return (
         <Background>
             <Container>
@@ -76,13 +79,9 @@ function App() {
                     <AddTask />
                 </Head>
                 <Tasks>
-                    <Task>Drive a Cadillac across the Indiac sea</Task>
-                    <Task>Drive a Cadillac across the Indiac sea</Task>
-                    <Task>Drive a Cadillac across the Indiac sea</Task>
-                    <Task>Drive a Cadillac across the Indiac sea</Task>
-                    <Task>Drive a Cadillac across the Indiac sea</Task>
-                    <Task>Drive a Cadillac across the Indiac sea</Task>
-                    <Task>Drive a Cadillac across the Indiac sea</Task>
+                    {tasks.map((task) => (
+                        <Task key={task.id} task={task} />
+                    ))}
                 </Tasks>
             </Container>
         </Background>

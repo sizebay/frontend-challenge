@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import {createGlobalStyle} from "styled-components";
 
+import {TasksProvider} from "./contexts/Tasks";
+
 const GlobalStyle = createGlobalStyle`
   * {
     padding:0;
@@ -14,7 +16,9 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <GlobalStyle />
-        <App />
+        <TasksProvider>
+            <GlobalStyle />
+            <App />
+        </TasksProvider>
     </React.StrictMode>
 );

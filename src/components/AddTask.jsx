@@ -1,4 +1,6 @@
-import React from "react";
+import {useContext, useState} from "react";
+import {TasksContext} from "../contexts/Tasks";
+
 import styled from "styled-components";
 
 import {MdAddCircle} from "react-icons/md";
@@ -37,10 +39,21 @@ const Add = styled(MdAddCircle)`
 `;
 
 function AddTask() {
+    const {createTask} = useContext(TasksContext);
+    const [input, setInput] = useState("");
+
+    function handleAddTask() {
+        if (input === "") {
+            return;
+        }
+        createTask(input);
+        setInput("");
+    }
+
     return (
         <Container>
-            <Input placeholder="Add a new item..." />
-            <Button>
+            <Input placeholder="Add a new item..." value={input} onChange={(e) => setInput(e.target.value)} />
+            <Button onClick={handleAddTask}>
                 <Add />
             </Button>
         </Container>

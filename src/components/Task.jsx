@@ -1,6 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 import {keyframes} from "styled-components";
+
+import {useContext, useState} from "react";
+import {TasksContext} from "../contexts/Tasks";
 
 import {AiFillMinusCircle, AiFillPlusCircle} from "react-icons/ai";
 
@@ -71,15 +73,17 @@ const AddButton = styled(Button)`
     background: #5de290;
 `;
 
-function Task({children}) {
+function Task({task}) {
+    const {deleteTask, markCompleteTask} = useContext(TasksContext);
+
     return (
         <TaskItem>
-            {children}
+            {task.title}
             <ButtonGroup>
-                <DeleteButton>
+                <DeleteButton onClick={() => deleteTask(task.id)}>
                     <AiFillMinusCircle />
                 </DeleteButton>
-                <AddButton>
+                <AddButton onClick={() => markCompleteTask(task.id)}>
                     <AiFillPlusCircle />
                 </AddButton>
             </ButtonGroup>
