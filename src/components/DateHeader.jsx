@@ -20,7 +20,7 @@ const SideContainer = styled.div`
 
 const Day = styled.div`
     text-align: left;
-    font-family: Roboto;
+
     color: #848484;
     font-size: 70px;
 
@@ -28,7 +28,6 @@ const Day = styled.div`
 `;
 const Month = styled.div`
     text-align: left;
-    font-family: Roboto;
 
     color: #848484;
 
@@ -36,7 +35,7 @@ const Month = styled.div`
 `;
 const Year = styled.div`
     text-align: left;
-    font-family: Roboto light;
+    font-family: "Roboto light";
 
     color: #848484;
 
@@ -46,7 +45,7 @@ const Year = styled.div`
 
 const WeekDay = styled.div`
     text-align: right;
-    font-family: Roboto;
+
     letter-spacing: 0px;
     color: #848484;
     opacity: 1;
