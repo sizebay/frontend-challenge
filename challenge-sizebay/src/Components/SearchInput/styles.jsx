@@ -13,6 +13,12 @@ export const Input = styled.input`
   color: ${palette.grey};
   font-size: 14px;
   padding: 10px 16px;
+
+  &:focus {
+    & + img {
+      display: none;
+    }
+  }
 `;
 
 export const Search = styled.img`

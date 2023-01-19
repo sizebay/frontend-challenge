@@ -11,9 +11,11 @@ import ProgressBar from "./Components/ProgressBar/ProgressBar";
 import Calendar from "./Components/Calendar/Calendar";
 import AddNewItem from './Components/AddNewItem/AddNewItem'
 import ToDoList from "./Components/ToDoList/ToDoList";
+import GlobalState from "./Contexts/GlobalState";
+
 function App() {
   return (
-    <>
+    <GlobalState>
       <GlobalStyle />
       <Modal>
         <ModalContent>
@@ -30,7 +32,7 @@ function App() {
          <ToDoList/>
         </ModalContent>
       </Modal>
-    </>
+    </GlobalState>
   );
 }
 
