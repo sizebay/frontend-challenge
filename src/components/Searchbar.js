@@ -16,9 +16,15 @@ export default function Searchbar(props) {
       <div className='buttons'>
         <button
           onClick={() => {
-            const newStatus = "Done";
-            props.handleSearchTodo(props.search, newStatus);
-            props.setStatus(newStatus);
+            if (props.status !== "Done") {
+              const newStatus = "Done";
+              props.handleSearchTodo(props.search, newStatus);
+              props.setStatus(newStatus);
+            } else {
+              const newStatus = "";
+              props.handleSearchTodo(props.search, newStatus);
+              props.setStatus(newStatus);
+            }
           }}
           className={props.status === "Done" ? "active" : ""}
         >
@@ -31,9 +37,15 @@ export default function Searchbar(props) {
         </button>
         <button
           onClick={() => {
-            const newStatus = "Pending";
-            props.handleSearchTodo(props.search, newStatus);
-            props.setStatus(newStatus);
+            if (props.status !== "Pending") {
+              const newStatus = "Pending";
+              props.handleSearchTodo(props.search, newStatus);
+              props.setStatus(newStatus);
+            } else {
+              const newStatus = "";
+              props.handleSearchTodo(props.search, newStatus);
+              props.setStatus(newStatus);
+            }
           }}
           className={props.status === "Pending" ? "active" : ""}
         >
