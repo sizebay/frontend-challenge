@@ -15,4 +15,10 @@ export const Container = styled.button<ContainerProps>`
   font-size: 1.5rem;
   color: ${({color}) => color ? color : '#848484'};
   border: none;
+  cursor: pointer;
+  transition: font-size 0.2s;
+
+  &:hover {
+    font-size: 1.7rem;
+  }
 `;

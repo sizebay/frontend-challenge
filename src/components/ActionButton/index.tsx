@@ -5,12 +5,18 @@ interface ActionButtonProps {
   icon: ReactNode
   bg?: string
   color?: string
+  event?: () => void
 }
 
 
-function ActionButton({icon, bg, color}: ActionButtonProps) {
+function ActionButton({icon, bg, color, event}: ActionButtonProps) {
   return (
-    <Container bg={bg} color={color} data-testid="action-button">
+    <Container 
+      onClick={event}
+      bg={bg} 
+      color={color} 
+      data-testid="action-button"
+    >
       {icon}
     </Container>
   );
