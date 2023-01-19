@@ -10,16 +10,14 @@ const Button = styled.button`
     padding: 10px 16px;
     color: #848484;
     cursor: pointer;
-
-    &:active {
-        background-color: #f7f7f8;
-        border: 1px solid #4da6b3;
-        color: #4da6b3;
-    }
 `;
 
-function FilterButton({text}) {
-    return <Button>{text}</Button>;
+function FilterButton({text, action, active}) {
+    return (
+        <Button style={active ? {backgroundColor: "#f7f7f8", border: "1px solid #4da6b3", color: "#4da6b3"} : {}} onClick={action}>
+            {text}
+        </Button>
+    );
 }
 
 export default FilterButton;

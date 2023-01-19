@@ -6,10 +6,28 @@ export const TasksProvider = ({children}) => {
     const [tasks, setTasks] = useState([
         {
             id: 1,
-            title: "Drive a Cadillac across the Indiac sea",
+            title: "Tarefa Concluida",
+            completed: true,
+        },
+        {
+            id: 2,
+            title: "Tarefa NÂO Concluida",
             completed: false,
         },
     ]);
+
+    const [pending, setPending] = useState(false);
+    const [completed, setCompleted] = useState(false);
+
+    function pendingMarked() {
+        setPending(!pending);
+        setCompleted(false);
+    }
+
+    function completedMarked() {
+        setCompleted(!completed);
+        setPending(false);
+    }
 
     function createTask(title) {
         setTasks([
@@ -40,5 +58,9 @@ export const TasksProvider = ({children}) => {
         );
     }
 
-    return <TasksContext.Provider value={{tasks, createTask, deleteTask, markCompleteTask}}>{children}</TasksContext.Provider>;
+    return (
+        <TasksContext.Provider value={{tasks, pending, completed, createTask, deleteTask, markCompleteTask, completedMarked, pendingMarked}}>
+            {children}
+        </TasksContext.Provider>
+    );
 };

@@ -68,7 +68,10 @@ const Tasks = styled.div`
 `;
 
 function App() {
-    const {tasks} = useContext(TasksContext);
+    const {tasks, pending, completed} = useContext(TasksContext);
+    const completedTasks = tasks.filter((task) => task.completed === true);
+    const pendingTasks = tasks.filter((task) => task.completed === false);
+
     return (
         <Background>
             <Container>
@@ -79,9 +82,11 @@ function App() {
                     <AddTask />
                 </Head>
                 <Tasks>
-                    {tasks.map((task) => (
-                        <Task key={task.id} task={task} />
-                    ))}
+                    {pending == true
+                        ? pendingTasks.map((task) => <Task key={task.id} task={task} />)
+                        : completed
+                        ? completedTasks.map((task) => <Task key={task.id} task={task} />)
+                        : tasks.map((task) => <Task key={task.id} task={task} />)}
                 </Tasks>
             </Container>
         </Background>
