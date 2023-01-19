@@ -14,6 +14,11 @@ const SearchContainer = styled.div`
 
     border-radius: 4px;
     width: 100%;
+    @media (max-width: 800px) {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: 10px;
+    }
 `;
 
 const ButtonGroup = styled.div`
