@@ -4,6 +4,7 @@ import ProgressBar from '../components/ProgressBar';
 import Inputbox from '../components/Inputbox';
 import { AiOutlineSearch } from 'react-icons/ai';
 import ActionButton from '../components/ActionButton';
+import Task from '../components/Task';
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
           icon={<AiOutlineSearch />}
         />} 
       />
+      <Task content='Tarefa de teste'/>
     </>
   );
 }
