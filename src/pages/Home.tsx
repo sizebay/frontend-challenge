@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import ProgressBar from '../components/ProgressBar';
 import Inputbox from '../components/Inputbox';
 import { AiOutlineSearch } from 'react-icons/ai';
+import ActionButton from '../components/ActionButton';
 
 function Home() {
   return (
@@ -12,7 +13,9 @@ function Home() {
       <Checkbox text='Pending' width='large'/>
       <Inputbox
         text='Search Items' 
-        icon={<AiOutlineSearch />} 
+        icon={<ActionButton 
+          icon={<AiOutlineSearch />}
+        />} 
       />
     </>
   );
