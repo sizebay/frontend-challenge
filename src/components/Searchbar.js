@@ -2,6 +2,7 @@ import React from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCheck,
   faClose,
   faCross,
   faMagnifyingGlass,
@@ -21,6 +22,11 @@ export default function Searchbar(props) {
           }}
           className={props.status === "Done" ? "active" : ""}
         >
+          {props.status === "Done" ? (
+            <FontAwesomeIcon icon={faCheck} className='check' />
+          ) : (
+            ""
+          )}
           Done
         </button>
         <button
@@ -31,6 +37,11 @@ export default function Searchbar(props) {
           }}
           className={props.status === "Pending" ? "active" : ""}
         >
+          {props.status === "Pending" ? (
+            <FontAwesomeIcon icon={faCheck} className='check' />
+          ) : (
+            ""
+          )}
           Pending
         </button>
       </div>
