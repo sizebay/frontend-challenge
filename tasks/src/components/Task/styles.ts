@@ -30,6 +30,23 @@ width: fit-content;
 display: flex;
 `
 
+export const ButtonEdit = styled.button`
+display: none;
+width: 44px;
+height: 48px;
+opacity: 1;
+background-color: ${(props) => props.theme["gray-800"]};
+padding: 0.5rem;
+border: 0;
+
+svg {
+    background-color: ${(props) => props.theme.white};
+    border-radius: 100%;
+    padding: 0.25rem;
+    color:  ${(props) => props.theme["gray-800"]};
+}
+`
+
 export const ButtonFinished = styled.button`
 display: none;
 width: 44px;

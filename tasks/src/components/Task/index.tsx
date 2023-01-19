@@ -1,14 +1,32 @@
-import { Minus, Check } from "phosphor-react";
-import { ButtonContainer, ButtonDelete, ButtonFinished, TaskContainer } from "./styles";
+import { Minus, Check, Pencil } from "phosphor-react";
+import { useContext } from "react";
+import { ContenxtApplication, ITask } from "../../Context/ContextApplication";
+import { ButtonContainer, ButtonDelete, ButtonEdit, ButtonFinished, TaskContainer } from "./styles";
 
+interface Task {
+  task: ITask;
+}
 
-export function Task(){
+export function Task({ task }: Task){
+  const { completeTask, deleteTask, editTask } = useContext(ContenxtApplication);
+
   return(
     <TaskContainer>
-      <strong>teste task</strong>
+      <strong>{task.content}</strong>
       <ButtonContainer>
-        <ButtonDelete><Minus size={25} /></ButtonDelete>
-        <ButtonFinished><Check size={25} /></ButtonFinished>
+        <ButtonEdit onClick={() => editTask(task.id)}><Pencil size={25} /></ButtonEdit>
+        <ButtonDelete onClick={() => deleteTask(task.id)}><Minus size={25} /></ButtonDelete>
+        {
+          task.isCompleted ? (
+            <ButtonFinished onClick={() => completeTask(task.id)}>
+              <Minus size={25} />
+            </ButtonFinished>
+          ) : (
+            <ButtonFinished onClick={() => completeTask(task.id)}>
+              <Check size={25} />
+            </ButtonFinished>
+          )
+        }
       </ButtonContainer>
     </TaskContainer>
   )

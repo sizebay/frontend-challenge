@@ -1,10 +1,10 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface ContextApplicationProviderProps {
   children: ReactNode;
 }
 
-interface ITask {
+export interface ITask {
   id: string;
   content: string;
   isCompleted: boolean;
@@ -12,14 +12,38 @@ interface ITask {
 
 interface ContextApplicationType{
 tasks: ITask[];
+functionAddTask: boolean;
+setTextEditTask: string;
+addTask: (text: string) => void;
+deleteTask: (taskId: string) => void;
+editTask: (taskId: string) => void;
+searchTask: (text: string) => void;
+completeTask: (taskId: string) => void;
 }
 
-export const CartContext = createContext({} as ContextApplicationType);
+const Tasks_STORAGE_KEY = "Tasks:likedItems";
 
-export function CartContextProvider({ children }: ContextApplicationProviderProps) {
-  const [tasks, setTasks] = useState<ITask[]>([]);
+export const ContenxtApplication = createContext({} as ContextApplicationType);
+
+export function ContenxtApplicationProvider({ children }: ContextApplicationProviderProps) {
+  const [tasks, setTasks] = useState<ITask[]>(() => {
+    if (typeof window !== 'undefined') {
+      const storedTasks = localStorage.getItem(Tasks_STORAGE_KEY);
+      if (storedTasks) {
+        return JSON.parse(storedTasks);
+      }
+    }
+    return []
+  });
+  const [functionAddTask, setFunctionAddTask] = useState(true);
+  const [textEditTask, setTextEditTask] = useState('');
+
+  useEffect(() => {
+    localStorage.setItem(Tasks_STORAGE_KEY, JSON.stringify(tasks));
+  }, [tasks]);
 
   function addTask(text: string){
+    setFunctionAddTask(true);
     setTasks([...tasks, {
       id: crypto.randomUUID(),
       content: text,
@@ -32,8 +56,23 @@ export function CartContextProvider({ children }: ContextApplicationProviderProp
     setTasks(tasksWithoutDeletedOne);
   }
 
-  function editTask(taskId: string, text: string){
+  function editTask(taskId: string){
+    setFunctionAddTask(false);
     const newTask = tasks.map((task) => {
+      if(task.id == taskId){
+        return{
+        ...task,
+        content: textEditTask,
+      }
+    }
+      return task;
+    });
+    setTasks(newTask);
+    setFunctionAddTask(true);
+  }
+
+  function completeTask(taskId: string){
+    const completeTask = tasks.map((task) => {
       if(task.id == taskId){
         return{
         ...task,
@@ -42,12 +81,16 @@ export function CartContextProvider({ children }: ContextApplicationProviderProp
     }
       return task;
     });
-    setTasks(newTask);
+    setTasks(completeTask);
+  }
+
+  function searchTask(text: string){
+    return tasks.filter((task) => task.content === text);
   }
 
   return (
-    <CartContext.Provider value={{ tasks }}>
+    <ContenxtApplication.Provider value={{ tasks, functionAddTask, setTextEditTask, addTask, editTask, deleteTask, completeTask, searchTask  }}>
       {children}
-    </CartContext.Provider>
+    </ContenxtApplication.Provider>
   );
 }
