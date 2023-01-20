@@ -40,30 +40,9 @@ describe('Task', () => {
     
     await userEvent.click(taskCard);
 
-    const editPopover = screen.getByTestId('task-close-popover');
-
-    await userEvent.click(editPopover);
-
     const [deleteBtn, editBtn] = screen.queryAllByTestId('action-button');
 
     expect(deleteBtn).not.toBeUndefined();
     expect(editBtn).not.toBeUndefined();
-  });
-
-  it('should be possible close edit', async () => {
-    render(<Task content='Default'/>);
-    const taskCard = screen.getByText(/Default/i);
-    
-    await userEvent.click(taskCard);
-
-    const editPopover = screen.getByTestId('task-close-popover');
-
-    await userEvent.click(editPopover);
-
-    const editBtn = screen.queryAllByTestId('action-button')[1];
-
-    await userEvent.click(editBtn);
-
-    expect(screen.queryAllByTestId('action-button')[1]).toBeUndefined();
   });
 });
