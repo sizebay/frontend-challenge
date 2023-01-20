@@ -27,6 +27,8 @@ export function TasksProvider({children}: TasksProviderProps) {
   );
 
   const create = (content: string) => {
+    console.log(content);
+    
     const newTask: ITask = {
       id: uuid(),
       content,
