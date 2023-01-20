@@ -52,7 +52,9 @@ function Home() {
   return (
     <Container>
       <Header />
-      <ProgressBar allTasks={100} completedTasks={50}/>
+      <ProgressBar allTasks={tasks.length} completedTasks={
+        tasks.filter((task) => task.completed).length
+      }/>
       <FilterContainer>
         <div className='input-box'>
           <Checkbox 

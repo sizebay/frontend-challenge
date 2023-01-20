@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { AiOutlineAccountBook } from 'react-icons/ai';
 
 import Task from '../components/Task';
 

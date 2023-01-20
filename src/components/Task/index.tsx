@@ -71,13 +71,19 @@ function Task({ content, id, completed, event }: TaskProps) {
               icon={<AiFillMinusCircle />}
               bg="#E34F4F"
               color='#fff'
-              event={() => remove(id)}
+              event={() => {
+                remove(id);
+                setShowActionButtons(false);
+              }}
             />
             <ActionButton 
               icon={<AiFillCheckCircle />}
               bg="#5DE290"
               color='#fff'
-              event={() => toggleComplete(id)}
+              event={() => {
+                toggleComplete(id);
+                setShowActionButtons(false);
+              }}
             />
           </ActionsContainer>
         </>
