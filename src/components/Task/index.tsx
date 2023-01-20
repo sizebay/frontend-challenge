@@ -3,12 +3,17 @@ import { ActionsContainer, Container } from './style';
 import {AiFillCheckCircle, AiFillEdit, AiFillMinusCircle} from 'react-icons/ai';
 
 import { useState } from 'react';
+import { useTasks } from '../../shared/hooks/useTasks';
 
 interface TaskProps {
   content: string
+  id: string
+  completed: boolean
 }
 
-function Task({ content }: TaskProps) {
+function Task({ content, id, completed }: TaskProps) {
+  const { remove, toggleComplete } = useTasks();
+
   const [editMode, setEditMode] = useState(false);
   const [showActionButtons, setShowActionButtons] = useState(false);
 
@@ -18,7 +23,7 @@ function Task({ content }: TaskProps) {
   };
 
   return (
-    <Container editMode={showActionButtons}>
+    <Container completed={completed} editMode={showActionButtons}>
       {!editMode && (
         <span
           onClick={() => setShowActionButtons((prev) => !prev)}
@@ -53,20 +58,15 @@ function Task({ content }: TaskProps) {
               icon={<AiFillMinusCircle />}
               bg="#E34F4F"
               color='#fff'
+              event={() => remove(id)}
             />
             <ActionButton 
               icon={<AiFillCheckCircle />}
               bg="#5DE290"
               color='#fff'
+              event={() => toggleComplete(id)}
             />
           </ActionsContainer>
-
-          {/* <EditPopover 
-            onClick={handleChangeEditmode}
-            data-testid="task-edit-popover"
-          >
-            Edit task
-          </EditPopover> */}
         </>
       )}
 

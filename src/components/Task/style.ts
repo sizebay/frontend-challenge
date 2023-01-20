@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface ContainerProps {
   editMode: boolean
+  completed: boolean
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -13,6 +14,7 @@ export const Container = styled.div<ContainerProps>`
   background-color: #F4F4F4;
   color: #848484;
   position: relative;
+  opacity: ${({completed}) => completed ? '0.7' : '1'};
   
   span, input {
     padding: 0.9rem;
@@ -20,10 +22,7 @@ export const Container = styled.div<ContainerProps>`
     border: none;
     font-size: 1rem;
     outline: none;
-  }
 
-  span {
-    cursor: pointer;
   }
 `;
 

@@ -23,10 +23,6 @@ export function TasksProvider({children}: TasksProviderProps) {
   const [tasks, setTasks] = useState<ITask[]>(
     [
       {id: 'uuid fake',content: 'teste', completed: false},
-      {id: 'uuid fake2',content: 'teste', completed: false},
-      {id: 'uuid fake3',content: 'teste', completed: false},
-      {id: 'uuid fake4',content: 'teste', completed: false},
-      {id: 'uuid fake5',content: 'teste', completed: false},
     ]
   );
 

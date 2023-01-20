@@ -7,10 +7,9 @@ import ActionButton from '../../components/ActionButton';
 import Task from '../../components/Task';
 import { Container, FilterContainer, TaskList } from './style';
 import { useTasks } from '../../shared/hooks/useTasks';
-import { ITask } from '../../interfaces/ITask';
 
 function Home() {
-  const {tasks} = useTasks();
+  const {tasks, create} = useTasks();
 
   return (
     <Container>
@@ -24,6 +23,7 @@ function Home() {
         <Inputbox
           text='Search Items' 
           bold
+          event={() => []}
           icon={<ActionButton 
             icon={
               <AiOutlineSearch />
@@ -35,6 +35,7 @@ function Home() {
       <Inputbox
         text='Add new item' 
         iconBg
+        event={create}
         icon={<ActionButton 
           icon={
             <AiFillPlusCircle />
@@ -45,7 +46,7 @@ function Home() {
       />
       <TaskList>
         {tasks.map(({completed, content,id}) => (
-          <Task key={id} content={content}/>
+          <Task key={id} content={content} id={id} completed={completed}/>
         ))}
       </TaskList>
     </Container>
