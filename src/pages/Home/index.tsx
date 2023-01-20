@@ -11,7 +11,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ITask } from '../../interfaces/ITask';
 
 function Home() {
-  const {tasks, create} = useTasks();
+  const {tasks, create, edit} = useTasks();
   const [filteredTasks, setFilteredTasks] = useState<ITask[] | null>(tasks);
 
   const doneRef = useRef<HTMLInputElement>(null);
@@ -96,7 +96,13 @@ function Home() {
       />
       <TaskList>
         {filteredTasks?.map(({completed, content,id}) => (
-          <Task key={id} content={content} id={id} completed={completed}/>
+          <Task 
+            key={id} 
+            content={content} 
+            id={id} 
+            completed={completed}
+            event={edit}
+          />
         ))}
       </TaskList>
     </Container>
