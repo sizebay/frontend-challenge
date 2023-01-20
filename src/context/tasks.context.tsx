@@ -15,7 +15,7 @@ interface TasksProviderProps {
   children: ReactNode;
 }
 
-const TasksContext = createContext<TasksContextData>(
+export const TasksContext = createContext<TasksContextData>(
   {} as TasksContextData
 );
 
