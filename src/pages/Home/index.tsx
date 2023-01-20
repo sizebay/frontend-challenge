@@ -7,9 +7,22 @@ import ActionButton from '../../components/ActionButton';
 import Task from '../../components/Task';
 import { Container, FilterContainer, TaskList } from './style';
 import { useTasks } from '../../shared/hooks/useTasks';
+import { useState } from 'react';
+import { ITask } from '../../interfaces/ITask';
 
 function Home() {
   const {tasks, create} = useTasks();
+  const [filteredTasks, setFilteredTasks] = useState<ITask[] | null>(tasks);
+  
+  const handleFilter = (content: string) => {
+    const holder = tasks.filter((task) => task.content.includes(content));
+
+    if (holder.length) {
+      setFilteredTasks(holder);
+    } else {
+      alert('No items founded');
+    }
+  };
 
   return (
     <Container>
@@ -23,7 +36,7 @@ function Home() {
         <Inputbox
           text='Search Items' 
           bold
-          event={() => []}
+          event={handleFilter}
           icon={<ActionButton 
             icon={
               <AiOutlineSearch />
@@ -45,7 +58,7 @@ function Home() {
         } 
       />
       <TaskList>
-        {tasks.map(({completed, content,id}) => (
+        {filteredTasks?.map(({completed, content,id}) => (
           <Task key={id} content={content} id={id} completed={completed}/>
         ))}
       </TaskList>
