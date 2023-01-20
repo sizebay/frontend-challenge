@@ -26,14 +26,6 @@ describe('Task', () => {
     expect(screen.queryByTestId('task-edit-popover')).toBeNull();
   });
 
-  it('should be possible view a "edit task" popover', async () => {
-    render(<Task content='Default'/>);
-    const taskCard = screen.getByText(/Default/i);
-    await userEvent.click(taskCard);
-
-    expect(screen.getByTestId('task-edit-popover')).toBeDefined();
-  });
-
   it('should be possible view a button to edit and delete task', async () => {
     render(<Task content='Default'/>);
     const taskCard = screen.getByText(/Default/i);

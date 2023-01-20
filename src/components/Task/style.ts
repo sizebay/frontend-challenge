@@ -6,7 +6,7 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
   display: grid;
-  grid-template-columns: ${({editMode}) => editMode ? '9fr 100px' : '1fr'};
+  grid-template-columns: ${({editMode}) => editMode ? '9fr 150px' : '9fr 50px'};
   border: 1px solid #DBDBDB;
   border-radius: 0.25rem;
   margin-top: 1rem;
@@ -19,6 +19,7 @@ export const Container = styled.div<ContainerProps>`
     background-color: transparent;
     border: none;
     font-size: 1rem;
+    outline: none;
   }
 
   span {

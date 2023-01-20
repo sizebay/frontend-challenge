@@ -1,6 +1,6 @@
 import ActionButton from '../ActionButton';
-import { ActionsContainer, Container, EditPopover } from './style';
-import {AiFillCheckCircle, AiFillMinusCircle} from 'react-icons/ai';
+import { ActionsContainer, Container } from './style';
+import {AiFillCheckCircle, AiFillEdit, AiFillMinusCircle} from 'react-icons/ai';
 
 import { useState } from 'react';
 
@@ -28,12 +28,27 @@ function Task({ content }: TaskProps) {
       )}
 
       {editMode && (
-        <input type='text' autoFocus placeholder={content}/>
+        <>
+          <input type='text' autoFocus placeholder={content}/>
+          <ActionButton 
+            icon={<AiFillCheckCircle />}
+            bg="#5DE290"
+            color='#fff'
+            event={() => setEditMode(false)}
+          />
+        </>
       )}
 
       {showActionButtons && !editMode &&(
         <>
           <ActionsContainer>
+            <ActionButton 
+              icon={<AiFillEdit />}
+              bg="#e3d44f"
+              color='#fff'
+              event={handleChangeEditmode}
+
+            />
             <ActionButton 
               icon={<AiFillMinusCircle />}
               bg="#E34F4F"
@@ -46,12 +61,12 @@ function Task({ content }: TaskProps) {
             />
           </ActionsContainer>
 
-          <EditPopover 
+          {/* <EditPopover 
             onClick={handleChangeEditmode}
             data-testid="task-edit-popover"
           >
             Edit task
-          </EditPopover>
+          </EditPopover> */}
         </>
       )}
 
