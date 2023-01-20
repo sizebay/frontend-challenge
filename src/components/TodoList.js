@@ -11,7 +11,7 @@ export default function TodoList(props) {
 
   useEffect(() => {
     props.handleSearchTodo(props.search, props.status);
-  }, [props.todos]);
+  }, [props]);
 
   function handleListRender() {
     if (props.filteredTodos.length > 0) {
