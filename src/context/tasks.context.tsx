@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 import {v4 as uuid} from 'uuid';
 
 import { ITask } from '../interfaces/ITask';
@@ -20,21 +20,16 @@ export const TasksContext = createContext<TasksContextData>(
 );
 
 export function TasksProvider({children}: TasksProviderProps) {
-  const [tasks, setTasks] = useState<ITask[]>(
-    [
-      {id: 'uuid fake',content: 'teste', completed: false},
-    ]
-  );
+  const [tasks, setTasks] = useState<ITask[]>([]);
 
   const create = (content: string) => {
-    console.log(content);
-    
     const newTask: ITask = {
       id: uuid(),
       content,
       completed: false,
     };
 
+    saveInLocalStorage([...tasks, newTask]);
     setTasks((prev) => [...prev, newTask]);
   };
 
@@ -46,12 +41,15 @@ export function TasksProvider({children}: TasksProviderProps) {
 
       return task;
     });
+
+    saveInLocalStorage(editedTasksArr);
     setTasks([...editedTasksArr]);
   };
 
   const remove = (id: string) => {
     const filteredArray = tasks.filter((task) => task.id !== id);
 
+    saveInLocalStorage(filteredArray);
     setTasks([...filteredArray]);
   };
 
@@ -63,8 +61,19 @@ export function TasksProvider({children}: TasksProviderProps) {
 
       return task;
     });
+
+    saveInLocalStorage(editedTasksArr);
     setTasks([...editedTasksArr]);
   };
+
+  const saveInLocalStorage = (data: ITask[] | []) => {
+    localStorage.setItem('tasks', JSON.stringify(data));
+  };
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('tasks') as string) as ITask[];
+    setTasks(data || []);
+  }, []);
 
   return (
     <TasksContext.Provider value={
