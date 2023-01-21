@@ -12,13 +12,15 @@ export interface ITask {
 
 interface ContextApplicationType{
 tasks: ITask[];
+taskActive: string;
 functionAddTask: boolean;
-setTextEditTask: string;
+setFunctionAddTask: (value: boolean) => void;
+setTextEditTask: (text: string) => void;
 addTask: (text: string) => void;
 deleteTask: (taskId: string) => void;
 editTask: (taskId: string) => void;
-searchTask: (text: string) => void;
 completeTask: (taskId: string) => void;
+tasksActive: (value: string) => void;
 }
 
 const Tasks_STORAGE_KEY = "Tasks:likedItems";
@@ -37,6 +39,7 @@ export function ContenxtApplicationProvider({ children }: ContextApplicationProv
   });
   const [functionAddTask, setFunctionAddTask] = useState(true);
   const [textEditTask, setTextEditTask] = useState('');
+  const [taskActive, setTaskActive] = useState('');
 
   useEffect(() => {
     localStorage.setItem(Tasks_STORAGE_KEY, JSON.stringify(tasks));
@@ -57,7 +60,6 @@ export function ContenxtApplicationProvider({ children }: ContextApplicationProv
   }
 
   function editTask(taskId: string){
-    setFunctionAddTask(false);
     const newTask = tasks.map((task) => {
       if(task.id == taskId){
         return{
@@ -84,12 +86,12 @@ export function ContenxtApplicationProvider({ children }: ContextApplicationProv
     setTasks(completeTask);
   }
 
-  function searchTask(text: string){
-    return tasks.filter((task) => task.content === text);
+  function tasksActive(value: string){
+    setTaskActive(value);
   }
 
   return (
-    <ContenxtApplication.Provider value={{ tasks, functionAddTask, setTextEditTask, addTask, editTask, deleteTask, completeTask, searchTask  }}>
+    <ContenxtApplication.Provider value={{ tasks, taskActive, functionAddTask, setFunctionAddTask, setTextEditTask, addTask, editTask, deleteTask, completeTask, tasksActive  }}>
       {children}
     </ContenxtApplication.Provider>
   );

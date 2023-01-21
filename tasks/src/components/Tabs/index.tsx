@@ -1,20 +1,24 @@
 import { Check } from "phosphor-react";
+import { useContext } from "react";
 import { TabsContainer, TabOption, TabsOptionsContainer, TabContent } from "./styles";
+import { ContenxtApplication } from '../../Context/ContextApplication';
 
 
 export function Tabs(){
+  const { tasksActive } = useContext(ContenxtApplication);
+
+  function handleDoneActive(){
+    tasksActive('done');
+  }
+  function handlePendingActive(){
+    tasksActive('pending');
+  }
   return (
     <TabsContainer>
       <TabsOptionsContainer>
-        <TabOption value="done"><Check size={20} />Done</TabOption>
-        <TabOption value="pending"><Check size={20} />Pending</TabOption>
+        <TabOption value="done" onClick={() => handleDoneActive()}><Check size={20} />Done</TabOption>
+        <TabOption value="pending" onClick={() => handlePendingActive()}><Check size={20} />Pending</TabOption>
       </TabsOptionsContainer>
-      <TabContent value="done">
-        <h1>Done</h1>
-      </TabContent>
-      <TabContent value="pending">
-        <h1>Pending</h1>
-      </TabContent>
     </TabsContainer>
   )
 }

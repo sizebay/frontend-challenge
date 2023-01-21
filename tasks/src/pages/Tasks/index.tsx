@@ -10,7 +10,7 @@ import { GridContainer, TaskContainer, TasksContainer } from "./styles";
 
 
 export function Tasks(){
-  const { tasks, functionAddTask } = useContext(ContenxtApplication)
+  const { tasks, functionAddTask, taskActive } = useContext(ContenxtApplication)
   return(
     <TaskContainer>
       <Header />
@@ -19,11 +19,34 @@ export function Tasks(){
         <SearchTask />
       </GridContainer>
       {functionAddTask === true ? <AddTask /> : <EditTask />}
-      <TasksContainer>
-        {tasks.map((task) => (
-            <Task key={task.id} task={task} />
-          ))}
-      </TasksContainer>
+      {taskActive === 'done' ? (
+          tasks.filter((task) => {
+            task.isCompleted === true
+          }).map((task) => {
+            <TasksContainer>
+              <Task key={task.id} task={task} />
+            </TasksContainer>
+          })) : taskActive === 'pending' ? (
+            tasks.filter((task) => {
+              task.isCompleted === false
+            }).map((task) => {
+              <TasksContainer>
+                <Task key={task.id} task={task} />
+              </TasksContainer>
+            })) : taskActive !== '' ? (
+              tasks.filter((task) => {
+                task.content === taskActive
+              }).map((task) => {
+                <TasksContainer>
+                  <Task key={task.id} task={task} />
+                </TasksContainer>
+              })) : (
+                tasks.map((task) => {
+                  <TasksContainer>
+                    <Task key={task.id} task={task} />
+                  </TasksContainer>
+                })
+              )}
     </TaskContainer>
   )
 }

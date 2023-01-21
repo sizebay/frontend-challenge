@@ -15,11 +15,11 @@ export function SearchTask(){
   const { register, handleSubmit } = useForm<SearchTaskInput>({
     resolver: zodResolver(searchFormSchema),
   });
-  const { searchTask } = useContext(ContenxtApplication);
+  const { tasksActive } = useContext(ContenxtApplication);
   const [text, setText] = useState('');
 
   async function handleSearchTask(data: SearchTaskInput){
-    await searchTask(data.text);
+    await tasksActive(data.text);
   }
   return(
     <SearchContainer onSubmit={handleSubmit(handleSearchTask)}>

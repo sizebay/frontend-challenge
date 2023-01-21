@@ -1,7 +1,7 @@
 import * as z from 'zod';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Pencil, Plus } from "phosphor-react";
+import { Pencil } from "phosphor-react";
 import { EditTaskContainer } from "./styles";
 import { useContext } from 'react';
 import { ContenxtApplication } from '../../Context/ContextApplication';
@@ -16,9 +16,10 @@ export function EditTask(){
   const { register, handleSubmit, reset } = useForm<EditTaskInput>({
     resolver: zodResolver(EditTaskFormSchema),
   });
-  const { setTextEditTask } = useContext(ContenxtApplication);
+  const { setTextEditTask, setFunctionAddTask } = useContext(ContenxtApplication);
 
    function handleEditTask(data: EditTaskInput){
+    setFunctionAddTask(false);
     setTextEditTask(data.text);
     reset()
   }
