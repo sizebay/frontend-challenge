@@ -23,4 +23,5 @@ export const Bar = styled.div<BarProps>`
   height: inherit;
   background-color: #5DE290;
   border-radius: inherit;
+  transition: width 0.5s
 `;
