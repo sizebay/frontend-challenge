@@ -100,10 +100,5 @@ export default function TodoList(props) {
       );
     }
   }
-  return (
-    <div>
-      {console.log(filteredTodos)}
-      {handleListRender()}
-    </div>
-  );
+  return <div>{handleListRender()}</div>;
 }
