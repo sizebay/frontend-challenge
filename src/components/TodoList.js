@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -8,14 +8,13 @@ import "../assets/styles/todoList.css";
 export default function TodoList(props) {
   const [input, setInput] = useState("");
   const [editIndex, setEditIndex] = useState("");
+  // const [filteredTodos, setFilteredTodos] = useState([]);
 
-  useEffect(() => {
-    props.handleSearchTodo(props.search, props.status);
-  }, [props]);
+  const { filteredTodos } = props;
 
   function handleListRender() {
-    if (props.filteredTodos.length > 0) {
-      return props.filteredTodos.map((el, index) => {
+    if (filteredTodos.length > 0) {
+      return filteredTodos.map((el, index) => {
         if (index === editIndex) {
           return (
             <div key={index} className='todo-list-container'>
@@ -27,7 +26,7 @@ export default function TodoList(props) {
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    props.handleEditTodo(el.name, input);
+                    props.handleEditTodo(el.id, input);
                     setInput("");
                     let newIndex = "";
                     setEditIndex(newIndex);
@@ -50,7 +49,7 @@ export default function TodoList(props) {
                 <div
                   className='edit-container'
                   onClick={() => {
-                    props.handleEditStatus(el.name);
+                    props.handleEditStatus(el.id);
                     let newIndex = "";
                     setInput("");
                     setEditIndex(newIndex);
@@ -101,5 +100,10 @@ export default function TodoList(props) {
       );
     }
   }
-  return <div>{handleListRender()}</div>;
+  return (
+    <div>
+      {console.log(filteredTodos)}
+      {handleListRender()}
+    </div>
+  );
 }

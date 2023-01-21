@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import "../assets/styles/addItem.css";
 
@@ -18,7 +19,7 @@ export default function AddItem(props) {
       />
       <button
         onClick={() => {
-          props.handleAddTodo({ name: todo, status: "Pending" });
+          props.handleAddTodo({ name: todo, status: "Pending", id: uuidv4() });
           setTodo("");
         }}
       >

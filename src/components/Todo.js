@@ -1,4 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { db } from "./server/firebase";
+import {
+  query,
+  collection,
+  onSnapshot,
+  updateDoc,
+  doc,
+  setDoc,
+  deleteDoc,
+} from "firebase/firestore";
+
 import AddItem from "./AddItem";
 import Calendar from "./Calendar";
 import ProgressBar from "./ProgressBar";
@@ -8,29 +19,38 @@ import TodoList from "./TodoList";
 import "../assets/styles/todo.css";
 
 export default function Todo() {
-  const [todos, setTodos] = useState([
-    { name: "Test 1", status: "Done" },
-    { name: "Test 4", status: "Done" },
-    { name: "Abc 4", status: "Pending" },
-  ]);
-
+  const [todos, setTodos] = useState([]);
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
-  const [filteredTodos, setFilteredTodos] = useState(todos);
 
-  function handleAddTodo(todo) {
+  // read task
+  useEffect(() => {
+    const q = query(collection(db, "tasks"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      let tasksArr = [];
+      querySnapshot.forEach((doc) => {
+        tasksArr.push({ ...doc.data(), id: doc.id });
+      });
+      setTodos(tasksArr);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  async function handleAddTodo(todo) {
     todo.name !== "" && setTodos([...todos, todo]);
+    setDoc(doc(db, "tasks", todo.id), todo);
   }
 
   function handleRemoveTodo(todo) {
     let todosCopy = [...todos];
     todosCopy.forEach((el, index) => {
-      el.name === todo.name && todosCopy.splice(index, 1);
+      el.id === todo.id && todosCopy.splice(index, 1);
     });
     setTodos(todosCopy);
+    deleteDoc(doc(db, "tasks", todo.id));
   }
 
-  function handleSearchTodo(word, status) {
+  function handleSearchTodo(todos, word, status) {
     let todosCopy = [...todos];
 
     if (status && word) {
@@ -53,26 +73,32 @@ export default function Todo() {
       todosCopy = statusFilter;
     }
 
-    setFilteredTodos(todosCopy);
+    return todosCopy;
   }
 
-  function handleEditTodo(name, newName) {
+  function handleEditTodo(id, newName) {
     if (newName !== "") {
       let todosCopy = [...todos];
-      todosCopy.map((el) => el.name === name && (el.name = newName));
+      todosCopy.map((el) => el.id === id && (el.name = newName));
       setTodos(todosCopy);
+      updateDoc(doc(db, "tasks", id), {
+        name: newName,
+      });
     } else {
       return;
     }
   }
 
-  function handleEditStatus(name) {
+  function handleEditStatus(id) {
     let todosCopy = [...todos];
     todosCopy.map(
       (el) =>
-        el.name === name &&
+        el.id === id &&
         (el.status === "Done" ? (el.status = "Pending") : (el.status = "Done"))
     );
+    updateDoc(doc(db, "tasks", id), {
+      status: status === "Done" ? "Pending" : "Done",
+    });
 
     setTodos(todosCopy);
   }
@@ -90,11 +116,8 @@ export default function Todo() {
       />
       <AddItem handleAddTodo={handleAddTodo} />
       <TodoList
-        filteredTodos={filteredTodos}
-        todos={todos}
+        filteredTodos={handleSearchTodo(todos, search, status)}
         handleRemoveTodo={handleRemoveTodo}
-        search={search}
-        status={status}
         setSearch={setSearch}
         setStatus={setStatus}
         handleSearchTodo={handleSearchTodo}
