@@ -1,10 +1,11 @@
 import React from "react";
 import { getCurrentMonth } from "../../utils/getCurrentMonth";
 import { getDayOfTheWeek } from "../../utils/getDayOfTheWeek";
+import ProgressBar from "../ProgressBar/ProgressBar";
 import { ModalHeader, Day, MonthYear, Weekday, DateWrapper } from "./style";
 const Calendar = () => {
   const date = new Date();
-  return (
+  return (<>
     <ModalHeader>
       <DateWrapper>
         <Day>{date.getDate()}</Day>
@@ -15,6 +16,8 @@ const Calendar = () => {
       </DateWrapper>
       <Weekday>{getDayOfTheWeek(date.getDay())}</Weekday>
     </ModalHeader>
+     <ProgressBar />
+     </>
   );
 };
 

@@ -28,8 +28,4 @@ export const MidModal = styled.div`
   justify-content: space-between;
 `;
 
-export const StatusButtons = styled.aside`
-  display: flex;
-  gap: 0.5rem;
-`;
 

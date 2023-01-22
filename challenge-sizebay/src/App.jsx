@@ -5,7 +5,6 @@ import {
   Modal,
   ModalContent,
   MidModal,
-  StatusButtons,
   } from "./style";
 import ProgressBar from "./Components/ProgressBar/ProgressBar";
 import Calendar from "./Components/Calendar/Calendar";
@@ -14,18 +13,17 @@ import ToDoList from "./Components/ToDoList/ToDoList";
 import GlobalState from "./Contexts/GlobalState";
 
 function App() {
+
+
   return (
     <GlobalState>
       <GlobalStyle />
       <Modal>
         <ModalContent>
           <Calendar/>
-          <ProgressBar />
+          {/* <ProgressBar /> */}
           <MidModal>
-            <StatusButtons>
-              <StatusButton status="done" />
-              <StatusButton status="pending" />
-            </StatusButtons>
+              <StatusButton/>
             <SearchInput />
           </MidModal>
           <AddNewItem/>

@@ -4,6 +4,7 @@ import plus from "../../assets/plus.png";
 import useForm from "../../hooks/useForm";
 import { GlobalContext } from "../../Contexts/GlobalContext";
 
+
 const AddNewItem = () => {
   const [form, handleInputChange, clear] = useForm({ query: "" });
   const { states, setters } = useContext(GlobalContext);
@@ -15,6 +16,7 @@ const AddNewItem = () => {
       clear();
     }
   };
+
 
   return (
     <AddInputWrapper>

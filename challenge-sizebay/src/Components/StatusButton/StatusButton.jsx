@@ -1,18 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
-import {ButtonWrapper} from "./styles";
+import { CustomCheckbox, Container } from "./styles";
+import blueCheck from "../../assets/blue-check.png";
 
-const StatusButton = ({status}) => {
-const {setters} = useContext(GlobalContext)
+const StatusButton = ({ status }) => {
+  const { setters, states } = useContext(GlobalContext);
 
-const selectList = (buttonName) => {
-  if(buttonName.toLowerCase() === "pending") {
-    setters.setListToShow('pending')
-  } else {
-    setters.setListToShow('done')
-  }
-}
-  return <ButtonWrapper onClick={() => selectList(status)}>{status}</ButtonWrapper>
+  const onChangeCheckbox = (e) => {
+    setters.setListToShow(e.target.value);
+  };
+
+
+  return (
+    <Container>
+      <label>
+        <CustomCheckbox
+          checked={states.listToShow === "done"}
+          type="radio"
+          name="tasklist"
+          value="done"
+          onChange={onChangeCheckbox}
+        />
+        <span>
+          <img src={blueCheck} alt="check" />
+          Done
+        </span>
+      </label>
+      <label>
+        <CustomCheckbox
+          checked={states.listToShow === "pending"}
+          type="radio"
+          name="tasklist"
+          value="pending"
+          onChange={onChangeCheckbox}
+        />
+        <span>
+          <img src={blueCheck} alt="check" />
+          Pending
+        </span>
+      </label>
+    </Container>
+  );
 };
 
 export default StatusButton;

@@ -4,8 +4,9 @@ import { palette } from "../../colors/colors";
 export const ListItem = styled.li`
   width: 100%;
   font-size: 14px;
+  min-height: 50px;
   border: 1px solid ${palette.lightGrey};
-  padding: 16px 0 16px 16px;
+  padding-left: 16px;
   color: ${palette.grey};
   background-color: ${palette.offwhite};
   border-radius: 4px;
@@ -13,9 +14,6 @@ export const ListItem = styled.li`
   align-items: center;
   justify-content: space-between;
 
-  &:hover {
-    padding-left: 16px;
-  }
   &:not(:hover) {
     & > div {
       display: none;
@@ -29,7 +27,7 @@ export const ButtonsContainer = styled.div`
 `
 export const RemoveButton = styled.button`
   width: 44px;
-  height: 44px;
+  min-height: 48px;
   background-color: ${palette.red};
   display: flex;
   align-items: center;
@@ -70,3 +68,8 @@ export const List = styled.ul`
     border-radius: 8px;
   }
 `;
+
+export const EmptyListMessage = styled.span`
+  font-size: 14px;
+  color:${palette.grey};
+`
