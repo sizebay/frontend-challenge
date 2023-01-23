@@ -32,6 +32,9 @@ export default function TodoList(props) {
                     setEditIndex(newIndex);
                   }
                 }}
+                onBlur={(e) => {
+                  setInput("");
+                }}
                 placeholder={el.name}
                 autoFocus
               />
