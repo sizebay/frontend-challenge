@@ -20,8 +20,11 @@ export const MonthYearContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    span {
+    span, strong {
         font-size: 1.15rem;
+    }
+    strong{
+        font-weight: 600;
     }
     .year {
         font-weight: 300;
@@ -36,5 +39,6 @@ export const DayWeekContainer = styled.div`
 
     span{
         font-size: 1.35rem;
+        font-weight: 500;
     }
 `;

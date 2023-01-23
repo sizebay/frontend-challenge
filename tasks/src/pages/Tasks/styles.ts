@@ -15,6 +15,11 @@ padding: 3rem;
 display: flex;
 flex-direction: column;
 gap: 1rem;
+
+@media (max-width: 768px){
+    width: 95%;
+    padding: 3rem 1rem;
+}
 `
 
 export const TasksContainer = styled.div`
@@ -31,4 +36,11 @@ width: 100%;
 display: grid;
 grid-template-columns: 0.35fr 1fr;
 gap: 3rem;
+
+@media (max-width: 768px){
+    grid-template-columns: 1fr;
+    gap: 0;
+    position: relative;
+    height: 200px;
+}
 `

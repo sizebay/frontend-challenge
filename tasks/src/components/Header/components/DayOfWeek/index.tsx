@@ -12,7 +12,7 @@ export function DayOfWeek(){
           {today.getDate()}
         </DayNumber>
         <MonthYearContainer>
-          <span className="month">{Months[today.getMonth()]}</span>
+          <strong className="month">{Months[today.getMonth()]}</strong>
           <span className="year">{today.getFullYear()}</span>
         </MonthYearContainer>
       </DayInfoContainer>

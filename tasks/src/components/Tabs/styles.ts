@@ -5,6 +5,13 @@ export const TabsContainer = styled(Tabs.Root)`
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 768px){
+    position: absolute;
+    width: fit-content;
+    bottom: 0;
+    right: 0;
+  }
 `
 
 export const TabsOptionsContainer = styled(Tabs.List)`

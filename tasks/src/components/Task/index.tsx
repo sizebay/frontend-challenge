@@ -8,13 +8,18 @@ interface Task {
 }
 
 export function Task({ task }: Task){
-  const { completeTask, deleteTask, editTask } = useContext(ContenxtApplication);
+  const { completeTask, deleteTask, setIdTask, setComponentEditTask } = useContext(ContenxtApplication);
+
+  function handleEditTask(){
+    setComponentEditTask(true);
+    setIdTask(task.id);
+  }
 
   return(
     <TaskContainer>
       <strong>{task.content}</strong>
       <ButtonContainer>
-        <ButtonEdit onClick={() => editTask(task.id)}><Pencil size={25} /></ButtonEdit>
+        <ButtonEdit onClick={() => handleEditTask()}><Pencil size={25} /></ButtonEdit>
         <ButtonDelete onClick={() => deleteTask(task.id)}><Minus size={25} /></ButtonDelete>
         {
           task.isCompleted ? (

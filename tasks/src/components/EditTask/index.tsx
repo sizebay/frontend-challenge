@@ -16,12 +16,11 @@ export function EditTask(){
   const { register, handleSubmit, reset } = useForm<EditTaskInput>({
     resolver: zodResolver(EditTaskFormSchema),
   });
-  const { setTextEditTask, setFunctionAddTask } = useContext(ContenxtApplication);
+  const { editTask, setComponentEditTask} = useContext(ContenxtApplication);
 
    function handleEditTask(data: EditTaskInput){
-    setFunctionAddTask(false);
-    setTextEditTask(data.text);
-    reset()
+    editTask(data.text);
+    setComponentEditTask(false);
   }
   return (
     <EditTaskContainer>

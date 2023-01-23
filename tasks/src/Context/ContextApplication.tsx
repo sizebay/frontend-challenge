@@ -13,12 +13,12 @@ export interface ITask {
 interface ContextApplicationType{
 tasks: ITask[];
 taskActive: string;
-functionAddTask: boolean;
-setFunctionAddTask: (value: boolean) => void;
-setTextEditTask: (text: string) => void;
+componentEditTask: boolean;
+setComponentEditTask: (value: boolean) => void;
+setIdTask: (taskId: string) => void;
 addTask: (text: string) => void;
 deleteTask: (taskId: string) => void;
-editTask: (taskId: string) => void;
+editTask: (text: string) => void;
 completeTask: (taskId: string) => void;
 tasksActive: (value: string) => void;
 }
@@ -37,8 +37,8 @@ export function ContenxtApplicationProvider({ children }: ContextApplicationProv
     }
     return []
   });
-  const [functionAddTask, setFunctionAddTask] = useState(true);
-  const [textEditTask, setTextEditTask] = useState('');
+  const [componentEditTask, setComponentEditTask] = useState(false);
+  const [idTask, setIdTask] = useState('');
   const [taskActive, setTaskActive] = useState('');
 
   useEffect(() => {
@@ -46,7 +46,6 @@ export function ContenxtApplicationProvider({ children }: ContextApplicationProv
   }, [tasks]);
 
   function addTask(text: string){
-    setFunctionAddTask(true);
     setTasks([...tasks, {
       id: crypto.randomUUID(),
       content: text,
@@ -59,18 +58,18 @@ export function ContenxtApplicationProvider({ children }: ContextApplicationProv
     setTasks(tasksWithoutDeletedOne);
   }
 
-  function editTask(taskId: string){
+  function editTask(text: string){
+    setComponentEditTask(true);
     const newTask = tasks.map((task) => {
-      if(task.id == taskId){
+      if(task.id == idTask){
         return{
         ...task,
-        content: textEditTask,
+        content: text,
       }
     }
       return task;
     });
     setTasks(newTask);
-    setFunctionAddTask(true);
   }
 
   function completeTask(taskId: string){
@@ -91,7 +90,7 @@ export function ContenxtApplicationProvider({ children }: ContextApplicationProv
   }
 
   return (
-    <ContenxtApplication.Provider value={{ tasks, taskActive, functionAddTask, setFunctionAddTask, setTextEditTask, addTask, editTask, deleteTask, completeTask, tasksActive  }}>
+    <ContenxtApplication.Provider value={{ tasks, taskActive, componentEditTask, setComponentEditTask, setIdTask, addTask, editTask, deleteTask, completeTask, tasksActive  }}>
       {children}
     </ContenxtApplication.Provider>
   );
