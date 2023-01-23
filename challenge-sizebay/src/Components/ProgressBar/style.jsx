@@ -7,6 +7,10 @@ export const ProgressWrapper = styled.div`
   height: 24px;
   width: 680px;
   margin: 24px 0;
+
+  @media screen and (max-width: 340px) {
+    width: 308px;
+  }
 `;
 
 export const ProgressDone = styled.div`

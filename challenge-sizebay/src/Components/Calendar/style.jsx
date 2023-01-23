@@ -12,6 +12,12 @@ export const ModalHeader = styled.header`
 export const DateWrapper = styled.div`
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 340px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const Weekday = styled.p`

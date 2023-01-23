@@ -6,7 +6,7 @@ export const InputWrapper = styled.div`
   width: min-content;
 `;
 export const Input = styled.input`
-  width: 28.125rem;
+  max-width: 28.125rem;
   border: none;
   border: 1px solid ${palette.lightGrey};
   border-radius: 4px;
@@ -19,6 +19,11 @@ export const Input = styled.input`
       display: none;
     }
   }
+
+  @media screen and (max-width: 340px) {
+    margin-top: 1rem;
+    min-width: 309px;
+  }
 `;
 
 export const Search = styled.img`
@@ -27,4 +32,8 @@ export const Search = styled.img`
   top: 13px;
   right: 12px;
 
+  @media screen and (max-width: 340px) {
+    margin-top: 1rem;
+    top: 14px;
+  }
 `;

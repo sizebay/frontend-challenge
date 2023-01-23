@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
 import {
   List,
@@ -7,6 +7,7 @@ import {
   CompleteButton,
   ButtonsContainer,
   EmptyListMessage,
+  EditInput,
 } from "./style";
 import check from "../../assets/check.png";
 import remove from "../../assets/remove.png";
@@ -14,8 +15,8 @@ import { Tooltip } from "react-tooltip";
 
 const ToDoList = () => {
   const { states, setters } = useContext(GlobalContext);
-  // const progress = 100;
- 
+  const [editing, setEditing] = useState(false);
+  const [taskValue, setTaskValue] = useState('');
 
   const returnList = () => {
     return states.listToShow === "pending" ? states.pending : states.done;
@@ -35,40 +36,54 @@ const ToDoList = () => {
     });
     setters.setPending(newPendingList);
   };
-  
+
+  const edit = (task) => {
+    setEditing(true);
+    setTaskValue(task)
+  };
+
+  const onChangeEditedTask = (e) => {
+    // console.log(e)
+    setTaskValue(e.target.value)
+  }
+
   return (
     <List>
       {returnList().length === 0 ? (
         <EmptyListMessage>
-          {`There are no items marked as ${states.listToShow}. Clear the filter here to see all
-          items.`}
+          {`There are no items marked as ${states.listToShow}. Clear the filter here to <a>see all
+          items.<a>`} 
+          {/* fazer correcao de acessibilidade  */}
         </EmptyListMessage>
       ) : (
         returnList()
           .filter((task) => {
             return task.toLowerCase().includes(states.search.toLowerCase());
           })
-          .map((task, index, array) => {
-            // let taskPercentage = progress / array.length;
-            // states.percentagesArray.push(taskPercentage)
+          .map((task, index) => {
             return (
               <div key={index}>
-                <ListItem
-                  id="task"
-                  data-tooltip-content="Edit task"
-                  data-tooltip-place="bottom"
-                >
-                  <Tooltip anchorId="task" />
-                  {task}
-                  <ButtonsContainer>
-                    <RemoveButton onClick={() => deleteTask(task)}>
-                      <img src={remove} alt="remove" />
-                    </RemoveButton>
-                    <CompleteButton onClick={() => completeTask(task)}>
-                      <img src={check} alt="check" />
-                    </CompleteButton>
-                  </ButtonsContainer>
-                </ListItem>
+                {editing ? (
+                  <EditInput value={taskValue} onChange={onChangeEditedTask}/>
+                ) : (
+                  <ListItem
+                    onClick={() => edit(task)}
+                    id="task"
+                    data-tooltip-content="Edit task"
+                    data-tooltip-place="bottom"
+                  >
+                    <Tooltip anchorId="task" />
+                    {task}
+                    <ButtonsContainer>
+                      <RemoveButton onClick={() => deleteTask(task)}>
+                        <img src={remove} alt="remove" />
+                      </RemoveButton>
+                      <CompleteButton onClick={() => completeTask(task)}>
+                        <img src={check} alt="check" />
+                      </CompleteButton>
+                    </ButtonsContainer>
+                  </ListItem>
+                )}
               </div>
             );
           })

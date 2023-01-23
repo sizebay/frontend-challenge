@@ -21,6 +21,17 @@ export const ListItem = styled.li`
   }
 `;
 
+export const EditInput = styled.input`
+  width: 100%;
+  font-size: 14px;
+  min-height: 50px;
+  border: 1px solid ${palette.lightGrey};
+  padding-left: 16px;
+  color: ${palette.grey};
+  background-color: ${palette.offwhite};
+  border-radius: 4px;
+`
+
 export const ButtonsContainer = styled.div`
   margin-left: auto;
   display: flex;
@@ -51,8 +62,12 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 8px;
   overflow: auto;
-  max-height: 216px;
+  max-height: 300px;
   padding-right: 4px;
+
+  @media screen and (max-width: 340px) {
+    
+  }
 
   &::-webkit-scrollbar {
     width: 8px;
