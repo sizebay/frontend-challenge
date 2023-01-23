@@ -15,15 +15,9 @@ export default function Searchbar(props) {
       <div className='buttons'>
         <button
           onClick={() => {
-            if (props.status !== "Done") {
-              const newStatus = "Done";
-              props.handleSearchTodo(props.search, newStatus);
-              props.setStatus(newStatus);
-            } else {
-              const newStatus = "";
-              props.handleSearchTodo(props.search, newStatus);
-              props.setStatus(newStatus);
-            }
+            props.status !== "Done"
+              ? props.setStatus("Done")
+              : props.setStatus("");
           }}
           className={props.status === "Done" ? "active" : ""}
         >
@@ -36,15 +30,9 @@ export default function Searchbar(props) {
         </button>
         <button
           onClick={() => {
-            if (props.status !== "Pending") {
-              const newStatus = "Pending";
-              props.handleSearchTodo(props.search, newStatus);
-              props.setStatus(newStatus);
-            } else {
-              const newStatus = "";
-              props.handleSearchTodo(props.search, newStatus);
-              props.setStatus(newStatus);
-            }
+            props.status !== "Pending"
+              ? props.setStatus("Pending")
+              : props.setStatus("");
           }}
           className={props.status === "Pending" ? "active" : ""}
         >
@@ -63,7 +51,6 @@ export default function Searchbar(props) {
           placeholder='Search items'
           onChange={(e) => {
             const newName = e.target.value;
-            props.handleSearchTodo(newName, props.status);
             props.setSearch(newName);
           }}
           value={props.search}
@@ -74,7 +61,6 @@ export default function Searchbar(props) {
             const empty = "";
             props.setStatus(empty);
             props.setSearch(empty);
-            props.handleSearchTodo(empty);
           }}
           className='clear-search-field'
         >
