@@ -6,7 +6,7 @@ export const InputWrapper = styled.div`
   width: min-content;
 `;
 export const Input = styled.input`
-  max-width: 28.125rem;
+  min-width: 28.125rem;
   border: none;
   border: 1px solid ${palette.lightGrey};
   border-radius: 4px;

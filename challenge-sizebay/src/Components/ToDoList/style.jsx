@@ -52,6 +52,11 @@ export const RemoveButton = styled.button`
   }
 `;
 
+export const ClearFilters = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
+
+`
 export const CompleteButton = styled(RemoveButton)`
   background-color: ${palette.green};
 `;

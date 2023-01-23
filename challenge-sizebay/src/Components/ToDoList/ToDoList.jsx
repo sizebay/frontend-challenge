@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
 import {
   List,
@@ -7,7 +7,7 @@ import {
   CompleteButton,
   ButtonsContainer,
   EmptyListMessage,
-  EditInput,
+  ClearFilters,
 } from "./style";
 import check from "../../assets/check.png";
 import remove from "../../assets/remove.png";
@@ -15,8 +15,6 @@ import { Tooltip } from "react-tooltip";
 
 const ToDoList = () => {
   const { states, setters } = useContext(GlobalContext);
-  const [editing, setEditing] = useState(false);
-  const [taskValue, setTaskValue] = useState('');
 
   const returnList = () => {
     return states.listToShow === "pending" ? states.pending : states.done;
@@ -37,23 +35,15 @@ const ToDoList = () => {
     setters.setPending(newPendingList);
   };
 
-  const edit = (task) => {
-    setEditing(true);
-    setTaskValue(task)
-  };
-
-  const onChangeEditedTask = (e) => {
-    // console.log(e)
-    setTaskValue(e.target.value)
-  }
-
+const clearFilters = () => {
+  setters.setListToShow('')
+}
   return (
     <List>
       {returnList().length === 0 ? (
         <EmptyListMessage>
-          {`There are no items marked as ${states.listToShow}. Clear the filter here to <a>see all
-          items.<a>`} 
-          {/* fazer correcao de acessibilidade  */}
+          {states.listToShow && `There are no items marked as ${states.listToShow}. Clear the filter here to`}
+          <ClearFilters onClick={clearFilters}> see all items</ClearFilters>
         </EmptyListMessage>
       ) : (
         returnList()
@@ -63,11 +53,7 @@ const ToDoList = () => {
           .map((task, index) => {
             return (
               <div key={index}>
-                {editing ? (
-                  <EditInput value={taskValue} onChange={onChangeEditedTask}/>
-                ) : (
                   <ListItem
-                    onClick={() => edit(task)}
                     id="task"
                     data-tooltip-content="Edit task"
                     data-tooltip-place="bottom"
@@ -83,7 +69,6 @@ const ToDoList = () => {
                       </CompleteButton>
                     </ButtonsContainer>
                   </ListItem>
-                )}
               </div>
             );
           })
