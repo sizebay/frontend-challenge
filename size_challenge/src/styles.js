@@ -45,17 +45,52 @@ export const StatusButton = styled.button`
     }  
 `;
 
-export const SearchInput = styled.input`
-    width: 450px;
-    height: 40px;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+export const InputButton = styled.div`
+    width: 100%;
+    height: 46px;
+    background: #F7F7F7 0% 0%;
     border: 1px solid #DBDBDB;
     border-radius: 4px;
     opacity: 1;
-    color: #848484;
-    font-size: 14px/19px;
-    padding-left: 15px;
-    :focus {
-      outline: 0;
-    }    
+    margin-top: 20px;
+    
+    input{
+        height: inherit;
+        width: 93%;
+        background-color: transparent;
+        color: #848484;
+        font-size: 14px/19px;
+        padding-left: 15px;
+        opacity: 0.5;
+        text-align: left;
+        :focus {
+            outline: 0;
+        }  
+        border: none;
+
+    }
+    
+    button{
+        height: inherit;
+        width: 7%;
+        background: #4DA6B3 0% 0% no-repeat padding-box;
+        opacity: 0.5;
+        border: none;
+        cursor: pointer;
+        :hover{
+            opacity: 1;
+        }
+    }
+`;
+
+export const InputSearch = styled(InputButton)`
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    width: 450px;
+    margin-top: 0;
+
+    button{
+        background-color: transparent;
+        cursor: auto;
+        opacity: 1;
+    }
 `;
