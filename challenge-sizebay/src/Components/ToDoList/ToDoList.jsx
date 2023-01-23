@@ -14,7 +14,8 @@ import { Tooltip } from "react-tooltip";
 
 const ToDoList = () => {
   const { states, setters } = useContext(GlobalContext);
-  const progress = 100;
+  // const progress = 100;
+ 
 
   const returnList = () => {
     return states.listToShow === "pending" ? states.pending : states.done;
@@ -35,7 +36,6 @@ const ToDoList = () => {
     setters.setPending(newPendingList);
   };
   
-  // console.log(states.taskProgress)
   return (
     <List>
       {returnList().length === 0 ? (
@@ -49,8 +49,8 @@ const ToDoList = () => {
             return task.toLowerCase().includes(states.search.toLowerCase());
           })
           .map((task, index, array) => {
-            let taskPercentage = progress / array.length;
-            // setters.setTaskProgress([...states.taskProgress, taskPercentage])
+            // let taskPercentage = progress / array.length;
+            // states.percentagesArray.push(taskPercentage)
             return (
               <div key={index}>
                 <ListItem

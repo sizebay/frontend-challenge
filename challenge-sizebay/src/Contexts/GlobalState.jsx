@@ -7,10 +7,11 @@ const [done, setDone] = useState([])
 const [listToShow, setListToShow] = useState('') 
 const [search, setSearch] = useState('')
 const [taskProgress, setTaskProgress] = useState([])
+const [percentagesArray, setPercentagesArray] = useState([])
 
     
-const states = {pending, done, listToShow, search,taskProgress }
-const setters = {setPending, setDone, setListToShow, setSearch, setTaskProgress}
+const states = {pending, done, listToShow, search,taskProgress, percentagesArray }
+const setters = {setPending, setDone, setListToShow, setSearch, setTaskProgress, setPercentagesArray}
 const data = {states, setters}
 
   return (
