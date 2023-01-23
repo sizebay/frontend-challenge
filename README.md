@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Sizebay Frontend Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Sobre
 
-## Available Scripts
+> _A Sizebay é uma empresa que conecta conhecimentos de modelagem. No mercado desde 2014, nascemos considerando que poderíamos apenas de fato oferecer um produto inovador se considerássemos unir e oferecer o melhor conhecimento de produto e a mais avançada tecnologia da informação. Com um Provador Virtual que respeita a sua individualidade, Nossas recomendações são transparentes: exibimos as medidas do corpo e permitimos que sejam ajustadas. Consideramos como irá vestir em cada tipo de medida e em todos os tamanhos disponíveis._
 
-In the project directory, you can run:
+## O desafio
 
-### `npm start`
+Pediremos que você **construa** uma aplicação web que permita ao usuário criar tarefas, acompanhar seu progresso e administrar suas pendências em uma lista, por meio de um layout amigável. Mais detalhes abaixo.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Recursos
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+UI/UX: https://xd.adobe.com/view/1dd85ae3-466a-46b4-8d38-f1c054d42ef4-488b/
+_PS: O design system está incluso, incluindo a fonte e as dimensões de tela._
 
-### `npm test`
+## Instruções
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+O teste está disponível tanto para candidatos quanto para quem quer apenas experimentar. As instruções se manterão as mesmas:
 
-### `npm run build`
+- Faça um fork desse projeto
+- Ao finalizar, faça um Pull Request e nos avise via e-mail
+- Aguarde o retorno
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Requisitos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- O projeto precisa seguir a estrutura básica de componentização do React, assim como o seu file structuring (https://reactjs.org/docs/faq-structure.html)
+- Divida a responsabilidade dos seus componentes com base na ação de cada um
+- O projeto não pode ter erros ou warnings
+- Testes unitários são opcionais porém serão considerados um bônus de entrega.
+- Você está livre para construir a aplicação com o método que preferir (CRA, Vite, Parcel, etc). Contudo, nós possuimos um [boilerplate](https://github.com/sizebay/cra-template-sizebay) usado internamente.
+- Tenha um comando que instale os pacotes e rode o projeto localmente para facilitar a sua avaliação. Exemplo: `yarn wrap`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tecnologias
 
-### `npm run eject`
+- React com Hooks (https://reactjs.org/docs/hooks-intro.html)
+- Styled Components (http://styled-components.com/)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Dúvidas?
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Entre em contato com luiz@sizebay.com ou support@sizebay.com
