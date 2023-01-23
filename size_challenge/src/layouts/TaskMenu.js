@@ -1,4 +1,5 @@
 import Calendar from '../components/Calendar'
+import Filters from '../components/Filters'
 import ProgressBar from '../components/ProgressBar'
 import TaskMenuStyle from './../styles/taskMenu.module.css'
 
@@ -10,6 +11,7 @@ function TaskMenu(){
                 <div className={TaskMenuStyle.head}>
                     <Calendar />
                     <ProgressBar/>
+                    <Filters/>
                 </div>
             </div>
         </div>
