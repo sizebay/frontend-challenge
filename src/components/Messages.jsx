@@ -16,16 +16,17 @@ function Messages(props) {
     const {clearFilters, completed, search} = useContext(TasksContext);
     return (
         <div>
-            {search.length > 0 && props.searchLength == 0 && (
+            {search.length > 0 && props.searchLength == 0 ? (
                 <Message>
                     Your search found no results. <Underline onClick={clearFilters}>Clear the filter here</Underline> to see all items
                 </Message>
-            )}
-
-            {props.completedTasks.length == 0 && completed == true && (
-                <Message>
-                    There is no items marked as done. <Underline onClick={clearFilters}>Clear the filter here</Underline> to see all items
-                </Message>
+            ) : (
+                props.completedTasks.length == 0 &&
+                completed && (
+                    <Message>
+                        There is no items marked as done. <Underline onClick={clearFilters}>Clear the filter here</Underline> to see all items
+                    </Message>
+                )
             )}
         </div>
     );

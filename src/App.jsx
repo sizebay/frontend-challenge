@@ -78,8 +78,10 @@ const Tasks = styled.div`
 function App() {
     const {tasks, pending, completed, search} = useContext(TasksContext);
     const filteredTasks = tasks.filter((task) => task.title.toLowerCase().includes(search.toLowerCase()));
-    const completedTasks = filteredTasks.filter((task) => task.completed === true);
-    const pendingTasks = filteredTasks.filter((task) => task.completed === false);
+    const completedTasks = filteredTasks.filter((task) => task.completed);
+    const pendingTasks = filteredTasks.filter((task) => !task.completed);
+
+    const whichTasks = pending ? pendingTasks : completed ? completedTasks : filteredTasks;
 
     return (
         <Background>
@@ -92,9 +94,9 @@ function App() {
                     <AddTask />
                 </Head>
                 <Tasks>
-                    {pending == true ? <List tasks={pendingTasks} /> : completed ? <List tasks={completedTasks} /> : <List tasks={filteredTasks} />}
-                    <Messages completedTasks={completedTasks} searchLength={filteredTasks.length} />
+                    <List tasks={whichTasks} />
                 </Tasks>
+                <Messages completedTasks={completedTasks} searchLength={whichTasks.length} />
             </Container>
         </Background>
     );
