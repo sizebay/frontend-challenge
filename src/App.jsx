@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {useContext, useMemo} from "react";
 import {TasksContext} from "./contexts/Tasks";
 
 import styled from "styled-components";
@@ -77,9 +77,18 @@ const Tasks = styled.div`
 
 function App() {
     const {tasks, pending, completed, search} = useContext(TasksContext);
-    const filteredTasks = tasks.filter((task) => task.title.toLowerCase().includes(search.toLowerCase()));
-    const completedTasks = filteredTasks.filter((task) => task.completed);
-    const pendingTasks = filteredTasks.filter((task) => !task.completed);
+
+    const pendingTasks = useMemo(() => {
+        return tasks.filter((task) => !task.completed);
+    }, [tasks]);
+
+    const completedTasks = useMemo(() => {
+        return tasks.filter((task) => task.completed);
+    }, [tasks]);
+
+    const filteredTasks = useMemo(() => {
+        return tasks.filter((task) => task.title.toLowerCase().includes(search.toLowerCase()));
+    }, [tasks, search]);
 
     const whichTasks = pending ? pendingTasks : completed ? completedTasks : filteredTasks;
 
