@@ -1,0 +1,41 @@
+.headlineContainer{
+    width: 100%;
+    height: 50px;
+    color : #848484;
+}
+
+.day{
+    font-weight: bold;
+    font-size : 60px;
+    margin-left : 100px;
+    display: flex;
+    float : left;
+}
+
+.month{
+    font-weight: bold;
+    display: flex;
+    position: relative;
+    vertical-align: text-bottom;
+    float : left;
+    top : 40%;
+    font-size: 25px;
+}
+
+.year{
+    display: flex;
+    position: relative;
+    float : left;
+    top : 90%;
+    font-size: 25px;
+    color : #848484;
+    right: 35px;
+}
+
+.dayOfTheWeek{
+    float : right;
+    display: flex;
+    right: 100px;
+    position : relative;
+    top : 40px;
+}

@@ -1,0 +1,30 @@
+.taskContainer {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.input{
+    width: 900px;
+    height: 25px;
+    float : right;
+    border : 1px solid #DBDBDB;
+    padding-left: 10px;
+}
+
+.searchButton{
+    float: right;
+    display: flex;
+    background-color: transparent;
+    border-radius: 10px;
+    height : 30px;
+    width : 60px;
+    border : none;
+    position: relative;
+    margin-left: 400px;
+    bottom : 30px;
+    color : #848484;
+    font-size: 27px;
+}

@@ -1,0 +1,26 @@
+.taskContainer{
+    width: 100%;
+    margin-top: 60px;
+}
+
+.input{
+    width: 70%;
+    height: 40px;
+    border : 1px solid #a3a3a3;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.button{
+    display: inline;
+    position: relative;
+    height: 44px;
+    border-radius: 0;
+    border : none;
+    width: 70px;
+    top: 12px;
+    background-color: #4DA6B3;
+    margin-left: -70px;
+    color : white;
+    font-size: 37px;
+}

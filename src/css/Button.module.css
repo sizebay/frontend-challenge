@@ -1,0 +1,13 @@
+.button {
+    background-color: transparent;
+    border-radius: 10px;
+    height : 30px;
+    width : 100px;
+    border : 1px solid #DBDBDB;
+    position: relative;
+    float : left;
+    margin-left: 10px;
+    margin-right: 10px;
+    color : #848484;
+}
+
