@@ -103,5 +103,5 @@ export default function TodoList(props) {
       );
     }
   }
-  return <div>{handleListRender()}</div>;
+  return <div className='todos'>{handleListRender()}</div>;
 }
