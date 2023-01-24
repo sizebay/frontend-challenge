@@ -8,7 +8,7 @@ function InputItem(props){
     const [color = "#F4F4F4", setColor] = useState()
 
     function onSubmit(){
-        if(value != "" || value)
+        if(value !== "" || value)
             props.onSubmit(value)
 
         setValue("")
@@ -28,7 +28,7 @@ function InputItem(props){
     }
 
     return(
-        <Container color={color} large="100" margin_top="20" onFocus={turnInputOn} onBlur={turnInputOff}>
+        <Container color={color} large="100" margin="20px 0 20px 0" onFocus={turnInputOn} onBlur={turnInputOff}>
             <Input placeholder='Add new item...' opacity={opacity} large="93" value={value} onChange={e => setValue(e.target.value)}/>
             <Button color="#4DA6B3" opacity={opacity} large="8" onClick={onSubmit}>
                 <BsFillPlusCircleFill color='#FFFFFF' size={20} opacity={opacity}/>

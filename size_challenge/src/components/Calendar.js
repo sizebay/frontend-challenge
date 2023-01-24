@@ -1,4 +1,5 @@
 import styles from './../styles/calendar.module.css'
+import { DisplayFlex } from './../styles' 
 
 function Calendar(){
     const date = new Date()
@@ -10,18 +11,18 @@ function Calendar(){
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
  
     return(
-        <div className={styles.main_container}>
-            <div className={styles.main_container}>
+        <DisplayFlex jc="space-between ">
+            <DisplayFlex jc="space-between ">
                 <label className={styles.day}>{day}</label>
-                <div className={styles.sub_container}>
+                <DisplayFlex fd="column">
                     <label className={styles.month}>{months[month]}</label>
                     <label className={styles.year}>{year}</label>
-                </div>
-            </div>
+                </DisplayFlex>
+            </DisplayFlex>
             <div className={styles.weekDay}>
                 <label>{weekdays[weekday]}</label>
             </div>
-        </div>
+        </DisplayFlex>
     )
 }
 

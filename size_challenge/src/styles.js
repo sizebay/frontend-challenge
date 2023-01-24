@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export const FlexRow = styled.div`
+export const DisplayFlex = styled.div`
     display: flex;
-    flex-direction: row;
-    margin-top: ${(props) => props.margin_top}px;
-    justify-content: ${(props) => props.jc};
+    flex-direction: ${(props) => props.fd ? props.fd : "row"};
+    margin: ${(props) => props.margin};
+    justify-content: ${(props) => props.jc ? props.jc : "center"};
 `;
 
 export const Container = styled.div`
@@ -14,9 +14,8 @@ export const Container = styled.div`
     height: 48px;
     background: ${(props) => props.color} 0% 0% no-repeat padding-box;
     border: 1px solid #DBDBDB;
-    opacity: 1;
     border-radius: 4px;
-    margin-top: ${(props) => props.margin_top}px;
+    margin: ${(props) => props.margin};
 `;
 
 export const Input = styled.input`

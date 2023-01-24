@@ -1,6 +1,7 @@
 import { FaCheckCircle, FaMinusCircle} from 'react-icons/fa';
 import { useState } from "react"
 import {Container, Input, Button} from "../styles"
+import { Tooltip as ReactTooltip } from 'react-tooltip'
 
 function TaskCard(props){
     const [show, setShow] = useState()
@@ -9,7 +10,7 @@ function TaskCard(props){
 
     function onChange(e){
         setModel(e.target.value);
-        props.editTask(e.target.value);
+        props.editTask(e.target.value, props.task.id);
     }
 
     function onDelete(){
@@ -27,22 +28,24 @@ function TaskCard(props){
     }
 
     function onUpdateStatus(){
-        props.onUpdateStatus(props.task.id)
-    }
-
-    function setTaskModel(){
-        setModel(props.description);
+        if(props.task.status !== "Done")
+            props.onUpdateStatus(props.task.id)
     }
 
     return(
         <div>
-            <Container color={color} large="100" margin_top="20" onMouseOver={setShowOn} onMouseOut={setShowOff}>
-                <Input large="86" value={model} onChange={onChange}/>             
-                { show ? <>
-                <Button color="#E34F4F" large="7"><FaMinusCircle size={20} color="FFFFFF" onClick={onDelete}/></Button>
-                <Button color="#5DE290" large="7"><FaCheckCircle size={20} color="FFFFFF" onClick={onUpdateStatus}/></Button>
-                </>: null }
-            </Container> 
+            
+                <Container id={props.task.id} data-tooltip-content="Edit Task"color={color} large="100" margin="8px 0 0 0" onMouseOver={setShowOn} onMouseOut={setShowOff}>
+                    <Input large="86" value={model} onChange={onChange}/>             
+                    { show ? <>
+                    <Button color="#E34F4F" large="7" onClick={onDelete}><FaMinusCircle size={20} color="FFFFFF" /></Button>
+                    <Button color="#5DE290" large="7" onClick={onUpdateStatus}><FaCheckCircle size={20} color="FFFFFF" /></Button>
+                    </>: null }
+           
+                </Container> 
+
+                <ReactTooltip anchorId={props.task.id} place="bottom"/>
+           
         </div>
     )
 }
