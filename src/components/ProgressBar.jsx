@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import {useContext} from "react";
+import {useContext, useMemo} from "react";
 import {TasksContext} from "../contexts/Tasks";
 
 const Parent = styled.div`
@@ -22,9 +22,11 @@ const Child = styled.div`
 function ProgressBar() {
     const {tasks} = useContext(TasksContext);
 
-    const all = tasks.length;
-    const done = tasks.filter((task) => task.completed == true);
-    const progress = ((done.length / all) * 100).toFixed(0);
+    const progress = useMemo(() => {
+        const completedTasks = tasks.filter((task) => task.completed);
+        return (completedTasks.length / tasks.length) * 100;
+    }, [tasks]);
+
     return (
         <Parent>
             <Child style={{width: `${progress}%`}} />

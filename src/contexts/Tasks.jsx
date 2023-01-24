@@ -46,7 +46,7 @@ export const TasksProvider = ({children}) => {
                 if (task.id === id) {
                     return {
                         ...task,
-                        completed: true,
+                        completed: !task.completed,
                     };
                 }
                 return task;
