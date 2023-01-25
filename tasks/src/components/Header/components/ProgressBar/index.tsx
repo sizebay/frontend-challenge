@@ -7,6 +7,8 @@ export function ProgressBar(){
   const{ tasks } = useContext(ContenxtApplication);
   const tasksTotal = tasks.length;
   const tasksfineshed = tasks.filter((task) => task.isCompleted === true).length;
+  const total = (tasksfineshed / tasksTotal) * 100;
+  console.log(tasksfineshed, tasksTotal, );
 
     useEffect(() => {
       const timer = setTimeout(() => tasksTotal, 500);
@@ -15,7 +17,7 @@ export function ProgressBar(){
     
     return (
       <ProgressContainer  value={tasksTotal}>
-        <ProgressIndicator className="ProgressIndicator" style={{ transform: `translateX(-${(tasksfineshed / tasksTotal) * 100}%)` }} />
+        <ProgressIndicator className="ProgressIndicator" style={{ transform:  tasksTotal  === 0 ? `translateX(-100%)` : `translateX(-${(tasksfineshed / tasksTotal) * 100}%)` }} />
       </ProgressContainer>
     )
 }

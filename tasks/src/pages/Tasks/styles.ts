@@ -18,6 +18,9 @@ gap: 1rem;
 
 @media (max-width: 768px){
     width: 95%;
+    max-height: 95vh;
+    height: fit-content;
+    min-height: 350px;
     padding: 3rem 1rem;
 }
 `

@@ -23,7 +23,7 @@ export function SearchTask(){
   return(
     <SearchContainer onSubmit={handleSubmit(handleSearchTask)}>
       <input type="text" placeholder="Search Items" {...register("text")} />
-      <MagnifyingGlass size={25} />
+      <button onClick={handleSubmit(handleSearchTask)}><MagnifyingGlass size={25} /></button>
     </SearchContainer>
   )
 }
