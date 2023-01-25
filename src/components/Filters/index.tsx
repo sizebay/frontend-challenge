@@ -1,12 +1,9 @@
-import { Done } from "../../@types/task";
+import { useContext } from "react";
+import { TaskContext } from "../../context/TaskContext";
 import { Container, FilterItem, IconCheck } from "./style";
 
-interface FiltersProps {
-  handleFilter: (query: Done) => void;
-  filter: Done;
-}
-
-export default function Filters({ handleFilter, filter }: FiltersProps) {
+export default function Filters() {
+  const { filter, handleFilter } = useContext(TaskContext);
   return (
     <Container>
       <FilterItem

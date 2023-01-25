@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { TaskContext } from "../../context/TaskContext";
 import {
   ButtonSearch,
   Form,
@@ -6,12 +8,8 @@ import {
   InputSearch,
 } from "./style";
 
-interface SearchProps {
-  query: string;
-  handleQuery: (query: string) => void;
-}
-
-export default function Search({ query, handleQuery }: SearchProps) {
+export default function Search() {
+  const { query, handleQuery } = useContext(TaskContext);
   return (
     <Form onSubmit={(event) => event.preventDefault()}>
       <InputSearch
