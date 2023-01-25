@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "../../Contexts/GlobalContext";
+import React, {useContext} from "react";
+import {GlobalContext} from "../../Contexts/GlobalContext";
 import {
   List,
   ListItem,
@@ -11,7 +11,7 @@ import {
 } from "./style";
 import check from "../../assets/check.png";
 import remove from "../../assets/remove.png";
-import { Tooltip } from "react-tooltip";
+import {Tooltip} from "react-tooltip";
 
 const ToDoList = () => {
   const { states, setters } = useContext(GlobalContext);
@@ -35,14 +35,15 @@ const ToDoList = () => {
     setters.setPending(newPendingList);
   };
 
-const clearFilters = () => {
-  setters.setListToShow('')
-}
+  const clearFilters = () => {
+    setters.setListToShow("");
+  };
   return (
     <List>
       {returnList().length === 0 ? (
         <EmptyListMessage>
-          {states.listToShow && `There are no items marked as ${states.listToShow}. Clear the filter here to`}
+          {states.listToShow &&
+            `There are no items marked as ${states.listToShow}. Clear the filter here to`}
           <ClearFilters onClick={clearFilters}> see all items</ClearFilters>
         </EmptyListMessage>
       ) : (
@@ -53,22 +54,22 @@ const clearFilters = () => {
           .map((task, index) => {
             return (
               <div key={index}>
-                  <ListItem
-                    id="task"
-                    data-tooltip-content="Edit task"
-                    data-tooltip-place="bottom"
-                  >
-                    <Tooltip anchorId="task" />
-                    {task}
-                    <ButtonsContainer>
-                      <RemoveButton onClick={() => deleteTask(task)}>
-                        <img src={remove} alt="remove" />
-                      </RemoveButton>
-                      <CompleteButton onClick={() => completeTask(task)}>
-                        <img src={check} alt="check" />
-                      </CompleteButton>
-                    </ButtonsContainer>
-                  </ListItem>
+                <ListItem
+                  id="task"
+                  data-tooltip-content="Edit task"
+                  data-tooltip-place="bottom"
+                >
+                  <Tooltip anchorId="task" />
+                  {task}
+                  <ButtonsContainer>
+                    <RemoveButton onClick={() => deleteTask(task)}>
+                      <img src={remove} alt="remove" />
+                    </RemoveButton>
+                    <CompleteButton onClick={() => completeTask(task)}>
+                      <img src={check} alt="check" />
+                    </CompleteButton>
+                  </ButtonsContainer>
+                </ListItem>
               </div>
             );
           })
