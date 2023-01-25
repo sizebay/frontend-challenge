@@ -4,3 +4,4 @@ export { default as Filters } from "./Filters";
 export { default as ListTask } from "./ListTask";
 export { default as ProgressBar } from "./ProgressBar";
 export { default as Search } from "./Search";
+export { default as Warning } from "./Warning";
