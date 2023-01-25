@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { FormEvent, useContext, useMemo, useState } from "react";
 import { MdCheckCircle, MdRemoveCircle } from "react-icons/md";
-import { Done, ITask } from "../../@types/task";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+import { Warning } from "../";
+import { TaskContext } from "../../context/TaskContext";
 import {
   ActionButton,
   BoxItem,
@@ -9,134 +12,102 @@ import {
   Form,
   Item,
   List,
-  ToolTip,
-  Warning,
 } from "./style";
 
-interface ListTaskProps {
-  list: ITask[];
-  filter: Done;
-  querySearch: string;
-  removeTask: (id: string) => void;
-  editTask: (title: string, id: string) => void;
-  completeTask: (id: string) => void;
-  handleFilter: (query: Done) => void;
-  clearSearch: () => void;
-}
-
-export default function ListTask({
-  list,
-  filter,
-  querySearch,
-  removeTask,
-  editTask,
-  completeTask,
-  handleFilter,
-  clearSearch,
-}: ListTaskProps) {
+export default function ListTask() {
   const [selectedIdTask, setSelectedIdTask] = useState("");
+
+  const { taskList, query, filter, editTask, completeTask, removeTask } =
+    useContext(TaskContext);
+
+  const handleSelectedTask = (taskId: string) =>
+    selectedIdTask !== taskId && setSelectedIdTask(taskId);
+
+  const handleTaskName = (name: string, taskId: string) =>
+    editTask(name, taskId);
+
+  const submitForm = (event: FormEvent) => {
+    event.preventDefault();
+    setSelectedIdTask("");
+  };
+
+  const filteredTasks = useMemo(() => {
+    if (taskList.length > 0) {
+      switch (filter) {
+        case "done":
+          const itemDone = taskList.filter((task) => task.done);
+          if (query) {
+            return itemDone.filter((task) => task.title?.includes(query));
+          }
+          return itemDone;
+        case "pending":
+          const itemPending = taskList.filter((task) => !task.done);
+          if (query) {
+            return itemPending.filter((task) => task.title?.includes(query));
+          }
+          return itemPending;
+        default:
+          if (query) {
+            return taskList.filter((task) => task.title?.includes(query));
+          }
+          return taskList;
+      }
+    }
+    return [];
+  }, [filter, taskList, query]);
+
+  if (filteredTasks.length === 0) {
+    return <Warning clearSelectedTask={() => setSelectedIdTask("")} />;
+  }
+
   return (
     <List>
-      {list.length > 0 ? (
-        <>
-          {list.map((task) => (
-            <Container key={task.id}>
-              <BoxItem>
-                <Item
+      {filteredTasks.map((task) => (
+        <Container key={task.id}>
+          <BoxItem id={task.id}>
+            <Item onClick={() => handleSelectedTask(task.id)} done={task.done}>
+              <Form onSubmit={submitForm}>
+                <EditText
+                  value={task.title}
+                  onChange={(event) =>
+                    handleTaskName(event.target.value, task.id)
+                  }
+                  disabled={task.done || selectedIdTask !== task.id}
+                />
+              </Form>
+            </Item>
+            {selectedIdTask && selectedIdTask === task.id && (
+              <div>
+                <ActionButton
+                  variant="error"
                   onClick={() => {
-                    selectedIdTask !== task.id && setSelectedIdTask(task.id);
+                    removeTask(task.id!);
                   }}
-                  done={task.done}
                 >
-                  <Form
-                    onSubmit={(event) => {
-                      event.preventDefault();
+                  <MdRemoveCircle size={24} />
+                </ActionButton>
+                {!task.done && (
+                  <ActionButton
+                    variant="success"
+                    onClick={() => {
                       setSelectedIdTask("");
+                      completeTask(task.id);
                     }}
                   >
-                    <EditText
-                      value={task.title}
-                      onChange={(event) =>
-                        editTask(event.target.value as string, task.id)
-                      }
-                      disabled={task.done || selectedIdTask !== task.id}
-                    />
-                  </Form>
-                </Item>
-                {selectedIdTask && selectedIdTask === task.id && (
-                  <div>
-                    <ActionButton
-                      variant="error"
-                      onClick={() => {
-                        removeTask(task.id!);
-                      }}
-                    >
-                      <MdRemoveCircle size={24} />
-                    </ActionButton>
-                    {!task.done && (
-                      <ActionButton
-                        variant="success"
-                        onClick={() => {
-                          setSelectedIdTask("");
-                          completeTask(task.id);
-                        }}
-                      >
-                        <MdCheckCircle size={24} />
-                      </ActionButton>
-                    )}
-                  </div>
+                    <MdCheckCircle size={24} />
+                  </ActionButton>
                 )}
-              </BoxItem>
-              <ToolTip>Edit task</ToolTip>
-            </Container>
-          ))}
-        </>
-      ) : (
-        <>
-          {querySearch && (
-            <Warning>
-              Your search found no results.{" "}
-              <span
-                onClick={() => {
-                  setSelectedIdTask("");
-                  clearSearch();
-                }}
-              >
-                Clear search here{" "}
-              </span>{" "}
-              to see all items.{" "}
-            </Warning>
-          )}
-          {filter === "done" && (
-            <Warning>
-              There are no items marked as done.{" "}
-              <span
-                onClick={() => {
-                  setSelectedIdTask("");
-                  handleFilter("");
-                }}
-              >
-                Clear the filter here{" "}
-              </span>{" "}
-              to see all items.{" "}
-            </Warning>
-          )}
-          {filter === "pending" && (
-            <Warning>
-              There are no items marked pending.{" "}
-              <span
-                onClick={() => {
-                  setSelectedIdTask("");
-                  handleFilter("");
-                }}
-              >
-                Clear the filter here{" "}
-              </span>{" "}
-              to see all items.{" "}
-            </Warning>
-          )}
-        </>
-      )}
+              </div>
+            )}
+          </BoxItem>
+          <Tooltip
+            anchorId={task.id}
+            content="Edit task"
+            place="bottom"
+            className="tooltip"
+          />
+        </Container>
+      ))}
     </List>
   );
 }

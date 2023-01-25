@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
-  max-height: 218px;
-  height: 100%;
+  height: 218px;
   gap: 8px;
   overflow: auto;
 
@@ -31,34 +30,6 @@ export const List = styled.ul`
   }
 `;
 
-export const ToolTip = styled.span`
-  visibility: hidden;
-  position: fixed;
-  left: 45%;
-  margin-top: 45px;
-
-  z-index: 9999;
-  background-color: #848484;
-  color: ${({ theme }) => theme.colors.white};
-  padding: 12px 16px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 400;
-
-  ::after {
-    content: "";
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -8px;
-    width: 0;
-    height: 0;
-    border-bottom: 8px solid #848484;
-    border-right: 8px solid transparent;
-    border-left: 8px solid transparent;
-  }
-`;
-
 export const BoxItem = styled.div`
   flex: 1;
   display: flex;
@@ -68,8 +39,11 @@ export const Container = styled.li`
   display: flex;
   position: relative;
 
-  & ${BoxItem}:hover + ${ToolTip} {
-    visibility: visible;
+  .tooltip {
+    background-color: #848484;
+    font-size: 14px;
+    font-weight: normal;
+    z-index: 9999;
   }
 `;
 
@@ -117,14 +91,5 @@ export const ActionButton = styled.button<{ variant: "error" | "success" }>`
 
   :last-child {
     border-radius: 0px 4px 4px 0px;
-  }
-`;
-
-export const Warning = styled.p`
-  font-size: 14px;
-
-  & > span {
-    text-decoration: underline;
-    cursor: pointer;
   }
 `;
