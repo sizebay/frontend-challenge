@@ -70,10 +70,6 @@ export const List = styled.ul`
   max-height: 300px;
   padding-right: 4px;
 
-  @media screen and (max-width: 340px) {
-    
-  }
-
   &::-webkit-scrollbar {
     width: 8px;
   }
