@@ -127,7 +127,7 @@ function TaskMenu(){
                 <Calendar />
                 <ProgressBar tasks={tasks}/>
                 <Filters onChangeStatus={onChangeStatus} onSearchTask={onSearchTask}/>
-                <InputItem tasks={tasks} onSubmit={onSubmit} />
+                {status === 'Pending' && <InputItem tasks={tasks} onSubmit={onSubmit} /> }
                 <TaskList tasks={filteredTasks} status={status} onDelete={onDelete} onUpdateStatus={onUpdateStatus} editTask={editTask}/>     
             </SubContainer>
         </MainContainer>
