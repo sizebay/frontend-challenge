@@ -1,16 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { GlobalContext } from "../../Contexts/GlobalContext";
 import { CustomCheckbox, Container } from "./styles";
 import blueCheck from "../../assets/blue-check.png";
 
-const StatusButton = ({ status }) => {
+const StatusButton = () => {
   const { setters, states } = useContext(GlobalContext);
-
   const onChangeCheckbox = (e) => {
     setters.setListToShow(e.target.value);
   };
-
-
   return (
     <Container>
       <label>
