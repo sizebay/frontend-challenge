@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { NewItem, AddButton, AddInputWrapper } from "./style";
+import React, {useContext} from "react";
+import {NewItem, AddButton, AddInputWrapper} from "./style";
 import plus from "../../assets/plus.png";
 import useForm from "../../hooks/useForm";
-import { GlobalContext } from "../../Contexts/GlobalContext";
+import {GlobalContext} from "../../Contexts/GlobalContext";
 
 
 const AddNewItem = () => {
