@@ -16,17 +16,6 @@ export const ItemsProvider = ({ children }) => {
 
     // Function to filter items
     useEffect(() => {
-        document.querySelector('#filter-done').classList.remove('selected')
-        document.querySelector('#filter-pending').classList.remove('selected')
-
-        if (doneSelected) {
-            document.querySelector('#filter-done').classList.add('selected')
-        }
-
-        if (pendingSelected) {
-            document.querySelector('#filter-pending').classList.add('selected')
-        }
-
         const filteredItems = items.map(item => {
             item.show = false
 

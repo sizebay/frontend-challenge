@@ -22,33 +22,6 @@ const Filter = styled.div`
     margin-top: 3px;
     margin-bottom: 24px;
 
-    > div {
-        height: 33px;
-        background: #FFFFFF 0% 0% no-repeat padding-box;
-        border: 1px solid #DBDBDB;
-        border-radius: 17px;
-        line-height: 33px;
-        padding: 0 16px;
-        font-size: 14px;
-        margin-right: 8px;
-        cursor: pointer;
-    }
-
-    > div i {
-        font-size: 16px;
-        display: none;
-    }
-
-    > .selected {
-        border: 1px solid #4DA6B3;
-        background-color: #F7F7F8;
-        color: #4DA6B3;
-    }
-
-    > .selected i {
-        display: inline;
-    }
-
     @media (max-width: 992px) {
         justify-content: end;
         padding-top: 11px;
@@ -57,6 +30,26 @@ const Filter = styled.div`
         div:last-child {
             margin-right: 0;
         }
+    }
+`
+
+export const FilterOption = styled.div`
+    height: 33px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DBDBDB;
+    border-radius: 17px;
+    line-height: 33px;
+    padding: 0 16px;
+    font-size: 14px;
+    margin-right: 8px;
+    cursor: pointer;
+    background-color: ${props => props.selected ? '#F7F7F8' : '#FFFFFF'};
+    border: 1px solid ${props => props.selected ? '#4DA6B3' : '#DBDBDB'};
+    color: ${props => props.selected ? '#4DA6B3' : '#848484'};
+
+    > i {
+        font-size: 16px;
+        display: ${props => props.selected ? 'inline' : 'none'};
     }
 `
 
@@ -155,12 +148,12 @@ const Search = () => {
 
             <Filter>
 
-                <div id="filter-done" onClick={(e) => filterItems('done')}>
+                <FilterOption id="filter-done" selected={doneSelected} onClick={(e) => filterItems('done')}>
                     <i className="bi bi-check2"></i> Done
-                </div>
-                <div id="filter-pending" onClick={(e) => filterItems('pending')}>
+                </FilterOption>
+                <FilterOption id="filter-pending" selected={pendingSelected} onClick={(e) => filterItems('pending')}>
                     <i className="bi bi-check2"></i> Pending
-                </div>
+                </FilterOption>
 
             </Filter>
 
