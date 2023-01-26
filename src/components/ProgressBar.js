@@ -1,23 +1,13 @@
 import { useContext, useEffect, useState } from "react"
-import styled from "styled-components"
+
+// Styled
+import { 
+    FillBar, 
+    FilledBar 
+} from "./ProgressBar.styled"
 
 // Context
 import { ItemsContext } from "../context/ItemsContext"
-
-const FillBar = styled.div`
-    height: 20px;
-    width: 100%;
-    background-color: #E4E4E4;
-    border-radius: 4px;
-    margin-bottom: 24px;
-`
-  
-const FilledBar = styled.div`
-    height: 100%;
-    width: ${props => props.completed}%;
-    background-color: #5DE290;
-    border-radius: inherit;
-`
 
 const ProgressBar = () => {
     const { items } = useContext(ItemsContext)
