@@ -115,11 +115,7 @@ const Search = () => {
 
         if (searchInput.length > 0) {
             const editedItems = items.map(item => {
-                if (item.title.search(searchInput.trim()) !== -1) {
-                    item.show = true
-                } else {
-                    item.show = false
-                }
+                item.show = item.title.search(searchInput.trim()) !== -1
 
                 return item
             })
