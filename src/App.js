@@ -7,7 +7,6 @@ import Filters  from "./components/Filters/Filters";
 import { NewTasks } from "./components/NewTasks/NewTasks"
 import Tasks from "./components/Tasks/Tasks";
 
-
 const SMain = styled.main`
   display: inline-block;
   margin: auto;
@@ -16,9 +15,11 @@ const SMain = styled.main`
   background-color: #ffffff;
   padding: 60px;
 `
+
 const App = () => {
   return (
     <SMain>
+
       <Header/>
       <Progress/>
       <Filters/>

@@ -3,16 +3,9 @@ import styled from 'styled-components'
 import svg from './lupa.svg'
 import svg2 from './close.svg'
 import check from './check.svg'
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { useRootContext } from '../..'
 
-const SFilters = styled.div` 
-  display: flex;
-  margin: 24px 0px 0px 0px;
-  height: 40px;
-  width: 100%;
-  justify-content: space-between;
-`
 
 const SMarkers = styled.div`
   display: flex;
@@ -151,14 +144,14 @@ function Filters() {
               <ul>
                 {/* <li><button onClick={() => handleFilter('done_tasks')}>Done</button></li>
                 <li><button onClick={() => handleFilter('undone_tasks')}>Pending</button></li> */}
-                <li><button className={typeAction === 'done_tasks' ? 'selected' : ''} onClick={() => handleFilter('done_tasks')}>{typeAction === 'done_tasks' && <img src={check}/> }Done</button></li>
-                <li><button className={typeAction === 'undone_tasks' ? 'selected' : ''} onClick={() => handleFilter('undone_tasks')}>{typeAction === 'undone_tasks' && <img src={check}/> }Pending</button></li>
+                <li><button className={typeAction === 'done_tasks' ? 'selected' : ''} onClick={() => handleFilter('done_tasks')}>{typeAction === 'done_tasks' && <img alt='done' src={check}/> }Done</button></li>
+                <li><button className={typeAction === 'undone_tasks' ? 'selected' : ''} onClick={() => handleFilter('undone_tasks')}>{typeAction === 'undone_tasks' && <img alt='eliminate' src={check}/> }Pending</button></li>
               </ul>
             </SMarkers>            
             <SSearchBox>
                 <input placeholder="Search Items" type="text" value={searchTask} onChange={({target}) => handleChange(target)} ref={searchInputRef}/>
                 {
-                    searchTask.length  ?<img className='cancelSearch' onClick={handleSearchClick} src={svg2}/> :<img src={svg} onClick={handleSearchClick}/>
+                    searchTask.length  ?<img alt='search' className='cancelSearch' onClick={handleSearchClick} src={svg2}/> :<img alt='close search' src={svg} onClick={handleSearchClick}/>
                 }                
             </SSearchBox>
         </SSearchTask>

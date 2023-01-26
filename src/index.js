@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useReducer } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.js'
-import {nanoid} from 'nanoid'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const RootContext = createContext({})

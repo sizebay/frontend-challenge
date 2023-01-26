@@ -33,28 +33,28 @@ export const Header = () => {
   console.log(weekday);
   switch (weekday){
     case 0:
-      var weekday = 'Domingo';
+       weekday = 'Domingo';
       break;
     case 1:
-      var weekday = 'Segunda-feira';
+       weekday = 'Segunda-feira';
       break;
     case 2:
-      var weekday = 'Terça-feira';
+       weekday = 'Terça-feira';
       break;
     case 3:
-      var weekday = 'Quarta-feira';
+       weekday = 'Quarta-feira';
       break;
     case 4:
-      var weekday = 'Quinta';
+       weekday = 'Quinta';
       break;
     case 5:
-      var weekday = 'Sexta';
+       weekday = 'Sexta';
       break;
     case 6:
-      var weekday = 'Sábado';
+       weekday = 'Sábado';
       break;
   default:
-      var weekday = 'Indefinido';
+       weekday = 'Indefinido';
       break;
   }
 
