@@ -101,7 +101,6 @@ const SSearchTask = styled.div`
     flex-wrap: wrap-reverse;
     display:flex;
     justify-content:space-between;
-    
 `
 
 function Filters() {
