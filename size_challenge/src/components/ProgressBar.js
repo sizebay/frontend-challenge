@@ -1,27 +1,11 @@
-import styled from "styled-components";
+import { Bar, BarStatus, confetti } from '../styles';
 import Confetti from 'react-confetti'
 
-const Bar = styled.div`
-        background: ${(props) => props.color} 0% 0% no-repeat padding-box;
-        border-radius: 4px;
-        width: 100%;
-        height: 24px;
-    `;
 
-const BarStatus = styled.div`
-        width: ${(props) => props.progress}%;
-        height: inherit;
-        background-color: ${(props) => props.color};
-        border-radius: inherit;
-        transition: all 500ms ease-out;
-    `;
 
 function ProgressBar(props){
 
-    const confetti = {
-        left: "50%",
-        transform: "translate(80%)"
-    }
+    const allTasks = props.tasks.length;
 
     function countCompletedTasks(){
         let count = 0;
@@ -32,8 +16,7 @@ function ProgressBar(props){
         return count;
     } 
 
-    const allTasks = props.tasks.length;
-    const progress = allTasks > 0 ? (countCompletedTasks() * 100) / props.tasks.length : 0;
+    const progress = allTasks > 0 ? (countCompletedTasks() * 100) / allTasks : 0;
     return (
         <Bar color="#E4E4E4">
             {   progress === 100 && 

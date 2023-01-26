@@ -3,7 +3,7 @@ import Filters from '../components/Filters'
 import InputItem from '../components/InputItem'
 import ProgressBar from '../components/ProgressBar'
 import TaskList from '../components/TaskList'
-import { useState } from 'react'
+import { useState} from 'react'
 import styled from 'styled-components'
 import { DisplayFlex } from '../styles'
 
@@ -31,6 +31,7 @@ let nextId = 3;
 
 function TaskMenu(){
     const [tasks, setTasks]= useState(initialList);
+    const [searchValue, setSearchValue]= useState("");
     const [status, setStatus] = useState("Pending")
     const [filteredTasks, setFilteredTasks] = useState(
       initialList
@@ -38,7 +39,7 @@ function TaskMenu(){
 
     function onSubmit(value){
         nextId++;
-         setTasks((tasks) => [
+         setTasks([
             ...tasks,
             {
                 id: nextId,
@@ -46,8 +47,7 @@ function TaskMenu(){
                 description: value,
             },
         ])
-        
-        setFilteredTasks((filteredTasks) => [
+        setFilteredTasks([
             ...filteredTasks,
             {
                 id: nextId,
@@ -87,7 +87,6 @@ function TaskMenu(){
     function onUpdateStatus(id){
         const newTasks = tasks.map(task => {
             if (task.id === id) {
-                console.log(id)
                 return {
                     ...task,
                     status: 'Done',
@@ -114,11 +113,12 @@ function TaskMenu(){
     }
 
     function onSearchTask(desc){
+        setSearchValue(desc)
         setFilteredTasks(
             tasks.filter(a =>
               a.description.toLowerCase().includes(desc.toLowerCase()) && a.status === status
             )
-          );
+        );
     }
 
     return(
@@ -126,7 +126,7 @@ function TaskMenu(){
             <SubContainer>    
                 <Calendar />
                 <ProgressBar tasks={tasks}/>
-                <Filters onChangeStatus={onChangeStatus} onSearchTask={onSearchTask}/>
+                <Filters onChangeStatus={onChangeStatus} onSearchTask={onSearchTask} status={status} searchValue={searchValue}/>
                 {status === 'Pending' && <InputItem tasks={tasks} onSubmit={onSubmit} /> }
                 <TaskList tasks={filteredTasks} status={status} onDelete={onDelete} onUpdateStatus={onUpdateStatus} editTask={editTask}/>     
             </SubContainer>

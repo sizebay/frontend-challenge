@@ -1,0 +1,18 @@
+.inputItem{
+    background-color: #F4F4F4 !important;
+}
+
+.inputItem:focus{
+    background-color: #FFFFFF !important;
+}
+
+.btn{
+    opacity: .5 !important;
+}
+
+.inputItem:focus + .btn {
+    opacity: 1 !important;
+  }
+
+
+
