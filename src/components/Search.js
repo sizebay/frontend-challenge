@@ -106,21 +106,7 @@ const Search = () => {
 
     // Function to filter items
     const filterItems = (filter) => {
-        if (filter === 'done') {
-            if (doneSelected) {
-                setDoneSelected(false)
-            } else {
-                setDoneSelected(true)
-            }
-        }
-
-        if (filter === 'pending') {
-            if (pendingSelected) {
-                setPendingSelected(false)
-            } else {        
-                setPendingSelected(true)
-            }
-        }
+        filter === 'done' ? setDoneSelected(!doneSelected) : setPendingSelected(!pendingSelected)
     }
 
     // Function to search items
