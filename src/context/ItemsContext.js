@@ -19,15 +19,10 @@ export const ItemsProvider = ({ children }) => {
         const filteredItems = items.map(item => {
             item.show = false
 
-            if ((doneSelected && pendingSelected)) {
-                item.show = true
-            } else if ((doneSelected && !pendingSelected) && item.done) {
-                item.show = true
-            } else if ((!doneSelected && pendingSelected) && !item.done) {
-                item.show = true
-            } else if (!doneSelected && !pendingSelected) {
-                item.show = true
-            }
+            item.show = (doneSelected && pendingSelected) || 
+                (doneSelected && item.done) || 
+                (pendingSelected && !item.done) || 
+                (!doneSelected && !pendingSelected)
 
             if (item.show === true && searchInput.trim().length > 0 && item.title.search(searchInput.trim()) === -1) {
                 item.show = false
