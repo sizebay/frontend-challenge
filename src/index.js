@@ -4,7 +4,6 @@ import App from './App.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const RootContext = createContext({})
-
 function Provider({children}){
   //situation false = pending
   const [tasks, setTasks] = useState([]);

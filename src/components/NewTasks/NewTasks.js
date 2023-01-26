@@ -56,6 +56,9 @@ const SNewTasks = styled.form`
   .BtnAddPressioned{
     opacity: 1;
   }
+  @media screen and (max-width: 391px) and (max-height:900px) {
+    margin: 0px;
+  }
 `
 
 export const NewTasks = () => {

@@ -21,6 +21,11 @@ const SMarkers = styled.div`
   }
   ul{
     display: contents;
+    @media screen and (max-width: 391px) and (max-height:900px) {
+      justify-content: right;
+      display: flex;
+      width: 100%;
+  }
     list-style: none;
     align-items: center;
     button{
@@ -47,6 +52,10 @@ const SMarkers = styled.div`
       border:1px solid #4DA6B3;
       color: #4DA6B3;
   }
+  @media screen and (max-width: 391px) and (max-height:900px) {
+    width: 100%;
+    margin: 16px 10px;
+  }
 `
 const SSearchBox = styled.div`
   display: flex;
@@ -58,7 +67,6 @@ const SSearchBox = styled.div`
   &:hover{
   border: 1px solid #BBBBBB;
   }
-
   input{
     font-family: 'Roboto', sans-serif;
     color: #848484;
@@ -86,39 +94,14 @@ const SSearchBox = styled.div`
   .cancelSearch:hover{
     cursor: pointer;
   }
-`
-
-// export const Filters = () => {
-
-//   const [lupa, setLupa] = useState(true)
-//   const {search,setSearch} = useRootContext()
-//   function searchFocus(event){
-//     console.log(event);
-//     setLupa(false);
-//   }
-
-//   return (
-//     <SFilters>
-//       <SMarkers>
-//         <ul>
-//           <li><button >Done</button></li>
-//           <li><button>Pending</button></li>
-//         </ul>
-//       </SMarkers>
-//       <SSearchBox>
-//         <input value={search} onChange={(e) => setSearch(e.target.value)} onFocus={setLupa.bind(null, false)} onBlur={setLupa.bind(null, true)} placeholder="Search Items"/>
-//         { lupa ? <img src={svg}/> : <img className='cancelSearch' onMouseDown={(e) => setSearch('')} src={svg2}/> }
-//       </SSearchBox>
-//     </SFilters>
-//   )
-// }
-
-// llllllllllllllllll
-
+  
+  `
 
 const SSearchTask = styled.div`
+    flex-wrap: wrap-reverse;
     display:flex;
     justify-content:space-between;
+    
 `
 
 function Filters() {
@@ -142,8 +125,6 @@ function Filters() {
         <SSearchTask>
             <SMarkers className='filter-buttons'>
               <ul>
-                {/* <li><button onClick={() => handleFilter('done_tasks')}>Done</button></li>
-                <li><button onClick={() => handleFilter('undone_tasks')}>Pending</button></li> */}
                 <li><button className={typeAction === 'done_tasks' ? 'selected' : ''} onClick={() => handleFilter('done_tasks')}>{typeAction === 'done_tasks' && <img alt='done' src={check}/> }Done</button></li>
                 <li><button className={typeAction === 'undone_tasks' ? 'selected' : ''} onClick={() => handleFilter('undone_tasks')}>{typeAction === 'undone_tasks' && <img alt='eliminate' src={check}/> }Pending</button></li>
               </ul>
