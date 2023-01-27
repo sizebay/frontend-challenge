@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useMemo} from "react";
 import {GlobalContext} from "../../Contexts/GlobalContext";
 import {
   List,
@@ -16,9 +16,9 @@ import {Tooltip} from "react-tooltip";
 const ToDoList = () => {
   const { states, setters } = useContext(GlobalContext);
 
-  const returnList = () => {
+  const getReturnList = useMemo(() => {
     return states.listToShow === "pending" ? states.pending : states.done;
-  };
+  }, [states.listToShow, states.done, states.pending])
 
   const completeTask = (task) => {
     const newPendingList = states.pending.filter((pendingTask) => {
@@ -40,14 +40,14 @@ const ToDoList = () => {
   };
   return (
     <List>
-      {returnList().length === 0 ? (
+      {getReturnList.length === 0 ? (
         <EmptyListMessage>
           {states.listToShow &&
             `There are no items marked as ${states.listToShow}. Clear the filter here to`}
           <ClearFilters onClick={clearFilters}> see all items</ClearFilters>
         </EmptyListMessage>
       ) : (
-        returnList()
+        getReturnList
           .filter((task) => {
             return task.toLowerCase().includes(states.search.toLowerCase());
           })
