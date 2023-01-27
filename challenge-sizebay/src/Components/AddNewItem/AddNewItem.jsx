@@ -3,11 +3,12 @@ import {NewItem, AddButton, AddInputWrapper} from "./style";
 import plus from "../../assets/plus.png";
 import useForm from "../../hooks/useForm";
 import {GlobalContext} from "../../Contexts/GlobalContext";
-
+import useApp from "../../hooks/useApp";
 
 const AddNewItem = () => {
   const [form, handleInputChange, clear] = useForm({ query: "" });
   const { states, setters } = useContext(GlobalContext);
+  useApp()
 
   const addNewTask = (task, e) => {
     e.preventDefault()
@@ -16,8 +17,6 @@ const AddNewItem = () => {
       clear();
     }
   };
-
-
   return (
     <AddInputWrapper>
       <form>
