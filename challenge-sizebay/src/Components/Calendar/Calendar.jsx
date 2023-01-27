@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
-import { getCurrentMonth } from "../../utils/getCurrentMonth";
-import { getDayOfTheWeek } from "../../utils/getDayOfTheWeek";
+import React from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { ModalHeader, Day, MonthYear, Weekday, DateWrapper } from "./style";
-import { GlobalContext } from "../../Contexts/GlobalContext";
 
 const Calendar = () => {
-  const { states } = useContext(GlobalContext);
   const date = new Date();
-
+  function getCurrentMonth(month) {
+    const date = new Date();
+    date.setMonth(month);
+    return date.toLocaleString('en-us', { month: 'long' });
+  }
+  function getDayOfTheWeek() {
+    return date.toLocaleString("en-us", {weekday: "long"})
+  }
   return (
     <>
       <ModalHeader>
@@ -21,7 +24,7 @@ const Calendar = () => {
         </DateWrapper>
         <Weekday>{getDayOfTheWeek(date.getDay())}</Weekday>
       </ModalHeader>
-      <ProgressBar done={states.percentagesArray}/>
+      <ProgressBar/>
     </>
   );
 };
