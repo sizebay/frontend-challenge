@@ -3,9 +3,9 @@ import { createContext, useContext } from "react";
 export const GlobalContext = createContext()
 
 const useApp = () => {
-    const {states, setters} = useContext(GlobalContext)
+    // const {states, setters} = useContext(GlobalContext)
     
-    return {states, setters}
+    // return {states, setters}
 }
 
 export default useApp
