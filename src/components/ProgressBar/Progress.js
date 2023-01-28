@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRootContext } from '../../index';
+import { useRootContext } from '../../Hooks/useRootContext.js';
 import { Confetti } from './Confetti';
 import { SProgress } from './style';
 

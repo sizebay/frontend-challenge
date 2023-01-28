@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
 import svg from './more.svg'
-import { useRootContext } from '../..'
+import { useRootContext } from '../../Hooks/useRootContext.js';
 import { addTask } from '../../controllers/task';
 import { SNewTasks } from './style';
 

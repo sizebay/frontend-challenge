@@ -5,5 +5,5 @@ export const useToggle = () => {
     function toggleStatus(){
         setStatus(!status);
     }
-    return { status, toggleStatus }
+    return { status, setStatus, toggleStatus }
 }

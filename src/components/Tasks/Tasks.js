@@ -1,5 +1,5 @@
 import Task from "../Task/Task";
-import { useRootContext } from "../../index";
+import { useRootContext } from '../../Hooks/useRootContext.js';
 import EmptyMessage from "../EmptyMessage/EmptyMessage";
 import { STasks } from "./style";
 
@@ -14,7 +14,6 @@ const Tasks = () => {
                 filteredTasks.length ? 
                     foundTasks.length ? foundTasks : <EmptyMessage type="noTasksFound"/>
                 :
-                    typeAction === 'all_tasks' ? <EmptyMessage type="noTasks"/> : 
                     typeAction === 'done_tasks' ? <EmptyMessage type="noTasksDone"/> : <EmptyMessage type="noTasksPending"/>
             }
         </STasks>

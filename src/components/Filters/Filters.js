@@ -3,7 +3,7 @@ import svg from './lupa.svg'
 import svg2 from './close.svg'
 import check from './check.svg'
 import { useRef } from 'react'
-import { useRootContext } from '../..'
+import { useRootContext } from '../../Hooks/useRootContext.js';
 import {SMarkers, SSearchBox, SSearchTask} from './style.js'
 
 

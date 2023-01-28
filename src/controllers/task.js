@@ -11,3 +11,7 @@ export const deleteTask = (setTasks, id) => {
 export const finishTask = (setTasks, id) => {
     setTasks(prevTasks => prevTasks.map(task => task.id === id ? {...task, done:true} : task ));
 }
+
+export const editTask = (setTasks, id, content) => {
+    setTasks(prevTasks => prevTasks.map(task => task.id === id ? {...task, content} : task))
+}
