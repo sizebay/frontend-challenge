@@ -13,6 +13,10 @@
     border: $border;
     height: 4.8rem;
     padding-inline-start: 1.5rem;
+
+    &.active {
+      background: $background-color-light;
+    }
   }
 
   input {
@@ -28,15 +32,24 @@
   }
 
   button {
-    all: unset;
-
     @include center-flex;
     background: $secondary-color;
+    cursor: not-allowed;
     width: 4.4rem;
 
     &,
     svg {
       opacity: 0.5;
+    }
+
+    &.active,
+    &.active svg {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    &.active:hover {
+      filter: brightness(0.9);
     }
   }
 
