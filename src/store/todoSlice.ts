@@ -35,18 +35,27 @@ const todosSlice = createSlice({
 });
 
 export const selectFilter = (state: RootState) => state.filter;
+export const selectSearchTerm: Selector<RootState, string> = createSelector(
+  (state: RootState) => state.search.searchTerm,
+  searchTerm => searchTerm?.toLocaleLowerCase() || ''
+);
 
 export const selectFilteredTodos: Selector<RootState, Todo[]> = createSelector(
   (state: RootState) => state.todos,
+  selectSearchTerm,
   selectFilter,
-  (todos: Todo[], filter: string) => {
+  (todos: Todo[], searchTerm: string, filter: string) => {
+    const filteredTodos = searchTerm
+      ? todos.filter(todo => todo.text.toLocaleLowerCase().includes(searchTerm))
+      : [...todos];
+
     switch (filter) {
       case 'completed':
-        return todos.filter(todo => todo.done);
+        return filteredTodos.filter(todo => todo.done);
       case 'pending':
-        return todos.filter(todo => !todo.done);
+        return filteredTodos.filter(todo => !todo.done);
       default:
-        return [...todos];
+        return filteredTodos;
     }
   }
 );

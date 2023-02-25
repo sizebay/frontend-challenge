@@ -1,24 +1,46 @@
-import { FormEvent } from 'react';
-import { IoMdSearch, IoIosClose, IoMdCheckmark } from 'react-icons/io';
+import { FormEvent, useEffect, useState } from 'react';
+import { IoIosClose, IoMdSearch } from 'react-icons/io';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeSearchTerm } from '../../store/searchSlice';
+import { selectSearchTerm } from '../../store/todoSlice';
 import { Chips } from '../Chips';
 
 import styles from './styles.module.scss';
 
 function SearchBar() {
+  const [inputValue, setInputValue] = useState('');
+  const dispatch = useDispatch();
+
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    dispatch(changeSearchTerm(inputValue));
   }
+
+  const term = useSelector(selectSearchTerm);
+
+  useEffect(() => {
+    setInputValue(term);
+  }, [term]);
 
   return (
     <form className={styles.searchBarContainer} onSubmit={handleSubmit}>
       <Chips />
 
       <p className={styles.inputContainer}>
-        <input type="text" placeholder="Search items" />
+        <input
+          type="text"
+          placeholder="Search items"
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value)}
+        />
         <label>
           <button type="submit" aria-label="Search">
-            {/* <IoIosClose size={33} /> */}
-            <IoMdSearch size={23} />
+            {inputValue ? (
+              <IoIosClose size={23} onClick={() => setInputValue('')} />
+            ) : (
+              <IoMdSearch size={23} />
+            )}
           </button>
         </label>
       </p>
