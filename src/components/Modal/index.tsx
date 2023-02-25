@@ -13,6 +13,8 @@ function Modal() {
         </hgroup>
         <p>Wednesday</p>
       </header>
+
+      <progress max={100} value={50} />
     </section>
   );
 }
