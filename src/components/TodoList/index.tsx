@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosCheckmarkCircle, IoMdRemoveCircle } from 'react-icons/io';
 import {
@@ -50,6 +50,16 @@ function TodoList() {
     [dispatch]
   );
 
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLLIElement>, id: number) => {
+      if (event.code === 'Enter') {
+        event.preventDefault();
+        setActiveTodoId(id);
+      }
+    },
+    [todos]
+  );
+
   if (todos.length === 0) {
     const filterState = filter === 'completed' ? 'done' : filter;
 
@@ -68,25 +78,36 @@ function TodoList() {
   }
 
   return (
-    <ul className={styles.todoListContainer}>
-      {todos?.map(todo => (
+    <ul className={styles.todoListContainer} role="list">
+      {todos?.map((todo, index) => (
         <li
-          key={todo.id}
+          aria-controls="control-buttons"
+          aria-selected={todo.id === activeTodoId ? true : false}
           className={todo.id === activeTodoId ? styles.active : ''}
+          key={todo.id}
           onClick={() => handleItemClick(todo.id)}
+          onKeyDown={event => handleKeyDown(event, todo.id)}
+          role="listitem"
+          tabIndex={0}
         >
           {todo.text}
           {todo.id === activeTodoId && (
-            <p className={styles.controls}>
+            <p id="control-buttons" className={styles.controls} aria-expanded>
               <button
                 className={styles.delete}
                 onClick={() => handleDelete(todo.id)}
+                role="button"
+                type="button"
               >
                 <IoMdRemoveCircle size={24.63} fill={'#fff'} />
               </button>
               <button
+                aria-label={`Mark todo: ${todo.text} as done`}
+                aria-pressed={todo.done}
                 className={styles.done}
                 onClick={() => handleUpdate(todo)}
+                role="button"
+                type="button"
               >
                 <IoIosCheckmarkCircle size={24.63} fill={'#fff'} />
               </button>
@@ -104,34 +125,51 @@ interface Props {
   onResetFilters: () => void;
 }
 
-function EmptyState({ filterState, searchTerm, onResetFilters }: Props) {
-  if (filterState === 'all' && searchTerm === '') {
-    return null;
+const EmptyState = memo(
+  ({ filterState, searchTerm, onResetFilters }: Props) => {
+    if (filterState === 'all' && searchTerm === '') {
+      return (
+        <span style={{ visibility: 'hidden' }}>
+          There is no items in the list. Add a new task.
+        </span>
+      );
+    }
+
+    if (filterState === 'all') {
+      return <NoResults onResetFilters={onResetFilters} />;
+    }
+
+    return (
+      <NoItems filterState={filterState} onResetFilters={onResetFilters} />
+    );
   }
+);
 
-  if (filterState === 'all') {
-    return <NoResults onResetFilters={onResetFilters} />;
-  }
-
-  return <NoItems filterState={filterState} onResetFilters={onResetFilters} />;
-}
-
-function NoResults({ onResetFilters }: Props) {
+const NoResults = memo(({ onResetFilters }: Props) => {
   return (
     <p className={styles.todoListContainer}>
       Your search found no results.&nbsp;
-      <u onClick={onResetFilters}>Clean the search here</u> to see all items.
+      <u onClick={onResetFilters} aria-describedby="reset-filters">
+        Clean the search here
+      </u>
+      &nbsp;to see all items.
+      <span style={{ visibility: 'hidden' }} id="reset-filters">
+        Resets the search filters and shows all items.
+      </span>
     </p>
   );
-}
+});
 
-function NoItems({ filterState, onResetFilters }: Props) {
+const NoItems = memo(({ filterState, onResetFilters }: Props) => {
   return (
     <p className={styles.todoListContainer}>
       There are no items marked as {filterState}.&nbsp;
-      <u onClick={onResetFilters}>Clear the filter here</u> to see all items.
+      <u onClick={onResetFilters} aria-describedby="reset-filters">
+        Clear the filter here
+      </u>
+      &nbsp;to see all items.
     </p>
   );
-}
+});
 
 export { TodoList };

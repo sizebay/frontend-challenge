@@ -41,7 +41,7 @@ function TodoForm() {
           <button
             aria-label="Submit"
             className={isActiveClass ? styles.active : ''}
-            disabled={inputValue ? false : true}
+            disabled={!inputValue}
             type="submit"
           >
             <IoIosAddCircle size={24.63} fill={'#fff'} />

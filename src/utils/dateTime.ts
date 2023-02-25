@@ -1,4 +1,4 @@
-const date = new Date();
+let date = new Date();
 
 const options: Intl.DateTimeFormatOptions = {
   weekday: 'long',

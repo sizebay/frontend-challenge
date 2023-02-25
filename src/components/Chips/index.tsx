@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../../store/filterSlice';
 import { IoMdCheckmark } from 'react-icons/io';
+import { setFilter } from '../../store/filterSlice';
+import { selectFilter } from '../../store/todoSlice';
 
 import styles from './styles.module.scss';
-import { selectFilter } from '../../store/todoSlice';
 
 const filterChips = [
   { id: 1, filter: 'completed', label: 'Done' },
@@ -16,9 +16,12 @@ function Chips() {
   const [filterSelected, setFilterSelected] = useState<string>(filter);
   const dispatch = useDispatch();
 
-  function handleClick(value: string) {
-    dispatch(setFilter(value === filter ? 'all' : value));
-  }
+  const handleClick = useCallback(
+    (value: string) => {
+      dispatch(setFilter(value === filter ? 'all' : value));
+    },
+    [dispatch, filter]
+  );
 
   useEffect(() => {
     setFilterSelected(filter);
@@ -27,10 +30,15 @@ function Chips() {
   return (
     <ul className={styles.chipsContainer}>
       {filterChips?.map(chip => (
-        <li key={chip.id}>
+        <li
+          key={chip.id}
+          aria-label={`${chip.label} is selected.`}
+          aria-selected={filterSelected === chip.filter ? true : false}
+        >
           <button
-            onClick={() => handleClick(chip.filter)}
             className={filterSelected === chip.filter ? styles.active : ''}
+            onClick={() => handleClick(chip.filter)}
+            type="button"
           >
             {filterSelected === chip.filter && <IoMdCheckmark size={15} />}
             {chip.label}

@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { IoIosClose, IoMdSearch } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
+import { IoIosClose, IoMdSearch } from 'react-icons/io';
 import { changeSearchTerm } from '../../store/searchSlice';
 import { selectSearchTerm } from '../../store/todoSlice';
 import { Chips } from '../Chips';
@@ -29,6 +29,7 @@ function SearchBar() {
 
       <p className={styles.inputContainer}>
         <input
+          aria-label="Search items"
           type="text"
           placeholder="Search items"
           value={inputValue}

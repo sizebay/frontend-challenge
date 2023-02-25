@@ -8,7 +8,7 @@ import * as data from '../../utils/dateTime';
 import styles from './styles.module.scss';
 
 function Modal() {
-  const progressValue = useSelector(selectProgress);
+  const progressValue = useSelector(selectProgress) || 0;
 
   return (
     <section className={styles.modalContainer}>
@@ -23,7 +23,12 @@ function Modal() {
         <p>{data.dayOfWeek}</p>
       </header>
 
-      <progress max={100} value={progressValue} defaultValue={0} />
+      <progress
+        aria-label={`Task completion progress: ${progressValue}%`}
+        defaultValue={0}
+        max={100}
+        value={progressValue}
+      />
 
       <SearchBar />
       <TodoForm />
