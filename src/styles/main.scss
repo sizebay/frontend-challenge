@@ -36,3 +36,18 @@ h2 {
   min-height: 100vh;
   padding: 1.6rem 1.6rem 1.8rem;
 }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $progress-bar-background-color;
+  border-radius: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $grey-500;
+  border-radius: 9px;
+}
