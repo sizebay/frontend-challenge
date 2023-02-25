@@ -1,3 +1,5 @@
+import { SearchBar } from '../SearchBar';
+
 import styles from './styles.module.scss';
 
 function Modal() {
@@ -15,6 +17,8 @@ function Modal() {
       </header>
 
       <progress max={100} value={50} />
+
+      <SearchBar />
     </section>
   );
 }

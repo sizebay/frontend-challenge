@@ -1,0 +1,37 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+.inputContainer {
+  border-radius: $border-radius;
+  border: $border;
+  height: 4rem;
+  margin-inline-start: auto;
+  max-width: 45rem;
+  padding-inline: 1rem;
+
+  @include center-flex;
+  justify-content: space-between;
+
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 90%;
+  }
+
+  button {
+    all: unset;
+  }
+
+  label,
+  svg,
+  button {
+    height: 100%;
+  }
+
+  @include desktop {
+    button {
+      margin-inline-end: 0.6rem;
+    }
+  }
+}
