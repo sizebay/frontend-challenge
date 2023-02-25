@@ -38,7 +38,7 @@
   }
 
   @include desktop {
-    button {
+    button[type='submit'] {
       margin-inline-end: 0.6rem;
     }
   }

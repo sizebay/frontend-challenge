@@ -16,7 +16,7 @@ function TodoForm() {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (inputValue)
+    if (inputValue.trim())
       dispatch(
         addTodo({
           id: Number(generateId.next().value),

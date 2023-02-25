@@ -36,13 +36,15 @@ function SearchBar() {
           onChange={e => setInputValue(e.target.value)}
         />
         <label>
-          <button type="submit" aria-label="Search">
-            {inputValue ? (
-              <IoIosClose size={23} onClick={() => setInputValue('')} />
-            ) : (
+          {inputValue ? (
+            <button type="reset" aria-label="Clear search">
+              <IoIosClose size={33} onClick={() => setInputValue('')} />
+            </button>
+          ) : (
+            <button type="submit" aria-label="Search">
               <IoMdSearch size={23} />
-            )}
-          </button>
+            </button>
+          )}
         </label>
       </p>
     </form>

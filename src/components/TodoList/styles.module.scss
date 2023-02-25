@@ -1,6 +1,26 @@
 @import '../../styles/config';
 @import '../../styles/mixins';
 
+@keyframes slide-in {
+  from {
+    transform: translateX(100vw);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .todoListContainer {
   font-size: 1.4rem;
   height: 22rem;
@@ -18,7 +38,17 @@
     border: $border;
     height: 4.8rem;
     padding: 1.5rem;
+    opacity: 0;
     position: relative;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    animation: slide-in 0.3s ease forwards;
+
+    @for $i from 1 through 4 {
+      &:nth-child(#{$i}) {
+        animation-delay: ($i * 0.1s) + 0.15s;
+      }
+    }
 
     &:focus {
       outline-color: $secondary-color;
@@ -45,7 +75,9 @@
     position: absolute;
     right: 0;
     top: 0;
+    opacity: 0;
     transform: translate(1px, -1px);
+    animation: fade-in 0.3s ease-in forwards;
 
     .done,
     .delete {
@@ -53,6 +85,7 @@
       background: $accent-color;
       cursor: pointer;
       width: 4.4rem;
+      transition: filter 0.25s ease-in-out;
     }
 
     .done {

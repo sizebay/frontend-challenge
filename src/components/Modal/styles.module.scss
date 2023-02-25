@@ -48,10 +48,12 @@
 
   progress::-webkit-progress-value {
     background-color: $primary-color;
+    transition: all 0.5s ease-in-out;
   }
 
   progress::-moz-progress-bar {
     background-color: $primary-color;
+    transition: all 0.5s ease-in-out;
   }
 
   progress,

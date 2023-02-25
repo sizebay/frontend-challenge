@@ -36,6 +36,7 @@
     background: $secondary-color;
     cursor: not-allowed;
     width: 4.4rem;
+    transition: filter 0.25s ease-in-out;
 
     &,
     svg {
