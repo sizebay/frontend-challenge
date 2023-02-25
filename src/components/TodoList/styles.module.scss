@@ -5,8 +5,8 @@
   font-size: 1.4rem;
   height: 22rem;
   margin-block-start: 1.6rem;
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
   scroll-behavior: smooth;
 
   li {
@@ -18,9 +18,43 @@
     border: $border;
     height: 4.8rem;
     padding: 1.5rem;
+    position: relative;
+  }
+
+  .controls {
+    display: none;
   }
 
   li ~ li {
     margin-block-start: 0.8rem;
+  }
+
+  li.active {
+    background: $background-color-light;
+  }
+
+  p.controls {
+    @include center-flex;
+    align-items: stretch;
+
+    height: calc(100% + 2px);
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(1px, -1px);
+
+    .done,
+    .delete {
+      @include center-flex;
+      background: $accent-color;
+      cursor: pointer;
+      width: 4.4rem;
+    }
+
+    .done {
+      background: $primary-color;
+      border-bottom-right-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
   }
 }

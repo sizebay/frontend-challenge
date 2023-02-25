@@ -2,7 +2,7 @@
 @import './config';
 @import './mixins';
 
-// Typography
+/* Typography */
 html {
   font-size: 62.5%; // 1 rem => 10px
 }
@@ -50,4 +50,14 @@ h2 {
 ::-webkit-scrollbar-thumb {
   background: $grey-500;
   border-radius: 9px;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
 }
