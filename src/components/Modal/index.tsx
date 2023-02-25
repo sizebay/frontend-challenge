@@ -1,6 +1,7 @@
 import { SearchBar } from '../SearchBar';
 import { TodoForm } from '../TodoForm';
 import { TodoList } from '../TodoList';
+import * as data from '../../utils/dateTime';
 
 import styles from './styles.module.scss';
 
@@ -9,13 +10,13 @@ function Modal() {
     <section className={styles.modalContainer}>
       <header>
         <hgroup>
-          <h2>07</h2>
+          <h2>{data.day}</h2>
           <p>
-            Jul
-            <time>2021</time>
+            {data.month}
+            <time>{data.year}</time>
           </p>
         </hgroup>
-        <p>Wednesday</p>
+        <p>{data.dayOfWeek}</p>
       </header>
 
       <progress max={100} value={50} />
