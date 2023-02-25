@@ -1,26 +1,35 @@
 @import '../../styles/config';
 @import '../../styles/mixins';
 
+.chipsContainer,
+.inputContainer {
+  @include center-flex;
+}
+
+.searchBarContainer {
+  @include center-flex(column-reverse);
+  align-items: flex-end;
+  gap: 1rem;
+
+  @include desktop {
+    @include center-flex;
+  }
+}
+
 .inputContainer {
   border-radius: $border-radius;
   border: $border;
   height: 4rem;
-  margin-inline-start: auto;
-  max-width: 45rem;
-  padding-inline: 1rem;
-
-  @include center-flex;
   justify-content: space-between;
+  margin-inline-start: auto;
+  padding-inline: 1rem;
+  width: clamp(1rem, 100%, 45rem);
 
   input {
     background: transparent;
     border: none;
     outline: none;
     width: 90%;
-  }
-
-  button {
-    all: unset;
   }
 
   label,
@@ -32,6 +41,34 @@
   @include desktop {
     button {
       margin-inline-end: 0.6rem;
+    }
+  }
+}
+
+.chipsContainer {
+  font-size: 1.4rem;
+  list-style: none;
+
+  li ~ li {
+    margin-inline-start: 0.8rem;
+  }
+
+  button {
+    @include center-flex;
+    border-radius: 20rem;
+    border: $border;
+    cursor: pointer;
+    max-height: 3.3rem;
+    padding: 0.7rem 1.6rem;
+
+    &.active {
+      background: #f7f7f8;
+      border: 1px solid $secondary-color;
+      color: $secondary-color;
+
+      svg {
+        margin-inline-end: 0.4rem;
+      }
     }
   }
 }
