@@ -53,6 +53,12 @@ export const selectFilteredTodos: Selector<RootState, Todo[]> = createSelector(
 
 export const selectTodosSize = (state: RootState) => state.todos.length;
 
+export const selectProgress: Selector<RootState, number> = createSelector(
+  (state: RootState) => state.todos.filter(todo => todo.done),
+  selectTodosSize,
+  (todos: Todo[], size) => (todos.length / size) * 100
+);
+
 export const { addTodo, deleteTodo, updateTodo } = todosSlice.actions;
 
 export default todosSlice.reducer;

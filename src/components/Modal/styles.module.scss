@@ -58,5 +58,6 @@
   progress::-webkit-progress-bar {
     background-color: $progress-bar-background-color;
     border-radius: $border-radius;
+    overflow: hidden;
   }
 }

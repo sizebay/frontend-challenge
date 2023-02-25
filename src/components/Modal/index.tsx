@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+import { selectProgress } from '../../store/todoSlice';
 import { SearchBar } from '../SearchBar';
 import { TodoForm } from '../TodoForm';
 import { TodoList } from '../TodoList';
@@ -6,6 +8,8 @@ import * as data from '../../utils/dateTime';
 import styles from './styles.module.scss';
 
 function Modal() {
+  const progressValue = useSelector(selectProgress);
+
   return (
     <section className={styles.modalContainer}>
       <header>
@@ -19,7 +23,7 @@ function Modal() {
         <p>{data.dayOfWeek}</p>
       </header>
 
-      <progress max={100} value={50} />
+      <progress max={100} value={progressValue} defaultValue={0} />
 
       <SearchBar />
       <TodoForm />
