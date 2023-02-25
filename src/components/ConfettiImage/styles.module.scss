@@ -1,0 +1,44 @@
+@import '../../styles/mixins';
+
+.confetti {
+  position: absolute;
+  background-image: url('../../../public/confetti.svg');
+  background-size: cover;
+  transform-origin: bottom center;
+  transform: scale(0);
+  top: -1rem;
+  right: -3rem;
+  height: 18rem;
+  width: 18rem;
+  z-index: 1;
+
+  animation-fill-mode: forwards;
+  animation: zoom-in 0.8s ease-out;
+  animation-delay: 0.5s;
+
+  @include desktop {
+    right: -10;
+    top: -7rem;
+    height: 25rem;
+    width: 25rem;
+  }
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+    display: block;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+    display: none;
+  }
+}

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectProgress } from '../../store/todoSlice';
+import { ConfettiImage } from '../ConfettiImage';
 import { SearchBar } from '../SearchBar';
 import { TodoForm } from '../TodoForm';
 import { TodoList } from '../TodoList';
@@ -29,7 +30,7 @@ function Modal() {
         max={100}
         value={progressValue}
       />
-
+      <ConfettiImage show={progressValue === 100} />
       <SearchBar />
       <TodoForm />
       <TodoList />
