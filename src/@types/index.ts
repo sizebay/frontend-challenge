@@ -3,3 +3,7 @@ export type Todo = {
   text: string;
   done: boolean;
 };
+
+export type RootState = {
+  todos: Todo[];
+};
