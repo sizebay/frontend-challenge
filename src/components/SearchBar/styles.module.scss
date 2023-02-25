@@ -1,7 +1,6 @@
 @import '../../styles/config';
 @import '../../styles/mixins';
 
-.chipsContainer,
 .inputContainer {
   @include center-flex;
 }
@@ -41,34 +40,6 @@
   @include desktop {
     button {
       margin-inline-end: 0.6rem;
-    }
-  }
-}
-
-.chipsContainer {
-  font-size: 1.4rem;
-  list-style: none;
-
-  li ~ li {
-    margin-inline-start: 0.8rem;
-  }
-
-  button {
-    @include center-flex;
-    border-radius: 20rem;
-    border: $border;
-    cursor: pointer;
-    max-height: 3.3rem;
-    padding: 0.7rem 1.6rem;
-
-    &.active {
-      background: #f7f7f8;
-      border: 1px solid $secondary-color;
-      color: $secondary-color;
-
-      svg {
-        margin-inline-end: 0.4rem;
-      }
     }
   }
 }

@@ -5,5 +5,6 @@ export type Todo = {
 };
 
 export type RootState = {
+  filter: string;
   todos: Todo[];
 };

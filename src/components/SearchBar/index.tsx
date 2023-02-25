@@ -1,5 +1,6 @@
 import { FormEvent } from 'react';
 import { IoMdSearch, IoIosClose, IoMdCheckmark } from 'react-icons/io';
+import { Chips } from '../Chips';
 
 import styles from './styles.module.scss';
 
@@ -10,17 +11,7 @@ function SearchBar() {
 
   return (
     <form className={styles.searchBarContainer} onSubmit={handleSubmit}>
-      <ul className={styles.chipsContainer}>
-        <li>
-          <button>Done</button>
-        </li>
-        <li>
-          <button className={styles.active}>
-            <IoMdCheckmark size={15} />
-            Pending
-          </button>
-        </li>
-      </ul>
+      <Chips />
 
       <p className={styles.inputContainer}>
         <input type="text" placeholder="Search items" />

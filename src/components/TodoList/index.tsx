@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoIosCheckmarkCircle, IoMdRemoveCircle } from 'react-icons/io';
 import {
   deleteTodo,
-  selectTotalTodos,
+  selectFilteredTodos,
   updateTodo,
+  selectFilter,
 } from '../../store/todoSlice';
+import { setFilter } from '../../store/filterSlice';
 import { Todo } from '../../@types';
 
 import styles from './styles.module.scss';
@@ -14,17 +16,45 @@ function TodoList() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [activeTodoId, setActiveTodoId] = useState<number | null>(null);
   const dispatch = useDispatch();
-  const totalTodos = useSelector(selectTotalTodos);
+  const todoList = useSelector(selectFilteredTodos);
+  const filter = useSelector(selectFilter);
 
   const updateTodos = () => {
-    setTodos(totalTodos || []);
+    setTodos(todoList);
   };
 
   useEffect(() => {
     updateTodos();
-  }, [totalTodos]);
+  }, [todoList]);
 
-  if (!todos) return;
+  if (!todos)
+    return <p className={styles.todoListContainer}>Something went wrong...</p>;
+
+  if (todos.length === 0) {
+    const filterState = filter === 'completed' ? 'done' : filter;
+
+    const resetFilters = () => {
+      dispatch(setFilter('all'));
+    };
+
+    return (
+      <p className={styles.todoListContainer}>
+        {filterState === 'all' ? (
+          <>
+            Your search found no results.{' '}
+            <u onClick={resetFilters}>Clean the search here</u> to see all
+            items.
+          </>
+        ) : (
+          <>
+            There are no items marked as {filterState}.{' '}
+            <u onClick={resetFilters}>Clear the filter here</u> to see all
+            items.
+          </>
+        )}
+      </p>
+    );
+  }
 
   function handleItemClick(id: number) {
     setActiveTodoId(activeTodoId === id ? null : id);
