@@ -1,4 +1,5 @@
 import { SearchBar } from '../SearchBar';
+import { TodoForm } from '../TodoForm';
 
 import styles from './styles.module.scss';
 
@@ -19,6 +20,7 @@ function Modal() {
       <progress max={100} value={50} />
 
       <SearchBar />
+      <TodoForm />
     </section>
   );
 }

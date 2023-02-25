@@ -1,0 +1,50 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+.todoFormContainer {
+  margin-block-start: 2.4rem;
+
+  > p {
+    @include center-flex;
+    justify-content: space-between;
+
+    background: $background-color-form;
+    border-radius: $border-radius;
+    border: $border;
+    height: 4.8rem;
+    padding-inline-start: 1.5rem;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 90%;
+    padding-block: 1.5rem;
+
+    &::placeholder {
+      opacity: 0.5;
+    }
+  }
+
+  button {
+    all: unset;
+
+    @include center-flex;
+    background: $secondary-color;
+    width: 4.4rem;
+
+    &,
+    svg {
+      opacity: 0.5;
+    }
+  }
+
+  label,
+  button {
+    height: 4.8rem;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+    transform: translateX(0.5px);
+  }
+}
