@@ -1,9 +1,7 @@
+import { Modal } from './components/Modal';
+
 function App() {
-  return (
-    <>
-      <p>Hi :)</p>
-    </>
-  );
+  return <Modal />;
 }
 
 export { App };

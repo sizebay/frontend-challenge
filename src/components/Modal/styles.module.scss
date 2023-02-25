@@ -1,0 +1,42 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+.modalContainer {
+  background: $background-color-light;
+  border-radius: $border-radius;
+  flex: 1;
+  font-size: 2.4rem;
+  height: 78rem;
+  max-width: 80rem;
+  padding: 4.8rem 1.6rem;
+
+  @include desktop {
+    padding: 6rem 5.4rem;
+    height: 65rem;
+  }
+
+  header {
+    @include center-flex;
+    justify-content: space-between;
+    min-height: 7.9rem;
+
+    hgroup {
+      @include center-flex;
+
+      p {
+        @include center-flex(column);
+        align-items: flex-start;
+        line-height: 1;
+
+        time {
+          font-weight: 300;
+        }
+      }
+    }
+
+    > p {
+      align-self: flex-end;
+      margin-block-end: 1.6rem;
+    }
+  }
+}
