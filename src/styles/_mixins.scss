@@ -1,0 +1,14 @@
+$breakpoint-desktop: 768px;
+
+@mixin center-flex($direction: row) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
+
+@mixin desktop {
+  @media screen and (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
