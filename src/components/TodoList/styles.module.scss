@@ -1,0 +1,26 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+.todoListContainer {
+  font-size: 1.4rem;
+  height: 22rem;
+  margin-block-start: 1.6rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  li {
+    @include center-flex;
+    justify-content: flex-start;
+
+    background: #f7f7f8;
+    border-radius: $border-radius;
+    border: $border;
+    height: 4.8rem;
+    padding: 1.5rem;
+  }
+
+  li ~ li {
+    margin-block-start: 0.8rem;
+  }
+}

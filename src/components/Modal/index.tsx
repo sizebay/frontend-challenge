@@ -1,5 +1,6 @@
 import { SearchBar } from '../SearchBar';
 import { TodoForm } from '../TodoForm';
+import { TodoList } from '../TodoList';
 
 import styles from './styles.module.scss';
 
@@ -21,6 +22,7 @@ function Modal() {
 
       <SearchBar />
       <TodoForm />
+      <TodoList />
     </section>
   );
 }
