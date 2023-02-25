@@ -1,16 +1,29 @@
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTotalTodos } from '../../store/todoSlice';
+import { Todo } from '../../@types';
+
 import styles from './styles.module.scss';
 
 function TodoList() {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const totalTodos = useSelector(selectTotalTodos);
+
+  const updateTodos = () => {
+    setTodos(totalTodos || []);
+  };
+
+  useEffect(() => {
+    updateTodos();
+  }, [totalTodos]);
+
+  if (!todos) return;
+
   return (
     <ul className={styles.todoListContainer}>
-      <li>Lorem ipsum dolor sit amet, consectetur adipisicing.</li>
-      <li>Lorem ipsum dolor sit amet.</li>
-      <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
-      <li>Lorem ipsum dolor sit amet.</li>
-      <li>Lorem ipsum dolor sit amet.</li>
-      <li>Lorem ipsum dolor sit amet consectetur.</li>
-      <li>Lorem ipsum dolor sit amet.</li>
-      <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse?</li>
+      {todos?.map(todo => (
+        <li key={todo.id}>{todo.text}</li>
+      ))}
     </ul>
   );
 }
