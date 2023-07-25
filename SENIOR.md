@@ -23,6 +23,7 @@ O teste está disponível tanto para candidatos quanto para quem quer apenas exp
 
 - Faça um fork desse projeto
 - Ao finalizar, faça um Pull Request e nos avise via e-mail
+- Crie sua branch com o prefix `senior` seguindo pelo seu username (e.g `senior/vaporwavie`) para facilitar o nosso lado!
 - Aguarde o retorno. A revisão será feita pela nossa equipe. **O pós review é valioso e será considerado!**
 
 ## Requisitos e Tecnologias
