@@ -12,6 +12,8 @@ A SizeFashion irá apresentar um *highlight* de produtos das suas coleções em 
 
 ## Recursos
 
+- Dump de produtos para composição do layout (disponível em: https://static.sizebay.technology/assets/storeCollections.json)
+
 Afim de permitir um canvas no desenvolvimento, este projeto não possui um mockup/layout definido. Dito isso, é importante que o seu layout:
 
 - Possua a logomarca da empresa (disponível em: https://store.sizebay.com/cdn/shop/files/Brand_Mark_Tag_Sizebay-REFINED_2x_2_540x.png)
