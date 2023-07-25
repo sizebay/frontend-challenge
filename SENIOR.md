@@ -32,6 +32,16 @@ O teste está disponível tanto para candidatos quanto para quem quer apenas exp
 
 *PS: usamos `yarn` como padrão na Sizebay!*
 
+### Requisitos
+- Deve ser possível filtrar por coleção, com base nas categorias disponíveis
+- Deve ser possível pesquisar por N produtos
+- Deve ser possível pesquisar por N produtos aplicando um filtro específico
+- Ao usuário clicar em um produto em específico, deve ser possível isolar ele numa página, que aproveite melhor deste conteúdo
+- Caso o usuário mude de filtro, é esperado que isso seja persistido no browser
+- Sua UI precisa ser mobile ready
+- Dica: Esperamos uma entrega semelhante ao que é visto na https://store.sizebay.com, permitimos o uso como inspiração, mas busque compor a sua interface livremente, não prendendo sua imaginação apenas àquele escopo.
+
+### Tecnologias
 - React
     - API de Hooks
     - Composição com Suspense API e Context API
