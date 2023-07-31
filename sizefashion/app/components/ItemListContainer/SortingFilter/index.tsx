@@ -13,7 +13,7 @@ const SortingFilter = () => {
     { label: 'Sort by...', value: '' },
     { label: 'Title (A - Z)', value: "titleAsc" },
     { label: 'Title (Z - A)', value: "titleDesc" }
-  ]
+  ];
 
   const handleSortChange = (value: string) => {
     setSortOrder(value);
@@ -27,6 +27,6 @@ const SortingFilter = () => {
       onChange={(e) => handleSortChange(e)}
     />
   );
-}
+};
 
-export default SortingFilter; 
+export default SortingFilter;

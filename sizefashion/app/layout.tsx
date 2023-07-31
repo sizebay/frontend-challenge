@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <title>SizeFashion</title>
-        <link rel="icon" href="../../public/favicon.ico" />
+        <link rel="icon" href="./favicon.ico" />
       </Head>
 
       <body className={inter.className}

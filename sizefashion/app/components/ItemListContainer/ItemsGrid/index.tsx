@@ -5,27 +5,18 @@ import { useItemsContext } from '@context/ItemsContext';
 import { IItem } from '@interfaces/IItem';
 import React from 'react';
 
-
 const ItemsGrid: React.FC = () => {
 
   const ItemsContext = useItemsContext();
 
   const [data, setData] = React.useState<IItem[]>([]);
 
-  React.useEffect(() => {
+  React.useEffect(() => { setData(ItemsContext.manipulatedData) }, [ItemsContext])
 
-    console.log(ItemsContext)
-
-    setData(ItemsContext.manipulatedData)
-  }, [ItemsContext])
-
-  const emptyState = (text: string) => {
-    return (
-      <div className='flex items-center justify-center bg-gray-700 h-44 w-full'>
-        <span>{text}</span>
-      </div>
-    )
-  }
+  const emptyState = (text: string) =>
+    <div className='flex items-center justify-center bg-gray-700 h-44 w-full'>
+      <span>{text}</span>
+    </div>;
 
   if (ItemsContext.fetching) return <LoadingOverlay />;
   if (data.length === 0) return emptyState('Nothing was found 😔');

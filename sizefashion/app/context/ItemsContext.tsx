@@ -110,7 +110,6 @@ const ItemsContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   React.useEffect(() => {
     populate();
-    console.log('1')
   }, [])
 
   React.useEffect(() => {

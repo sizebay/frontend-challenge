@@ -17,7 +17,7 @@ const ClickableItem = (props: IProps) => {
 
   React.useEffect(() => {
 
-    const srcRegex = /<img[^>]*src\s*=\s*['"]([^'"]+)['"][^>]*>/i; // Courtesy of ChatGPT
+    const srcRegex = /<img[^>]*src\s*=\s*['"]([^'"]+)['"][^>]*>/i; // Courtesy of ChatGPT;
     const matches = props.item.image.match(srcRegex);
 
     if (matches && matches.length >= 2) setImageSrc(matches[1]);
@@ -34,13 +34,7 @@ const ClickableItem = (props: IProps) => {
   };
 
   return (
-    // <Link href={`/item/${props.item.title}`}>
-    <Link
-      href={{
-        pathname: '/item',
-        query: { id: props.id.toString(), imageSrc: imageSrc },
-      }}
-    >
+    <Link href={{ pathname: '/item', query: { id: props.id.toString(), imageSrc: imageSrc } }}>
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

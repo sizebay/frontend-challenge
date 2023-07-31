@@ -2,7 +2,7 @@
 import { useItemsContext } from '@context/ItemsContext';
 import React from 'react';
 
-export default function TextInput() {
+const TextInput = () => {
 
   const ItemsContext = useItemsContext();
   const [searchText, setSearchText] = React.useState('');
@@ -21,4 +21,6 @@ export default function TextInput() {
       className='text-blue-100 bg-gray-700 border-0 px-2 py-1 w-3/4'
     />
   );
-}
+};
+
+export default TextInput;

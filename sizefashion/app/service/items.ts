@@ -1,11 +1,11 @@
-import { IError } from "../interfaces/IError";
-import { IItem } from "../interfaces/IItem";
+import { IError } from "@interfaces/IError";
+import { IItem } from "@interfaces/IItem";
 
 const url = 'https://static.sizebay.technology/assets/';
 
 interface IItemsReponse {
   data: IItem[];
-  error: false | IError
+  error: false | IError;
 }
 
 export async function fetchProducts(): Promise<IItemsReponse> {
@@ -19,9 +19,7 @@ export async function fetchProducts(): Promise<IItemsReponse> {
   try {
     const response = await fetch(url + endpoint);
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok.');
-    }
+    if (!response.ok) throw new Error('network');
 
     const jsonData: IItem[] = await response.json();
 
@@ -31,7 +29,6 @@ export async function fetchProducts(): Promise<IItemsReponse> {
     };
 
     return itemsReponse;
-
 
   } catch (error) {
 
