@@ -2,7 +2,10 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Footer, Navbar } from './components'
 
-import { Products } from './pages'
+import { 
+  Products,
+  SingleProduct
+} from './pages'
 
 
 function App() {
@@ -13,6 +16,7 @@ function App() {
           <Route exact path='/'>
             <Products />
           </Route>
+          <Route exact path='/products/:slug' children={<SingleProduct />} />
         </Switch>
       </Layout>
     </Router>

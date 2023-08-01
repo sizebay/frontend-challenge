@@ -19,8 +19,8 @@ const Product: React.FC<{ product: productDataType }> = ({ product }) => {
         </Link>
       </div>
       <footer className='mt-1 flex justify-between items-center flex-col tracking-widest'>
-        <h5 className='mb-0 font-bold'>{title}</h5>
-        <p className='font-normal color-black'>{vendor}</p>
+        <h5 className='mb-0 font-normal text-lg'>{title}</h5>
+        <p className='font-thin color-black'>{vendor}</p>
       </footer>
     </div>
   )
