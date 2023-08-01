@@ -1,4 +1,5 @@
 import { Filters } from '../components'
+import ProductList from '../components/ProductList'
 
 const ProductsPage = () => {
   return (
@@ -7,8 +8,7 @@ const ProductsPage = () => {
         <div className='w-[90vw] lg:grid-cols-[200px_minmax(950px,_1fr)_100px] grid gap-x-6 gap-y-8 my-0 mx-auto lg:w-[95vw]'>
           <Filters />
           <div>
-            eu funciono
-            {/* listagem de produtos */}
+            <ProductList />
           </div>
         </div>
       </div>
