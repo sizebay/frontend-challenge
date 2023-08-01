@@ -1,30 +1,18 @@
-import { productDataType } from "../utils/productData"
+import { useFilterContext } from "../context/filter_context"
+import { useProductsContext } from "../context/products_context"
 import GridView from "./GridView"
+import Loading from "./Loading"
 
 const ProductList = () => {
 
-  const filteredProducts:productDataType[] = [
-    {
-      'category': 'male',
-      'image': '123',
-      'title': 'roupa',
-      'vendor': 'vendedor'
-    },
-    {
-      'category': 'male',
-      'image': '123',
-      'title': 'roupa',
-      'vendor': 'vendedor'
-    },
-    {
-      'category': 'male',
-      'image': '123',
-      'title': 'roupa',
-      'vendor': 'vendedor'
-    }
-  ]
+  const { filteredProducts } = useFilterContext()
+  const { productsLoading } = useProductsContext()
+  
+  if (productsLoading) {
+    return <Loading />
+  }
 
-  if (false) {
+  if (filteredProducts.length < 1) {
     return (
       <h5>
         Desculpe, não encontramos nenhum produto para sua pesquisa

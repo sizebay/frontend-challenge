@@ -1,6 +1,5 @@
 import {
   LOAD_PRODUCTS,
-  SET_GRID_VIEW,
   UPDATE_FILTERS,
   FILTER_PRODUCTS,
   CLEAR_FILTERS,
@@ -16,9 +15,6 @@ const filter_reducer = ( state: initialStateType, action: { type: any; payload?:
       filters: { ...state.filters },
     }
   }
-  if (action.type === SET_GRID_VIEW) {
-    return { ...state, gridView: true }
-  }
   if (action.type === UPDATE_FILTERS) {
     let { name, value } = action.payload
     return { ...state, filters: { ...state.filters, [name]: value } }
@@ -29,15 +25,10 @@ const filter_reducer = ( state: initialStateType, action: { type: any; payload?:
       searchTerm,
       category,
       vendor,
-      // price,
-      // age: ageFilters,
-      // height: heightFilters,
     } = state.filters
     let tempProducts = [...allProducts]
-    // filter by searchTerm
     if (searchTerm) {
       tempProducts = tempProducts.filter(product => {
-        // console.log(product)
         return (
           product.title.toLowerCase().includes(searchTerm.toLowerCase())
         )

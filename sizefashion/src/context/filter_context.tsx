@@ -3,8 +3,11 @@ import reducer from '../reducers/filter_reducer'
 import {
   UPDATE_FILTERS,
   CLEAR_FILTERS,
+  LOAD_PRODUCTS,
+  FILTER_PRODUCTS,
 } from '../actions'
 import { productDataType } from '../utils/productData'
+import { useProductsContext } from './products_context'
 
 type filtersType = {
   searchTerm: string
@@ -42,8 +45,18 @@ type Props = {
 export const FilterContext = React.createContext<initialStateType>(initialState)
 
 export const FilterProvider: React.FC<Props> = ({ children }) => {
-
+  const { allProducts } = useProductsContext()
+  
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
+    dispatch({ type: LOAD_PRODUCTS, payload: allProducts })
+  }, [allProducts])
+
+  useEffect(() => {
+    dispatch({ type: FILTER_PRODUCTS })
+  }, [allProducts, state.filters])
+
 
   const updateFilters = (e: any) => {
 

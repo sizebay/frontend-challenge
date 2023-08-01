@@ -23,9 +23,7 @@ const products_reducer = (state: initialStateType, action: any) => {
       }
     })
     
-    const featuredProducts = allProducts
-
-    return { ...state, productsLoading: false, allProducts, featuredProducts }
+    return { ...state, productsLoading: false, allProducts }
   }
   if (action.type === GET_PRODUCTS_ERROR) {
     return { ...state, productsError: true, productsLoading: false }

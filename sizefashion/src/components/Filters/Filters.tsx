@@ -1,3 +1,5 @@
+import { CategoryFilters } from "./CategoryFilters"
+
 const Filters = () => {
   return (
     <div>
@@ -5,6 +7,7 @@ const Filters = () => {
 
       <div className={'hidden md:block md:top-4 md:sticky'}>
         <form onSubmit={e => e.preventDefault()}>
+          <CategoryFilters />
           {/* componentes:
           campo de busca
           categorias
