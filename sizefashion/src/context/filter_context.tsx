@@ -64,14 +64,9 @@ export const FilterProvider: React.FC<Props> = ({ children }) => {
     let name = e.target.name
     let value = e.target.value
 
-    if (name === 'category') {
+    if (name === 'category' || name === 'vendor') {
       value = e.target.textContent
     }
-    // alterar
-    if (name === 'vendor') {
-      value = e.target.textContent
-    }
-    // alterar
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } })
   }
   const clearFilters = () => {

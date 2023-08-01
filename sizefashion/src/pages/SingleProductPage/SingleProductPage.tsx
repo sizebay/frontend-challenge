@@ -18,8 +18,7 @@ const SingleProductPage = () => {
 
   const { image } = { ...singleProduct }
 
-  // when page refreshes, allProducts changes from [] to an array of data from API
-  // so if state of allProducts changes, run this useEffect too for the case of page refresh
+  // caso aconteça um refresh na tela de produto
   useEffect(() => {
     if (slug) {
       fetchSingleProduct(slug)
