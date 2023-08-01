@@ -26,7 +26,9 @@ const filter_reducer = ( state: initialStateType, action: { type: any; payload?:
       category,
       vendor,
     } = state.filters
+
     let tempProducts = [...allProducts]
+    
     if (searchTerm) {
       tempProducts = tempProducts.filter(product => {
         return (

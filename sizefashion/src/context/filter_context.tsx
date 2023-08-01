@@ -6,6 +6,7 @@ import {
   LOAD_PRODUCTS,
   FILTER_PRODUCTS,
 } from '../actions'
+
 import { productDataType } from '../utils/productData'
 import { useProductsContext } from './products_context'
 
@@ -66,9 +67,11 @@ export const FilterProvider: React.FC<Props> = ({ children }) => {
     if (name === 'category') {
       value = e.target.textContent
     }
+    // alterar
     if (name === 'vendor') {
       value = e.target.textContent
     }
+    // alterar
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } })
   }
   const clearFilters = () => {

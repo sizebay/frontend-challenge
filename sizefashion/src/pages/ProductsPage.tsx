@@ -1,5 +1,4 @@
-import { Filters } from '../components'
-import ProductList from '../components/ProductList'
+import { Filters, ProductList } from '../components'
 
 const ProductsPage = () => {
   return (

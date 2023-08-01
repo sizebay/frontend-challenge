@@ -33,6 +33,7 @@ export const ProductsProvider: React.FC<Props> = ({ children }) => {
 
 
   useEffect(() => {
+    console.log('dkjaklsdjakldjalasdkja')
     const fetchProducts = async () => {
       dispatch({ type: GET_PRODUCTS_BEGIN })
       try {

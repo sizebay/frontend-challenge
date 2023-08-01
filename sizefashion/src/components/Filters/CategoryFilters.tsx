@@ -11,7 +11,7 @@ export const CategoryFilters = () => {
       <label className='block text-black text-md font-bold mb-2'>Categorias</label>
       <div className='overflow-x-hidden overflow-y-auto max-h-96'>
         {uniqueCategories.map((uniqueCategory) => {
-          if (typeof uniqueCategory === 'string') { // p ts não reclamar
+          if (typeof uniqueCategory === 'string') { // p/ ts não reclamar
             return (
               <button
                 data-testid="category"
