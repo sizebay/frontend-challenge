@@ -63,7 +63,6 @@ export const ProductsProvider: React.FC<Props> = ({ children }) => {
       try {
         const queryResult = await axios.get(API_ENDPOINT)
         const result = queryResult.data
-        console.log(result)
 
         dispatch({ type: GET_PRODUCTS_SUCCESS, payload: result })
       } catch (error) {
