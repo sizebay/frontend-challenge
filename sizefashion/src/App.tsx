@@ -1,22 +1,33 @@
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Navbar } from './components'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Layout>
+        <Switch>
+          <Route exact path='/'>
+            
+          </Route>
+        </Switch>
+      </Layout>
+    </Router>
+  )
 }
 
-export default App;
+export default App
+
+
+type Props = {
+  children?: React.ReactNode
+};
+
+const Layout: React.FC<Props> = ({ children }) => {
+  return (
+    <>
+      <Navbar />
+      {children}
+    </>
+  )
+}
