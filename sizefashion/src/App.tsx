@@ -14,13 +14,13 @@ function App() {
     <Router>
       <Layout>
         <Switch>
-          <Route path='*'>
-            <Error />
-          </Route>
           <Route exact path='/'>
             <Products />
           </Route>
           <Route exact path='/products/:slug' children={<SingleProduct />} />
+          <Route path='*'>
+            <Error />
+          </Route>
         </Switch>
       </Layout>
     </Router>
