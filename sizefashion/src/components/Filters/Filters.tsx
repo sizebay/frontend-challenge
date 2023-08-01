@@ -13,7 +13,7 @@ const Filters = () => {
         showFilters={showFilters}
         setShowFilters={setShowFilters}
       />
-      <div className={'hidden md:block md:top-4 md:sticky'}>
+      <div className={showFilters ? 'block' : 'hidden md:block md:top-4 md:sticky'}>
         <form onSubmit={e => e.preventDefault()}>
           <SearchFilters />
           <CategoryFilters />
