@@ -12,6 +12,6 @@ instala as dependencias do projeto
 
 inicia a aplicação, acessar http://localhost:3000
 
-### `yarn teste`
+### `yarn test`
 
 roda os testes unitários
