@@ -1,9 +1,9 @@
-import { useFilterContext } from '../../context/filter_context';
+import { useFilter } from '../../context/filterContext';
 
 export const SearchFilters = () => {
   const {
     updateFilters, filters: { searchTerm },
-  } = useFilterContext();
+  } = useFilter();
 
   return (
     <div className='mb-2 overflow-x-hidden overflow-y-auto rounded-md'>

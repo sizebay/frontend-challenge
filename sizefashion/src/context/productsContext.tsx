@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useReducer } from 'react'
-import reducer from '../reducers/products_reducer'
+import reducer from '../reducers/productsReducer'
 import {
   GET_PRODUCTS_BEGIN,
   GET_PRODUCTS_SUCCESS,
@@ -8,15 +8,15 @@ import {
   GET_SINGLE_PRODUCT_SUCCESS,
   GET_SINGLE_PRODUCT_ERROR,
 } from '../actions'
-import { productDataType } from '../utils/productData'
-import { API_ENDPOINT } from '../utils/constants'
+import { ProductDataType } from '../utils/productData'
 import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid';
 
 export type initialStateType = {
-  allProducts: productDataType[] | []
+  allProducts: ProductDataType[] | []
   productsLoading: boolean
   productsError: boolean
-  singleProduct: productDataType | {}
+  singleProduct: ProductDataType | null
   singleProductLoading: boolean
   singleProductError: boolean
   fetchSingleProduct: (id: string) => void
@@ -26,10 +26,10 @@ const initialState: initialStateType = {
   allProducts: [],
   productsLoading: false,
   productsError: false,
-  singleProduct: {},
+  singleProduct: null,
   singleProductLoading: false,
   singleProductError: false,
-  fetchSingleProduct: (id: string) => {},
+  fetchSingleProduct: (id: string) => null,
 }
 
 type Props = {
@@ -38,16 +38,17 @@ type Props = {
 
 export const ProductsContext = React.createContext<initialStateType>(initialState)
 
-export const ProductsProvider: React.FC<Props> = ({ children }) => {
+
+export function ProductsProvider({children}: Props): React.ReactElement {
   
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const fetchSingleProduct = (slug: string) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
     try {
-      const singleProduct: productDataType = state.allProducts.find(
-        (product: productDataType) => product.title === slug
-      )[0]
+      const singleProduct: ProductDataType = state.allProducts.find(
+        (product: ProductDataType) => product.id === slug
+      )
       if (singleProduct) { // caso retorne undefined com o allProducts sendo []
         dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
       }
@@ -61,9 +62,9 @@ export const ProductsProvider: React.FC<Props> = ({ children }) => {
     const fetchProducts = async () => {
       dispatch({ type: GET_PRODUCTS_BEGIN })
       try {
-        const queryResult = await axios.get(API_ENDPOINT)
-        const result = queryResult.data
-
+        const queryResult = await axios.get(`${process.env.REACT_APP_API_ENDPOINT}`)
+        const result = queryResult.data.map((obj: ProductDataType) => ({ ...obj, id: uuidv4() }))
+        
         dispatch({ type: GET_PRODUCTS_SUCCESS, payload: result })
       } catch (error) {
         console.log(error)
@@ -82,6 +83,6 @@ export const ProductsProvider: React.FC<Props> = ({ children }) => {
   )
 }
 
-export const useProductsContext = () => {
+export const useProducts = () => {
   return useContext(ProductsContext)
 }

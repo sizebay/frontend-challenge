@@ -1,12 +1,12 @@
-import { useFilterContext } from "../context/filter_context"
-import { useProductsContext } from "../context/products_context"
+import { useFilter } from "../context/filterContext"
+import { useProducts } from "../context/productsContext"
 import GridView from "./GridView"
 import Loading from "./Loading"
 
 const ProductList = () => {
 
-  const { filteredProducts } = useFilterContext()
-  const { productsLoading } = useProductsContext()
+  const { filteredProducts } = useFilter()
+  const { productsLoading } = useProducts()
   
   if (productsLoading) {
     return <Loading />

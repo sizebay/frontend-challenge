@@ -1,7 +1,8 @@
 import React from 'react'
 import { getImageTags } from '../utils/helpers';
 
-const ProductImage: React.FC<{ image: string | undefined }> = ({ image = '' }) => {
+
+export function ProductImage({ image = '' }): React.ReactElement {
   const imageSrc = getImageTags(image)
 
   return (

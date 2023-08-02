@@ -1,9 +1,10 @@
-import { useFilterContext } from '../../context/filter_context'
+import clsx from 'clsx'
+import { useFilter } from '../../context/filterContext'
 import { getUniqueValues } from '../../utils/helpers'
 
 
 export const CategoryFilters = () => {
-  const { updateFilters, allProducts, filters: { category } } = useFilterContext()
+  const { updateFilters, allProducts, filters: { category } } = useFilter()
   const uniqueCategories = getUniqueValues(allProducts, 'category')
 
   return (
@@ -17,8 +18,10 @@ export const CategoryFilters = () => {
               key={`${uniqueCategory}`}
               type='button'
               name='category'
-              className={ 'text-sm my-1 text-black block tracking-wider ' 
-                + (uniqueCategory.toLowerCase() === category ? 'border-b-2' : undefined) }
+              value={uniqueCategory}
+              className={clsx('text-sm my-1 text-black block tracking-wider', {
+                'border-b-2': uniqueCategory === category
+              })}
               onClick={e => updateFilters(e)}
             >
               {uniqueCategory}

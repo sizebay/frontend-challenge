@@ -1,10 +1,12 @@
 import React from 'react'
-import { productDataType } from '../utils/productData'
+import { ProductDataType } from '../utils/productData'
 import Product from './Product'
 
-const GridView: React.FC<{ filteredProducts: productDataType[] }> = ({
-  filteredProducts,
-}) => {
+interface GridViewProps {
+  filteredProducts: ProductDataType[];
+}
+
+function GridView({ filteredProducts }: GridViewProps) {
   return (
     <div>
       <div className='products-container grid gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-3'>

@@ -1,15 +1,16 @@
 import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import { ReactElement } from 'react';
 import ProductList from '../ProductList';
-import { FilterContext } from '../../context/filter_context';
+import { FilterContext } from '../../context/filterContext';
 import { BrowserRouter, MemoryRouter, Router } from 'react-router-dom';
-import { productDataType } from '../../utils/productData';
+import { ProductDataType } from '../../utils/productData';
 import { createMemoryHistory } from 'history';
 import Product from '../Product';
 import SingleProductPage from '../../pages/SingleProductPage/SingleProductPage';
 
 const filteredProducts = [
   {
+    id: '1',
     category: 'female',
     image: "",
     title: "Nylon Bomber Jacket in Stone",
@@ -28,7 +29,7 @@ const updateFilters = () => {
 }
 
 
-const renderWithContext = ( component:ReactElement, filteredProducts: productDataType[] ) => {
+const renderWithContext = ( component:ReactElement, filteredProducts: ProductDataType[] ) => {
   return {
     ...render(
       <BrowserRouter>
@@ -68,6 +69,7 @@ describe('Products component', () => {
     const { getByTestId } = render(
       <Router history={history}>
         <Product product={{
+          id: '2',
           category: 'male',
           image: "",
           title: "Nylon Bomber Jacket in Stone",

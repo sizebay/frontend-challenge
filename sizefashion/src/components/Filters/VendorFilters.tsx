@@ -1,4 +1,5 @@
-import { useFilterContext } from '../../context/filter_context'
+import clsx from 'clsx'
+import { useFilter } from '../../context/filterContext'
 import { getUniqueValues } from '../../utils/helpers'
 
 export const VendorFilters = () => {
@@ -6,7 +7,7 @@ export const VendorFilters = () => {
     updateFilters,
     allProducts,
     filters: { vendor },
-  } = useFilterContext()
+  } = useFilter()
   const uniqueVendors = getUniqueValues(allProducts, 'vendor')
   return (
     <div>
@@ -19,8 +20,10 @@ export const VendorFilters = () => {
               key={`${uniqueVendor}`}
               type='button'
               name='vendor'
-              className={ 'text-sm my-1 text-black block tracking-wider ' 
-                + (uniqueVendor === vendor ? 'border-b-2' : undefined) }
+              value={uniqueVendor}
+              className={clsx('text-sm my-1 text-black block tracking-wider', {
+                'border-b-2': uniqueVendor === vendor
+              })}
               onClick={e => updateFilters(e)}
             >
               {uniqueVendor}

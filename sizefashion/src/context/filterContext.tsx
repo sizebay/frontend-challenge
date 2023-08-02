@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useReducer } from 'react'
-import reducer from '../reducers/filter_reducer'
+import reducer from '../reducers/filterReducer'
 import {
   UPDATE_FILTERS,
   CLEAR_FILTERS,
@@ -7,8 +7,8 @@ import {
   FILTER_PRODUCTS,
 } from '../actions'
 
-import { productDataType } from '../utils/productData'
-import { useProductsContext } from './products_context'
+import { ProductDataType } from '../utils/productData'
+import { useProducts } from './productsContext'
 
 type filtersType = {
   searchTerm: string
@@ -23,8 +23,8 @@ export const defaultFilters: filtersType = {
 }
 
 export type initialStateType = {
-  filteredProducts: productDataType[]
-  allProducts: productDataType[]
+  filteredProducts: ProductDataType[]
+  allProducts: ProductDataType[]
   filters: filtersType
   updateFilters: (e: any) => void
   clearFilters: () => void
@@ -45,9 +45,8 @@ type Props = {
 
 export const FilterContext = React.createContext<initialStateType>(initialState)
 
-export const FilterProvider: React.FC<Props> = ({ children }) => {
-  const { allProducts } = useProductsContext()
-  
+export function FilterProvider({children}: Props): React.ReactElement {
+  const { allProducts } = useProducts()
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
@@ -59,12 +58,11 @@ export const FilterProvider: React.FC<Props> = ({ children }) => {
   }, [allProducts, state.filters])
 
 
-  const updateFilters = (e: any) => {
-    const name = e.target.name
-    let value = e.target.value
-
+  const updateFilters = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    let { name, value } = e.currentTarget
+    
     if (name === 'category' || name === 'vendor') {
-      value = e.target.textContent
+      value = e.currentTarget.textContent !== null ? value : ''
     }
     dispatch({ type: UPDATE_FILTERS, payload: { name, value } })
   }
@@ -85,6 +83,6 @@ export const FilterProvider: React.FC<Props> = ({ children }) => {
   )
 }
 
-export const useFilterContext = () => {
+export const useFilter = () => {
   return useContext(FilterContext)
 }

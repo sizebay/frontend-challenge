@@ -34,7 +34,7 @@ type Props = {
   children?: React.ReactNode
 };
 
-const Layout: React.FC<Props> = ({ children }) => {
+export function Layout({children}: Props): React.ReactElement {
   return (
     <>
       <Navbar />

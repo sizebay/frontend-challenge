@@ -1,19 +1,19 @@
-import { productDataType, productDataTypeKey } from "./productData";
+import { ProductDataType, ProductDataTypeKey } from "./productData";
 
 export const getImageTags = (image: string) => {
   const regex: RegExp = /src="([^"]+)"/;
-  const result: string | null = image.match(regex)?.[1] || '';
+  const result: string = image.match(regex)?.[1] || '';
 
   return result
 }
 
 
 export const getUniqueValues = (
-  data: productDataType[],
-  category: productDataTypeKey,
+  data: ProductDataType[],
+  category: ProductDataTypeKey,
   noAllValue?: boolean
 ) => {
-  let unique = data
+  const unique = data
     .map(item => item[category])
     .flat()
     .filter(Boolean)

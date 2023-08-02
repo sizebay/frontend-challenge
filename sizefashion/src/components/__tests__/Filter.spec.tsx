@@ -1,37 +1,42 @@
 import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import Filters from '../Filters/Filters';
 import { VendorFilters } from '../Filters/VendorFilters';
-import { FilterContext } from '../../context/filter_context';
+import { FilterContext } from '../../context/filterContext';
 import { ReactElement } from 'react';
 import { CategoryFilters } from '../Filters/CategoryFilters';
 import { SearchFilters } from '../Filters/SearchFilters';
 
 const allProducts = [
   {
+    id: '1',
     category: 'male',
     image: "",
     title: "Nylon Bomber Jacket in Stone",
     vendor: "7 FOR ALL MANKIND"
   },
   {
+    id: '2',
     category: 'female',
     image: "",
     title: "Nylon Bomber Jacket in Stone",
     vendor: "7 FOR ALL MANKIND"
   },
   {
+    id: '3',
     category: 'female',
     image: "",
     title: "Nylon Bomber Jacket in Stone",
     vendor: "7 FOR ALL MANKIND"
   },
   {
+    id: '4',
     category: 'female',
     image: "",
     title: "Nylon Bomber Jacket in Stone",
     vendor: "7 FOR ALL MANKIND"
   },
   {
+    id: '5',
     category: 'kids',
     image: "",
     title: "Nylon Bomber Jacket in Stone",

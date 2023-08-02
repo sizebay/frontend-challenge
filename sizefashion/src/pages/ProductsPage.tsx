@@ -1,6 +1,7 @@
-import { Suspense } from 'react'
-import { Filters, Loading, ProductList } from '../components'
+import { Suspense, lazy } from 'react'
+import { Filters, Loading } from '../components'
 
+const ProductList = lazy(() => import('../components/ProductList'));
 const ProductsPage = () => {
   return (
     <main>
