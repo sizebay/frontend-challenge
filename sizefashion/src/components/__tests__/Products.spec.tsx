@@ -1,4 +1,4 @@
-import { screen, render, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { ReactElement } from 'react';
 import ProductList from '../ProductList';
 import { FilterContext } from '../../context/filterContext';
@@ -7,6 +7,8 @@ import { ProductDataType } from '../../utils/productData';
 import { createMemoryHistory } from 'history';
 import Product from '../Product';
 import SingleProductPage from '../../pages/SingleProductPage/SingleProductPage';
+import { createRoot } from 'react-dom/client';
+
 
 const filteredProducts = [
   {
@@ -29,20 +31,39 @@ const updateFilters = () => {
 }
 
 
+const loadRootElement = () => {
+  const rootElement = document.createElement('div');
+  return document.body.appendChild(rootElement);
+}
+
 const renderWithContext = ( component:ReactElement, filteredProducts: ProductDataType[] ) => {
-  return {
-    ...render(
+  
+  const rootElement = loadRootElement()
+
+  let root;
+  act(() => {
+    root = createRoot(rootElement);
+    root.render(
       <BrowserRouter>
         <FilterContext.Provider
-          value={{filteredProducts, allProducts, clearFilters, updateFilters, filters: { category: '', searchTerm: '', vendor: '' }}}
+          value={{
+            filteredProducts,
+            allProducts,
+            clearFilters,
+            updateFilters,
+            filters: { category: '', searchTerm: '', vendor: '' }
+          }}
         >
           <MemoryRouter>
             {component}
           </MemoryRouter>
         </FilterContext.Provider>
       </BrowserRouter>
-    )
-  }
+    );
+  });
+  return {
+    getAllByTestId: (testId: string) => rootElement.querySelectorAll(`[data-testid="${testId}"]`)
+  };
 }
 
 
@@ -64,33 +85,61 @@ describe('Products component', () => {
     
   });
 
-  it('should redirect to full product page on click', () => {
+  it('should redirect to full product page on click', async () => {
     const history = createMemoryHistory({ initialEntries: ['/'] });
-    const { getByTestId } = render(
-      <Router history={history}>
-        <Product product={{
-          id: '2',
-          category: 'male',
-          image: "",
-          title: "Nylon Bomber Jacket in Stone",
-          vendor: "7 FOR ALL MANKIND"
-        }} />
-      </Router>
-    );
+
+    
+    const rootElement = loadRootElement()
+
+    let root;
+    act(() => {
+      root = createRoot(rootElement);
+      root.render(
+        <Router history={history}>
+          <Product product={{
+            id: '2',
+            category: 'male',
+            image: "",
+            title: "Nylon Bomber Jacket in Stone",
+            vendor: "7 FOR ALL MANKIND"
+          }} />
+        </Router>
+      );
+    });
+
     expect(history.location.pathname).toBe('/');
-    fireEvent.click(getByTestId('link-to-product'));
-    expect(history.location.pathname).toBe('/products/Nylon Bomber Jacket in Stone');
+
+    await act(async () => {
+      const linkToProduct = rootElement.querySelector('[data-testid="link-to-product"]')!;
+      fireEvent.click(linkToProduct);
+
+      expect(history.location.pathname).toBe('/products/2');
+    });
   });
 
-  it('should redirect to products page from single product page', () => {
-    const history = createMemoryHistory({ initialEntries: ['/products/Nylon Bomber Jacket in Stone'] });
-    const { getByTestId } = render(
-      <Router history={history}>
-        <SingleProductPage />
-      </Router>
-    );
-    expect(history.location.pathname).toBe('/products/Nylon Bomber Jacket in Stone');
-    fireEvent.click(getByTestId('back-to-products'));
-    expect(history.location.pathname).toBe('/');
+  it('should redirect to products page from single product page', async () => {
+    const history = createMemoryHistory({ initialEntries: ['/products/2'] });
+
+    
+    const rootElement = loadRootElement()
+
+    let root;
+    act(() => {
+      root = createRoot(rootElement);
+      root.render(
+        <Router history={history}>
+          <SingleProductPage />
+        </Router>
+      );
+    });
+
+    expect(history.location.pathname).toBe('/products/2');
+
+    await act(async () => {
+      const backToProducts = rootElement.querySelector('[data-testid="back-to-products"]')!;
+      fireEvent.click(backToProducts);
+
+      expect(history.location.pathname).toBe('/');
+    });
   });
 });

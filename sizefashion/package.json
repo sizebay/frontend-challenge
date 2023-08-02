@@ -55,6 +55,7 @@
   },
   "jest": {
     "testEnvironment": "jest-environment-jsdom",
+    "globals": { "IS_REACT_ACT_ENVIRONMENT": true },
     "setupFilesAfterEnv": [
       "<rootDir>/setup-tests.js"
     ],
