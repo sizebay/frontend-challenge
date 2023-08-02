@@ -1,19 +1,18 @@
-SizeFashion
+![SizeFashion Logo](./public/assets/logo.png)
+
+## About
+
+This project is an exam submission for a senior position at Sizebay. It is a web application named "SizeFashion."
+
+## Setup
+
+Follow these steps to set up and run the project:
+
+1. Clone this repository to your local machine.
+2. Navigate to the project directory.
+3. Install project dependencies using ```yarn```.
+4. Start the development server using ```yarn run dev```.
+5. Once the development environment is up and running, open your web browser and navigate to localhost:3000.
+
+
 Mateus B de Sousa
-
-Teste efetuado para vaga frontend senior na Sizebay
-Tempo aproximado para realizacão do que está sendo entregue: 12h
-
-- Consideracões
-
-Foi divertido aprender a estilizar com Tailwind - achava que era algo menos flexível como bootstrap.
-Teste unitário eu vou tirar essa semana para estudar, e possivelmente subirei os testes para essa mesma PR - ou para o meu fork.
-Perdi um pouco do que imaginei do layout, acredito que pela falta de experiência com tailwind.
-Não havia mexido com as novas APIs do React ainda, pois minhas experiências sempre foram em sua maior parte manutencão, refatoracão e atualizacão de codebases já existentes ou sistemas legados.
-Irei corrigir a questão do carregamento da tela, tive um pouco de dificuldade com as peculiaridades do NextJS - tanto para usar o Suspense quanto para implementar o Context.
-
-- Setup
-
-Para rodar o projeto basta clonar o repositório em sua máquina, rodar o comando 'yarn' para instalar as dependencias, e em seguida rode o comando 'yarn run dev' e no seu browser coloque localhost:3000
-
-obs.: saudades Habbinfo
