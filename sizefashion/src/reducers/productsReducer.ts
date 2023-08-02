@@ -13,7 +13,7 @@ import { initialStateType } from '../context/productsContext'
 const productsReducer = (state: initialStateType, action: any) => {
   switch(action.type) {
     case GET_PRODUCTS_BEGIN:
-      return { ...state, productsLoading: true }
+      return { ...state }
     case GET_PRODUCTS_SUCCESS:
       const allProducts = action.payload.map((product: any) => {
         let { category, image, title, vendor, id } = product
@@ -27,9 +27,9 @@ const productsReducer = (state: initialStateType, action: any) => {
         }
       })
       
-      return { ...state, productsLoading: false, allProducts }
+      return { ...state, allProducts }
     case GET_PRODUCTS_ERROR:
-      return { ...state, productsError: true, productsLoading: false }
+      return { ...state, productsError: true }
     case GET_SINGLE_PRODUCT_BEGIN:
       return {...state, singleProductLoading: true}
     case GET_SINGLE_PRODUCT_SUCCESS:

@@ -14,7 +14,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 export type initialStateType = {
   allProducts: ProductDataType[] | []
-  productsLoading: boolean
   productsError: boolean
   singleProduct: ProductDataType | null
   singleProductLoading: boolean
@@ -24,7 +23,6 @@ export type initialStateType = {
 
 const initialState: initialStateType = {
   allProducts: [],
-  productsLoading: false,
   productsError: false,
   singleProduct: null,
   singleProductLoading: false,
