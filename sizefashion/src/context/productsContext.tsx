@@ -47,6 +47,7 @@ export function ProductsProvider({children}: Props): React.ReactElement {
       const singleProduct: ProductDataType = state.allProducts.find(
         (product: ProductDataType) => product.id === slug
       )
+      
       if (singleProduct) { // caso retorne undefined com o allProducts sendo []
         dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct })
       }
