@@ -1,7 +1,7 @@
 import React from 'react'
 import { getImageTags } from '../utils/helpers';
 
-const ProductImages: React.FC<{ image: string | undefined }> = ({ image = '' }) => {
+const ProductImage: React.FC<{ image: string | undefined }> = ({ image = '' }) => {
   const imageSrc = getImageTags(image)
 
   return (
@@ -9,4 +9,4 @@ const ProductImages: React.FC<{ image: string | undefined }> = ({ image = '' }) 
   )
 }
 
-export default ProductImages
+export default ProductImage
