@@ -60,8 +60,7 @@ export const FilterProvider: React.FC<Props> = ({ children }) => {
 
 
   const updateFilters = (e: any) => {
-
-    let name = e.target.name
+    const name = e.target.name
     let value = e.target.value
 
     if (name === 'category' || name === 'vendor') {

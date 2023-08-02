@@ -45,7 +45,7 @@ export const ProductsProvider: React.FC<Props> = ({ children }) => {
   const fetchSingleProduct = (slug: string) => {
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN })
     try {
-      const singleProduct: productDataType = state.allProducts.filter(
+      const singleProduct: productDataType = state.allProducts.find(
         (product: productDataType) => product.title === slug
       )[0]
       if (singleProduct) { // caso retorne undefined com o allProducts sendo []
