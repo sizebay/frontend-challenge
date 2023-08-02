@@ -6,7 +6,7 @@ const ProductImages: React.FC<{ image: string | undefined }> = ({ image = '' }) 
 
   return (
     <div>
-      <img src={imageSrc} alt='main' className='main' />  
+      <img src={imageSrc} alt='main' className='Imagem do produto' />  
     </div>
   )
 }
