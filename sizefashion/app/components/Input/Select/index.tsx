@@ -1,25 +1,25 @@
-import { ISelectInputOptions } from '@interfaces/ISelectInputOptions';
+import { SelectInputOptions } from '@interfaces/SelectInputOptions';
 import React from 'react';
 
-interface ISelectInputProps {
+interface SelectInputProps {
   label?: string;
   placeholder?: string;
-  options: ISelectInputOptions[];
+  options: SelectInputOptions[];
   value: string;
   onChange: (selectedValue: string) => void;
 }
 
-const SelectInput: React.FC<ISelectInputProps> = ({
+const SelectInput = ({
   label,
   options,
   placeholder,
   value,
   onChange,
-}) => {
+}: SelectInputProps) => {
 
   return (
     <div>
-      {label && <label htmlFor="sortSelect" className='text-blue-100 mr-0.5 text-sm'>{label}</label>}
+      {label && <label htmlFor="sortSelect" className="text-blue-100 mr-0.5 text-sm">{label}</label>}
       <select
         id="sortSelect"
         value={value}

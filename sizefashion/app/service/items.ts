@@ -1,17 +1,17 @@
-import { IError } from "@interfaces/IError";
-import { IItem } from "@interfaces/IItem";
+import Item from "@interfaces/Item";
+import Error from "@interfaces/Error";
 
-const url = 'https://static.sizebay.technology/assets/';
+const url = process.env.NEXT_PUBLIC_API_URL;
 
-interface IItemsReponse {
-  data: IItem[];
-  error: false | IError;
+interface ItemsReponse {
+  data: Item[];
+  error: false | Error;
 }
 
-export async function fetchProducts(): Promise<IItemsReponse> {
+export async function fetchProducts(): Promise<ItemsReponse> {
   const endpoint = 'storeCollections.json';
 
-  let itemsReponse: IItemsReponse = {
+  let itemsReponse: ItemsReponse = {
     data: [],
     error: false
   };
@@ -21,7 +21,7 @@ export async function fetchProducts(): Promise<IItemsReponse> {
 
     if (!response.ok) throw new Error('network');
 
-    const jsonData: IItem[] = await response.json();
+    const jsonData: Item[] = await response.json();
 
     itemsReponse = {
       ...itemsReponse,

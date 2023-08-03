@@ -1,28 +1,28 @@
 "use client";
-import { IItem } from "@interfaces/IItem";
+import Item from "@interfaces/Item";
 import { fetchProducts } from "@service/items";
 import React from "react";
 
-interface IItemsContextData {
+interface ItemsContext {
   fetching: boolean;
-  dataFromSource: IItem[];
-  manipulatedData: IItem[];
+  dataFromSource: Item[];
+  manipulatedData: Item[];
   uniqueCategories: string[];
   applyFilter: (text: string) => void;
   applySorting: (sortOrder: string) => void;
   applyFilterByCategory: (category: string | null) => void;
-  grabItem: (index: number) => Promise<IItem>;
+  grabItem: (index: number) => Promise<Item>;
   populate: () => Promise<void>;
 }
 
-const ItemsContext = React.createContext<IItemsContextData>({} as IItemsContextData);
+const Items = React.createContext<ItemsContext>({} as ItemsContext);
 
-export const useItemsContext = (): IItemsContextData => React.useContext(ItemsContext)
+export const useItems = (): ItemsContext => React.useContext(Items)
 
 const ItemsContextProvider = ({ children }: { children: React.ReactNode }) => {
 
-  const [dataFromSource, setDataFromSource] = React.useState<IItem[]>([])
-  const [manipulatedData, setManipulatedData] = React.useState<IItem[]>([])
+  const [dataFromSource, setDataFromSource] = React.useState<Item[]>([])
+  const [manipulatedData, setManipulatedData] = React.useState<Item[]>([])
   const [uniqueCategories, setUniqueCategories] = React.useState<string[]>([])
   const [fetching, setFetching] = React.useState(true);
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null)
@@ -54,7 +54,6 @@ const ItemsContextProvider = ({ children }: { children: React.ReactNode }) => {
 
     if (category) {
       setSelectedCategory(category); ItemsContextProvider
-
       filteredData = filteredData.filter((item) => item.category === category);
     }
 
@@ -62,8 +61,8 @@ const ItemsContextProvider = ({ children }: { children: React.ReactNode }) => {
     setFetching(false);
   };
 
-  const populate = async () => {
-    setFetching(true)
+  const populate = React.useCallback(async () => {
+    setFetching(true);
     try {
       const response = await fetchProducts();
       setDataFromSource(response.data);
@@ -71,14 +70,18 @@ const ItemsContextProvider = ({ children }: { children: React.ReactNode }) => {
     } catch (error) {
       setFetching(false);
     }
-  };
+  }, []);
 
-  const grabItem = async (index: number): Promise<IItem> => {
-
-    const response = await fetchProducts();
-
-    return response.data[index]
-  }
+  const grabItem = React.useCallback(
+    async (index: number): Promise<Item> => {
+      try {
+        const response = await fetchProducts();
+        return response.data[index];
+      } catch (error) {
+        console.error("handle error"); throw error;
+      }
+    }, []
+  );
 
   const applySorting = (sortOrder: string, clearFilters?: boolean) => {
     setFetching(true);
@@ -87,10 +90,10 @@ const ItemsContextProvider = ({ children }: { children: React.ReactNode }) => {
     if (manipulatedData && manipulatedData.length > 0) {
       const sortedData = [...manipulatedData];
       switch (sortOrder) {
-        case 'titleAsc':
+        case "titleAsc":
           sortedData.sort((a, b) => a.title.localeCompare(b.title));
           break;
-        case 'titleDesc':
+        case "titleDesc":
           sortedData.sort((a, b) => b.title.localeCompare(a.title));
           break;
 
@@ -108,23 +111,17 @@ const ItemsContextProvider = ({ children }: { children: React.ReactNode }) => {
     setSelectedCategory(null)
   }
 
-  React.useEffect(() => {
-    populate();
-  }, [])
+  React.useEffect(() => { populate(); }, [])
 
   React.useEffect(() => {
     resetFilters();
     const categories = new Set<string>();
-    dataFromSource.forEach((item) => {
-      if (item.category) {
-        categories.add(item.category);
-      }
-    });
+    dataFromSource.forEach((item) => { if (item.category) categories.add(item.category); });
     const uniqueCategories = Array.from(categories);
     setUniqueCategories(uniqueCategories);
   }, [dataFromSource])
 
-  const contextValue: IItemsContextData = {
+  const contextValue: ItemsContext = {
 
     // values
     fetching,
@@ -140,7 +137,7 @@ const ItemsContextProvider = ({ children }: { children: React.ReactNode }) => {
     populate
   };
 
-  return <ItemsContext.Provider value={contextValue}>{children}</ItemsContext.Provider>;
+  return <Items.Provider value={contextValue}>{children}</Items.Provider>;
 }
 
 export default ItemsContextProvider;

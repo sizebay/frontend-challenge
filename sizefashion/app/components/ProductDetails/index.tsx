@@ -1,34 +1,39 @@
 'use client';
-import { useItemsContext } from '@context/ItemsContext';
-import { IItem } from '@interfaces/IItem';
+import { useItems } from '@context/Items';
+import Item from '@interfaces/Item';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 
 const ProductDetails = () => {
 
-  const { grabItem, populate } = useItemsContext();
+  const { grabItem, populate } = useItems();
 
-  const [item, setItem] = React.useState<IItem>();
-
-  React.useEffect(() => { getInfo() }, []);
+  const [item, setItem] = React.useState<Item>();
 
   const router = useRouter();
-  const itemIndex = Number(useSearchParams().get('id'));
-  const imageSrc = useSearchParams().get('imageSrc');
+  const itemIndex = Number(useSearchParams().get("id"));
+  const imageSrc = useSearchParams().get("imageSrc");
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await populate();
+      } catch (error) {
+
+        console.log("handle Error")
+
+      } finally {
+        const _item = await grabItem(itemIndex);
+        setItem(_item);
+      }
+    };
+
+    fetchData();
+  }, [populate, grabItem, itemIndex]);
 
   const handleBack = () => router.back();
 
-  const getInfo = async () => {
-    try {
-      await populate();
-    } catch (error) {
-    } finally {
-      const _item = await grabItem(itemIndex);
-      setItem(_item);
-    };
-  };
-
-  const description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium urna nec dui elementum convallis. Nulla in mollis purus. Sed posuere, mi id tincidunt dapibus, ex elit congue lectus, eget aliquet urna mi ut arcu.';
+  const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pretium urna nec dui elementum convallis. Nulla in mollis purus. Sed posuere, mi id tincidunt dapibus, ex elit congue lectus, eget aliquet urna mi ut arcu.";
 
   return (
     <div className="bg-white">
@@ -38,7 +43,7 @@ const ProductDetails = () => {
       >
         Back
       </button>
-      <img className="" src={imageSrc || ''} alt={item?.title} />
+      <img className="" src={imageSrc || ""} alt={item?.title} />
       <h2 className="text-xl color-black font-semibold mb-1">{item?.title}</h2>
       <p className="text-sm text-gray-500 mb-0.5">{item?.category}</p>
       <p className="text-base text-gray-700 mb-2">{item?.vendor}</p>

@@ -1,23 +1,23 @@
 "use client";
 import SelectInput from '@components/Input/Select';
-import { useItemsContext } from '@context/ItemsContext';
-import { ISelectInputOptions } from '@interfaces/ISelectInputOptions';
+import { useItems } from '@context/Items';
+import { SelectInputOptions } from '@interfaces/SelectInputOptions';
 import React from 'react';
 
 const SortingFilter = () => {
-  const ItemsContext = useItemsContext();
+  const itemsContext = useItems();
 
   const [sortOrder, setSortOrder] = React.useState('');
 
-  const selectInputOptions: ISelectInputOptions[] = [
-    { label: 'Sort by...', value: '' },
-    { label: 'Title (A - Z)', value: "titleAsc" },
-    { label: 'Title (Z - A)', value: "titleDesc" }
+  const selectInputOptions: SelectInputOptions[] = [
+    { label: "Sort by...", value: "" },
+    { label: "Title (A - Z)", value: "titleAsc" },
+    { label: "Title (Z - A)", value: "titleDesc" }
   ];
 
   const handleSortChange = (value: string) => {
     setSortOrder(value);
-    ItemsContext.applySorting(value);
+    itemsContext.applySorting(value);
   };
 
   return (

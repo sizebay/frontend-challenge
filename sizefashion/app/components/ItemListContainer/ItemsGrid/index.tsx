@@ -1,28 +1,24 @@
 "use client";
 import ClickableItem from '@components/ClickableItem';
+import EmptyState from '@components/EmptyState';
 import LoadingOverlay from '@components/LoadingOverlay';
-import { useItemsContext } from '@context/ItemsContext';
-import { IItem } from '@interfaces/IItem';
+import { useItems } from '@context/Items';
+import Item from '@interfaces/Item';
 import React from 'react';
 
-const ItemsGrid: React.FC = () => {
+const ItemsGrid = () => {
 
-  const ItemsContext = useItemsContext();
+  const itemsContext = useItems();
 
-  const [data, setData] = React.useState<IItem[]>([]);
+  const [data, setData] = React.useState<Item[]>([]);
 
-  React.useEffect(() => { setData(ItemsContext.manipulatedData) }, [ItemsContext])
+  React.useEffect(() => { setData(itemsContext.manipulatedData) }, [itemsContext])
 
-  const emptyState = (text: string) =>
-    <div className='flex items-center justify-center bg-gray-700 h-44 w-full'>
-      <span>{text}</span>
-    </div>;
-
-  if (ItemsContext.fetching) return <LoadingOverlay />;
-  if (data.length === 0) return emptyState('Nothing was found 😔');
+  if (itemsContext.fetching) return <LoadingOverlay />;
+  if (data.length === 0) return <EmptyState text="Nothing was found 😔" />
 
   return (
-    <div className='w-full flex-1 flex flex-wrap flex-row justify-center'>
+    <div className="w-full flex-1 flex flex-wrap flex-row justify-center">
       {data.map((item, i) => <ClickableItem key={i} item={item} id={i} />)}
     </div>
   )

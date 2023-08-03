@@ -1,94 +1,59 @@
-"use client";
-import { useItemsContext } from '@context/ItemsContext';
-import React from 'react';
+'use client';
+import SIDE from '@/app/enums/Side';
+import { useItems } from '@context/Items';
+import React, { useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import ProductImage from './ProductImage';
 
 const scrollAmount = 720;
 
 const Carousel = (): React.JSX.Element => {
+  const itemsContext = useItems();
+  const scrollableDivRef = useRef<HTMLDivElement | null>(null);
 
-  const ItemsContext = useItemsContext();
+  const handleScrollClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 
-  React.useEffect(() => {
-    let scrollableDiv: HTMLElement | null;
-    let scrollLeftButton: HTMLElement | null;
-    let scrollRightButton: HTMLElement | null;
+    const scrollableDiv = scrollableDivRef.current;
+    const side = event.currentTarget.value as SIDE;
 
-    if (document) {
-      scrollableDiv = document.querySelector('.scrollable-div');
-      scrollLeftButton = document.getElementById('scrollLeftButton');
-      scrollRightButton = document.getElementById('scrollRightButton');
-
-      if (scrollableDiv) {
-
-        if (scrollLeftButton) {
-          scrollLeftButton.addEventListener('click', () => {
-            scrollableDiv?.scrollBy({
-              left: -scrollAmount,
-              behavior: 'smooth',
-            });
-          });
-
-          scrollLeftButton?.addEventListener('mouseenter', () => handleFocus(scrollLeftButton));
-          scrollLeftButton?.addEventListener('mouseleave', () => handleBlur(scrollLeftButton));
-        };
-
-        if (scrollRightButton) {
-          scrollRightButton.addEventListener('click', () => {
-            scrollableDiv?.scrollBy({
-              left: scrollAmount,
-              behavior: 'smooth',
-            });
-          });
-
-          scrollRightButton?.addEventListener('mouseenter', () => { handleFocus(scrollRightButton) });
-          scrollRightButton?.addEventListener('mouseleave', () => { handleBlur(scrollRightButton) });
-        };
-      };
-    };
-
-    return () => {
-      if (document) {
-        if (scrollableDiv) scrollableDiv = null;
-        if (scrollLeftButton) scrollLeftButton.removeEventListener('focus', () => { })
-        if (scrollRightButton) scrollRightButton.removeEventListener('focus', () => { })
-      };
-    };
-
-  }, []);
-
-  const handleFocus = (element: HTMLElement | null): void => {
-    if (element) element.style.backgroundColor = '#e2f3ff'
-  };
-
-  const handleBlur = (element: HTMLElement | null): void => {
-    if (element) element.style.backgroundColor = '#d1ecff'
+    if (scrollableDiv) {
+      scrollableDiv.scrollBy({
+        left: side === SIDE.LEFT ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
-    <div className='flex w-full'>
+    <div className="flex w-full relative">
 
-      <div id="scrollLeftButton" className='flex items-center justify-center cursor-pointer w-16 text-white transition select-none absolute h-80 left-0'>
+      <button
+        value={SIDE.LEFT}
+        onClick={handleScrollClick}
+        className="flex items-center justify-center cursor-pointer w-16 text-white transition select-none absolute h-80 left-0"
+        style={{ backgroundColor: "#d1ecff" }}
+      >
         <FaChevronLeft />
-      </div>
+      </button>
 
-      <div className='bg-blue-200 flex w-full px-16'>
-        <div className='scrollable-div flex flex-row overflow-x-hidden overflow-y-hidden whitespace-nowrap'>
-          {ItemsContext.dataFromSource.map((item, key) =>
-            <div
-              className='flex h-80 object-cover'
-              style={{ backgroundColor: 'white', minWidth: 360 }}
-              key={key}
-            >
-              {/* YOLO */}<div dangerouslySetInnerHTML={{ __html: item.image }} />
+      <div className="bg-blue-200 flex w-full px-16">
+        <div ref={scrollableDivRef} className="scrollable-div flex flex-row overflow-x-hidden overflow-y-hidden whitespace-nowrap">
+          {itemsContext.dataFromSource.map((item, key) => (
+            <div className="flex h-80" style={{ backgroundColor: "white", minWidth: 360 }} key={key}>
+              <ProductImage dirtyString={item.image} />
             </div>
-          )}
+          ))}
         </div>
       </div>
 
-      <div id="scrollRightButton" className='flex items-center justify-center cursor-pointer w-16 text-white transition select-none absolute h-80 right-0'>
+      <button
+        value={SIDE.RIGHT}
+        onClick={handleScrollClick}
+        className="flex items-center justify-center cursor-pointer w-16 text-white transition select-none absolute h-80 right-0"
+        style={{ backgroundColor: "#d1ecff" }}
+      >
         <FaChevronRight />
-      </div>
+      </button>
 
     </div>
   );

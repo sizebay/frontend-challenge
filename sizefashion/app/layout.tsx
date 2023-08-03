@@ -24,9 +24,9 @@ export default function RootLayout({
 
       <body className={inter.className}
         style={{
-          height: '100%',
-          width: '100%',
-          backgroundColor: 'white'
+          height: "100%",
+          width: "100%",
+          backgroundColor: "white"
         }}
       >{children}</body>
     </html>
