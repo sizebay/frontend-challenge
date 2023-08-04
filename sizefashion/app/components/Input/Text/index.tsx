@@ -15,6 +15,7 @@ const TextInput = () => {
   return (
     <input
       type="text"
+      data-testid="textinput"
       value={searchText}
       onChange={handleInputChange}
       placeholder="Search..."
