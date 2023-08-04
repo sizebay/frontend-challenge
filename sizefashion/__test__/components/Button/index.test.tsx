@@ -3,12 +3,14 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Button, { ButtonProps } from '@components/Button';
 
 describe('Button component', () => {
+
+  const mockOnClick = jest.fn();
+  let props: ButtonProps = {
+    title: 'Test',
+    onClick: mockOnClick,
+  };
+
   it('Should render with default styles when not active', () => {
-    const mockOnClick = jest.fn();
-    const props: ButtonProps = {
-      title: 'Test',
-      onClick: mockOnClick,
-    };
 
     render(<Button {...props} />);
 
@@ -19,10 +21,9 @@ describe('Button component', () => {
   });
 
   it('Should render with active styles when active', () => {
-    const mockOnClick = jest.fn();
-    const props: ButtonProps = {
-      title: 'Test',
-      onClick: mockOnClick,
+
+    props = {
+      ...props,
       active: true,
     };
 
@@ -34,8 +35,8 @@ describe('Button component', () => {
   });
 
   it('Should call onClick function when clicked', () => {
-    const mockOnClick = jest.fn();
-    const props: ButtonProps = {
+
+    props = {
       title: 'Test',
       onClick: mockOnClick,
     };
@@ -49,8 +50,8 @@ describe('Button component', () => {
   });
 
   it('Should capitalize the title', () => {
-    const mockOnClick = jest.fn();
-    const props: ButtonProps = {
+    
+    props = {
       title: 'test button',
       onClick: mockOnClick,
     };
