@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# added --passWithNoTests momentarily during configuration
+yarn test --passWithNoTests
+
+echo '🏗️👷 Styling, testing and building your project before committing'
+
+yarn style:fix ||
+(
+    echo '🤢🤮🤢🤮 Its F**KING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
+            Prettier Check Failed. Run npm run format, add changes and try commit again.';
+    false;
+)
+
+echo '🤔🤔🤔🤔... Alright... Code looks good to me... Trying to build now. 🤔🤔🤔🤔'
+
+echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
