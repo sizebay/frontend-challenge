@@ -1,13 +1,10 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true,
-				jest: true
-    },
-    "extends": [
-        "standard-with-typescript",
-        "plugin:react/recommended"
-    ],
+  env: {
+    browser: true,
+    es2021: true,
+    jest: true
+  },
+  extends: ['standard-with-typescript', 'plugin:react/recommended'],
   overrides: [
     {
       env: {
@@ -41,5 +38,4 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'react/jsx-uses-react': 'off'
   }
-}
-
+};
