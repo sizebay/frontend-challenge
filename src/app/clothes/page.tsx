@@ -13,7 +13,6 @@ const Page = async () => {
       </Link>
       <div className="flex min-h-screen flex-col items-center justify-between gap-4">
         {data.map(item => {
-          console.log(item);
           return (
             <Link
               href={`clothes/${stringifyUrl(item)}`}
