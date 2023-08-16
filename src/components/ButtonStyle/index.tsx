@@ -1,9 +1,7 @@
 'use client';
 
-import { Children } from '@/types/children';
-import { Button as ButtonUI } from '@nextui-org/react';
-import React from 'react';
+import { ButtonProps, Button as ButtonUI } from '@nextui-org/react';
 
-export const Button = ({ children, ...props }: Children) => {
+export const Button = ({ children, ...props }: ButtonProps) => {
   return <ButtonUI {...props}>{children}</ButtonUI>;
 };
