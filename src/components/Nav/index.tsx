@@ -16,10 +16,13 @@ import {
   Kbd,
   Card,
   CardHeader,
-  CardBody
+  CardBody,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem
 } from '@nextui-org/react';
 import Link from 'next/link';
-import { AiFillHeart } from 'react-icons/ai';
+import { AiFillHeart, AiOutlineSearch } from 'react-icons/ai';
 import { Button } from '../ButtonStyle';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -36,6 +39,7 @@ export const Nav = () => {
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const { favorites } = useSelector(({ favorites }) => favorites);
   const { register, handleSubmit, setValue } = useForm<FormDataSearch>();
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const handleKeyDown = event => {
     if (event.metaKey && event.key === 'k') {
@@ -80,20 +84,29 @@ export const Nav = () => {
         isBordered
         className="mb-8 w-full h-20"
         maxWidth="2xl"
+        onMenuOpenChange={setIsMenuOpen}
+        isMenuOpen={isMenuOpen}
       >
         <NavbarContent justify="start">
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            className="sm:hidden"
+          />
           <NavbarItem>
-            <Link href="/clothes" className="text-2xl">
+            <Link href="/clothes" className="sm:text-2xl hidden sm:block">
               COLEÇÃO
             </Link>
           </NavbarItem>
         </NavbarContent>
-
         <NavbarContent justify="center">
           <NavbarBrand>
-            <Link href={'/'} className="sm:block font-bold text-inherit">
+            <Link
+              href={'/'}
+              className="sm:block font-bold text-inherit"
+              onClick={() => setIsMenuOpen(false)}
+            >
               <Image
-                className="h-14"
+                className="h-14 min-w-fit"
                 radius={'none'}
                 alt="Sizebay logo"
                 src="/Brand_Mark_Tag_Sizebay-REFINED_2x_2_540x.png"
@@ -106,23 +119,65 @@ export const Nav = () => {
             variant="flat"
             color="default"
             onPress={onOpen}
+            onClick={onOpen}
             startContent={<Kbd keys={['command']}>K</Kbd>}
+            className="hidden md:flex w-2/4 md:w-9/12 md:min-w-[340px] px-4 text-ellipsis overflow-hidden"
           >
             Pesquise por algum modelo, tipo ou coleção...
           </Button>
-					<Link href={'/favorites'}>
-          <Badge
-            content={favorites.length}
+          <Button
+            onPress={onOpen}
+            onClick={onOpen}
+            isIconOnly
             color="danger"
-            variant="shadow"
-            className={favorites.length === 0 && 'hidden'}
-						>
-            <Button variant="flat" isIconOnly color="danger" aria-label="Like">
-              <AiFillHeart />
-            </Button>
-          </Badge>
-						</Link>
+            aria-label="Like"
+            className="flex md:hidden"
+          >
+            <AiOutlineSearch />
+          </Button>
+          <Link className="hidden sm:flex" href={'/favorites'}>
+            <Badge
+              content={favorites.length}
+              color="danger"
+              variant="shadow"
+              className={favorites.length === 0 && 'hidden'}
+            >
+              <Button
+                variant="flat"
+                isIconOnly
+                color="danger"
+                aria-label="Like"
+              >
+                <AiFillHeart />
+              </Button>
+            </Badge>
+          </Link>
         </NavbarContent>
+        <NavbarMenu className="pt-8">
+          <NavbarMenuItem className="flex flex-col gap-8">
+            <Link
+              href="/"
+              className="sm:text-lg"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              HOME
+            </Link>
+            <Link
+              href="/clothes"
+              className="sm:text-lg"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              COLEÇÃO
+            </Link>
+            <Link
+              href="/favorites"
+              className="sm:text-lg"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              FAVORITOS
+            </Link>
+          </NavbarMenuItem>
+        </NavbarMenu>
       </Navbar>
       <Modal
         backdrop={'blur'}
