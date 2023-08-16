@@ -12,6 +12,11 @@ const config: Config = {
   presets: [],
   darkMode: 'class', // or 'class'
   theme: {
+    extend: {
+      colors: {
+        'size-blue': '#d2ecff'
+      }
+    },
     accentColor: ({ theme }) => ({
       ...theme('colors'),
       auto: 'auto'
