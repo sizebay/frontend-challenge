@@ -29,8 +29,8 @@ const Page = () => {
     : data;
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between gap-4">
-      <div className="flex flex-row gap-8">
+    <div className="flex min-h-[80vh] flex-col items-center justify-between gap-4">
+      <div className="flex flex-row flex-wrap items-center gap-4 px-8 justify-center">
         {dataClothes.filters.map(filter => (
           <Button
             key={filter.label}
@@ -41,7 +41,7 @@ const Page = () => {
           </Button>
         ))}
       </div>
-      <div className="flex min-h-screen flex-row flex-wrap items-center gap-4 px-8 justify-center">
+      <div className="flex flex-row flex-wrap items-center gap-4 px-8 justify-center">
         {filteredData.map(item => {
           const { category, className } = getCategory(item.category);
           const formattedPicture = normalizeImage(item.image);
