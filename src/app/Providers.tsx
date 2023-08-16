@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 const Providers = ({ children }: Children) => {
   return (
     <Provider store={globalStore}>
-      <NextUIProvider>{children}</NextUIProvider>;
+      <NextUIProvider>{children}</NextUIProvider>
     </Provider>
   );
 };
