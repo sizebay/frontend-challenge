@@ -11,7 +11,7 @@ export const HomeAccordion = () => {
         className="max-w-5xl"
         fullWidth
         itemClasses={{
-          title: 'font-bold'
+          title: 'font-bold text-size-blue'
         }}
         variant="light"
       >
