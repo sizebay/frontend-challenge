@@ -35,8 +35,8 @@ const Page = async ({ params }) => {
     : 'Adicionar aos favoritos';
 
   return (
-    <section className="flex px-8 justify-center">
-      <Card isFooterBlurred className="border-2 border-size-orange/40">
+    <section className="flex min-h-[80vh] px-8 justify-center items-center">
+      <Card isFooterBlurred className="border-2 h-fit border-size-orange/40">
         <CardHeader className="absolute z-10 top-1 flex-col items-start">
           <p className="text-tiny text-slate-900 uppercase font-bold">
             {category}
