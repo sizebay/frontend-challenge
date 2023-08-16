@@ -11,7 +11,8 @@ export const HomeAccordion = () => {
         className="max-w-5xl"
         fullWidth
         itemClasses={{
-          title: 'font-bold text-size-blue'
+          title: 'font-bold text-size-blue z-10',
+          base: 'relative'
         }}
         variant="light"
       >
@@ -21,6 +22,9 @@ export const HomeAccordion = () => {
             aria-label={data.title}
             title={data.title}
             indicator={<FaTshirt className="fill-size-blue" />}
+            startContent={
+              <div className="h-6 w-6 absolute bg-size-orange z-0 rounded-full top-4" />
+            }
           >
             {data.description}
           </AccordionItem>
