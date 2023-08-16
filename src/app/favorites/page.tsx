@@ -12,8 +12,8 @@ const Page = async () => {
   const { favorites } = useSelector(({ favorites }) => favorites);
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between gap-4">
-      <div className="flex flex-row items-center justify-between gap-4">
+    <div className="flex min-h-[80vh] flex-col items-center justify-between gap-4">
+      <div className="flex flex-row flex-wrap items-center gap-4 px-8 justify-center">
         {favorites.length > 0 ? (
           favorites.map(item => {
             const { category, className } = getCategory(item.category);
