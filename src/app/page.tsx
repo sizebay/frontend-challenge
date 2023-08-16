@@ -5,11 +5,13 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-8 text-foreground gap-9">
-      <section className="flex flex-row items-baseline gap-3 relative">
+      <section className="flex flex-wrap flex-row items-baseline gap-3 relative">
         <div className="h-8 w-8 absolute bg-size-orange z-0 rounded-full" />
-        <div className="h-8 w-8 absolute bg-size-orange z-0 rounded-full bottom-2 right-0" />
-        <h1 className="text-8xl z-10">{dataHome.title}</h1>
-        <h4 className="text-4xl z-10">{dataHome.subTitle}</h4>
+        <div className="h-8 w-8 absolute bg-size-orange z-0 rounded-full -bottom-2 right-0 hidden sm:block sm:bottom-2" />
+        <h1 className="text-6xl	md:text-8xl z-10">{dataHome.title}</h1>
+        <h4 className="text-2xl md:text-4xl z-10 text-center">
+          {dataHome.subTitle}
+        </h4>
       </section>
       <div className="text-center">
         {dataHome.description.map(data => (
