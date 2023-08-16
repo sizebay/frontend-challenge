@@ -14,7 +14,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'size-blue': '#d2ecff'
+        'size-blue': '#d2ecff',
+        'size-orange': '#bf512b'
       }
     },
     accentColor: ({ theme }) => ({
