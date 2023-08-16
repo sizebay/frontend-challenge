@@ -1,10 +1,15 @@
 'use client';
+import { globalStore } from '@/store/globalStore';
 import { Children } from '@/types/children';
 import { NextUIProvider } from '@nextui-org/react';
-import React from 'react';
+import { Provider } from 'react-redux';
 
 const Providers = ({ children }: Children) => {
-  return <NextUIProvider>{children}</NextUIProvider>;
+  return (
+    <Provider store={globalStore}>
+      <NextUIProvider>{children}</NextUIProvider>;
+    </Provider>
+  );
 };
 
 export default Providers;
