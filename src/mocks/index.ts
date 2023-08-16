@@ -39,3 +39,25 @@ export const dataHome = {
 };
 
 export type DataHome = typeof dataHome;
+
+export const dataClothes = {
+  title: 'Coleção de roupas',
+  filters: [
+    {
+      category: '',
+      label: 'Todas as categorias'
+    },
+    {
+      category: 'female',
+      label: 'Feminino'
+    },
+    {
+      category: 'male',
+      label: 'Masculino'
+    },
+    {
+      category: 'kids',
+      label: 'Infantil'
+    }
+  ]
+};
