@@ -1,5 +1,5 @@
 import {
-  storegeFavoritesClothes,
+  storageFavoritesClothes,
   saveStorageClothes
 } from '@/functions/locaStorage';
 import {
@@ -10,7 +10,7 @@ import {
 import { isEqual } from 'lodash';
 
 const initialState: FavoriteClothes = {
-  favorites: storegeFavoritesClothes ? JSON.parse(storegeFavoritesClothes) : []
+  favorites: storageFavoritesClothes ? JSON.parse(storageFavoritesClothes) : []
 };
 
 export const favoriteStore = (
