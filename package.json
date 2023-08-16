@@ -33,7 +33,6 @@
     "typescript": "*"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.22.5",
     "@commitlint/cli": "^17.7.0",
     "@commitlint/config-conventional": "^17.7.0",
     "@testing-library/jest-dom": "^4.2.4",
