@@ -1,8 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# added --passWithNoTests momentarily during configuration
-yarn test --passWithNoTests
+yarn test --findRelatedTests --bail ||
+(
+		echo 'Run testes before commiting.'
+		false;
+)
 
 echo '🏗️👷 Styling, testing and building your project before committing'
 
