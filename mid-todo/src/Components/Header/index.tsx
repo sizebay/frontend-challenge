@@ -1,4 +1,4 @@
-import { Col, Day, Head, LeftSide } from "./style";
+import { Col, Day, Head, LeftSide, Text } from "./style";
 
 export default function Header(){
 
@@ -17,12 +17,12 @@ export default function Header(){
 				<Day>{day}</Day>
 
 				<Col>
-					<span>{month}</span>
-					<span>{year}</span>
+					<Text>{month}</Text>
+					<Text>{year}</Text>
 				</Col>
 			</LeftSide>
 
-			<div>{dayOfWeek}</div>
+			<Text>{dayOfWeek}</Text>
 		</Head>
 	)
 }

@@ -24,3 +24,8 @@ export const Day = styled.h1`
   font-size: 60px;
   font-weight: normal;
 `
+
+export const Text = styled.p`
+  font-size: 24px;
+  margin: 0;
+`
