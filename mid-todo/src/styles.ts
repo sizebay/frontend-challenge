@@ -1,7 +1,10 @@
 import styled from 'styled-components'
 
 export const Container = styled.main`
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  align-items: center;
 `
 
 export const Logo = styled.img`

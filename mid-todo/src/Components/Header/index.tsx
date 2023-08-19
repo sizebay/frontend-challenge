@@ -4,12 +4,10 @@ export default function Header(){
 
 	const todaysDate = new Date()
 
-	const day = todaysDate.getDate()
+	const day = todaysDate.getDate();
 	const month = todaysDate.toLocaleDateString('en-US', {month: 'short'});
 	const year = todaysDate.getFullYear();
 	const dayOfWeek = todaysDate.toLocaleDateString('en-US', {weekday: 'long'});
-
-	console.log(day)
 
 	return(
 		<Head>
