@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.15.3",
+    "@testing-library/jest-dom": "^6.0.1",
     "@types/i18next": "^13.0.0",
     "@types/loadable__component": "^5.13.4",
     "@types/lodash": "^4.14.197",
@@ -48,5 +49,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.3",
+    "jest": "^29.6.2"
   }
 }

@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { Actions, AddBtn, AddTask, CompleteBtn, Container, Form, ItemText, Li, RemoveBtn, Ul } from "./style";
 import { AiFillPlusCircle, AiFillMinusCircle, AiFillCheckCircle } from "react-icons/ai";
+import { useTodoProvider } from "../../Provider/Todo";
 
-type TodoType = {
-  id: number,
-  text: string,
-  isCompleted: boolean
-}[]
 
 export default function List(){
 
-  const [todos, setTodo] = useState<TodoType>([]);
+  const { todoTask, addTask} = useTodoProvider();
   const [item, setItem] = useState<string>('');
   const [expandItem, setExpandItem] = useState<number | null>();
   const [changeBackground, setChangeBackgroun] = useState<boolean>(false)
@@ -18,7 +14,7 @@ export default function List(){
   function handleSubmit(event: any) {
     event.preventDefault();
     if(!item) return
-    setTodo([...todos, {
+    addTask([...todoTask, {
       id: Math.floor(Math.random() * 10000),
       text: item,
       isCompleted: false,
@@ -37,17 +33,17 @@ export default function List(){
   }
 
   function completeItem(id: number) {
-    const allTodos = [...todos]
+    const allTodos = [...todoTask]
     allTodos.map((todo) => todo.id === id? todo.isCompleted = !todo.isCompleted : todo)
-    setTodo(allTodos)
+    addTask(allTodos)
     console.log('completado')
   }
 
   function handleRemoveItem(id: number) {
-    const allTodos = [...todos]
+    const allTodos = [...todoTask]
     const filteredTodo = allTodos.filter(todo => 
       todo.id !== id ? todo : null)
-    setTodo(filteredTodo)
+      addTask(filteredTodo)
   }
 
   return(
@@ -58,14 +54,15 @@ export default function List(){
           placeholder="Add new item..."
           value={item}
           onChange={(e) => setItem(e.target.value)}
+          data-testid='new-task'
         />
   
-        <AddBtn type="submit">
+        <AddBtn type="submit" data-testid='add-task-btn'>
           <AiFillPlusCircle style={{color: '#fff', height: 20, width: 20}} />
         </AddBtn>
       </Form>
       <Ul>
-        {todos.map((todo, index) => (
+        {todoTask.map((todo, index) => (
           <Li 
             key={todo.id} 
             onClick={() => handleAction(index)}

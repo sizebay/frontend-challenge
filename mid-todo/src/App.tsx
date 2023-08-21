@@ -1,11 +1,14 @@
 import { Container } from './styles'
 import TODO from './Pages/TODO'
+import { TodoProvider } from './Provider/Todo'
 
 function App() {
   return (
-    <Container>
-      <TODO/>
-    </Container>
+    <TodoProvider>
+      <Container>
+        <TODO/>
+      </Container>
+    </TodoProvider>
   )
 }
 
