@@ -43,6 +43,7 @@ export const Ul = styled.ul`
 export const Li = styled.li<ListProps>`
   background: ${props => props.bgColor? '#FFFFFF' : '#F4F4F4'} 0% 0% no-repeat padding-box;
   border: 1px solid #DBDBDB;
+  border-radius: 0px 4px 4px 0px;
   display: flex;
   font-size: 14px;
   justify-content: space-between;
