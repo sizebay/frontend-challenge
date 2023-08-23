@@ -17,7 +17,7 @@ export default function List(){
   const [tasks, setTasks] = useState<TaskType[]>([]);
   const [item, setItem] = useState<string>('');
   const [expandItem, setExpandItem] = useState<number | null>();
-  const [changeBackground, setChangeBackgroun] = useState<boolean>(false)
+  const [changeBackground, setChangeBackground] = useState<boolean>(false)
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -33,10 +33,10 @@ export default function List(){
   function handleAction(index: number){
     if(expandItem === index){
       setExpandItem(null)
-      setChangeBackgroun(!changeBackground)
+      setChangeBackground(!changeBackground)
     }else{
       setExpandItem(index)
-      setChangeBackgroun(!changeBackground)
+      setChangeBackground(!changeBackground)
     }
   }
 
@@ -61,6 +61,14 @@ export default function List(){
     setIsFilterOn(false)
   }
 
+  function handleBackgrounColor(position: number){
+    if(expandItem === position && changeBackground){
+      return '#FFFFFF'
+    }else{
+      return '#F4F4F4'
+    }
+  }
+  
   useEffect(() => {
     if(filteredTasks.length > 0){
       setTasks(filteredTasks)
@@ -85,37 +93,41 @@ export default function List(){
         </AddBtn>
       </Form>
       {
-        isFilterOn &&
+        isFilterOn?
         <FilterText>
           There are no items marked as {filterType}. 
           <ClearFilter onClick={handleClearFilter}>Clear filter here</ClearFilter>
-           to see all items.</FilterText>
+           to see all items.
+        </FilterText>
+        
+        :
+        
+        <Ul>
+          {tasks.map((todo, index) => (
+            <Li 
+              key={todo.id} 
+              onClick={() => handleAction(index)}
+              bgcolor={handleBackgrounColor(index)}
+              status={todo.isCompleted === true? 0.5 : 1}
+            >
+              <ItemText>
+                {todo.text}
+              </ItemText>
+              {
+                expandItem === index && 
+                <Actions>
+                  <RemoveBtn onClick={() => handleRemoveItem(todo.id)}>
+                    <AiFillMinusCircle style={{color: '#fff', height: 20, width: 20}} />
+                  </RemoveBtn>
+                  <CompleteBtn onClick={() => completeItem(todo.id)}>
+                    <AiFillCheckCircle style={{color: '#fff', height: 20, width: 20}} />
+                  </CompleteBtn>
+                </Actions>
+              }
+            </Li>
+          ))}
+        </Ul>
       }
-      <Ul>
-        {tasks.map((todo, index) => (
-          <Li 
-            key={todo.id} 
-            onClick={() => handleAction(index)}
-            bgColor={expandItem === index && changeBackground}
-            status={todo.isCompleted === true? 0.5 : 1}
-          >
-            <ItemText>
-              {todo.text}
-            </ItemText>
-            {
-              expandItem === index && 
-              <Actions>
-                <RemoveBtn onClick={() => handleRemoveItem(todo.id)}>
-                  <AiFillMinusCircle style={{color: '#fff', height: 20, width: 20}} />
-                </RemoveBtn>
-                <CompleteBtn onClick={() => completeItem(todo.id)}>
-                  <AiFillCheckCircle style={{color: '#fff', height: 20, width: 20}} />
-                </CompleteBtn>
-              </Actions>
-            }
-          </Li>
-        ))}
-      </Ul>
     </Container>
   )
 }

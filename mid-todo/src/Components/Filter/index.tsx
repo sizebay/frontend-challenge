@@ -49,7 +49,7 @@ export default function Filter(){
       setIsFilterOn(true)
     }
   }
-
+  
   useEffect(() => {
     if(isFilterDone === false && isFilterPending === false){
       setFilteredTasks([...todoTask])
@@ -64,7 +64,7 @@ export default function Filter(){
       <div>
         <FilterBtn 
           onClick={handleFilterDone}
-          isActive={isFilterDone}
+          active={isFilterDone}
         >
           {isFilterDone === true &&
             <BsCheck2 />
@@ -73,7 +73,7 @@ export default function Filter(){
         </FilterBtn>
         <FilterBtn 
           onClick={handleFilterPending}
-          isActive={isFilterPending}
+          active={isFilterPending}
         >
           {isFilterPending === true &&
             <BsCheck2 />

@@ -5,9 +5,8 @@ export const Head = styled.header`
   color: #848484;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin-top: 60px;
-  width: 100%;
+  justify-content: space-between;
+  width: 90%;
 `
 
 export const Col = styled.div`
@@ -28,4 +27,5 @@ export const Day = styled.h1`
 export const Text = styled.p`
   font-size: 24px;
   margin: 0;
+  text-align: left;
 `

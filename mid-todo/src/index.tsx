@@ -6,7 +6,7 @@ import { StyleSheetManager } from 'styled-components';
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('szb-app-root') as HTMLElement).render(
-  <StyleSheetManager>
+  <StyleSheetManager shouldForwardProp={(prop) => !prop.startsWith('shouldShow')}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

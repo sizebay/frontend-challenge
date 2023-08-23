@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
 interface ListProps {
-  bgColor: boolean
+  bgcolor: string
   status: number
 }
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 90%;
+
 `
 
 export const AddTask = styled.input`
   padding-left: 16px;
-  width: 650px;
+  width: 100%;
 `
 
 export const Form = styled.form`
@@ -38,10 +40,12 @@ export const AddBtn = styled.button`
 
 export const Ul = styled.ul`
   padding: 0;
+  max-height: 240px; 
+  overflow-y: auto;
 `
 
 export const Li = styled.li<ListProps>`
-  background: ${props => props.bgColor? '#FFFFFF' : '#F4F4F4'} 0% 0% no-repeat padding-box;
+  background: ${(props) => props.bgcolor} 0% 0% no-repeat padding-box;
   border: 1px solid #DBDBDB;
   border-radius: 0px 4px 4px 0px;
   display: flex;
@@ -49,7 +53,7 @@ export const Li = styled.li<ListProps>`
   justify-content: space-between;
   list-style-type: none;
   margin-top: 8px;
-  opacity: ${props => props.status};
+  opacity: ${(props) => props.status};
   text-align: left;
 `
 

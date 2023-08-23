@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface ButtonProps {
+  active: boolean
+}
+
 export const Container = styled.div`
   align-items: center;
   display: flex;
@@ -15,12 +19,12 @@ export const FilterInput = styled.input`
   width: 450px;
 `
 
-export const FilterBtn = styled.button<{isActive: boolean}>`
-  background: ${props => props.isActive? '#FFFFFF' : '#F7F7F8'} 0% 0% no-repeat padding-box;
-  border: 1px solid ${props => props.isActive? '#4DA6B3' : '#DBDBDB'};
+export const FilterBtn = styled.button<ButtonProps>`
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid ${(props) => props.active? '#4DA6B3' : '#DBDBDB'};
   border-radius: 17px;
   cursor: pointer;
-  color: ${props => props.isActive? '#4DA6B3' : 'black'};
+  color: ${(props) => props.active? '#4DA6B3' : '#848484'};
   height: 33px;
   margin-right: 8px;
   padding: 0 19px;
