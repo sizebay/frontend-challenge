@@ -3,7 +3,7 @@
 
 yarn test --bail ||
 (
-		echo 'Run testes before commiting.'
+		echo 'Run test before commiting.'
 		false;
 )
 
