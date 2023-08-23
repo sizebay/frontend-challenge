@@ -1,17 +1,25 @@
-import { useState } from "react";
-import { Actions, AddBtn, AddTask, CompleteBtn, Container, Form, ItemText, Li, RemoveBtn, Ul } from "./style";
+import { FormEvent, useEffect, useState } from "react";
+import { Actions, AddBtn, AddTask, ClearFilter, CompleteBtn, Container, FilterText, Form, ItemText, Li, RemoveBtn, Ul } from "./style";
 import { AiFillPlusCircle, AiFillMinusCircle, AiFillCheckCircle } from "react-icons/ai";
 import { useTodoProvider } from "../../Provider/Todo";
 
+interface TaskType {
+  id: number
+  text: string
+  isCompleted: boolean
+}
 
 export default function List(){
 
-  const { todoTask, addTask} = useTodoProvider();
+  const { todoTask, addTask, filteredTasks,
+     filterType, isFilterOn, setFilteredTasks, 
+     setFilterType, setIsFilterOn, setIsDone, setIsPending } = useTodoProvider();
+  const [tasks, setTasks] = useState<TaskType[]>([]);
   const [item, setItem] = useState<string>('');
   const [expandItem, setExpandItem] = useState<number | null>();
   const [changeBackground, setChangeBackgroun] = useState<boolean>(false)
 
-  function handleSubmit(event: any) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if(!item) return
     addTask([...todoTask, {
@@ -36,7 +44,6 @@ export default function List(){
     const allTodos = [...todoTask]
     allTodos.map((todo) => todo.id === id? todo.isCompleted = !todo.isCompleted : todo)
     addTask(allTodos)
-    console.log('completado')
   }
 
   function handleRemoveItem(id: number) {
@@ -45,6 +52,22 @@ export default function List(){
       todo.id !== id ? todo : null)
       addTask(filteredTodo)
   }
+
+  function handleClearFilter() {
+    setFilteredTasks([...todoTask])
+    setIsDone(false)
+    setIsPending(false)
+    setFilterType('')
+    setIsFilterOn(false)
+  }
+
+  useEffect(() => {
+    if(filteredTasks.length > 0){
+      setTasks(filteredTasks)
+    }else{
+      setTasks(todoTask)
+    }
+  },[todoTask, filteredTasks])
 
   return(
     <Container>
@@ -61,8 +84,15 @@ export default function List(){
           <AiFillPlusCircle style={{color: '#fff', height: 20, width: 20}} />
         </AddBtn>
       </Form>
+      {
+        isFilterOn &&
+        <FilterText>
+          There are no items marked as {filterType}. 
+          <ClearFilter onClick={handleClearFilter}>Clear filter here</ClearFilter>
+           to see all items.</FilterText>
+      }
       <Ul>
-        {todoTask.map((todo, index) => (
+        {tasks.map((todo, index) => (
           <Li 
             key={todo.id} 
             onClick={() => handleAction(index)}

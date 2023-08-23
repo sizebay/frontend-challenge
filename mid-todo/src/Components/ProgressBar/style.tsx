@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 interface ProgressInterface {
-  value: number,
-  shouldShow: string;
+  value: number
+  shouldShow: string
 }
 
 export const Container = styled.div`

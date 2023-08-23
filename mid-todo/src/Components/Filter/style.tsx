@@ -15,11 +15,12 @@ export const FilterInput = styled.input`
   width: 450px;
 `
 
-export const FilterBtn = styled.button`
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 1px solid #DBDBDB;
+export const FilterBtn = styled.button<{isActive: boolean}>`
+  background: ${props => props.isActive? '#FFFFFF' : '#F7F7F8'} 0% 0% no-repeat padding-box;
+  border: 1px solid ${props => props.isActive? '#4DA6B3' : '#DBDBDB'};
   border-radius: 17px;
   cursor: pointer;
+  color: ${props => props.isActive? '#4DA6B3' : 'black'};
   height: 33px;
   margin-right: 8px;
   padding: 0 19px;

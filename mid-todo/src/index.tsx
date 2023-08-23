@@ -1,15 +1,14 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client';
 import App from './App'
+import { StyleSheetManager } from 'styled-components';
 
 import './index.css'
 
-const AppContainer = () => {
-  return (
+ReactDOM.createRoot(document.getElementById('szb-app-root') as HTMLElement).render(
+  <StyleSheetManager>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  )
-}
-
-ReactDOM.render(<AppContainer />, document.getElementById('szb-app-root'))
+  </StyleSheetManager>
+);

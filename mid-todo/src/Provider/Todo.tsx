@@ -9,6 +9,16 @@ interface TodoType {
 interface TaskTodoInterface {
   todoTask: TodoType[]
   addTask: Dispatch<SetStateAction<TodoType[]>>
+  filterType: string
+  setFilterType: Dispatch<SetStateAction<string>>
+  filteredTasks: TodoType[]
+  isFilterOn: boolean
+  setIsFilterOn: Dispatch<SetStateAction<boolean>>
+  isFilterDone: boolean
+  setIsDone: Dispatch<SetStateAction<boolean>>
+  isFilterPending: boolean
+  setIsPending: Dispatch<SetStateAction<boolean>>
+  setFilteredTasks: Dispatch<SetStateAction<TodoType[]>>
   completeTask: Dispatch<SetStateAction<Boolean>>
   removeTask: Dispatch<SetStateAction<TodoType[]>>
 }
@@ -21,10 +31,26 @@ type TodoProviderProps = {
 
 export function TodoProvider ({ children }: TodoProviderProps) {
   const [todo, setTodoTask] = useState<TodoType[]>([]);
+  const [filteredTasks, setFilteredTasks] = useState<TodoType[]>([]);
+  const [filterType, setFilterType] = useState<string>('');
+  const [isFilterOn, setIsFilterOn] = useState<boolean>(false);
+  const [isFilterDone, setIsDone] = useState<boolean>(false);
+  const [isFilterPending, setIsPending] = useState<boolean>(false);
+
 
   const value: TaskTodoInterface = {
     todoTask: todo,
     addTask: setTodoTask,
+    filteredTasks: filteredTasks,
+    setFilteredTasks:setFilteredTasks,
+    filterType: filterType,
+    setFilterType: setFilterType,
+    isFilterOn: isFilterOn,
+    setIsFilterOn: setIsFilterOn,
+    isFilterDone: isFilterDone,
+    setIsDone: setIsDone,
+    isFilterPending: isFilterPending,
+    setIsPending: setIsPending,
     completeTask: () => {},
     removeTask: () => {}
   };

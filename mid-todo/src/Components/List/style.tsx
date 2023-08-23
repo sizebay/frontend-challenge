@@ -55,7 +55,6 @@ export const Li = styled.li<ListProps>`
 
 export const Actions = styled.div`
   display: flex;
-
 `
 
 export const RemoveBtn = styled.button`
@@ -77,4 +76,19 @@ export const CompleteBtn = styled.button`
   padding: 0;
   height: 48px;
   width: 44px;
+`
+
+export const FilterText = styled.p`
+  font-size: 14px;
+  color: #848484;
+`
+
+export const ClearFilter = styled.button`
+  border: none;
+  background-color: white;
+  color: #848484;
+  cursor: pointer;
+  text-decoration: underline;
+
+
 `
