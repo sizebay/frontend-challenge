@@ -8,8 +8,9 @@ export default function Filter(){
   const [searchText, setSearchText] = useState<string>('');
   const {todoTask, setFilteredTasks, setFilterType, 
     setIsFilterOn, setIsDone, setIsPending, isFilterDone,
-  isFilterPending} = useTodoProvider();
+  isFilterPending, filterType} = useTodoProvider();
  
+
   function handleSearch(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const filteredTasks = todoTask.filter((task) => {
@@ -63,8 +64,8 @@ export default function Filter(){
     <Container>
       <div>
         <FilterBtn 
-          onClick={handleFilterDone}
-          active={isFilterDone}
+          onClick={() => handleFilterDone()}
+          active={filterType === 'Done'? '#4DA6B3' : undefined}
         >
           {isFilterDone === true &&
             <BsCheck2 />
@@ -72,8 +73,8 @@ export default function Filter(){
           Done
         </FilterBtn>
         <FilterBtn 
-          onClick={handleFilterPending}
-          active={isFilterPending}
+          onClick={() => handleFilterPending()}
+          active={filterType === 'Pending'? '#4DA6B3' : undefined}
         >
           {isFilterPending === true &&
             <BsCheck2 />

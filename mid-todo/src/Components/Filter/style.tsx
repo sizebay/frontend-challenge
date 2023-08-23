@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface ButtonProps {
-  active: boolean
+  active: string | undefined
 }
 
 export const Container = styled.div`
@@ -21,10 +21,10 @@ export const FilterInput = styled.input`
 
 export const FilterBtn = styled.button<ButtonProps>`
   background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 1px solid ${(props) => props.active? '#4DA6B3' : '#DBDBDB'};
+  border: 1px solid ${(props) => props.active? props.active : '#DBDBDB'};
   border-radius: 17px;
   cursor: pointer;
-  color: ${(props) => props.active? '#4DA6B3' : '#848484'};
+  color: ${(props) => props.active? props.active : '#848484'};
   height: 33px;
   margin-right: 8px;
   padding: 0 19px;
