@@ -1,7 +1,7 @@
 import {
   storageFavoritesClothes,
   saveStorageClothes
-} from '@/functions/locaStorage';
+} from '@/functions/localStorage';
 import {
   FavoriteClothes,
   FavoritesAction,
