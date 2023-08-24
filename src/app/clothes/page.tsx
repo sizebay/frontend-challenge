@@ -10,6 +10,7 @@ import { Card, CardFooter, Image } from '@nextui-org/react';
 import Link from 'next/link';
 import React from 'react';
 import { dataClothes } from '@/mocks';
+import { twMerge } from 'tailwind-merge';
 
 const Page = () => {
   const [data, setData] = useState<ItemClothes[]>([]);
@@ -37,7 +38,9 @@ const Page = () => {
           <Button
             key={filter.label}
             onClick={() => setSelectedCategory(filter.category)}
-            className={selectedCategory === filter.category && 'bg-size-blue'}
+            className={twMerge(
+              selectedCategory === filter.category && 'bg-size-blue'
+            )}
           >
             {filter.label}
           </Button>
