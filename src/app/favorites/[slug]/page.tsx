@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button } from '@/components/ButtonStyle';
 import { addToFavorites } from '@/functions/addToFavorites';
 import { getCategory } from '@/functions/getCategory';
@@ -30,9 +30,9 @@ const Page = async ({ params }) => {
     setFavorite(!favorite);
   };
 
-  const tooltipContent = !favorite
-    ? 'Remover dos favoritos'
-    : 'Adicionar aos favoritos';
+  const tooltipContent = useMemo(() => {
+    return !favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+  }, [favorite]);
 
   return (
     <section className="flex min-h-[80vh] px-8 justify-center items-center">
