@@ -20,6 +20,7 @@
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
+    "clsx": "^2.0.0",
     "framer-motion": "^10.15.1",
     "lodash": "^4.17.21",
     "next": "13.4.13",
