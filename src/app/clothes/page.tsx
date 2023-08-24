@@ -1,8 +1,7 @@
 'use client';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Button } from '@/components/ButtonStyle';
 import { getCategory } from '@/functions/getCategory';
-import { getData } from '@/functions/getData';
 import { normalizeImage } from '@/functions/normalizeImage';
 import { stringifyUrl } from '@/functions/stringifyUrl';
 import { ItemClothes } from '@/types/itemClothes';
@@ -11,19 +10,11 @@ import Link from 'next/link';
 import React from 'react';
 import { dataClothes } from '@/mocks';
 import { twMerge } from 'tailwind-merge';
+import useFetchData from '@/hooks/useFetchData';
 
 const Page = () => {
-  const [data, setData] = useState<ItemClothes[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedData: ItemClothes[] = await getData();
-      setData(fetchedData);
-    };
-
-    fetchData();
-  }, []);
+  const { data } = useFetchData();
 
   const filteredData = useMemo(() => {
     return selectedCategory
@@ -32,7 +23,7 @@ const Page = () => {
   }, [selectedCategory, data]);
 
   return (
-    <div className="flex min-h-[80vh] flex-col items-center justify-between gap-4">
+    <div className="flex min-h-[80vh] flex-col items-center gap-4">
       <div className="flex flex-row flex-wrap items-center gap-4 px-8 justify-center">
         {dataClothes.filters.map(filter => (
           <Button
