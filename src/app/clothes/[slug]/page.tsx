@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button } from '@/components/ButtonStyle';
 import { addToFavorites } from '@/functions/addToFavorites';
 import { getCategory } from '@/functions/getCategory';
@@ -30,9 +30,9 @@ const Page = async ({ params }) => {
     setFavorite(!favorite);
   };
 
-  const tooltipContent = favorite
-    ? 'Remover dos favoritos'
-    : 'Adicionar aos favoritos';
+  const tooltipContent = useMemo(() => {
+    return favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos';
+  }, [favorite]);
 
   return (
     <section className="flex min-h-[80vh] px-8 justify-center items-center">
@@ -48,7 +48,7 @@ const Page = async ({ params }) => {
         <Image
           removeWrapper
           alt={decodedItem.title}
-          className="z-0  object-contain"
+          className="z-0 object-contain"
           src={formattedPicture}
         />
         <CardFooter className="absolute bg-size-blue/40 bottom-0 z-10 border-t-1 border-default-600 dark:border-default-100">
