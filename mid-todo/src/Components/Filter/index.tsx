@@ -66,6 +66,7 @@ export default function Filter(){
         <FilterBtn 
           onClick={() => handleFilterDone()}
           active={filterType === 'Done'? '#4DA6B3' : undefined}
+          data-testid='filter-done-btn'
         >
           {isFilterDone === true &&
             <BsCheck2 />
@@ -75,6 +76,7 @@ export default function Filter(){
         <FilterBtn 
           onClick={() => handleFilterPending()}
           active={filterType === 'Pending'? '#4DA6B3' : undefined}
+          data-testid='filter-pending-btn'
         >
           {isFilterPending === true &&
             <BsCheck2 />
@@ -98,6 +100,7 @@ export default function Filter(){
           placeholder="Search" 
           onChange={(e) => setSearchText(e.target.value)}
           value={searchText}
+          data-testid='filter-input'
         />
       </Form>
     </Container>

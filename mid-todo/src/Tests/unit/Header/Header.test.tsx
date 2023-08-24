@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import Header from '../../../Components/Header';
 import '@testing-library/jest-dom'
 
-test('render date on screen', () => {
+test('it should render date on screen', () => {
   render(<Header />)
 	const todaysDate = new Date()
   const day = todaysDate.getDate();

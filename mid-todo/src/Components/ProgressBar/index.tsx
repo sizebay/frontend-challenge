@@ -8,12 +8,15 @@ export default function ProgressBar() {
   const { todoTask } = useTodoProvider();
 
   const totalCompletedTasks = useMemo(() => {
-    if(todoTask.length === 0) return 0
+    if(todoTask && todoTask.length !== 0) {
 
     const totalCompleted: number = todoTask.filter((item) => item.isCompleted).length
     const allCompleted: number = (totalCompleted / todoTask.length) * 100
 
     return allCompleted
+    }else{
+      return 0
+    }
   }, [todoTask])
 
   return(
@@ -21,7 +24,8 @@ export default function ProgressBar() {
       <Bar>
         <Progress 
           value={totalCompletedTasks} 
-          shouldShow={totalCompletedTasks > 0? 'flex' : 'none'}
+          shouldshow={totalCompletedTasks > 0? 'flex' : 'none'}
+          data-testid="progress-bar"
         />
         <ConfettiPosition>
         {

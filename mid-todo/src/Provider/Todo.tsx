@@ -37,7 +37,6 @@ export function TodoProvider ({ children }: TodoProviderProps) {
   const [isFilterDone, setIsDone] = useState<boolean>(false);
   const [isFilterPending, setIsPending] = useState<boolean>(false);
 
-
   const value: TaskTodoInterface = {
     todoTask: todo,
     addTask: setTodoTask,
@@ -62,7 +61,7 @@ export function TodoProvider ({ children }: TodoProviderProps) {
   )
 };
 
-export const useTodoProvider = () => {
+export function useTodoProvider() {
   const context = useContext(TodoContext);
   if (!context) {
     throw new Error('verifique o uso do useTodoProvider');

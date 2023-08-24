@@ -22,12 +22,14 @@ export default function List(){
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if(!item) return
-    addTask([...todoTask, {
-      id: Math.floor(Math.random() * 10000),
-      text: item,
-      isCompleted: false,
-    }])
-    setItem('')
+    if(todoTask){
+      addTask([...todoTask, {
+        id: Math.floor(Math.random() * 10000),
+        text: item,
+        isCompleted: false,
+      }])
+      setItem('')
+    }
   }
 
   function handleAction(index: number){
@@ -70,7 +72,8 @@ export default function List(){
   }
   
   useEffect(() => {
-    if(filteredTasks.length > 0){
+    
+    if(filteredTasks && filteredTasks.length > 0){
       setTasks(filteredTasks)
     }else{
       setTasks(todoTask)
@@ -94,7 +97,8 @@ export default function List(){
       </Form>
       {
         isFilterOn?
-        <FilterText>
+
+        <FilterText data-testid="text-filter">
           There are no items marked as {filterType}. 
           <ClearFilter onClick={handleClearFilter}>Clear filter here</ClearFilter>
            to see all items.
@@ -102,24 +106,25 @@ export default function List(){
         
         :
         
-        <Ul>
-          {tasks.map((todo, index) => (
+        <Ul data-testid="task-list">
+          {tasks && tasks.map((todo, index) => (
             <Li 
               key={todo.id} 
               onClick={() => handleAction(index)}
               bgcolor={handleBackgrounColor(index)}
               status={todo.isCompleted === true? 0.5 : 1}
+              data-testid="li-item"
             >
-              <ItemText>
+              <ItemText data-testid="task-text">
                 {todo.text}
               </ItemText>
               {
                 expandItem === index && 
-                <Actions>
-                  <RemoveBtn onClick={() => handleRemoveItem(todo.id)}>
+                <Actions data-testid="actions">
+                  <RemoveBtn data-testid="remove-btn" onClick={() => handleRemoveItem(todo.id)}>
                     <AiFillMinusCircle style={{color: '#fff', height: 20, width: 20}} />
                   </RemoveBtn>
-                  <CompleteBtn onClick={() => completeItem(todo.id)}>
+                  <CompleteBtn data-testid="complete-btn" onClick={() => completeItem(todo.id)}>
                     <AiFillCheckCircle style={{color: '#fff', height: 20, width: 20}} />
                   </CompleteBtn>
                 </Actions>
