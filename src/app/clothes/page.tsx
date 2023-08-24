@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Button } from '@/components/ButtonStyle';
 import { getCategory } from '@/functions/getCategory';
 import { getData } from '@/functions/getData';
@@ -24,9 +24,11 @@ const Page = () => {
     fetchData();
   }, []);
 
-  const filteredData = selectedCategory
-    ? data.filter(item => item.category === selectedCategory)
-    : data;
+  const filteredData = useMemo(() => {
+    return selectedCategory
+      ? data.filter(item => item.category === selectedCategory)
+      : data;
+  }, [selectedCategory, data]);
 
   return (
     <div className="flex min-h-[80vh] flex-col items-center justify-between gap-4">
