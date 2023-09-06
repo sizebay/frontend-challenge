@@ -1,0 +1,28 @@
+.container_createTaskBar{
+    width: 100%;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #DBDBDB;
+    border-radius: 4px;
+    padding: 0.5em 0em 0.5em 1em;
+    overflow: hidden;
+    margin: 0.5em 0em;
+    background-color: #F7F7F7;
+}
+.container_createTaskBar input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0em;
+    border: 0;
+    background-color: transparent;
+    color: #84848486;
+}
+.container_createTaskBar input::placeholder{
+    color: #84848486;
+}
+

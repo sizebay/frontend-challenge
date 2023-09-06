@@ -1,0 +1,46 @@
+.container_statusBar{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1em 0em;
+}
+.statusBar{
+    width: 100%;
+    height: 24px;
+    background-color: #E4E4E4;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    overflow: hidden;
+}
+.statusBar-content{
+    height: 24px;
+    background-color: var(--bar_button-green);
+    transition: width 0.5s ease-in-out;
+}
+.statusBar-frame{
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    top:0;
+    right: 0;
+    margin: 0em 1em 0em 0em;
+}
+
+@media (min-width: 1200px) {
+
+    .statusBar-frame{
+        right: 22%;
+    }
+}
+
+@media (min-width: 1500px) {
+
+    .statusBar-frame{
+        right: 38%;
+    }
+}

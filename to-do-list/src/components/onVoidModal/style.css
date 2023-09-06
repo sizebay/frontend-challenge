@@ -1,0 +1,15 @@
+.container-onVoidModal{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 1em;
+}
+.container-onVoidModal button{
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: #848484;
+    font-size: 14px;
+    font-weight: 400;
+}

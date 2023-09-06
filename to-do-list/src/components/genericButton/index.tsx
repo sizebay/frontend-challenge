@@ -1,35 +1,30 @@
-import React, { FC, MouseEventHandler } from 'react'
+import {  MouseEventHandler, ReactNode } from 'react'
 import './style.css'
 
 interface IGenericButtonProps{
-    placeholder: string;
     backgroundColor: string;
-    color: string;
-    border: string;
-    width: string;
-    height: string;
-    margin: string;
-    icon: React.ReactNode;
-    onClick: MouseEventHandler<HTMLButtonElement>;
+    width?: string;
+    height?: string;
+    margin?: string;
+    icon: ReactNode;
+    onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-const GenericButton : FC<IGenericButtonProps> = ({ placeholder, backgroundColor, color, border, width, height, margin, icon, onClick }) =>{
-
+const GenericButton = ({  backgroundColor, width, height, margin, icon, onClick } : IGenericButtonProps) =>{
     return(
         <button
+            className='genericButton'
+            data-testid="icon-container"
             onClick={onClick}
             style={{
-                color: color,
-                backgroundColor: backgroundColor,
-                border: border,
-                margin: margin,
-                height: height,
-                width: width
+                backgroundColor,
+                width,
+                height,
+                margin
             }}
         >
             {icon}
-            {placeholder}
         </button>
     )
 }
-export default GenericButton
+export default GenericButton;

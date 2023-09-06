@@ -1,0 +1,9 @@
+.listTasks{
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+}

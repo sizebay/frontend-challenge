@@ -1,10 +1,15 @@
-import { FC } from 'react'
+import { ReactNode } from 'react'
 import './style.css'
 
-const ListTasks : FC = () => {
-    return(
-        <div>
+interface IListTasksProps{
+    children: ReactNode;
+}
 
+const ListTasks = ({ children }: IListTasksProps) => {
+    
+    return(
+        <div className='listTasks'>
+            {children}
         </div>
     )
 }

@@ -1,0 +1,80 @@
+.container_toolsBar{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.toolBar{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    z-index: 100;
+    transition: all 0.5s ease;
+}
+.switch-Tema{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 30px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1c1c1e;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 28px;
+    border: 1.5px solid #7a7a7a;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    background-color: #ffffff;
+    border: 0.5px solid #7a7a7a;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #eeeeee;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--info-background);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}  

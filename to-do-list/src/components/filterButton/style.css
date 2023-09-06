@@ -1,0 +1,14 @@
+.filterButton{
+    width: auto;
+    height: auto;
+    padding: 0.5em 1em;
+    border-radius: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filterButton p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
