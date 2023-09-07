@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './style.css'
 import GenericButton from '../genericButton';
-import { useTaskContext } from '../../services/taskServices/UseTaskContext';
+import { UseTaskData } from '../../services/taskServices/UseTasksData';
+import './style.css'
 
 interface ITaskItemProps{
     text: string;
@@ -10,29 +10,11 @@ interface ITaskItemProps{
 
 const TaskItem = ({ text, id } : ITaskItemProps) => {
 
-    const { taskData, setTaskData } = useTaskContext()
+    const { UpdateTaskData, UpdateTaskDataState, DeleteTaskData } = UseTaskData()
+    
     const [editedText, setEditedText] = useState(text);
     const [isEdited, setIsEdited] = useState(false);
 
-    const handleEditTask = (newText: string) => {
-        setEditedText(newText); 
-        const updatedTask = taskData.map((task) =>
-          task.id === id ? { ...task, text: newText } : task
-        );
-        setTaskData(updatedTask);
-    };
-
-    const handleDeleteTask = () => {
-        const updatedTasks = taskData.filter((task) => task.id !== id);
-        setTaskData(updatedTasks);
-    };
-
-    const handleDoneTask = () => {
-        const updatedStatusTasks = taskData.map((task) =>
-          task.id === id ? { ...task, isDone: true } : task
-        );
-        setTaskData(updatedStatusTasks);
-    };
     
     return(
         <div className='conatiner_taskItem'>
@@ -40,7 +22,7 @@ const TaskItem = ({ text, id } : ITaskItemProps) => {
                 type="text" 
                 name="inputTaskItem"  
                 value={editedText || undefined}  
-                onChange={(e) => handleEditTask(e.target.value)} 
+                onChange={(e) => { UpdateTaskData(id,e.target.value); setEditedText(e.target.value) }}
                 onFocus={() => setIsEdited(true)} 
                 onKeyDown={() => setIsEdited(false)}
                 data-testid={`task-item-${id}`}
@@ -49,7 +31,7 @@ const TaskItem = ({ text, id } : ITaskItemProps) => {
                 isEdited && (
                     <div className='buttons_taskItem'>
                         <GenericButton
-                            onClick={()=> handleDeleteTask()}
+                            onClick={()=> DeleteTaskData(id)}
                             backgroundColor= 'var(--delete-button)'
                             icon={
                                 <svg width={23.4} height={23.4} fill="#ffffff" viewBox="0 0 24 24">
@@ -60,7 +42,7 @@ const TaskItem = ({ text, id } : ITaskItemProps) => {
                             width='42px'                        
                         />
                          <GenericButton
-                            onClick={() => handleDoneTask()}
+                            onClick={() => UpdateTaskDataState(id)}
                             backgroundColor= 'var(--bar_button-green)'
                             icon={
                                 <svg width={23.4} height={23.4} fill="#ffffff" viewBox="0 0 24 24">

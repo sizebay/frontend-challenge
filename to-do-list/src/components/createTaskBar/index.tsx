@@ -1,29 +1,13 @@
 import { useState } from 'react'
-import { useTaskContext } from '../../services/taskServices/UseTaskContext';
 import GenericButton from '../genericButton';
+import { UseTaskData } from '../../services/taskServices/UseTasksData';
 import './style.css'
 
 
 const CreateTaskBar = () => { 
 
     const [createTask, setCreateTask] = useState('')
-    const { setTaskData } = useTaskContext();
-
-    const handleCreateTask = () => {
-
-        if (createTask.trim() !== "") {
-          const newTask = {
-            id: Math.floor(Math.random() * 10000) + 1,
-            text: createTask,
-            isDone: false
-          };
-    
-          setTaskData((prevTasks) => [...prevTasks, newTask]);
-    
-          setCreateTask("");
-        }
-    };
-
+    const { AddTaskData } = UseTaskData();
       
     return(
         <div className='container_createTaskBar'>
@@ -35,7 +19,7 @@ const CreateTaskBar = () => {
             />
             <GenericButton
                 data-testid= 'create-task-button'
-                onClick={handleCreateTask}
+                onClick={()=> {AddTaskData(createTask); setCreateTask('')}}
                 backgroundColor='var(--highlight)'
                 height='48px'
                 width='44px'

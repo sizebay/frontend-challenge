@@ -1,6 +1,7 @@
 import {  useRef, useState } from 'react'
-import './style.css'
 import GenericButton from '../genericButton';
+import './style.css'
+
 
 interface ISearchBarProps{
     placeholder: string;

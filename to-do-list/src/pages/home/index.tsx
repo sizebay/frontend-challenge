@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react"
-import CreateTaskBar from "../../components/createTaskBar"
-import FilterButton from "../../components/filterButton"
-import ListTasks from "../../components/listTasks"
-import SearchBar from "../../components/searchBar"
-import TaskItem from "../../components/taskItem"
+import { CreateTaskBar, FilterButton, ListTasks, SearchBar, TaskItem, OnVoidModal} from '../../components/index'
 import { useTaskContext } from "../../services/taskServices/UseTaskContext"
 import './style.css'
-import OnVoidModal from "../../components/onVoidModal"
 
 
 const Home = () =>{
@@ -30,7 +25,7 @@ const Home = () =>{
        
     const clearSearchAndFilters = () => {
         setSearchTerm(null);
-        setIsFilterActive(false); // Defina isFilterActive como falso quando o filtro for limpo
+        setIsFilterActive(false); 
         setFilterStatus(null);
     };
 
@@ -50,6 +45,8 @@ const Home = () =>{
         }
     }, [filterStatus, filteredTasks]);
 
+
+    
     return( 
         <main>
             <div className="container_home">
@@ -85,16 +82,17 @@ const Home = () =>{
                         )
                     }
                     {showModal ? (
-                        <OnVoidModal onClick={clearSearchAndFilters} />
-                    ) : (
-                        <div className="container-overflowTasks">
-                            <ListTasks>
-                                {filteredTasks.map((task) => (
-                                    <TaskItem key={task.id} text={task.text} id={task.id} />
-                                ))}
-                            </ListTasks>
-                        </div>
-                    )}
+                            <OnVoidModal onClick={clearSearchAndFilters} />
+                        ) : (
+                            <div className="container-overflowTasks">
+                                <ListTasks>
+                                    {filteredTasks.map((task) => (
+                                        <TaskItem key={task.id} text={task.text} id={task.id} />
+                                    ))}
+                                </ListTasks>
+                            </div>
+                        )
+                    }
                     
                 </section>
             </div>
