@@ -36,13 +36,9 @@
   <br>
   <pre><code>cd to-do-list</code></pre>
   <hr>
-  <li>Instale as dependências:</li>
+  <li>Instale as dependências e inicie o aplicativo:</li>
   <br>
-  <pre><code>npm install</code></pre>
-  <hr>
-  <li>Inicie o aplicativo:</li>
-  <br>
-  <pre><code>npm run dev</code></pre>
+  <pre><code>npm start</code></pre>
   <hr>
 </ol>
 
@@ -72,4 +68,4 @@
 
 <h2>🚧 Em construção</h2>
 
-<p>ToDo Challenge está em constante desenvolvimento, e novas funcionalidades podem ser adicionadas no futuro. Estamos comprometidos em melhorar a experiência do usuário e a funcionalidade do aplicativo. Agradecemos sua compreensão e feedback!</p>
+<p>ToDo Challenge está em constante desenvolvimento, e novas funcionalidades podem ser adicionadas no futuro. Estou comprometidos em melhorar a experiência do usuário e a funcionalidade do aplicativo. Agradeço sua compreensão e aguardo por feedbacks!</p>

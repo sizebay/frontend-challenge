@@ -55,9 +55,13 @@ main{
         width: 100%;
         height: 270px;
         overflow-y: scroll;
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
     }
     .container-overflowTasks::-webkit-scrollbar{
-        width: 0px;
+        width: 0px ;
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
     }
 }
 @media (min-width: 800px) {
