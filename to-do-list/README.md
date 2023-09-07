@@ -55,6 +55,13 @@
   <li>Styled Components - Biblioteca para estilização de componentes React.</li>
 </ul>
 
+<h2>🧪 Testado com</h2>
+
+<ul>
+  <li>Jest - Biblioteca JavaScript para testes unitários.</li>
+  <li>Testing library  - Biblioteca para auxiliar testes unitários.</li>
+</ul>
+
 <h2>📌 Versão</h2>
 
 <p>Este projeto encontra-se em sua primeira versão.</p>
