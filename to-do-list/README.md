@@ -12,6 +12,10 @@
   <li>Vizualizar barra com o status das tarefas.</li>
 </ul>
 
+<h2>🔗 Acessando</h2>
+
+<p>A aplicação está disponivel para acesso nesse link: https://brokollis.github.io/ToDoChallenge.</p>
+
 <h2>🚀 Começando</h2>
 
 <p>Siga as instruções abaixo para obter uma cópia do projeto em execução na sua máquina local para fins de desenvolvimento e teste.</p>
