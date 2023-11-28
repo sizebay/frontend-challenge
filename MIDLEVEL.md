@@ -1,6 +1,6 @@
 # Sizebay Frontend Challenge
 
-ℹ️ Desafio para Frontend Junior/Pleno!
+ℹ️ Desafio para Frontend Pleno!
 
 ## Sobre
 
