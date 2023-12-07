@@ -14,7 +14,7 @@ const SearchInput = styled.input.attrs({ type: "search" })`
 
 const FilterInput = (props) => {
   const inputRef = useRef();
-  const { filterTaskInput, setFilterTasks } = props;
+  const { filterTaskInput, setFilterTasks, search, setSearch } = props;
 
   const validateSearch = (props) => {
     filterTaskInput(props);
@@ -29,10 +29,12 @@ const FilterInput = (props) => {
         type="text"
         name="Task Filter"
         id="task-filter"
+        value={search}
         ref={inputRef}
         placeholder="Search Items"
         onChange={(ev) => {
           validateSearch({"value": ev.target.value, "editing": ''});
+          setSearch(ev.target.value)
         }}
       />
     </>

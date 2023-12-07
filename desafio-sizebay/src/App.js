@@ -108,6 +108,7 @@ function App() {
         filterTaskInput={filterTaskInput}
         filterTasks={filterTasks}
         setFilterTasks={setFilterTasks}
+        search={search}
         setSearch={setSearch}
       />
     </Modal>
