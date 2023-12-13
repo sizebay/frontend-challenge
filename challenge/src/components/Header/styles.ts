@@ -63,7 +63,8 @@ export const CurrentDay = styled.div`
   font-family: var(--fonte-principal) !important;
   color: var(--grey-dark);
   opacity: 1;
+  font-size: 24px;
   position: absolute;
   right: 0px;
-  top: 32px;
+  bottom: 2px;
 `;

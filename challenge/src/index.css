@@ -1,9 +1,9 @@
 :root {
   --grey-dark: #848484;
   --azul-escuro: #0B3B60;
-  --branco: #FFFFFF;
+  --white: #FFFFFF;
   --cinza: #6B6E71;
-  --cinza-claro: #E7EBEF;
+  --grey-light: #DBDBDB;
   --fonte-principal: 'Roboto', sans-serif;
   --fonte-secundaria: 'Archivo', sans-serif;
 }
