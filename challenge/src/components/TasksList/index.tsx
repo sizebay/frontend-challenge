@@ -6,7 +6,7 @@ const TasksList = ({ tasks }: { tasks: ITasks[] | null }) => {
   return (
     <SecaoCard>
       {tasks?.map((task) => {
-        return <Card data={task} />;
+        return <Card key={task.id} data={task} />;
       })}
     </SecaoCard>
   );

@@ -11,12 +11,16 @@ const SearchBar = () => {
 
   return (
     <SearchContainer>
-      <SearchInput onFocus={changeStatus} placeholder="Search items" />
+      <SearchInput
+        onBlur={changeStatus}
+        onFocus={changeStatus}
+        placeholder="Search items"
+      />
       <IconButton>
         {selected ? (
-          <AiOutlineClose size={25} color="var(--grey-dark)" />
-        ) : (
           <AiOutlineSearch size={25} color="var(--grey-dark)" />
+          ) : (
+          <AiOutlineClose size={25} color="var(--grey-dark)" />
         )}
       </IconButton>
     </SearchContainer>
