@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.main`
   text-align: center;
-  padding: 7vh 4vh;
+  padding: 7vh 3vh;
 `
 
 export const Logo = styled.img`

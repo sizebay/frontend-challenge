@@ -1,24 +1,19 @@
 import styled from "styled-components";
 
 export const ListContainer = styled.div`
-  background-color: #fff;
-  padding: 7px;
-  border: 1px solid black;
+  border: 1px solid var(--grey-light);
+  background-color: var(--grey);
   border-radius: 8px;
-  color: var(--cinza);
+  color: var(--grey-dark);
   margin: 1em 0em;
   justify-content: center;
+  border-radius: 4px;
+  padding: 0em 1em;
 `;
 
 export const TaskCard = styled.ul`
   justify-content: center;
   padding: 0;
-`;
-
-export const TaskDescription = styled.li`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 export const DescriptionText = styled.p`
