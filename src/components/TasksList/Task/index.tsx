@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ITasks from "../../../types/ITasks";
-import TaskButton from "./TaskButtons";
+import TaskButton from "../../TaskButtons";
 import { IoRemoveCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import TaskTooltip from "../../TaskTooltip";
@@ -37,11 +37,13 @@ const Task = ({ data }: Props) => {
             {data.description}
           </DescriptionText>
         </TaskCard>
-        <TaskButtonsContainer taskStyle={editNotActive ? "none" : "flex"}>
-          <TaskButton backgroundColor="var(--warning-red)">
+        <TaskButtonsContainer
+          taskStyle={editNotActive ? "none" : "flex"}
+        >
+          <TaskButton name="remove" backgroundColor="var(--warning-red)">
             <IoRemoveCircle color="white" size={27} />
           </TaskButton>
-          <TaskButton backgroundColor="var(--done-green)">
+          <TaskButton name="done" backgroundColor="var(--done-green)">
             <FaCheckCircle color="white" size={22} />
           </TaskButton>
         </TaskButtonsContainer>

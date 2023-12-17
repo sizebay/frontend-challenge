@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar'
 import TasksList from '../components/TasksList/index'
 import { Container } from './styles'
 import useData from "../useTasks";
+import AddTaskBar from '../components/AddTaskBar'
 
 function App() {
   const { data: tasks, error: tasksError } = useData();
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <ProgressBar />
       <SearchBar />
+      <AddTaskBar/>
       <TasksList tasks={tasks} />
     </Container>
   );
