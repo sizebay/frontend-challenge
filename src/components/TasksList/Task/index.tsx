@@ -1,17 +1,55 @@
+import { useState } from "react";
 import ITasks from "../../../types/ITasks";
+import TaskButton from "./TaskButtons";
+import { IoRemoveCircle } from "react-icons/io5";
+import { FaCheckCircle } from "react-icons/fa";
+import TaskTooltip from "../../TaskTooltip";
+
 import {
   TaskCard,
-  ListContainer,
+  TaskContainer,
   DescriptionText,
+  TaskButtonsContainer,
+  TaskTooltipContainer,
+  TaskPseudoContainer,
 } from "./styles";
 
-const Task = ({ data }: { data: ITasks }) => {
+interface Props {
+  data: ITasks;
+}
+
+const Task = ({ data }: Props) => {
+  const [editing, setIsEditing] = useState("notActive");
+  const editNotActive = editing === "notActive";
+
+  const editTask = () => {
+    setIsEditing(editNotActive ? "active" : "notActive");
+  };
+
   return (
-    <ListContainer>
-      <TaskCard>
-          <DescriptionText>{data.description}</DescriptionText>
-      </TaskCard>
-    </ListContainer>
+    <TaskPseudoContainer>
+      <TaskContainer
+        onClick={editTask}
+        taskStyle={editNotActive ? "var(--grey)" : "var(--white)"}
+      >
+        <TaskCard>
+          <DescriptionText contentEditable={true}>
+            {data.description}
+          </DescriptionText>
+        </TaskCard>
+        <TaskButtonsContainer taskStyle={editNotActive ? "none" : "flex"}>
+          <TaskButton backgroundColor="var(--warning-red)">
+            <IoRemoveCircle color="white" size={27} />
+          </TaskButton>
+          <TaskButton backgroundColor="var(--done-green)">
+            <FaCheckCircle color="white" size={22} />
+          </TaskButton>
+        </TaskButtonsContainer>
+      </TaskContainer>
+      <TaskTooltipContainer taskStyle={editNotActive ? "none" : "flex"}>
+        <TaskTooltip />
+      </TaskTooltipContainer>
+    </TaskPseudoContainer>
   );
 };
 

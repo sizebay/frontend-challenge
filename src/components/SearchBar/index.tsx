@@ -3,10 +3,10 @@ import { SearchContainer, SearchInput, IconButton } from "./styles";
 import { useState } from "react";
 
 const SearchBar = () => {
-  const [selected, setSelected] = useState(false);
+  const [active, setActive] = useState(false);
 
   const changeStatus = () => {
-    setSelected(!selected);
+    setActive(!active);
   };
 
   return (
@@ -17,10 +17,10 @@ const SearchBar = () => {
         placeholder="Search items"
       />
       <IconButton>
-        {selected ? (
-          <AiOutlineSearch size={25} color="var(--grey-dark)" />
-          ) : (
+        {active ? (
           <AiOutlineClose size={25} color="var(--grey-dark)" />
+        ) : (
+          <AiOutlineSearch size={25} color="var(--grey-dark)" />
         )}
       </IconButton>
     </SearchContainer>

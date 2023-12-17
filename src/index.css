@@ -4,6 +4,8 @@
   --white: #FFFFFF;
   --grey: #f4f4f4;
   --grey-light: #DBDBDB;
+  --warning-red: #E34F4F;
+  --done-green: #5DE290;
   --fonte-principal: 'Roboto', sans-serif;
   --fonte-secundaria: 'Archivo', sans-serif;
 }
@@ -14,6 +16,8 @@ body {
     'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  z-index: 0;
 }
 
 code {
