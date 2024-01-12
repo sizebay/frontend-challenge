@@ -22,5 +22,5 @@
   },
   "include": [
     "src/pages"
-, "src/index.tsx", "src/pages/App.tsx"  ]
+, "src/index.tsx", "src/pages/App.tsx" , "src/uuid.d.ts" ]
 }

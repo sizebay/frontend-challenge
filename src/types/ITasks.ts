@@ -1,5 +1,5 @@
 export default interface ITasks {
-  id: number;
+  id: string;
   description: string;
   isCompleted: boolean;
 }

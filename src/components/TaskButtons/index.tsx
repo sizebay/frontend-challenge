@@ -4,6 +4,7 @@ import styled from "styled-components";
 interface TaskContainerProps {
   taskStyle?: string;
   backgroundColor?: string;
+  opacity?: number;
 }
 
 const TaskButton = styled.button<TaskContainerProps>`
@@ -14,12 +15,13 @@ const TaskButton = styled.button<TaskContainerProps>`
   color: var(--branco);
   border: 0px;
   height: 111%;
-  margin-top: 3px!important;
+  margin-top: 3px !important;
   width: 48px;
   margin-top: 0px;
   align-items: center;
   justify-content: center;
   margin: 0;
+  opacity: ${(props) => props.opacity};
 `;
 
 export default TaskButton;

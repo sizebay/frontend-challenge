@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
-export const AddTaskContainer = styled.div`
+interface TaskContainerProps {
+  styleBackground?: string;
+  styleBorder?: string;
+}
+
+export const AddTaskContainer = styled.div<TaskContainerProps>`
   position: relative;
   width: 100%;
   height: 48px;
-  background: var(--branco);
+  background: ${(props) => props.styleBackground};
   display: flex;
   align-items: center;
   margin-top: 1rem;
@@ -23,14 +28,13 @@ export const AddTaskForm = styled.form`
   width: 100%;
 `;
 
-
 export const AddTaskInput = styled.input`
   padding-left: 30px;
   border: none;
   color: var(--grey-dark);
   top: 0;
   height: 100%;
-  width: 80%;
+  width: 100%;
   background-color: transparent;
   outline: none;
   font-size: 16px;
@@ -39,4 +43,3 @@ export const AddTaskInput = styled.input`
     border-color: rgba(0, 0, 0, 0.3);
   }
 `;
-
