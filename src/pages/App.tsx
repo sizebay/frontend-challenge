@@ -23,8 +23,12 @@ function App() {
   };
 
   if (tasksError) {
-    console.log("There's an error on the requisition");
+    console.log("Erro na requisição");
   }
+
+  const removeTask = (taskId: string) => {
+    tasksDb && setTasksDb(tasksDb.filter((task) => task.id !== taskId));
+  };
 
   return (
     <Container>
@@ -32,7 +36,7 @@ function App() {
       <ProgressBar />
       <SearchBar />
       <AddTaskBar tasksDb={tasksDb} addNewTask={handleAddTask} />
-      <TasksList tasks={tasksDb} />
+      <TasksList tasks={tasksDb} onRemoveTask={removeTask}/>
     </Container>
   );
 }

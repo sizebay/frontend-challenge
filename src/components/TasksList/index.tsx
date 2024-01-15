@@ -2,11 +2,22 @@ import ITasks from "../../types/ITasks";
 import Card from "./Task";
 import { SecaoCard } from "./styles";
 
-const TasksList = ({ tasks }: { tasks: ITasks[] | null }) => {
+interface Props {
+  tasks: ITasks[] | null;
+  onRemoveTask: (taskId: string) => void;
+}
+
+const TasksList = ({ tasks, onRemoveTask }: Props) => {
   return (
     <SecaoCard>
       {tasks?.map((task) => {
-        return <Card key={task.id} data={task} />;
+        return (
+          <Card
+            key={task.id}
+            data={task}
+            onRemove={() => onRemoveTask(task.id)}
+          />
+        );
       })}
     </SecaoCard>
   );

@@ -16,31 +16,44 @@ import {
 
 interface Props {
   data: ITasks;
+  onRemove: (task: ITasks) => void;
 }
 
-const Task = ({ data }: Props) => {
+const Task = ({ data, onRemove }: Props) => {
   const [editing, setIsEditing] = useState("notActive");
   const editNotActive = editing === "notActive";
+  const [description, setDescription] = useState(data.description);
 
   const editTask = () => {
     setIsEditing(editNotActive ? "active" : "notActive");
+  };
+
+  const handleDescriptionChange = (event: React.FocusEvent<HTMLDivElement>) => {
+    setDescription(event.currentTarget.textContent || "");
+  };
+
+  const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    onRemove(data);
   };
 
   return (
     <TaskPseudoContainer>
       <TaskContainer
         onClick={editTask}
+        contentEditable={true}
+        onInput={handleDescriptionChange}
         taskStyle={editNotActive ? "var(--grey)" : "var(--white)"}
       >
         <TaskCard>
-          <DescriptionText contentEditable={true}>
-            {data.description}
-          </DescriptionText>
+          <DescriptionText>{description}</DescriptionText>
         </TaskCard>
-        <TaskButtonsContainer
-          taskStyle={editNotActive ? "none" : "flex"}
-        >
-          <TaskButton name="remove" backgroundColor="var(--warning-red)">
+        <TaskButtonsContainer taskStyle={editNotActive ? "none" : "flex"}>
+          <TaskButton
+            name="remove"
+            backgroundColor="var(--warning-red)"
+            onClick={handleRemoveClick}
+          >
             <IoRemoveCircle color="white" size={27} />
           </TaskButton>
           <TaskButton name="done" backgroundColor="var(--done-green)">
