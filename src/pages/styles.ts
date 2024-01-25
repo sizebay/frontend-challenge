@@ -2,8 +2,12 @@ import styled from 'styled-components'
 
 export const Container = styled.main`
   text-align: center;
-  padding: 7vh 3vh;
-`
+  max-width: 700px;
+  margin: 0 auto 300px;
+  background-color: #efefef;
+  padding: 20px 30px;
+  border-radius: 5px;
+`;
 
 export const Logo = styled.img`
   height: 10vmin;

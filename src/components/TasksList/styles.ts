@@ -6,4 +6,5 @@ export const SecaoCard = styled.section`
   margin: 0;
   padding: 0;
   flex-direction: column;
+  overflow: scroll;
 `;
