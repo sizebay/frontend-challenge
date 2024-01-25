@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
-import './index.css'
+import './styles/styles'
 
-const AppContainer = () => {
+function AppContainer() {
   return (
     <React.StrictMode>
       <App />
