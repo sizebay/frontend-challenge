@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.main`
   text-align: center;
+  font-family: 'Roboto', sans-serif;
 `
 
 export const Header = styled.div`
@@ -11,6 +12,6 @@ export const Header = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  
 
 `

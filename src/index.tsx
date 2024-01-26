@@ -1,15 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
+import React from 'react';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
 
-import './styles/styles'
+const rootElement = document.getElementById('szb-app-root');
+const root = createRoot(rootElement!);
 
-function AppContainer() {
-  return (
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  )
-}
-
-ReactDOM.render(<AppContainer />, document.getElementById('szb-app-root'))
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
