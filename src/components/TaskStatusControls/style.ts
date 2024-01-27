@@ -21,3 +21,12 @@ export const IconSearch = styled(MdOutlineSearch)`
   color: #848484;
   font-size: 24px;
 `;
+
+export const TaskList = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
+export const TaskListItem = styled.li`
+`;

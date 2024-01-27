@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { ButtonsContainer, ContainerControls } from "./style";
+import React, { useState } from "react";
+import { ButtonsContainer, ContainerControls, TaskList, TaskListItem } from "./style";
 import SearchBar from "../SearchBar";
 import { FaCheck } from "react-icons/fa";
-import ButtonSTatus from "../ButtonStatus";
-
-const LOCAL_STORAGE_KEY = "taskItems";
+import ButtonStatus from "../ButtonStatus";
 
 interface TaskItem {
   name: string;
@@ -14,20 +12,6 @@ interface TaskItem {
 function TaskStatusControls() {
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
   const [taskItems, setTaskItems] = useState<TaskItem[]>([]);
-
-  useEffect(() => {
-    const storedItems = localStorage.getItem(LOCAL_STORAGE_KEY);
-    console.log("Stored items from localStorage:", storedItems);
-
-    if (storedItems) {
-      setTaskItems(JSON.parse(storedItems));
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log("Updating localStorage with taskItems:", taskItems);
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(taskItems));
-  }, [taskItems]);
 
   const handleButtonClick = (button: string) => {
     setSelectedButton((prevSelectedButton) =>
@@ -43,19 +27,23 @@ function TaskStatusControls() {
 
     console.log("Adding task:", newTask);
 
-    setTaskItems((prevTaskItems) => [...prevTaskItems, newTask]);
+    setTaskItems((prevTaskItems) => {
+      const updatedTaskItems = [...prevTaskItems, newTask];
+      console.log("Updated taskItems:", updatedTaskItems);
+      return updatedTaskItems;
+    });
   };
 
   return (
     <ContainerControls>
       <ButtonsContainer>
-        <ButtonSTatus
+        <ButtonStatus
           isSelected={selectedButton === "done"}
           onClick={() => handleButtonClick("done")}
           icon={<FaCheck />}
           label="Done"
         />
-        <ButtonSTatus
+        <ButtonStatus
           isSelected={selectedButton === "pending"}
           onClick={() => handleButtonClick("pending")}
           icon={<FaCheck />}
@@ -63,11 +51,11 @@ function TaskStatusControls() {
         />
       </ButtonsContainer>
       <SearchBar onAddItemClick={handleAddTask} />
-      <ul>
+      <TaskList>
         {taskItems.map((task, index) => (
-          <li key={index}>{task.name}</li>
+          <TaskListItem key={index}>{task.name}</TaskListItem>
         ))}
-      </ul>
+      </TaskList>
     </ContainerControls>
   );
 }
