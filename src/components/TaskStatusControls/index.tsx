@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ButtonsContainer, ContainerControls } from "./style";
-import DoneButton from "../DoneButton";
-import PendingButton from "../PendingButton";
 import SearchBar from "../SearchBar";
+import { FaCheck } from "react-icons/fa";
+import ButtonSTatus from "../ButtonStatus";
 
 const LOCAL_STORAGE_KEY = "taskItems";
 
@@ -18,17 +18,17 @@ function TaskStatusControls() {
   useEffect(() => {
     const storedItems = localStorage.getItem(LOCAL_STORAGE_KEY);
     console.log("Stored items from localStorage:", storedItems);
-  
+
     if (storedItems) {
       setTaskItems(JSON.parse(storedItems));
     }
   }, []);
-  
+
   useEffect(() => {
     console.log("Updating localStorage with taskItems:", taskItems);
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(taskItems));
   }, [taskItems]);
-  
+
   const handleButtonClick = (button: string) => {
     setSelectedButton((prevSelectedButton) =>
       prevSelectedButton === button ? null : button
@@ -40,22 +40,26 @@ function TaskStatusControls() {
       name: taskName,
       status: selectedButton || "pending",
     };
-  
+
     console.log("Adding task:", newTask);
-  
+
     setTaskItems((prevTaskItems) => [...prevTaskItems, newTask]);
   };
 
   return (
     <ContainerControls>
       <ButtonsContainer>
-        <DoneButton
+        <ButtonSTatus
           isSelected={selectedButton === "done"}
           onClick={() => handleButtonClick("done")}
+          icon={<FaCheck />}
+          label="Done"
         />
-        <PendingButton
+        <ButtonSTatus
           isSelected={selectedButton === "pending"}
           onClick={() => handleButtonClick("pending")}
+          icon={<FaCheck />}
+          label="Pending"
         />
       </ButtonsContainer>
       <SearchBar onAddItemClick={handleAddTask} />

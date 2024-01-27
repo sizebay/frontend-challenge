@@ -1,9 +1,4 @@
-import { FaCheck } from 'react-icons/fa';
 import styled from 'styled-components';
-
-interface DoneButtonContainerProps {
-  isSelected: boolean;
-}
 
 interface IconContainerProps {
   isSelected: boolean;
@@ -12,10 +7,16 @@ interface IconContainerProps {
 export const IconContainer = styled.span<IconContainerProps>`
   margin-right: ${({ isSelected }) => (isSelected ? '8px' : '0')};
   opacity: ${({ isSelected }) => (isSelected ? '1' : '0')};
+  display: ${({ isSelected }) => (isSelected ? 'block' : 'none')};
   transition: opacity 0.3s;
 `;
 
-export const DoneButtonContainer = styled.button<DoneButtonContainerProps>`
+interface StyledButtonProps {
+  isSelected: boolean;
+}
+
+export const StyledButton = styled.button<StyledButtonProps>`
+  /* Adicione seus estilos personalizados aqui */
   display: flex;
   align-items: center;
   background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -32,11 +33,4 @@ export const DoneButtonContainer = styled.button<DoneButtonContainerProps>`
     border: 1px solid #4DA6B3;
     color: #4DA6B3;
   }
-`;
-
-export const IconCheck = styled(FaCheck)<IconContainerProps>`
-  color: #4DA6B3;
-  font-size: 12px;
-  // Controla pelo isSelected
-  display: ${({ isSelected }) => (isSelected ? 'block' : 'none')};
 `;

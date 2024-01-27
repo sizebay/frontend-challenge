@@ -44,5 +44,4 @@ export const SearchButton = styled.button`
 
 export const IconAdd = styled(IoMdAddCircle)`
   font-size: 20px;
-  margin-right: 5px;
 `;
