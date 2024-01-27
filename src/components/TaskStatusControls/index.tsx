@@ -25,11 +25,8 @@ function TaskStatusControls() {
       status: selectedButton || "pending",
     };
 
-    console.log("Adding task:", newTask);
-
     setTaskItems((prevTaskItems) => {
       const updatedTaskItems = [...prevTaskItems, newTask];
-      console.log("Updated taskItems:", updatedTaskItems);
       return updatedTaskItems;
     });
   };

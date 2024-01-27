@@ -8,18 +8,12 @@ interface ItemListProps {
 
 function ItemList({ items, onDeleteItem }: ItemListProps) {
   const [activeItem, setActiveItem] = useState<number | null>(null);
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
   const handleItemClick = (index: number) => {
     setActiveItem(index === activeItem ? null : index);
   };
 
   const handleCheckClick = (index: number) => {
-    const updatedCheckedItems = checkedItems.includes(index)
-      ? checkedItems.filter((item) => item !== index)
-      : [...checkedItems, index];
-
-    setCheckedItems(updatedCheckedItems);
     onDeleteItem(index);
   };
 
@@ -47,4 +41,5 @@ function ItemList({ items, onDeleteItem }: ItemListProps) {
     </List>
   );
 }
+
 export default ItemList;

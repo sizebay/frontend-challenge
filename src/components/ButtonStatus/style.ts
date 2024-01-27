@@ -16,7 +16,6 @@ interface StyledButtonProps {
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
-  /* Adicione seus estilos personalizados aqui */
   display: flex;
   align-items: center;
   background: #FFFFFF 0% 0% no-repeat padding-box;
