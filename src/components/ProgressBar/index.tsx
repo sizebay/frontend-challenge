@@ -2,16 +2,16 @@ import React from 'react';
 import { StyledProgressBar, ProgressFill } from './style';
 
 export interface ProgressBarProps {
-    completedTasks: number;
+  completedItems: number;
     totalTasks: number;
   }
 
-function ProgressBar({ completedTasks, totalTasks }: ProgressBarProps) {
-  const progressBarWidth = (completedTasks / totalTasks) * 100 || 0;
+function ProgressBar({ completedItems, totalTasks }: ProgressBarProps) {
+  const progressBarWidth = (completedItems / totalTasks) * 100 || 0;
 
   return ( 
     <StyledProgressBar>
-        <ProgressFill width={progressBarWidth} completed={completedTasks === totalTasks} />
+        <ProgressFill width={progressBarWidth} completed={completedItems === totalTasks} />
     </StyledProgressBar>
   );
 };

@@ -10,26 +10,23 @@ interface TaskItem {
 }
 
 function TaskStatusControls() {
-  const [selectedButton, setSelectedButton] = useState<string | null>(null);
-  const [taskItems, setTaskItems] = useState<TaskItem[]>([]);
-
-  const handleButtonClick = (button: string) => {
+  function handleButtonClick(button: string) {
     setSelectedButton((prevSelectedButton) =>
       prevSelectedButton === button ? null : button
     );
-  };
+  }
 
-  const handleAddTask = (taskName: string) => {
+  function handleAddTask(taskName: string) {
     const newTask: TaskItem = {
       name: taskName,
       status: selectedButton || "pending",
     };
 
-    setTaskItems((prevTaskItems) => {
-      const updatedTaskItems = [...prevTaskItems, newTask];
-      return updatedTaskItems;
-    });
-  };
+    setTaskItems((prevTaskItems) => [...prevTaskItems, newTask]);
+  }
+
+  const [selectedButton, setSelectedButton] = useState<string | null>(null);
+  const [taskItems, setTaskItems] = useState<TaskItem[]>([]);
 
   return (
     <ContainerControls>

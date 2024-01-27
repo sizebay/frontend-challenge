@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
 import { DeleteButton, IconCheck, IconRemove, List, StyledItem } from './style';
 
-interface ItemListProps {
+interface ListItemsProps {
   items: string[];
+  completedItems: string[];
   onDeleteItem: (index: number) => void;
+  onCheckClick: (index: number) => void;
 }
 
-function ItemList({ items, onDeleteItem }: ItemListProps) {
+function ListItems({ items, completedItems, onDeleteItem, onCheckClick }: ListItemsProps) {
   const [activeItem, setActiveItem] = useState<number | null>(null);
 
   const handleItemClick = (index: number) => {
     setActiveItem(index === activeItem ? null : index);
   };
 
-  const handleCheckClick = (index: number) => {
-    onDeleteItem(index);
-  };
+  const displayItems = items.filter(item => !completedItems.includes(item));
 
   return (
     <List>
-      {items.map((item, index) => (
+      {displayItems.map((item, index) => (
         <StyledItem
           key={index}
           isActive={index === activeItem}
@@ -28,7 +28,7 @@ function ItemList({ items, onDeleteItem }: ItemListProps) {
           {item}
           {index === activeItem && (
             <>
-              <DeleteButton onClick={() => handleCheckClick(index)} checked>
+              <DeleteButton onClick={() => onCheckClick(index)} checked>
                 <IconCheck />
               </DeleteButton>
               <DeleteButton onClick={() => onDeleteItem(index)}>
@@ -42,4 +42,4 @@ function ItemList({ items, onDeleteItem }: ItemListProps) {
   );
 }
 
-export default ItemList;
+export default ListItems;
