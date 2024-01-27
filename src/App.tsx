@@ -1,13 +1,13 @@
 import React from 'react'
 
 import { Container, Header } from './styles'
-import SquareComponent from './modals/ModalHome'
+import Home from './pages/Home'
 
 function App() {
   return (
     <Container>
       <Header>
-        <SquareComponent />
+        <Home />
       </Header>
     </Container>
   )

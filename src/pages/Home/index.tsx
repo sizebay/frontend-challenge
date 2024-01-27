@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { CenteredSquare, Main } from "./style";
 import DateTimeDisplay from "../../components/DateTimeDisplay";
 import ProgressBar from "../../components/ProgressBar";
-import TaskStatusControls from "../../components/TaskStatusControls";
+import TaskStatusControls from "../../components/SearchFilterPanel";
 import NewItemBar from "../../components/NewItemBar";
 import ListItems from "../../components/ListItems";
 
-function SquareComponent() {
+function Home() {
   const [items, setItems] = useState<string[]>(loadFromLocalStorage("items", []));
   const [completedItems, setCompletedItems] = useState<string[]>(loadFromLocalStorage("completedItems", []));
 
@@ -61,4 +61,4 @@ function SquareComponent() {
   );
 }
 
-export default SquareComponent;
+export default Home;

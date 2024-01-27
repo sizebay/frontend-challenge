@@ -9,7 +9,7 @@ interface TaskItem {
   status: string;
 }
 
-function TaskStatusControls() {
+function SearchFilterPanel() {
   function handleButtonClick(button: string) {
     setSelectedButton((prevSelectedButton) =>
       prevSelectedButton === button ? null : button
@@ -54,4 +54,4 @@ function TaskStatusControls() {
   );
 }
 
-export default TaskStatusControls;
+export default SearchFilterPanel;

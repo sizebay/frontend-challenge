@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconSearch } from '../TaskStatusControls/style';
+import { IconSearch } from '../SearchFilterPanel/style';
 import { ButtonSearch, Input, SearchContainer } from './style';
 
 interface SearchBarProps {
