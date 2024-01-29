@@ -8,7 +8,7 @@ interface ProgressBarProps {
   export const StyledProgressBar = styled.div`
     height: 24px;
     width: 100%;
-    background-color: #E4E4E4;
+    background-color: ${(props) => props.theme.colors.background.lightGray};
     border-radius: 4px;
     margin-top: 16px;
     overflow: hidden;
@@ -17,7 +17,7 @@ interface ProgressBarProps {
   export const ProgressFill = styled.div<ProgressBarProps>`
     height: 100%;
     width: ${(props) => props.width}%;
-    background-color: #5DE290;
+    background-color: ${(props) => props.theme.colors.background.softGreen};
     border-radius: 4px;
     transition: width 0.5s ease;
   `;

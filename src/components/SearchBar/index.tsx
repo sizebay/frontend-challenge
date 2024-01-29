@@ -6,12 +6,12 @@ interface SearchBarProps {
   onAddItemClick: (taskName: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onAddItemClick }) => {
+const SearchBar: React.FC<SearchBarProps> = () => {
   return (
     <SearchContainer>
       <Input
         type="text"
-        placeholder="Search items..."
+        placeholder="Search items"
       />
       <ButtonSearch>
         <IconSearch />

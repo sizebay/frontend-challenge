@@ -4,7 +4,6 @@ export const DateTimeDisplayContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #848484;
 `;
 
 export const DateContainer = styled.div`

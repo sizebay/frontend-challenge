@@ -1,32 +1,30 @@
-import React, { useState } from "react";
-import { ButtonsContainer, ContainerControls, TaskList, TaskListItem } from "./style";
+import React from "react";
+import { ButtonsContainer, ContainerControls } from "./style";
 import SearchBar from "../SearchBar";
 import { FaCheck } from "react-icons/fa";
 import ButtonStatus from "../ButtonStatus";
 
-interface TaskItem {
-  name: string;
-  status: string;
+
+interface SearchFilterPanelProps {
+  addItem: (taskName: string) => void;
+  selectedButton: string | null;
+  setSelectedButton: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-function SearchFilterPanel() {
-  function handleButtonClick(button: string) {
+function SearchFilterPanel({
+  addItem,
+  selectedButton,
+  setSelectedButton,
+}: SearchFilterPanelProps) {
+  const handleButtonClick = (button: string) => {
     setSelectedButton((prevSelectedButton) =>
       prevSelectedButton === button ? null : button
     );
-  }
+  };
 
-  function handleAddTask(taskName: string) {
-    const newTask: TaskItem = {
-      name: taskName,
-      status: selectedButton || "pending",
-    };
-
-    setTaskItems((prevTaskItems) => [...prevTaskItems, newTask]);
-  }
-
-  const [selectedButton, setSelectedButton] = useState<string | null>(null);
-  const [taskItems, setTaskItems] = useState<TaskItem[]>([]);
+  const handleAddTask = (taskName: string) => {
+    addItem(taskName);
+  };
 
   return (
     <ContainerControls>
@@ -45,11 +43,6 @@ function SearchFilterPanel() {
         />
       </ButtonsContainer>
       <SearchBar onAddItemClick={handleAddTask} />
-      <TaskList>
-        {taskItems.map((task, index) => (
-          <TaskListItem key={index}>{task.name}</TaskListItem>
-        ))}
-      </TaskList>
     </ContainerControls>
   );
 }

@@ -1,64 +1,84 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
 interface TaskServiceProps {
   items: string[];
-  setItems: React.Dispatch<React.SetStateAction<string[]>>;
   completedItems: string[];
-  setCompletedItems: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+interface TaskServiceReturnType extends TaskServiceProps {
+  selectedButton: string | null;
+  setSelectedButton: Dispatch<SetStateAction<string | null>>;
+  pendingItems: string[];
+  totalTasks: number;
+  completedTasks: number;
+  addItem: (item: string) => void;
+  deleteItem: (index: number) => void;
+  checkItem: (index: number) => void;
 }
 
 export const useTaskService = ({
   items: initialItems,
-  setItems: initialSetItems,
   completedItems: initialCompletedItems,
-  setCompletedItems: initialSetCompletedItems,
-}: TaskServiceProps) => {
+}: TaskServiceProps): TaskServiceReturnType => {
   const [items, setItems] = useState<string[]>(initialItems);
   const [completedItems, setCompletedItems] = useState<string[]>(initialCompletedItems);
+  const [selectedButton, setSelectedButton] = useState<string | null>(null);
 
   const allItems = [...items, ...completedItems];
+  const pendingItems = items.filter(item => !completedItems.includes(item));
 
   const totalTasks = allItems.length;
   const completedTasks = completedItems.length;
 
   const addItem = (item: string) => {
-    const newItems = [...items, item];
-    updateStateAndLocalStorage(setItems, "items", newItems);
+    setItems((prevItems) => {
+      const newItems = [...prevItems, item];
+      localStorage.setItem("items", JSON.stringify(newItems));
+      return newItems;
+    });
   };
 
   const deleteItem = (index: number) => {
-    const newItems = [...items];
-    newItems.splice(index, 1);
-    updateStateAndLocalStorage(setItems, "items", newItems);
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      newItems.splice(index, 1);
+      localStorage.setItem("items", JSON.stringify(newItems));
+      return newItems;
+    });
   };
 
   const checkItem = (index: number) => {
-    const checkedItem = items[index];
     setItems((prevItems) => {
+      const checkedItem = prevItems[index];
       const newCompletedItems = [...completedItems, checkedItem];
-      updateStateAndLocalStorage(setCompletedItems, "completedItems", newCompletedItems);
+      setCompletedItems(newCompletedItems);
+      localStorage.setItem("completedItems", JSON.stringify(newCompletedItems));
       return prevItems.filter((item, i) => i !== index);
     });
   };
 
   useEffect(() => {
-    const parsedCompletedItems = loadFromLocalStorage("completedItems", []);
+    const parsedCompletedItems = JSON.parse(localStorage.getItem("completedItems") || "[]");
     setCompletedItems(parsedCompletedItems);
+
+    const parsedItems = JSON.parse(localStorage.getItem("items") || "[]");
+    setItems(parsedItems);
+
+    const storedSelectedButton = JSON.parse(localStorage.getItem("selectedButton") || "null");
+    setSelectedButton(storedSelectedButton);
+
   }, []);
 
-  function loadFromLocalStorage(key: string, defaultValue: any) {
-    const storedData = localStorage.getItem(key);
-    return storedData ? JSON.parse(storedData) : defaultValue;
-  }
-
-  function updateStateAndLocalStorage(setter: React.Dispatch<React.SetStateAction<any>>, key: string, value: any) {
-    setter(value);
-    localStorage.setItem(key, JSON.stringify(value));
-  }
+  useEffect(() => {
+    localStorage.setItem("selectedButton", JSON.stringify(selectedButton));
+  }, [selectedButton]);
 
   return {
     items,
     completedItems,
+    selectedButton,
+    setSelectedButton,
+    pendingItems,
     totalTasks,
     completedTasks,
     addItem,

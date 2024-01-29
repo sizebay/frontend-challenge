@@ -2,27 +2,32 @@ import styled from 'styled-components';
 
 export const Modal = styled.main`
   text-align: center;
-  background-color: #848484;
-`;
+  background-color: ${(props) => props.theme.colors.background.gray};
+
+
+  `;
 
 export const Container = styled.main`
   text-align: center;
-  background-color: #848484;
 `;
 
 export const CenteredSquare = styled.div`
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
   height: 650px;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.background.white};
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0px 3px 6px #00000029;
   border-radius: 4px;
+
+  @media(max-width: 768px) {
+    width: 95%;
   }
+}
 `;
 
 export const Main = styled.div`
-  margin: 60px 54px;
+  margin: 64px 34px;
 `;

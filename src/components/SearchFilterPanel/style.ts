@@ -18,12 +18,11 @@ export const ContainerControls = styled.div`
 `;
 
 export const IconSearch = styled(MdOutlineSearch)`
-  color: #848484;
+  color: ${(props) => props.theme.colors.gray};
   font-size: 24px;
 `;
 
 export const TaskList = styled.ul`
-  list-style-type: none;
   padding: 0;
   margin: 0;
 `;

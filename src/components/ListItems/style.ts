@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 export const List = styled.ul`
   padding-left: 0;
-  max-height: 226px;
+  max-height: 232px;
   overflow-y: auto;
   border-radius: 4px;
 
   scrollbar-width: thin;
-  scrollbar-color: #848484 #e4e4e4;
+  scrollbar-color: ${(props) => props.theme.colors.gray};
 
   ::-webkit-scrollbar-button {
     height: 0;
@@ -35,8 +35,8 @@ export const DeleteButton = styled.button<DeleteButtonProps>`
   height: 48px;
   right: ${({ checked }) => (checked ? '40px' : '0')};
   transform: translateY(-50%);
-  background-color: ${({ checked }) => (checked ? '#5DE290' : '#E34F4F')};
-  color: #ffffff;
+  background-color: ${({ checked, theme }) => (checked ? theme.colors.background.softGreen : theme.colors.background.redCoral)};
+  color: ${({ theme }) => theme.colors.white};
   border: none;
   padding: 10px;
   cursor: pointer;
@@ -48,14 +48,12 @@ export const DeleteButton = styled.button<DeleteButtonProps>`
 
 
 export const StyledItem = styled.li<StyledItemProps>`
-  background: ${({ isActive }) => (isActive ? '#ffffff' : '#f4f4f4')} 0% 0% no-repeat padding-box;
-  list-style: none;
-  border: 1px solid #dbdbdb;
+  background: ${({ isActive, theme }) => (isActive ? theme.colors.background.white : theme.colors.background.lightGrayish)};
+  border: 1px solid ${(props) => props.theme.colors.background.lightGray};
   height: 28px;
   display: flex;
   align-items: center;
   text-align: left;
-  color: #848484;
   opacity: 1;
   padding: 10px;
   margin-bottom: 8px;
@@ -66,8 +64,8 @@ export const StyledItem = styled.li<StyledItemProps>`
   border-radius: 4px;
 
   &:focus {
-    background-color: #ffffff;
-    border: 1px solid #4da6b3;
+    background-color: ${(props) => props.theme.colors.background.white};
+    border: 1px solid ${(props) => props.theme.colors.tealBlue};
   }
 `;
 

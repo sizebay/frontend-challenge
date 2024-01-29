@@ -16,11 +16,13 @@ interface StyledButtonProps {
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
+  font-family: ${(props) => props.theme.font.roboto};
+  font-size: 14px;
   display: flex;
   align-items: center;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  color: ${({ isSelected }) => (isSelected ? '#4DA6B3' : '#848484')};
-  border: 1px solid ${({ isSelected }) => (isSelected ? '#4DA6B3' : '#DBDBDB')};
+  background: ${(props) => props.theme.colors.background.white};
+  color: ${({ isSelected, theme }) => (isSelected ? theme.colors.tealBlue : theme.colors.gray)};
+  border: 1px solid ${({ isSelected, theme }) => (isSelected ? theme.colors.tealBlue : theme.colors.silverGray)};
   border-radius: 17px;
   cursor: pointer;
   padding: 8px 16px;
@@ -29,7 +31,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
   &:hover,
   &:focus {
-    border: 1px solid #4DA6B3;
-    color: #4DA6B3;
+    border: 1px solid ${(props) => props.theme.colors.tealBlue};
+    color: ${(props) => props.theme.colors.tealBlue};
   }
 `;

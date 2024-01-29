@@ -14,6 +14,6 @@ function ProgressBar({ completedItems, totalTasks }: ProgressBarProps) {
         <ProgressFill width={progressBarWidth} completed={completedItems === totalTasks} />
     </StyledProgressBar>
   );
-};
+}
 
 export default ProgressBar;
