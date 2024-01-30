@@ -9,18 +9,22 @@ interface SearchFilterPanelProps {
   addItem: (taskName: string) => void;
   selectedButton: string | null;
   setSelectedButton: React.Dispatch<React.SetStateAction<string | null>>;
+  pendingItems: string[];
 }
 
 function SearchFilterPanel({
   addItem,
   selectedButton,
   setSelectedButton,
+  pendingItems,
 }: SearchFilterPanelProps) {
   const handleButtonClick = (button: string) => {
     setSelectedButton((prevSelectedButton) =>
       prevSelectedButton === button ? null : button
     );
   };
+  console.log('pendingItems', pendingItems);
+
 
   const handleAddTask = (taskName: string) => {
     addItem(taskName);

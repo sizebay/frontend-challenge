@@ -34,6 +34,7 @@ function Home() {
           addItem={addItem}
           selectedButton={selectedButton}
           setSelectedButton={setSelectedButton}
+          pendingItems={pendingItems}
         />
         <NewItemBar onAddItemClick={addItem} />
         <ListItems

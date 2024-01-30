@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-export const Modal = styled.main`
-  text-align: center;
-  background-color: ${(props) => props.theme.colors.background.gray};
-
-
-  `;
-
-export const Container = styled.main`
-  text-align: center;
-`;
-
 export const CenteredSquare = styled.div`
   max-width: 800px;
   width: 100%;
