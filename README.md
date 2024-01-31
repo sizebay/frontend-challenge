@@ -48,12 +48,12 @@ Follow these steps to install and set up the project locally:
 1. Clone the repository to your workspace:
 
    ```bash
-   git clone https://github.com/sizebay/frontend-challenge.git
+   git clone https://github.com/mayoliveii/frontend-challenge.git
    ```
 
 2. Join my branch
    ```bash
-   git checkout mayoliveii:mayara/frontend-challenge
+   git checkout mayara/frontend-challenge
    ```
 
 ## Available Scripts
