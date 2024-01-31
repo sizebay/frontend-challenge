@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonStatus component calls onClick handler when clicked 1`] = `
+<body>
+  <div>
+    <button
+      class="sc-gEvEer ipests"
+    >
+      <span
+        class="sc-aXZVg gfMXTp"
+      >
+        <div>
+          Icon
+        </div>
+      </span>
+      Click me
+    </button>
+  </div>
+</body>
+`;
+
+exports[`ButtonStatus component renders correctly with default props 1`] = `
+<body>
+  <div>
+    <button
+      class="sc-gEvEer ipests"
+    >
+      <span
+        class="sc-aXZVg gfMXTp"
+      >
+        <div>
+          Icon
+        </div>
+      </span>
+      Click me
+    </button>
+  </div>
+</body>
+`;

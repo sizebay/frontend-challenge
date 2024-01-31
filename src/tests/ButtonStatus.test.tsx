@@ -15,6 +15,7 @@ describe('ButtonStatus component', () => {
 
     expect(getByText('Click me'));
     expect(getByText('Icon'));
+    expect(document.body).toMatchSnapshot();
   });
 
   it('calls onClick handler when clicked', () => {
@@ -28,5 +29,6 @@ describe('ButtonStatus component', () => {
     fireEvent.click(getByText('Click me'));
 
     expect(onClickMock).toHaveBeenCalledTimes(1);
+    expect(document.body).toMatchSnapshot();
   });
 });

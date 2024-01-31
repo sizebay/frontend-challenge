@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchFilterPanel component renders buttons correctly 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-gEvEer kWpRuR"
+    >
+      <div
+        class="sc-aXZVg Edtiw"
+      >
+        <button
+          class="sc-dhKdcB hPivdu"
+        >
+          <span
+            class="sc-jXbUNg fpIYrR"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+              />
+            </svg>
+          </span>
+          Done
+        </button>
+        <button
+          class="sc-dhKdcB hmCIJo"
+        >
+          <span
+            class="sc-jXbUNg fXbzYL"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+              />
+            </svg>
+          </span>
+          Pending
+        </button>
+      </div>
+      <div
+        class="sc-iGgWBj cprdnI"
+      >
+        <input
+          class="sc-gsFSXq eTURDc"
+          data-testid="search-input"
+          placeholder="Search items"
+          type="text"
+        />
+        <button
+          class="sc-kAyceB bteuaS"
+          data-testid="button-search"
+        >
+          <svg
+            class="sc-eqUAAy gUDgei"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0V0z"
+              fill="none"
+            />
+            <path
+              d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+`;
