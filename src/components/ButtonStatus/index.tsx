@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyledButton, IconContainer } from './style';
+import React from "react";
+import { StyledButton, IconContainer } from "./style";
 
 export interface ButtonStatusProps {
   isSelected: boolean;
@@ -7,16 +7,14 @@ export interface ButtonStatusProps {
   icon: React.ReactNode;
   label: string;
 }
-  
+
 function ButtonStatus({ isSelected, onClick, icon, label }: ButtonStatusProps) {
   return (
     <StyledButton isSelected={isSelected} onClick={onClick}>
-      <IconContainer isSelected={isSelected}>
-        {icon}
-      </IconContainer>
+      <IconContainer isSelected={isSelected}>{icon}</IconContainer>
       {label}
     </StyledButton>
   );
 }
-  
+
 export default ButtonStatus;

@@ -4,7 +4,6 @@ import SearchBar from "../SearchBar";
 import { FaCheck } from "react-icons/fa";
 import ButtonStatus from "../ButtonStatus";
 
-
 interface SearchFilterPanelProps {
   addItem: (taskName: string) => void;
   selectedButton: string | null;
@@ -13,21 +12,13 @@ interface SearchFilterPanelProps {
 }
 
 function SearchFilterPanel({
-  addItem,
   selectedButton,
   setSelectedButton,
-  pendingItems,
 }: SearchFilterPanelProps) {
   const handleButtonClick = (button: string) => {
     setSelectedButton((prevSelectedButton) =>
       prevSelectedButton === button ? null : button
     );
-  };
-  console.log('pendingItems', pendingItems);
-
-
-  const handleAddTask = (taskName: string) => {
-    addItem(taskName);
   };
 
   return (
@@ -38,15 +29,17 @@ function SearchFilterPanel({
           onClick={() => handleButtonClick("done")}
           icon={<FaCheck />}
           label="Done"
+          data-testid="done-button"
         />
         <ButtonStatus
           isSelected={selectedButton === "pending"}
           onClick={() => handleButtonClick("pending")}
           icon={<FaCheck />}
           label="Pending"
+          data-testid="pending-button"
         />
       </ButtonsContainer>
-      <SearchBar onAddItemClick={handleAddTask} />
+      <SearchBar />
     </ContainerControls>
   );
 }

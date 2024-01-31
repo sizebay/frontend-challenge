@@ -7,7 +7,6 @@ import ListItems from "../../components/ListItems";
 import { useTaskService } from "../../services/taskService";
 import SearchFilterPanel from "../../components/SearchFilterPanel";
 
-
 function Home() {
   const {
     items,

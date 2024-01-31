@@ -1,5 +1,11 @@
 import React from "react";
-import { IconAdd, Input, NewItemBarContainer, SearchButton, StyledForm } from "./style";
+import {
+  IconAdd,
+  Input,
+  NewItemBarContainer,
+  SearchButton,
+  StyledForm,
+} from "./style";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface FormValues {
@@ -28,9 +34,9 @@ function NewItemBar({ onAddItemClick }: NewItemBarProps) {
           placeholder="Add new item..."
           {...register("newItem")}
         />
-          <SearchButton type="submit">
-            <IconAdd />
-          </SearchButton>
+        <SearchButton type="submit" data-testid="search-button">
+          <IconAdd />
+        </SearchButton>
       </StyledForm>
     </NewItemBarContainer>
   );

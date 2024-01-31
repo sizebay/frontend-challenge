@@ -21,11 +21,13 @@ export const useTaskService = ({
   completedItems: initialCompletedItems,
 }: TaskServiceProps): TaskServiceReturnType => {
   const [items, setItems] = useState<string[]>(initialItems);
-  const [completedItems, setCompletedItems] = useState<string[]>(initialCompletedItems);
+  const [completedItems, setCompletedItems] = useState<string[]>(
+    initialCompletedItems
+  );
   const [selectedButton, setSelectedButton] = useState<string | null>(null);
 
   const allItems = [...items, ...completedItems];
-  const pendingItems = items.filter(item => !completedItems.includes(item));
+  const pendingItems = items.filter((item) => !completedItems.includes(item));
 
   const totalTasks = allItems.length;
   const completedTasks = completedItems.length;
@@ -58,15 +60,18 @@ export const useTaskService = ({
   };
 
   useEffect(() => {
-    const parsedCompletedItems = JSON.parse(localStorage.getItem("completedItems") || "[]");
+    const parsedCompletedItems = JSON.parse(
+      localStorage.getItem("completedItems") || "[]"
+    );
     setCompletedItems(parsedCompletedItems);
 
     const parsedItems = JSON.parse(localStorage.getItem("items") || "[]");
     setItems(parsedItems);
 
-    const storedSelectedButton = JSON.parse(localStorage.getItem("selectedButton") || "null");
+    const storedSelectedButton = JSON.parse(
+      localStorage.getItem("selectedButton") || "null"
+    );
     setSelectedButton(storedSelectedButton);
-
   }, []);
 
   useEffect(() => {

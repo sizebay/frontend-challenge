@@ -1,5 +1,5 @@
-import { MdOutlineSearch } from 'react-icons/md';
-import styled from 'styled-components';
+import { MdOutlineSearch } from "react-icons/md";
+import styled from "styled-components";
 
 export const ButtonsContainer = styled.div`
   height: 24px;
@@ -27,5 +27,4 @@ export const TaskList = styled.ul`
   margin: 0;
 `;
 
-export const TaskListItem = styled.li`
-`;
+export const TaskListItem = styled.li``;

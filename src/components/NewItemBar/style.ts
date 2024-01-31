@@ -24,7 +24,7 @@ export const Input = styled.input`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color:${(props) => props.theme.colors.background.crystalWhite};
+    background-color: ${(props) => props.theme.colors.background.crystalWhite};
   }
 `;
 

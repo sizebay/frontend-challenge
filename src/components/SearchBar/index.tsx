@@ -1,23 +1,20 @@
-import React from 'react';
-import { IconSearch } from '../SearchFilterPanel/style';
-import { ButtonSearch, Input, SearchContainer } from './style';
+import React from "react";
+import { IconSearch } from "../SearchFilterPanel/style";
+import { ButtonSearch, Input, SearchContainer } from "./style";
 
-interface SearchBarProps {
-  onAddItemClick: (taskName: string) => void;
-}
-
-const SearchBar: React.FC<SearchBarProps> = () => {
+function SearchBar(): React.ReactElement {
   return (
     <SearchContainer>
       <Input
         type="text"
         placeholder="Search items"
+        data-testid="search-input"
       />
-      <ButtonSearch>
+      <ButtonSearch data-testid="button-search">
         <IconSearch />
       </ButtonSearch>
     </SearchContainer>
   );
-};
+}
 
 export default SearchBar;

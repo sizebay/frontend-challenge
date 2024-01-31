@@ -1,6 +1,5 @@
-import { MdOutlineSearch } from 'react-icons/md';
-import styled from 'styled-components';
-
+import { MdOutlineSearch } from "react-icons/md";
+import styled from "styled-components";
 
 export const SearchContainer = styled.div`
   border-radius: 4px;
@@ -42,7 +41,7 @@ export const ButtonSearch = styled.button`
   justify-content: center;
   border: none;
   position: absolute;
-  right: 0; 
+  right: 0;
 `;
 
 export const IconSearch = styled(MdOutlineSearch)`
