@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    gap: 4rem;
+    margin-top: 1.5rem;
+    
+}
+
+.searchBar{
+    width:100%;
+    
+}
+
+
+
+
+
+
+
+@media (max-width: 800px) {
+    .container{
+        gap: 1rem;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+}
+

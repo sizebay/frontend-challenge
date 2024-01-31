@@ -1,0 +1,36 @@
+.container {
+  margin-top: 1rem;
+  width: 660px;
+  height: 14rem;
+  display: block;
+  position: relative;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.list {
+  display: flex;
+
+  flex-direction: column;
+  gap: 0.5rem;
+  height: auto;
+  width: 640px;
+}
+
+.padding {
+  padding-right: 10px;
+}
+
+.test {
+  margin-right: 110%;
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 100%;
+  }
+  .list {
+    width: 100%;
+  }
+}

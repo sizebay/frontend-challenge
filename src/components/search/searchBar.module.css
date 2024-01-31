@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  position: relative;
+}
+
+.container .input {
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 30px;
+}
+
+.input {
+  border: 2px solid var(--borderColor);
+  border-radius: 0.3rem;
+  font-size: 15px;
+  line-height: 30px;
+}
+
+.input:focus {
+  outline: none !important;
+}
+
+.icon {
+  height: 100%;
+  width: auto;
+  color: var(--textColor);
+  background-color: transparent;
+  padding: 10px;
+
+  position: absolute;
+  top: 50%;
+  right: 0;
+  border-radius: 0 0.3rem 0.3rem 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+

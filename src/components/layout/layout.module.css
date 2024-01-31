@@ -1,0 +1,29 @@
+.container {
+    width: 800px;
+    height: 650px;
+    background-color: white;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 5px;
+  
+}
+
+.content{
+    width: 80%;
+    margin: auto;
+
+}
+
+@media (max-width: 800px) {
+    .container{
+     
+        width: 90%;
+      height: 650px;
+    }
+  
+  }
+

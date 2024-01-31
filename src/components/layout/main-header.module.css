@@ -1,0 +1,30 @@
+.datesContainer {
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 5.5rem;
+  margin-top: 3.5rem;
+}
+
+.dayWritten {
+  display: flex;
+  align-items: center;
+}
+
+.month::after {
+  content: "\a";
+  white-space: pre;
+}
+
+.dateWrapper {
+  line-height: 1.5rem;
+}
+
+.year {
+  font-weight: 200;
+}

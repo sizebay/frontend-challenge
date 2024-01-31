@@ -1,0 +1,43 @@
+.label {
+  display: flex;
+  background-color: transparent;
+  justify-content: center;
+  color: var(--textColor);
+  padding: 0.5rem 0.8rem;
+
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+
+  border: 2px solid var(--borderColor);
+  border-radius: 1rem;
+  cursor: pointer;
+  gap: 0.1rem;
+  height: auto;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.input[type="checkbox"] {
+  display: none;
+}
+
+.input[type="checkbox"]:checked + .label {
+  background-color: rgba(101, 206, 255, 0.114);
+  border: 2px solid var(--blue);
+  color: var(--blue);
+}
+
+.icon {
+  height: auto;
+  white-space: nowrap;
+}
+
+.icon.hidden {
+  display: none;
+}
+
+.icon.show {
+  display: block;
+  overflow: visible;
+}

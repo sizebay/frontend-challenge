@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --borderColor: #DBDBDB;
+  --textColor: #848484;
+  --backgroundInputColor: #F7F7F8;
+  --backgroundItemColor: #E4E4E4;
+  --blue: #4DA6B3;
+  --green: #5DE290;
+  --red: #E34F4F;
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 200ms ease;
+
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #000000;
+  background-color: #555555;
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea {
+  font-family: "Poppins", sans-serif;
+  color: var(--textColor);
+}
+
+h1 {
+  font-size: 70pt;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 45pt;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 35pt;
+  font-weight: 200;
+}
+
+h4 {
+  font-size: 25pt;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 20pt;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 15pt;
+  font-weight: 400;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+
+}
+::-webkit-scrollbar-track {
+  border-radius: 40px;
+  background-color: var(--backgroundItemColor);
+
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--textColor);
+  border-radius: 40px;
+
+}
+@media (max-width: 800px) {
+::-webkit-scrollbar{
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+
+}
+}

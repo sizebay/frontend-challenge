@@ -1,0 +1,13 @@
+.container {
+  height: 1.8rem;
+  width: 100%;
+  background-color: var(--backgroundItemColor);
+  border-radius: 0.4rem;
+  margin-top: 1rem;
+}
+
+.filler {
+  height: 100%;
+  background-color: var(--green);
+  border-radius: 0.4rem;
+}
