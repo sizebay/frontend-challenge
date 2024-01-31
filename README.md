@@ -3,6 +3,7 @@
 This project is a To-Do list application created with [Create Sizebay App](https://github.com/sizebay/create-szb-app).
 
 ![Alt text](./public/toDoList.png)
+
 ## Table of Contents
 
 - [About the Project](#about-the-project)
@@ -58,6 +59,10 @@ Follow these steps to install and set up the project locally:
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+To install project dependencies, run the above command.
 
 ### `npm start`
 
