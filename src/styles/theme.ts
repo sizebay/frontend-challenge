@@ -14,6 +14,7 @@ export interface CustomTheme extends DefaultTheme {
       lightGrayish: string;
       white: string;
       crystalWhite: string;
+      pearlGray: string;
       softGreen: string;
       redCoral: string;
     };
@@ -39,6 +40,7 @@ const theme: CustomTheme = {
       softGreen: "#5DE290",
       redCoral: "#E34F4F",
       crystalWhite: "#F7F7F7",
+      pearlGray: "#F7F7F8",
       lightGrayish: "#F4F4F4",
       white: "#FFFFFF",
     },
