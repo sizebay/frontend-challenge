@@ -1,8 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import App from './App'
 
+
 import './index.css'
+
 
 const AppContainer = () => {
   return (
@@ -12,4 +14,6 @@ const AppContainer = () => {
   )
 }
 
-ReactDOM.render(<AppContainer />, document.getElementById('szb-app-root'))
+const container = document.getElementById('szb-app-root');
+const root = createRoot(container!);
+root.render(<AppContainer />)
