@@ -10,7 +10,6 @@ import SearchFilterPanel from "../../components/SearchFilterPanel";
 function Home() {
   const {
     items,
-    completedItems,
     pendingItems,
     totalTasks,
     completedTasks,
@@ -21,8 +20,9 @@ function Home() {
     setSelectedButton,
   } = useTaskService({
     items: [],
-    completedItems: [],
   });
+
+  const completedItems = items.filter((item) => item.completed);
 
   return (
     <CenteredSquare>
@@ -30,18 +30,17 @@ function Home() {
         <DateTimeDisplay />
         <ProgressBar completedItems={completedTasks} totalTasks={totalTasks} />
         <SearchFilterPanel
-          addItem={addItem}
+          addItem={(content) => addItem(content)}
           selectedButton={selectedButton}
           setSelectedButton={setSelectedButton}
-          pendingItems={pendingItems}
         />
-        <NewItemBar onAddItemClick={addItem} />
+        <NewItemBar onAddItemClick={(content) => addItem(content)} />
         <ListItems
           items={items}
           completedItems={completedItems}
           pendingItems={pendingItems}
-          onDeleteItem={deleteItem}
-          onCheckClick={checkItem}
+          onDeleteItem={(id) => deleteItem(id)}
+          onCheckClick={(id) => checkItem(id)}
           selectedButton={selectedButton}
         />
       </Main>

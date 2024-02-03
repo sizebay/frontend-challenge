@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import { DeleteButton, IconCheck, IconRemove, List, StyledItem } from "./style";
+import {
+  DeleteButton,
+  IconCheck,
+  IconRemove,
+  List,
+  StyledItem,
+} from "./style";
+import { Task } from "../../services/taskService";
 
 interface ListItemsProps {
-  items: string[];
-  completedItems: string[];
-  pendingItems: string[];
-  onDeleteItem: (index: number) => void;
-  onCheckClick: (index: number) => void;
+  items: Task[];
+  completedItems: Task[];
+  pendingItems: Task[];
+  onDeleteItem: (id: number) => void;
+  onCheckClick: (id: number) => void;
   selectedButton: string | null;
 }
 
 function ListItems({
+  items,
   completedItems,
   pendingItems,
   onDeleteItem,
@@ -18,8 +26,9 @@ function ListItems({
   selectedButton,
 }: ListItemsProps) {
   const [activeItem, setActiveItem] = useState<number | null>(null);
+
   const displayItems =
-    selectedButton === "done" ? completedItems : pendingItems;
+    selectedButton === "pending" ? pendingItems : selectedButton === "done" ? completedItems : items;
 
   const handleItemClick = (index: number) => {
     setActiveItem(index === activeItem ? null : index);
@@ -32,16 +41,23 @@ function ListItems({
           key={index}
           isActive={index === activeItem}
           onClick={() => handleItemClick(index)}
+          checked={completedItems.includes(item)}
+          selectedButton={selectedButton}
         >
-          {item}
-          {index === activeItem && (
+          {item.content}
+          {(index === activeItem || (selectedButton === null && completedItems.includes(item))) && 
+           (
             <>
-              <DeleteButton onClick={() => onCheckClick(index)} checked>
-                <IconCheck />
-              </DeleteButton>
-              <DeleteButton onClick={() => onDeleteItem(index)}>
-                <IconRemove />
-              </DeleteButton>
+              {index === activeItem && !completedItems.includes(item) && (
+                <>
+                  <DeleteButton onClick={() => onCheckClick(item.id)} checked>
+                    <IconCheck />
+                  </DeleteButton>
+                  <DeleteButton onClick={() => onDeleteItem(item.id)}>
+                    <IconRemove />
+                  </DeleteButton>
+                </>
+              )}
             </>
           )}
         </StyledItem>
