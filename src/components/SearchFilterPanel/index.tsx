@@ -8,7 +8,6 @@ interface SearchFilterPanelProps {
   addItem: (taskName: string) => void;
   selectedButton: string | null;
   setSelectedButton: React.Dispatch<React.SetStateAction<string | null>>;
-  pendingItems: string[];
 }
 
 function SearchFilterPanel({

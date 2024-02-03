@@ -1,5 +1,5 @@
 import { IoMdRemoveCircle, IoMdCheckmarkCircle } from "react-icons/io";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const List = styled.ul`
   padding-left: 0;
@@ -18,6 +18,8 @@ export const List = styled.ul`
 
 interface StyledItemProps {
   isActive: boolean;
+  checked?: boolean;
+  selectedButton: string | null;
 }
 
 interface DeleteButtonProps {
@@ -50,11 +52,22 @@ export const DeleteButton = styled.button<DeleteButtonProps>`
 `;
 
 export const StyledItem = styled.li<StyledItemProps>`
-  background: ${({ isActive, theme }) =>
-    isActive
-      ? theme.colors.background.white
-      : theme.colors.background.lightGrayish};
-  border: 1px solid ${(props) => props.theme.colors.background.lightGray};
+  ${(props) =>
+    props.checked
+      ? css`
+          background: ${props.theme.colors.background.pearlGray};
+          color: ${props.theme.colors.silverGray};
+        `
+      : props.isActive
+      ? css`
+          background: ${props.theme.colors.background.white};
+          cursor: pointer;
+        `
+      : css`
+          background: ${props.theme.colors.background.lightGrayish};
+          cursor: pointer;
+        `};
+  
   height: 28px;
   display: flex;
   align-items: center;
@@ -63,15 +76,9 @@ export const StyledItem = styled.li<StyledItemProps>`
   padding: 10px;
   margin-bottom: 8px;
   position: relative;
-  cursor: pointer;
   outline: none;
   transition: background-color 0.3s;
   border-radius: 4px;
-
-  &:focus {
-    background-color: ${(props) => props.theme.colors.background.white};
-    border: 1px solid ${(props) => props.theme.colors.tealBlue};
-  }
 `;
 
 export const IconCheck = styled(IoMdCheckmarkCircle)`
