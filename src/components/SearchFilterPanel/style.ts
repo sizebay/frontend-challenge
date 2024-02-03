@@ -2,12 +2,13 @@ import { MdOutlineSearch } from "react-icons/md";
 import styled from "styled-components";
 
 export const ButtonsContainer = styled.div`
-  height: 24px;
+width: 173px;
+  height: 32px;
   border-radius: 4px;
   margin-top: 2px;
   text-align: left;
+  justify-content: space-between;
   display: flex;
-  align-items: center;
 `;
 
 export const ContainerControls = styled.div`
