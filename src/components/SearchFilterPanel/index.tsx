@@ -6,6 +6,7 @@ import ButtonStatus from "../ButtonStatus";
 
 interface SearchFilterPanelProps {
   addItem: (taskName: string) => void;
+  onSearch: (searchTerm: string) => void;
   selectedButton: string | null;
   setSelectedButton: React.Dispatch<React.SetStateAction<string | null>>;
 }
@@ -13,11 +14,16 @@ interface SearchFilterPanelProps {
 function SearchFilterPanel({
   selectedButton,
   setSelectedButton,
+  onSearch,
 }: SearchFilterPanelProps) {
   const handleButtonClick = (button: string) => {
     setSelectedButton((prevSelectedButton) =>
       prevSelectedButton === button ? null : button
     );
+  };
+
+  const handleSearch = (searchTerm: string) => {
+    onSearch(searchTerm);
   };
 
   return (
@@ -38,7 +44,7 @@ function SearchFilterPanel({
           data-testid="pending-button"
         />
       </ButtonsContainer>
-      <SearchBar />
+      <SearchBar onSearch={handleSearch} />
     </ContainerControls>
   );
 }

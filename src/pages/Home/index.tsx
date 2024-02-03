@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CenteredSquare, Main } from "./style";
 import DateTimeDisplay from "../../components/DateTimeDisplay";
 import ProgressBar from "../../components/ProgressBar";
@@ -22,6 +22,12 @@ function Home() {
     items: [],
   });
 
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
+  };
+
   const completedItems = items.filter((item) => item.completed);
 
   return (
@@ -33,6 +39,7 @@ function Home() {
           addItem={(content) => addItem(content)}
           selectedButton={selectedButton}
           setSelectedButton={setSelectedButton}
+          onSearch={handleSearch}
         />
         <NewItemBar onAddItemClick={(content) => addItem(content)} />
         <ListItems
@@ -42,6 +49,7 @@ function Home() {
           onDeleteItem={(id) => deleteItem(id)}
           onCheckClick={(id) => checkItem(id)}
           selectedButton={selectedButton}
+          searchTerm={searchTerm}
         />
       </Main>
     </CenteredSquare>

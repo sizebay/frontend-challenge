@@ -15,6 +15,7 @@ interface ListItemsProps {
   onDeleteItem: (id: number) => void;
   onCheckClick: (id: number) => void;
   selectedButton: string | null;
+  searchTerm: string;
 }
 
 function ListItems({
@@ -24,19 +25,21 @@ function ListItems({
   onDeleteItem,
   onCheckClick,
   selectedButton,
+  searchTerm,
 }: ListItemsProps) {
   const [activeItem, setActiveItem] = useState<number | null>(null);
-
-  const displayItems =
-    selectedButton === "pending" ? pendingItems : selectedButton === "done" ? completedItems : items;
 
   const handleItemClick = (index: number) => {
     setActiveItem(index === activeItem ? null : index);
   };
 
-  return (
-    <List>
-      {displayItems.map((item, index) => (
+  const filterAndMapItems = (items: Task[]) => {
+    return items
+      .filter((item) =>
+        searchTerm === "" ||
+        item.content.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .map((item, index) => (
         <StyledItem
           key={index}
           isActive={index === activeItem}
@@ -45,25 +48,30 @@ function ListItems({
           selectedButton={selectedButton}
         >
           {item.content}
-          {(index === activeItem || (selectedButton === null && completedItems.includes(item))) && 
-           (
-            <>
-              {index === activeItem && !completedItems.includes(item) && (
-                <>
-                  <DeleteButton onClick={() => onCheckClick(item.id)} checked>
-                    <IconCheck />
-                  </DeleteButton>
-                  <DeleteButton onClick={() => onDeleteItem(item.id)}>
-                    <IconRemove />
-                  </DeleteButton>
-                </>
-              )}
-            </>
-          )}
+          {index === activeItem &&
+            !completedItems.includes(item) &&
+            selectedButton === null && (
+              <>
+                <DeleteButton onClick={() => onCheckClick(item.id)} checked>
+                  <IconCheck />
+                </DeleteButton>
+                <DeleteButton onClick={() => onDeleteItem(item.id)}>
+                  <IconRemove />
+                </DeleteButton>
+              </>
+            )}
         </StyledItem>
-      ))}
-    </List>
-  );
+      ));
+  };
+
+  const displayItems =
+    selectedButton === "pending"
+      ? filterAndMapItems(pendingItems)
+      : selectedButton === "done"
+      ? filterAndMapItems(completedItems)
+      : filterAndMapItems(items);
+
+  return <List>{displayItems}</List>;
 }
 
 export default ListItems;
