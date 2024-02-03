@@ -1,21 +1,16 @@
-import styled from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
-export const Container = styled.main`
-  text-align: center;
-`
+export const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-export const Logo = styled.img`
-  height: 10vmin;
-  pointer-events: none;
-`
+  body {
+    font-family: 'Roboto', sans-serif;
+    color: #848484;
+    height: 100vh;
+    width: 100%;
 
-export const Header = styled.div`
-  background-color: #4da6b4;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #555555;
+    margin: 0;
+    padding: 0;
+  }
 `
