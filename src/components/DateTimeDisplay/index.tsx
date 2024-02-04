@@ -17,12 +17,12 @@ function DateTimeDisplay() {
 
   return (
     <DateTimeDisplayContainer>
-      <LargeText>{dayOfMonth}</LargeText>
-      <DateContainer>
+      <LargeText data-testid="large-text">{dayOfMonth}</LargeText>
+      <DateContainer data-testid="small-text">
         <SmallText>{month}</SmallText>
         <SmallText>{year}</SmallText>
       </DateContainer>
-      <DayOfWeek>{dayOfWeek}</DayOfWeek>
+      <DayOfWeek data-testid="day-of-week">{dayOfWeek}</DayOfWeek>
     </DateTimeDisplayContainer>
   );
 }

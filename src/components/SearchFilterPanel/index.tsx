@@ -44,7 +44,7 @@ function SearchFilterPanel({
           data-testid="pending-button"
         />
       </ButtonsContainer>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} data-testid="search-input" />
     </ContainerControls>
   );
 }

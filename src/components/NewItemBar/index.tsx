@@ -32,6 +32,7 @@ function NewItemBar({ onAddItemClick }: NewItemBarProps) {
         <Input
           type="text"
           placeholder="Add new item..."
+          data-testid="new-item-input"
           {...register("newItem")}
         />
         <SearchButton type="submit" data-testid="search-button">
