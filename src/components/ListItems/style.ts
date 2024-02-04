@@ -27,7 +27,7 @@ interface DeleteButtonProps {
 }
 
 export const IconRemove = styled(IoMdRemoveCircle)`
-  font-size: 20px;
+  font-size:  ${(props) => props.theme.fontSizes.small};
 `;
 
 export const DeleteButton = styled.button<DeleteButtonProps>`
@@ -82,5 +82,5 @@ export const StyledItem = styled.li<StyledItemProps>`
 `;
 
 export const IconCheck = styled(IoMdCheckmarkCircle)`
-  font-size: 20px;
+  font-size: ${(props) => props.theme.fontSizes.small};
 `;

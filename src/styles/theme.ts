@@ -23,6 +23,12 @@ export interface CustomTheme extends DefaultTheme {
   font: {
     roboto: string;
   };
+  fontSizes: {
+    xSmall: string;
+    small: string;
+    medium: string;
+    large: string;
+  };
 }
 
 const theme: CustomTheme = {
@@ -48,6 +54,12 @@ const theme: CustomTheme = {
   },
   font: {
     roboto: "Roboto, sans-serif",
+  },
+  fontSizes: {
+    xSmall: "14px",
+    small: "20px",
+    medium: "24px",
+    large: "60px",
   },
 };
 

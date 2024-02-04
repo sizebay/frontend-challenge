@@ -19,7 +19,7 @@ export const Input = styled.input`
   border-radius: 4px;
   padding: 10px;
   opacity: 0.5;
-  font-size: 14px;
+  font-size: ${(props) => props.theme.fontSizes.xSmall};
   outline: none;
   transition: background-color 0.3s;
 
@@ -42,5 +42,5 @@ export const SearchButton = styled.button`
 `;
 
 export const IconAdd = styled(IoMdAddCircle)`
-  font-size: 20px;
+  font-size: ${(props) => props.theme.fontSizes.small};
 `;

@@ -17,7 +17,7 @@ interface StyledButtonProps {
 
 export const StyledButton = styled.button<StyledButtonProps>`
   font-family: ${(props) => props.theme.font.roboto};
-  font-size: 14px;
+  font-size: ${(props) => props.theme.fontSizes.xSmall};
   display: flex;
   align-items: center;
   background: ${(props) => props.theme.colors.background.white};

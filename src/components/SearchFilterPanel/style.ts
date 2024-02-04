@@ -20,7 +20,7 @@ export const ContainerControls = styled.div`
 
 export const IconSearch = styled(MdOutlineSearch)`
   color: ${(props) => props.theme.colors.gray};
-  font-size: 24px;
+  font-size: ${(props) => props.theme.fontSizes.medium};
 `;
 
 export const TaskList = styled.ul`

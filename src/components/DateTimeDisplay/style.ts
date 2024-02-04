@@ -14,14 +14,14 @@ export const DateContainer = styled.div`
 `;
 
 export const LargeText = styled.div`
-  font-size: 60px;
+  font-size: ${(props) => props.theme.fontSizes.large};
 `;
 
 export const SmallText = styled.div`
-  font-size: 24px;
+  font-size: ${(props) => props.theme.fontSizes.medium};
 `;
 
 export const DayOfWeek = styled.div`
   margin-left: auto;
-  font-size: 24px;
+  font-size: ${(props) => props.theme.fontSizes.medium};
 `;

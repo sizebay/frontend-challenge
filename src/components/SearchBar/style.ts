@@ -20,7 +20,7 @@ export const Input = styled.input`
   border-radius: 4px;
   transition: background-color 0.3s;
   color: ${({ theme }) => theme.colors.gray};
-  font-size: 14px;
+  font-size: ${(props) => props.theme.fontSizes.xSmall};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.background.crystalWhite};
@@ -45,7 +45,7 @@ export const ButtonSearch = styled.button`
 `;
 
 export const IconSearch = styled(MdOutlineSearch)`
-  font-size: 24px;
+  font-size: ${(props) => props.theme.fontSizes.medium};
   width: 24px;
   height: 24px;
 `;
