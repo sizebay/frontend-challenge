@@ -1,4 +1,5 @@
 import { GrSearch } from "react-icons/gr";
+import { CgClose } from "react-icons/cg";
 import styled from "styled-components";
 
 export const TaskInput = styled.input`
@@ -29,5 +30,9 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchIcon = styled(GrSearch)`
+  margin-left: -30px;
+`;
+
+export const SearchClearIcon = styled(CgClose)`
   margin-left: -30px;
 `;

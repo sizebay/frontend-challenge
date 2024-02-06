@@ -1,5 +1,6 @@
 export enum EFilters {
   SEARCH = "search",
   DONE = "done",
-  PENDING = "pending"
+  PENDING = "pending",
+  NONE = "none"
 }

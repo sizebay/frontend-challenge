@@ -1,11 +1,13 @@
 import React from "react";
 import { ChangeEvent, useEffect, useState } from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
-import Input from "../Input/Input";
-import DateHeader from "../DateHeader/DateHeader";
-import Button from "../Button/Button";
-import Filters from "../Filters/Filters";
-import List from "../List/List";
+import Input from "../Input";
+import DateHeader from "../DateHeader";
+import Button from "../Button";
+import Filters from "../Filters";
+import List from "../List";
+import Message from "../Message";
+import ProgressBar from "../ProgressBar";
 import {
   AddTaskWrapper,
   addTheme,
@@ -13,7 +15,7 @@ import {
   doneTheme,
 } from "../Button/style";
 import { ModalStyle } from "./style";
-import { InputTypes, InputValues } from "../../types/input";
+import { InputProps, InputTypes, InputValues } from "../../types/input";
 import { ButtonProps } from "../../types/button";
 import { TaskItem } from "../../types/task";
 import { EFilters } from "../../types/filters";
@@ -21,7 +23,6 @@ import {
   getFromLocalStorage,
   saveToLocalStorage,
 } from "../../helpers/localStorage";
-import Message from "../Message/Message";
 
 export default function Modal() {
   const [inputValues, setInputValues] = useState<InputValues>({
@@ -33,7 +34,7 @@ export default function Modal() {
   const [taskListFiltered, setTaskListFiltered] = useState<TaskItem[]>([]);
   const [lastId, setLastId] = useState<number>(0);
   const [isFiltered, setIsFiltered] = useState<boolean>(false);
-  const [filter, setFilter] = useState<EFilters>();
+  const [filter, setFilter] = useState<EFilters>(EFilters.NONE);
 
   useEffect(() => {
     const storedTasks = getFromLocalStorage("taskList");
@@ -110,14 +111,6 @@ export default function Modal() {
   };
 
   const defineTaskStatus = (index: number) => {
-    if (isFiltered && filter === EFilters.DONE) {
-      setTaskListFiltered((prevList) => prevList.filter((task) => task.isDone));
-    } else if (isFiltered && filter === EFilters.PENDING) {
-      setTaskListFiltered((prevList) =>
-        prevList.filter((task) => !task.isDone)
-      );
-    }
-
     setTaskList((prevList) => {
       const updatedList = prevList.map((task) =>
         task.id === index ? { ...task, isDone: true } : task
@@ -125,6 +118,10 @@ export default function Modal() {
       saveToLocalStorage("taskList", updatedList);
       return updatedList;
     });
+
+    if (isFiltered) {
+      setTaskListFiltered((prevList) => prevList.filter((t) => t.id !== index));
+    }
   };
 
   const filterTasksByStatus = (status: boolean) => {
@@ -138,15 +135,22 @@ export default function Modal() {
   };
 
   const searchTask = (e: ChangeEvent<HTMLInputElement>, list: TaskItem[]) => {
-    const { name, value } = e.target;
-    setInputValues((prevState) => ({ ...prevState, [name]: value }));
+    const { value } = e.target;
+    setInputValues((prevState) => ({ ...prevState, search: value }));
     const searchTerm = value.toLocaleLowerCase();
     const filtered = list.filter((t) =>
       t.task.toLocaleLowerCase().includes(searchTerm)
     );
     setTaskListFiltered(filtered);
+
     setFilter(EFilters.SEARCH);
-    value === "" ? setIsFiltered(false) : setIsFiltered(true);
+    setIsFiltered(value !== "");
+  };
+
+  const clearSearch = () => {
+    setInputValues((value) => ({ ...value, search: "" }));
+    setIsFiltered(false);
+    setFilter(EFilters.NONE);
   };
 
   const filterButtons: ButtonProps[] = [
@@ -164,16 +168,21 @@ export default function Modal() {
     },
   ];
 
+  const filterInput: InputProps = {
+    value: inputValues.search,
+    kind: InputTypes.SEARCH,
+    onChange: (e: ChangeEvent<HTMLInputElement>) =>
+      searchTask(e, taskList),
+    isDisabled: filter === EFilters.SEARCH && inputValues.search !== "",
+    onClearClick: () => clearSearch(),
+  };
+
   return (
     <ModalStyle>
       <DateHeader />
+      <ProgressBar taskList={taskList} />
       <Filters
-        input={{
-          value: inputValues.search,
-          kind: InputTypes.SEARCH,
-          onChange: (e: ChangeEvent<HTMLInputElement>) =>
-            searchTask(e, isFiltered ? taskListFiltered : taskList),
-        }}
+        input={filterInput}
         buttons={filterButtons}
       />
       <AddTaskWrapper>
