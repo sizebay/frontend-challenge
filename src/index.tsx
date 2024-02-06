@@ -15,5 +15,10 @@ const AppContainer = () => {
 }
 
 const container = document.getElementById('szb-app-root');
-const root = createRoot(container!);
-root.render(<AppContainer />)
+if (container) {
+  const root = createRoot(container);
+  root.render(<AppContainer />)
+} else {
+  console.error("Element with id 'szb-app-root' not found.");
+}
+ 

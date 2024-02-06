@@ -7,3 +7,12 @@ export const ModalStyle = styled.div`
   padding: 3rem;
   width: 40%;
 `;
+
+
+export const Message = styled.p`
+  font-size: 14px;
+`;
+
+export const MessageLink = styled.a`
+  text-decoration-line: underline;
+`;
