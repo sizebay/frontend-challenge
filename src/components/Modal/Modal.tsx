@@ -2,6 +2,7 @@ import React from "react";
 import { ChangeEvent, useEffect, useState } from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
 import Input from "../Input/Input";
+import DateHeader from '../DateHeader/DateHeader';
 import Button from "../Button/Button";
 import Filters from "../Filters/Filters";
 import List from "../List/List";
@@ -39,7 +40,7 @@ export default function Modal() {
     if (storedTasks) {
       try {
         const tasks = JSON.parse(storedTasks);
-        if (Array.isArray(tasks)) {
+        if (Array.isArray(tasks) && tasks.length > 0 && tasks[tasks.length - 1].id !== undefined) {
           setTaskList(tasks);
           setLastId(tasks[tasks.length - 1].id);
         } else {
@@ -78,9 +79,12 @@ export default function Modal() {
       setLastId(item.id);
       saveToLocalStorage("taskList", newList);
     } else {
-      setTaskList((prevList) => [...prevList, item]);
       setLastId(item.id);
-      saveToLocalStorage("taskList", taskList);
+      setTaskList((prevList) => {
+        const updatedList = [...prevList, item];
+        saveToLocalStorage("taskList", updatedList);
+        return updatedList;
+      });
     }
     setInputValues((prevState) => ({ ...prevState, task: "" }));
   };
@@ -93,6 +97,9 @@ export default function Modal() {
     setTaskList((prevList) => {
       const updatedList = prevList.filter((t) => t.id !== index);
       saveToLocalStorage("taskList", updatedList);
+      if (!updatedList.length) {
+        localStorage.clear();
+      }
       return updatedList;
     });
   };
@@ -152,6 +159,7 @@ export default function Modal() {
 
   return (
     <ModalStyle>
+      <DateHeader />
       <Filters
         input={{
           value: inputValues.search,
