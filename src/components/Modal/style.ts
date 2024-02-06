@@ -9,7 +9,7 @@ export const ModalStyle = styled.div`
 `;
 
 
-export const Message = styled.p`
+export const MessageContainer = styled.p`
   font-size: 14px;
 `;
 
