@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../styles";
 
 export const ListContainer = styled.section`
   overflow-y: scroll;
@@ -8,6 +9,10 @@ export const ListContainer = styled.section`
   flex-direction: column;
   gap: 6px;
   padding-right: 6px;
+
+  @media ${device.mobileL} {
+    max-height: 60%;
+  }
 
   ::-webkit-scrollbar {
     width: 0.5em;

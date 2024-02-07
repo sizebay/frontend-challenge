@@ -12,6 +12,7 @@ export interface InputProps {
   onInputClick?: () => void,
   isDisabled?: boolean,
   onClearClick?: () => void,
+  handleKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void,
 }
 
 export interface InputValues {

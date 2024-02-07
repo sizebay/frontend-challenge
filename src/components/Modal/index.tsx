@@ -95,6 +95,9 @@ export default function Modal() {
       });
     }
     setInputValues((prevState) => ({ ...prevState, task: "" }));
+    if (isFiltered && filter === EFilters.PENDING) {
+      setTaskListFiltered((prevList) => [...prevList, item]);
+    }
   };
 
   const deleteTask = (index: number) => {
@@ -159,6 +162,12 @@ export default function Modal() {
     setFilter(EFilters.NONE);
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      saveTask();
+    }
+  };
+
   const filterButtons: ButtonProps[] = [
     {
       theme:
@@ -190,16 +199,19 @@ export default function Modal() {
       <ToastContainer autoClose={3000} />
       <ProgressBar taskList={taskList} />
       <Filters input={filterInput} buttons={filterButtons} />
-      {filter !== EFilters.SEARCH && <AddTaskWrapper>
-        <Input
-          kind={InputTypes.TASK}
-          value={inputValues.task}
-          onChange={handleChange}
-        />
-        <Button theme={addTheme} onButtonClick={saveTask}>
-          <BsPlusCircleFill size={23} />
-        </Button>
-      </AddTaskWrapper>}
+      {filter !== EFilters.SEARCH && (
+        <AddTaskWrapper>
+          <Input
+            kind={InputTypes.TASK}
+            value={inputValues.task}
+            onChange={handleChange}
+            handleKeyPress={handleKeyPress}
+          />
+          <Button theme={addTheme} onButtonClick={saveTask}>
+            <BsPlusCircleFill size={23} />
+          </Button>
+        </AddTaskWrapper>
+      )}
       {isFiltered && !taskListFiltered.length && (
         <Message filter={filter} onMessageClick={() => setIsFiltered(false)} />
       )}

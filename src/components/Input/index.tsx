@@ -15,6 +15,7 @@ const Input: React.FC<InputProps> = ({
   onInputClick,
   isDisabled,
   onClearClick,
+  handleKeyPress,
 }) => {
   if (kind === InputTypes.TASK) {
     return (
@@ -26,6 +27,7 @@ const Input: React.FC<InputProps> = ({
         name="task"
         disabled={isDisabled}
         onClick={onInputClick}
+        onKeyDown={handleKeyPress}
       />
     );
   } else {

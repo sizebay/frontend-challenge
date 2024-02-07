@@ -7,6 +7,7 @@ export const ProgressFiller = styled.div`
   border-radius: ${(props) => props.theme.completed === 100 ? "inherit" : "4px 0px 0px 4px"};
   textAlign: right;
   min-height: 24px;
+  transition: width 1s ease-in-out;
 `;
 
 export const ProgressContainer = styled.div`
