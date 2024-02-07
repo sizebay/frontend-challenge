@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ProgressContainer, ProgressFiller } from "./style";
 import { ThemeProvider } from "styled-components";
 import { TaskItem } from "../../types/task";
 
-export default function ProgressBar(props: {
-  taskList: TaskItem[];
-}) {
-  const calculatePercentage = (taskList: TaskItem[]) => {
-    const completedTasks = taskList.filter((t) => t.isDone);
-     return (completedTasks.length / taskList.length) * 100;
-  }
+export default function ProgressBar(props: { taskList: TaskItem[] }) {
+  const [percentage, setPercentage] = useState(0);
+
+  useEffect(() => {
+    const calculatePercentage = () => {
+      if (!props.taskList.length) {
+        return setPercentage(0);
+      }
+      const completedTasks = props.taskList.filter((t) => t.isDone);
+      const newPercentage =
+        (completedTasks.length / props.taskList.length) * 100;
+      setPercentage(newPercentage);
+    };
+
+    calculatePercentage();
+  }, [props.taskList]);
 
   const theme = {
-    completed: calculatePercentage(props.taskList)
+    completed: percentage,
   };
 
   return (

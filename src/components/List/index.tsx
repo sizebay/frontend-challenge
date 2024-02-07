@@ -26,7 +26,7 @@ export default function List(props: {
         setIsEditing(false);
         return null;
       } else {
-        setIsEditing(true)
+        setIsEditing(true);
         return index;
       }
     });

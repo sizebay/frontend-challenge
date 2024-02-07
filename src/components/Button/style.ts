@@ -5,11 +5,12 @@ export const ButtonThemed = styled.button`
   border: ${(props) => props.theme.border};
   border-radius: ${(props) => props.theme.radius};
   background: ${(props) => props.theme.bg};
-  padding: 1em;
+  padding: ${(props) => props.theme.padding || "1em"};
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: min-content;
+  width: fit-content;
+  gap: 0.5em;
 `;
 
 export const deleteTheme = {
@@ -37,6 +38,7 @@ export const doneSelectTheme = {
   border: "1px solid #4DA6B3",
   bg: "#F7F7F8",
   radius: "20px",
+  padding: "0.5em 1.2em",
 };
 
 export const doneTheme = {
@@ -44,7 +46,9 @@ export const doneTheme = {
   border: "1px solid #DBDBDB",
   bg: "#FFFFFF",
   radius: "20px",
+  padding: "0.5em 1.2em",
 };
+
 export const AddTaskWrapper = styled.div`
   display: flex;
   justify-content: center;

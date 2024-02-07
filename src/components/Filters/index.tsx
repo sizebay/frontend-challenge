@@ -19,6 +19,7 @@ export default function Filters(props: FiltersProps) {
           key={index}
           theme={button.theme}
           onButtonClick={button.onButtonClick}
+          icon={button.icon}
         >
           {button.children}
         </Button>

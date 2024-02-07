@@ -2,11 +2,24 @@ import styled from "styled-components";
 
 export const ListContainer = styled.section`
   overflow-y: scroll;
-  height: 80%;
-  margin-top: 0.5rem;
+  max-height: 50%;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  padding-right: 6px;
+
+  ::-webkit-scrollbar {
+    width: 0.5em;
+    border-radius: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #E4E4E4;
+    border-radius: 9px;
+  }
+  ::-webkit-scrollbar-thumb {
+  background-color: #848484;
+  border-radius: 9px;
 `
 ;
 

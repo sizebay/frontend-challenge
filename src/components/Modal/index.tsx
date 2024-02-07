@@ -23,6 +23,8 @@ import {
   getFromLocalStorage,
   saveToLocalStorage,
 } from "../../helpers/localStorage";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Modal() {
   const [inputValues, setInputValues] = useState<InputValues>({
@@ -115,6 +117,10 @@ export default function Modal() {
       const updatedList = prevList.map((task) =>
         task.id === index ? { ...task, isDone: true } : task
       );
+      const allIsDone = updatedList.every((t) => t.isDone === true);
+      if (allIsDone) {
+        toast("All done!");
+      }
       saveToLocalStorage("taskList", updatedList);
       return updatedList;
     });
@@ -159,20 +165,21 @@ export default function Modal() {
         filter === EFilters.DONE && isFiltered ? doneSelectTheme : doneTheme,
       onButtonClick: () => filterTasksByStatus(true),
       children: "Done",
+      icon: filter === EFilters.DONE && isFiltered,
     },
     {
       theme:
         filter === EFilters.PENDING && isFiltered ? doneSelectTheme : doneTheme,
       onButtonClick: () => filterTasksByStatus(false),
       children: "Pending",
+      icon: filter === EFilters.PENDING && isFiltered,
     },
   ];
 
   const filterInput: InputProps = {
     value: inputValues.search,
     kind: InputTypes.SEARCH,
-    onChange: (e: ChangeEvent<HTMLInputElement>) =>
-      searchTask(e, taskList),
+    onChange: (e: ChangeEvent<HTMLInputElement>) => searchTask(e, taskList),
     isDisabled: filter === EFilters.SEARCH && inputValues.search !== "",
     onClearClick: () => clearSearch(),
   };
@@ -180,12 +187,10 @@ export default function Modal() {
   return (
     <ModalStyle>
       <DateHeader />
+      <ToastContainer autoClose={3000} />
       <ProgressBar taskList={taskList} />
-      <Filters
-        input={filterInput}
-        buttons={filterButtons}
-      />
-      <AddTaskWrapper>
+      <Filters input={filterInput} buttons={filterButtons} />
+      {filter !== EFilters.SEARCH && <AddTaskWrapper>
         <Input
           kind={InputTypes.TASK}
           value={inputValues.task}
@@ -194,7 +199,7 @@ export default function Modal() {
         <Button theme={addTheme} onButtonClick={saveTask}>
           <BsPlusCircleFill size={23} />
         </Button>
-      </AddTaskWrapper>
+      </AddTaskWrapper>}
       {isFiltered && !taskListFiltered.length && (
         <Message filter={filter} onMessageClick={() => setIsFiltered(false)} />
       )}
