@@ -8,7 +8,8 @@ export enum InputTypes {
 export interface InputProps {
   kind: InputTypes,
   value: string,
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+  onSearch?: (s: string) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void,
   onInputClick?: () => void,
   isDisabled?: boolean,
   onClearClick?: () => void,

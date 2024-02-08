@@ -10,6 +10,10 @@ export const ListContainer = styled.section`
   gap: 6px;
   padding-right: 6px;
 
+  @media (max-width: 1650px) {
+    max-height: 40%;
+  }
+
   @media ${device.mobileL} {
     max-height: 60%;
   }

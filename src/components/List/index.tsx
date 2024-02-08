@@ -10,7 +10,7 @@ import { ListContainer } from "./style";
 import { DisabledInput } from "./style";
 
 export default function List(props: {
-  tasks: TaskItem[];
+  tasks: TaskItem[] | null;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onDelete?: (index: number) => void;
   setStatus?: (index: number) => void;
@@ -34,7 +34,7 @@ export default function List(props: {
 
   return (
     <ListContainer>
-      {props.tasks.map((task, index) => (
+      {props.tasks?.map((task, index) => (
         <AddTaskWrapper key={index}>
           {isEditing && selectedTaskIndex === task.id ? (
             <>

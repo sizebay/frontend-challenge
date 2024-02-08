@@ -3,12 +3,12 @@ import { ProgressContainer, ProgressFiller } from "./style";
 import { ThemeProvider } from "styled-components";
 import { TaskItem } from "../../types/task";
 
-export default function ProgressBar(props: { taskList: TaskItem[] }) {
+export default function ProgressBar(props: { taskList: TaskItem[] | null }) {
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
     const calculatePercentage = () => {
-      if (!props.taskList.length) {
+      if (!props.taskList?.length) {
         return setPercentage(0);
       }
       const completedTasks = props.taskList.filter((t) => t.isDone);
