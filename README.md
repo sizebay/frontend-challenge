@@ -16,3 +16,8 @@ In the project directory, you can run:
 #### `npm run wrap`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+#### OR
+
+If you want to check the deployed project instead of running it locally:
+#### [See Vercel Deploy](https://lucoliv-frontend-challenge.vercel.app/)
