@@ -57,18 +57,21 @@ const TaskManager = () => {
       <ProgressBar percent={"25"} />
 
       <div className="headerActions">
-        <button
-          className={` ${doneSelected ? "selected" : ""}`}
-          onClick={handleDoneClick}
-        >
-          {doneSelected && <FaCheck />} Done
-        </button>
-        <button
-          className={`customButton ${pendingSelected ? "selected" : ""}`}
-          onClick={handlePendingClick}
-        >
-          {pendingSelected && <FaCheck />} Pending
-        </button>
+        <div className="actionButtons">
+          <button
+            className={` ${doneSelected ? "selected" : ""}`}
+            onClick={handleDoneClick}
+          >
+            {doneSelected && <FaCheck />} Done
+          </button>
+          <button
+            className={`customButton ${pendingSelected ? "selected" : ""}`}
+            onClick={handlePendingClick}
+          >
+            {pendingSelected && <FaCheck />} Pending
+          </button>
+        </div>
+
         <SearchContainer>
           <input
             type="text"

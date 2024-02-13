@@ -37,3 +37,7 @@ button.selected {
   outline: none;
   color: #848484;
 }
+
+.actionButtons {
+  display: flex;
+}
