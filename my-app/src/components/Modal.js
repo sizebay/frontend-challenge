@@ -1,7 +1,8 @@
 import "./Modal.css";
 import ProgressBar from "./ProgressBar";
 
-const Modal = ({ currentDate }) => {
+const Modal = () => {
+  const currentDate = new Date();
   const day = currentDate.toLocaleDateString("en-US", { day: "numeric" });
   const month = currentDate.toLocaleDateString("en-US", { month: "short" });
   const year = currentDate.toLocaleDateString("en-US", { year: "numeric" });
