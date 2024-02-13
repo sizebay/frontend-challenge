@@ -1,5 +1,5 @@
 import "./Modal.css";
-import ProgressBar from "./ProgressBar";
+import TaskManager from "./TaskManager";
 
 const Modal = () => {
   const currentDate = new Date();
@@ -20,7 +20,7 @@ const Modal = () => {
           <p className="weekday">{weekday}</p>
         </div>
 
-        <ProgressBar percent={"25"} />
+        <TaskManager />
       </div>
     </div>
   );
