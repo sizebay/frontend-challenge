@@ -10,58 +10,6 @@ import {
 } from "react-icons/fa";
 import "./TaskManager.css";
 
-const SearchContainer = styled.div`
-  position: relative;
-`;
-
-const SearchIcon = styled(FaSearch)`
-  position: absolute;
-  right: 75px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-`;
-
-const PlusIcon = styled(FaPlusCircle)`
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  position: absolute;
-  right: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  padding: 12.5px;
-  color: white;
-  background-color: #4da6b3;
-  font-size: 25px;
-`;
-
-const CheckCircleIcon = styled(FaCheckCircle)`
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  position: absolute;
-  right: -0.5px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  padding: 12.5px;
-  color: white;
-  background-color: #5de290;
-  font-size: 25px;
-`;
-
-const MinusIcon = styled(FaMinusCircle)`
-  position: absolute;
-  right: 49px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  padding: 12.5px;
-  color: white;
-  background-color: #e34f4f;
-  font-size: 25px;
-`;
-
 const useTaskManager = () => {
   const [doneSelected, setDoneSelected] = useState(false);
   const [pendingSelected, setPendingSelected] = useState(false);
@@ -165,15 +113,15 @@ const TaskManager = () => {
           </button>
         </div>
 
-        <SearchContainer>
+        <div className="searchContainer">
           <input
             type="text"
             placeholder="Search items"
             className="searchBar"
             onChange={handleSearch}
           />
-          <SearchIcon />
-        </SearchContainer>
+          <FaSearch className="SearchIcon" />
+        </div>
       </div>
 
       <div>
@@ -186,7 +134,7 @@ const TaskManager = () => {
             value={newTaskText}
             onChange={(e) => setNewTaskText(e.target.value)}
           />
-          <PlusIcon onClick={handleAddTask} />
+          <FaPlusCircle className="PlusIcon" onClick={handleAddTask} />
         </div>
       </div>
 
@@ -195,8 +143,8 @@ const TaskManager = () => {
           {filteredTasks.map((task, index) => (
             <li key={index}>
               {task.text}
-              <MinusIcon />
-              <CheckCircleIcon />
+              <FaMinusCircle className="MinusIcon" />
+              <FaCheckCircle className="CheckCircleIcon" />
             </li>
           ))}
         </ul>

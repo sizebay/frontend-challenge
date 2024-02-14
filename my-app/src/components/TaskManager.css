@@ -47,7 +47,8 @@ input {
   display: flex;
 }
 
-.addItem {
+.addItem,
+.searchContainer {
   position: relative;
 }
 
@@ -73,4 +74,52 @@ input {
   padding-left: 16px;
   height: 48px;
   align-items: center;
+}
+
+.SearchIcon {
+  position: absolute;
+  right: 75px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.PlusIcon {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 12.5px;
+  color: white;
+  background-color: #4da6b3;
+  font-size: 25px;
+}
+
+.CheckCircleIcon {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  position: absolute;
+  right: -0.5px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 12.5px;
+  color: white;
+  background-color: #5de290;
+  font-size: 25px;
+}
+
+.MinusIcon {
+  position: absolute;
+  right: 49px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 12.5px;
+  color: white;
+  background-color: #e34f4f;
+  font-size: 25px;
 }
