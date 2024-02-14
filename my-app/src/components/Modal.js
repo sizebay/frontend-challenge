@@ -10,7 +10,7 @@ const Modal = () => {
 
   return (
     <div className="modal">
-      <div>
+      <div className="height-modal">
         <div className="modal-content">
           <p className="day">{day}</p>
           <div className="align-monthyear">

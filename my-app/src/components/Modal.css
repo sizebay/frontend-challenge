@@ -6,7 +6,6 @@ p {
 
 .modal {
   width: 800px;
-  height: 650px;
   margin: 60px;
   font-family: "Roboto", sans-serif;
   color: #848484;
@@ -15,6 +14,10 @@ p {
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   border-radius: 4px;
+}
+
+.height-modal {
+  margin-bottom: 68px;
 }
 
 .modal-content {

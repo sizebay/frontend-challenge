@@ -26,10 +26,10 @@ button.selected {
   margin-right: 75px;
 }
 
-.searchBar {
+input {
+  width: -webkit-fill-available;
+  margin: 0 60px 0 60px;
   padding: 0 16px 0 16px;
-  margin: 0 60px 0 auto;
-  width: 415px;
   height: 40px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #dbdbdb;
@@ -38,6 +38,39 @@ button.selected {
   color: #848484;
 }
 
+.searchBar {
+  width: 415px;
+  margin: 0 60px 0 auto;
+}
+
 .actionButtons {
   display: flex;
+}
+
+.addItem {
+  position: relative;
+}
+
+.inputSearch {
+  height: 48px;
+}
+
+.taskListContainer {
+  margin: 16px 60px 0 60px;
+}
+
+.taskListContainer ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.taskListContainer li {
+  position: relative;
+  display: flex;
+  background: #f4f4f4;
+  border: 1px solid #dbdbdb;
+  margin: 8px 0;
+  padding-left: 16px;
+  height: 48px;
+  align-items: center;
 }
