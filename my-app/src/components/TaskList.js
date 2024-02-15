@@ -14,6 +14,7 @@ const TaskList = ({ tasks, doneSelected }) => {
     const trimmedText = newTaskText.trim();
     if (trimmedText !== "") {
       const newTask = {
+        id: new Date().getTime(),
         text: trimmedText,
         done: false,
       };
@@ -23,6 +24,23 @@ const TaskList = ({ tasks, doneSelected }) => {
       setLocalTasks(updatedTasks);
       setNewTaskText("");
     }
+  };
+
+  const handleRemoveTask = (taskId) => {
+    const updatedTasks = localTasks.filter((task) => task.id !== taskId);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setLocalTasks(updatedTasks);
+  };
+
+  const handleMarkAsDone = (taskId) => {
+    const updatedTasks = localTasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, done: true };
+      }
+      return task;
+    });
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setLocalTasks(updatedTasks);
   };
 
   const noDoneTasks = doneSelected && localTasks.every((task) => !task.done);
@@ -49,11 +67,17 @@ const TaskList = ({ tasks, doneSelected }) => {
           </p>
         ) : (
           <ul>
-            {localTasks.map((task, index) => (
-              <li key={index}>
+            {localTasks.map((task) => (
+              <li key={task.id}>
                 {task.text}
-                <FaMinusCircle className="minusIcon" />
-                <FaCheckCircle className="checkCircleIcon" />
+                <FaMinusCircle
+                  className="minusIcon"
+                  onClick={() => handleRemoveTask(task.id)}
+                />
+                <FaCheckCircle
+                  className="checkCircleIcon"
+                  onClick={() => handleMarkAsDone(task.id)}
+                />
               </li>
             ))}
           </ul>
