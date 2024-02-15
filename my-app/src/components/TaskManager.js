@@ -36,6 +36,7 @@ const TaskManager = () => {
   useEffect(() => {
     const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     setTasks(storedTasks);
+    setFilteredTasks(storedTasks);
   }, []);
 
   useEffect(() => {
@@ -51,8 +52,6 @@ const TaskManager = () => {
         return true;
       });
     }
-
-    setFilteredTasks(filteredTasks);
   }, [doneSelected, pendingSelected, tasks]);
 
   return (
