@@ -17,3 +17,55 @@
   height: 48px;
   align-items: center;
 }
+
+.plusIcon {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 12.5px;
+  color: white;
+  background-color: #4da6b3;
+  font-size: 25px;
+}
+
+.checkCircleIcon {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  position: absolute;
+  right: -0.5px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 12.5px;
+  color: white;
+  background-color: #5de290;
+  font-size: 25px;
+}
+
+.minusIcon {
+  position: absolute;
+  right: 49px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 12.5px;
+  color: white;
+  background-color: #e34f4f;
+  font-size: 25px;
+}
+
+.addItem {
+  position: relative;
+}
+
+.noTasksMessage {
+  color: #848484;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 38px;
+}

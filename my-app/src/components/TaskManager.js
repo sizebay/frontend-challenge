@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
-import { FaSearch, FaCheck } from "react-icons/fa";
 import TaskList from "./TaskList";
+import HeaderActions from "./HeaderActions";
 import "./TaskManager.css";
 
 const useTaskManager = () => {
@@ -18,27 +18,17 @@ const useTaskManager = () => {
     setDoneSelected(false);
   };
 
-  const handleSearch = (event) => {
-    // Lógica de busca
-  };
-
   return {
     doneSelected,
     pendingSelected,
     handleDoneClick,
     handlePendingClick,
-    handleSearch,
   };
 };
 
 const TaskManager = () => {
-  const {
-    doneSelected,
-    pendingSelected,
-    handleDoneClick,
-    handlePendingClick,
-    handleSearch,
-  } = useTaskManager();
+  const { doneSelected, pendingSelected, handleDoneClick, handlePendingClick } =
+    useTaskManager();
 
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
@@ -49,47 +39,34 @@ const TaskManager = () => {
   }, []);
 
   useEffect(() => {
-    let filtered = tasks;
+    let filteredTasks = tasks;
 
-    filtered = doneSelected ? filtered.filter((task) => task.done) : filtered;
-    filtered = pendingSelected
-      ? filtered.filter((task) => !task.done)
-      : filtered;
+    if (doneSelected || pendingSelected) {
+      filteredTasks = filteredTasks.filter((task) => {
+        if (doneSelected) {
+          return task.done;
+        } else if (pendingSelected) {
+          return !task.done;
+        }
+        return true;
+      });
+    }
 
-    setFilteredTasks(filtered);
-  }, [tasks, doneSelected, pendingSelected]);
+    setFilteredTasks(filteredTasks);
+  }, [doneSelected, pendingSelected, tasks]);
 
   return (
     <div>
       <ProgressBar tasks={filteredTasks} />
-      <div className="headerActions">
-        <div className="actionButtons">
-          <button
-            className={` ${doneSelected ? "selected" : ""}`}
-            onClick={handleDoneClick}
-          >
-            {doneSelected && <FaCheck />} Done
-          </button>
-          <button
-            className={`customButton ${pendingSelected ? "selected" : ""}`}
-            onClick={handlePendingClick}
-          >
-            {pendingSelected && <FaCheck />} Pending
-          </button>
-        </div>
 
-        <div className="searchContainer">
-          <input
-            type="text"
-            placeholder="Search items"
-            className="searchBar"
-            onChange={handleSearch}
-          />
-          <FaSearch className="SearchIcon" />
-        </div>
-      </div>
+      <HeaderActions
+        doneSelected={doneSelected}
+        pendingSelected={pendingSelected}
+        handleDoneClick={handleDoneClick}
+        handlePendingClick={handlePendingClick}
+      />
 
-      <TaskList tasks={filteredTasks} />
+      <TaskList tasks={filteredTasks} doneSelected={doneSelected} />
     </div>
   );
 };
