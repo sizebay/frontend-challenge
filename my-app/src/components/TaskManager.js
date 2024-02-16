@@ -40,10 +40,10 @@ const TaskManager = () => {
   }, []);
 
   useEffect(() => {
-    let filteredTasks = tasks;
+    let updatedFilteredTasks = tasks;
 
     if (doneSelected || pendingSelected) {
-      filteredTasks = filteredTasks.filter((task) => {
+      updatedFilteredTasks = tasks.filter((task) => {
         if (doneSelected) {
           return task.done;
         } else if (pendingSelected) {
@@ -52,7 +52,32 @@ const TaskManager = () => {
         return true;
       });
     }
+
+    setFilteredTasks(updatedFilteredTasks);
   }, [doneSelected, pendingSelected, tasks]);
+
+  const handleAddTask = (newTask) => {
+    const updatedTasks = [...tasks, newTask];
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
+  };
+
+  const handleRemoveTask = (taskId) => {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
+  };
+
+  const handleMarkAsDone = (taskId) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, done: true };
+      }
+      return task;
+    });
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setTasks(updatedTasks);
+  };
 
   return (
     <div>
@@ -65,7 +90,13 @@ const TaskManager = () => {
         handlePendingClick={handlePendingClick}
       />
 
-      <TaskList tasks={filteredTasks} doneSelected={doneSelected} />
+      <TaskList
+        filteredTasks={filteredTasks}
+        doneSelected={doneSelected}
+        handleAddTask={handleAddTask}
+        handleRemoveTask={handleRemoveTask}
+        handleMarkAsDone={handleMarkAsDone}
+      />
     </div>
   );
 };

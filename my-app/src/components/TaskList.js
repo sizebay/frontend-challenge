@@ -2,48 +2,21 @@ import { FaMinusCircle, FaCheckCircle, FaPlusCircle } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import "./TaskList.css";
 
-const TaskList = ({ tasks, doneSelected }) => {
+const TaskList = ({
+  filteredTasks,
+  doneSelected,
+  handleAddTask,
+  handleRemoveTask,
+  handleMarkAsDone,
+}) => {
   const [newTaskText, setNewTaskText] = useState("");
-  const [localTasks, setLocalTasks] = useState(tasks);
 
   useEffect(() => {
-    setLocalTasks(tasks);
-  }, [tasks]);
+    setNewTaskText("");
+  }, [filteredTasks]);
 
-  const handleAddTask = () => {
-    const trimmedText = newTaskText.trim();
-    if (trimmedText !== "") {
-      const newTask = {
-        id: new Date().getTime(),
-        text: trimmedText,
-        done: false,
-      };
-      const updatedTasks = [...localTasks, newTask];
-
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-      setLocalTasks(updatedTasks);
-      setNewTaskText("");
-    }
-  };
-
-  const handleRemoveTask = (taskId) => {
-    const updatedTasks = localTasks.filter((task) => task.id !== taskId);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    setLocalTasks(updatedTasks);
-  };
-
-  const handleMarkAsDone = (taskId) => {
-    const updatedTasks = localTasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, done: true };
-      }
-      return task;
-    });
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    setLocalTasks(updatedTasks);
-  };
-
-  const noDoneTasks = doneSelected && localTasks.every((task) => !task.done);
+  const noDoneTasks =
+    doneSelected && (filteredTasks || []).every((task) => !task.done);
 
   return (
     <div>
@@ -56,7 +29,16 @@ const TaskList = ({ tasks, doneSelected }) => {
           value={newTaskText}
           onChange={(e) => setNewTaskText(e.target.value)}
         />
-        <FaPlusCircle className="plusIcon" onClick={handleAddTask} />
+        <FaPlusCircle
+          className="plusIcon"
+          onClick={() =>
+            handleAddTask({
+              id: new Date().getTime(),
+              text: newTaskText,
+              done: false,
+            })
+          }
+        />
       </div>
 
       <div className="taskListContainer">
@@ -67,7 +49,7 @@ const TaskList = ({ tasks, doneSelected }) => {
           </p>
         ) : (
           <ul>
-            {localTasks.map((task) => (
+            {(filteredTasks || []).map((task) => (
               <li key={task.id}>
                 {task.text}
                 <FaMinusCircle
