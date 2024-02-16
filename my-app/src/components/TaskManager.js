@@ -83,6 +83,10 @@ const TaskManager = () => {
 
   const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+  const handleClearFilters = () => {
+    handleDoneClick();
+  };
+
   return (
     <div>
       <ProgressBar tasks={storedTasks} />
@@ -100,6 +104,7 @@ const TaskManager = () => {
         handleAddTask={handleAddTask}
         handleRemoveTask={handleRemoveTask}
         handleMarkAsDone={handleMarkAsDone}
+        handleClearFilters={handleClearFilters}
       />
     </div>
   );

@@ -9,6 +9,7 @@ const TaskList = ({
   handleAddTask,
   handleRemoveTask,
   handleMarkAsDone,
+  handleClearFilters,
 }) => {
   const [newTaskText, setNewTaskText] = useState("");
   const [hoveredItemId, setHoveredItemId] = useState(null);
@@ -79,8 +80,16 @@ const TaskList = ({
       <div className="taskListContainer">
         {noDoneTasks ? (
           <p className="noTasksMessage">
-            There are no items marked as done. Clear the filter here to see all
-            items.
+            There are no items marked as done.{" "}
+            <span
+              className="clearFilterLink"
+              onClick={() => {
+                handleClearFilters();
+              }}
+            >
+              Clear the filter here
+            </span>{" "}
+            to see all items.
           </p>
         ) : (
           <ul>

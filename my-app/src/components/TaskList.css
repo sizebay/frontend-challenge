@@ -100,3 +100,8 @@
 .taskListItem.editReset {
   all: unset;
 }
+
+.clearFilterLink {
+  cursor: pointer;
+  text-decoration: underline;
+}
