@@ -71,7 +71,7 @@ const TaskManager = () => {
   const handleMarkAsDone = (taskId) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === taskId) {
-        return { ...task, done: true };
+        return { ...task, done: !task.done };
       }
       return task;
     });
