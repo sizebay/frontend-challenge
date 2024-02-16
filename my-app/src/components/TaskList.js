@@ -89,7 +89,7 @@ const TaskList = ({
                 key={task.id}
                 onMouseEnter={() => handleMouseEnter(task.id)}
                 onMouseLeave={handleMouseLeave}
-                onClick={() => handleEditClick(task.id)}
+                // onClick={() => handleEditClick(task.id)}
                 className={`taskListItem ${
                   editableItemId === task.id ? "editReset" : ""
                 }`}

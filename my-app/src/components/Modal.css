@@ -1,3 +1,8 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
 p {
   margin: 0;
   font-size: 24px;

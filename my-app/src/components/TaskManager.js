@@ -57,9 +57,11 @@ const TaskManager = () => {
   }, [doneSelected, pendingSelected, tasks]);
 
   const handleAddTask = (newTask) => {
-    const updatedTasks = [...tasks, newTask];
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-    setTasks(updatedTasks);
+    if (newTask.text.length > 0) {
+      const updatedTasks = [...tasks, newTask];
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      setTasks(updatedTasks);
+    }
   };
 
   const handleRemoveTask = (taskId) => {
@@ -79,9 +81,11 @@ const TaskManager = () => {
     setTasks(updatedTasks);
   };
 
+  const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
   return (
     <div>
-      <ProgressBar tasks={filteredTasks} />
+      <ProgressBar tasks={storedTasks} />
 
       <HeaderActions
         doneSelected={doneSelected}
