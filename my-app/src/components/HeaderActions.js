@@ -1,5 +1,6 @@
 import { FaCheck, FaSearch } from "react-icons/fa";
 import "./HeaderActions.css";
+import { useState } from "react";
 
 const HeaderActions = ({
   doneSelected,
@@ -8,6 +9,13 @@ const HeaderActions = ({
   handlePendingClick,
   handleSearch,
 }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    handleSearch(e.target.value);
+  };
+
   return (
     <div className="headerActions">
       <div className="actionButtons">
@@ -30,7 +38,8 @@ const HeaderActions = ({
           type="text"
           placeholder="Search items"
           className="searchBar"
-          onChange={handleSearch}
+          value={searchTerm}
+          onChange={handleSearchChange} // Utiliza a função modificada para atualizar o estado e chamar handleSearch
         />
         <FaSearch className="searchIcon" />
       </div>

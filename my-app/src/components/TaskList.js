@@ -61,7 +61,7 @@ const TaskList = ({
           type="text"
           id="newTaskText"
           placeholder="Add new item..."
-          className="inputSearch"
+          className="inputAddItem"
           value={newTaskText}
           onChange={(e) => setNewTaskText(e.target.value)}
         />

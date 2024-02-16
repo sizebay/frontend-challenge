@@ -7,6 +7,7 @@ import "./TaskManager.css";
 const useTaskManager = () => {
   const [doneSelected, setDoneSelected] = useState(false);
   const [pendingSelected, setPendingSelected] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleDoneClick = () => {
     setDoneSelected(!doneSelected);
@@ -23,12 +24,18 @@ const useTaskManager = () => {
     pendingSelected,
     handleDoneClick,
     handlePendingClick,
+    setSearchTerm,
   };
 };
 
 const TaskManager = () => {
-  const { doneSelected, pendingSelected, handleDoneClick, handlePendingClick } =
-    useTaskManager();
+  const {
+    doneSelected,
+    pendingSelected,
+    handleDoneClick,
+    handlePendingClick,
+    setSearchTerm,
+  } = useTaskManager();
 
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
@@ -87,6 +94,22 @@ const TaskManager = () => {
     handleDoneClick();
   };
 
+  const handleSearch = (searchTerm) => {
+    setSearchTerm(searchTerm);
+
+    if (searchTerm === "") {
+      const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      setTasks(storedTasks);
+      return;
+    }
+
+    const filteredTasks = tasks.filter((task) =>
+      task.text.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setTasks(filteredTasks);
+  };
+
   return (
     <div>
       <ProgressBar tasks={storedTasks} />
@@ -96,6 +119,7 @@ const TaskManager = () => {
         pendingSelected={pendingSelected}
         handleDoneClick={handleDoneClick}
         handlePendingClick={handlePendingClick}
+        handleSearch={handleSearch}
       />
 
       <TaskList
