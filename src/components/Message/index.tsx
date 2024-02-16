@@ -11,7 +11,7 @@ export default function Message(props: MessageProps) {
   const { filter, onMessageClick } = props;
   return (
         <MessageContainer>
-          {filter === EFilters.SEARCH
+          {filter !== EFilters.NONE
             ? "Your search found no results. "
             : `There are no items marked as ${filter}. `}
           <MessageLink onClick={() => onMessageClick()}>

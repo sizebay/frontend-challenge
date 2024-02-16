@@ -9,7 +9,11 @@ export const FiltersContainer = styled.section`
   align-items: center;
   width: 100%;
 
-  @media ${device.mobileL} {
+  @media (min-width: 1024px) and (max-width: 1650px) {
+    gap: 1rem;
+  }
+
+  @media (max-width: 1023px) {
     flex-flow: wrap-reverse;
     gap: 0.6rem;
   }
@@ -20,7 +24,7 @@ export const ButtonsContainer = styled.div`
   flex: 1;
   justify-content: start;
   gap: 0.6em;
-  @media ${device.mobileL} {
+  @media (min-width: 320px) and (max-width: 1650px) {
     width: 100%;
     justify-content: end;
   }

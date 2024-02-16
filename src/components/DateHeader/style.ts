@@ -8,7 +8,7 @@ export const HeaderContainer = styled.section`
 `;
 
 export const WeekDay = styled.p`
-  font-size: 32px;
+  font-size: 24px;
 `;
 
 export const DateContainer = styled.div`
@@ -17,8 +17,8 @@ export const DateContainer = styled.div`
   gap: 0px 5px;
 
   .day {
-    font-weight: medium;
-    font-size: 60px
+    font-size: 60px;
+    letter-spacing: -3px;
   }
 
   .monthYear {
@@ -27,10 +27,10 @@ export const DateContainer = styled.div`
   }
 
   .monthYear > .month {
-    font-weight: 600;
+    font-weight: 400;
   }
 
   .monthYear > .year {
-    font-weight: 400;
+    font-weight: 300;
   }
 `;

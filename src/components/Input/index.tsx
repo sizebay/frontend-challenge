@@ -6,6 +6,7 @@ import {
   SearchInput,
   SearchWrapper,
   TaskInput,
+  TaskInputItem,
 } from "./style";
 
 const Input: React.FC<InputProps> = ({
@@ -30,7 +31,7 @@ const Input: React.FC<InputProps> = ({
         onKeyDown={handleKeyPress}
       />
     );
-  } else {
+  } else if (kind === InputTypes.SEARCH) {
     return (
       <SearchWrapper>
         <SearchInput
@@ -45,6 +46,14 @@ const Input: React.FC<InputProps> = ({
           <SearchClearIcon onClick={onClearClick} />
         )}
       </SearchWrapper>
+    );
+  } else {
+    return (
+      <TaskInputItem
+        defaultValue={value}
+        onChange={onChange}
+        onClick={onInputClick}
+      />
     );
   }
 };

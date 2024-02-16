@@ -2,12 +2,14 @@ import { ChangeEvent } from "react";
 
 export enum InputTypes {
   SEARCH,
-  TASK
+  TASK,
+  NONE,
 }
 
 export interface InputProps {
   kind: InputTypes,
   value: string,
+  name?: string,
   onSearch?: (s: string) => void;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void,
   onInputClick?: () => void,

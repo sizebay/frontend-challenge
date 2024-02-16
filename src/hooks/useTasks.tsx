@@ -12,7 +12,10 @@ export default function useTasks() {
     if (storedTasks) {
       try {
         const tasks = JSON.parse(storedTasks);
-        if (
+        if(!tasks.length) {
+          localStorage.clear();
+        }
+        else if (
           Array.isArray(tasks) &&
           tasks.length > 0 &&
           tasks[tasks.length - 1].id !== undefined

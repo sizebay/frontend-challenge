@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-const size = {
+export const size = {
   mobileS: "320px",
   mobileM: "375px",
   mobileL: "432px",
@@ -14,9 +14,9 @@ export const device = {
   mobileS: `(max-width: ${size.mobileS})`,
   mobileM: `(min-width: ${size.mobileM})`,
   mobileL: `(max-width: ${size.mobileL})`,
-  tablet: `(min-width: ${size.tablet})`,
+  tablet: `(max-width: ${size.tablet})`,
   laptop: `(min-width: ${size.laptop})`,
-  laptopL: `(min-width: ${size.laptopL})`,
+  laptopL: `(max-width: ${size.laptopL})`,
   desktop: `(min-width: ${size.desktop})`,
   desktopL: `(min-width: ${size.desktop})`,
 };
