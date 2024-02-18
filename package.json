@@ -15,6 +15,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.10",
     "@phosphor-icons/react": "^2.0.15",
+    "cypress": "^13.6.4",
     "date-fns": "^3.3.1",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
