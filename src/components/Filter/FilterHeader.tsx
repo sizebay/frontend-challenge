@@ -53,7 +53,7 @@ export function FilterHeader({ tasks, setFilteredTasks, changeFilterButtons, fil
     return (
         <FilterHeaderContainer>
             <FilterContainer>
-                <ButtonContainer>
+                <ButtonContainer data-cy="buttonContainer">
                     <Button
                         theme={filterInfos.done ? doneSelectTheme : doneTheme}
                         onButtonClick={() => changeFilterButtons('done')}>
@@ -67,6 +67,7 @@ export function FilterHeader({ tasks, setFilteredTasks, changeFilterButtons, fil
                 </ButtonContainer>
                 <InputContainer>
                     <Input
+                        data-cy="searchTaskInput"
                         type="text"
                         placeholder="Search items"
                         value={filterInfos.filterText}
@@ -74,10 +75,9 @@ export function FilterHeader({ tasks, setFilteredTasks, changeFilterButtons, fil
                     />
                     {(!filterInfos.done && !filterInfos.pending && filterInfos.filterText === "") ?
                         <MagnifyingGlass size={17.49} weight="bold" style={{ position: 'absolute', right: '13.51px', top: '50%', transform: 'translateY(-50%)' }} /> :
-                        <X onClick={handleClearFilters} size={17.49} weight="bold" style={{ position: 'absolute', right: '13.51px', top: '50%', transform: 'translateY(-50%)' }} />
+                        <X data-cy="clearFiltersIcon" onClick={handleClearFilters} size={17.49} weight="bold" style={{ position: 'absolute', right: '13.51px', top: '50%', transform: 'translateY(-50%)' }} />
                     }
                 </InputContainer>
-
             </FilterContainer>
         </FilterHeaderContainer>
     );

@@ -33,6 +33,7 @@ export function NewTask({ addNewTask, isFilterActive }: NewTaskProps) {
         <NewTaskContainer>
             <InputContainer>
                 <input
+                    data-cy="newItemInput"
                     type="text"
                     placeholder="Add new item..."
                     value={inputValue}
@@ -40,6 +41,7 @@ export function NewTask({ addNewTask, isFilterActive }: NewTaskProps) {
                     disabled={isFilterActive}
                 />
                 <Button
+                    data-cy="addNewItemButton"
                     onButtonClick={handleAddTask}
                     theme={addTheme}
                     disabled={isFilterActive}

@@ -15,17 +15,18 @@ export function Header({ doneTasksValue }: HeaderProps) {
     return (
         <div className={styles.headerContentWrapper}>
             <div className={styles.headerContent}>
-                <span className={styles.day}>{day}</span>
+                <span className={styles.day} data-cy="day">{day}</span>
                 <div className={styles.monthAndYear}>
-                    <span>{month}</span>
-                    <span>{year}</span>
+                    <span data-cy="month">{month}</span>
+                    <span data-cy="year">{year}</span>
                 </div>
             </div>
             <div className={styles.dayOfWeekContainer}>
-                <span className={styles.dayOfWeek}>{dayOfWeek}</span>
+                <span className={styles.dayOfWeek} data-cy="dayOfWeek">{dayOfWeek}</span>
                 {doneTasksValue === 100 && (
                     <div className={styles.lottieContainer}>
                         <Lottie
+                            data-cy="confettiAnimation"
                             animationData={animationData}
                             loop={false}
                             autoplay

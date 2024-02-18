@@ -64,8 +64,8 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
         <>
             {
                 isEditing ? (
-                    <TaskItemContainerEdit ref={containerRef} onClick={handleEditClick} onBlur={handleContainerBlur} >
-                        <Input
+                    <TaskItemContainerEdit data-cy={'editTaskId' + task.id} ref={containerRef} onClick={handleEditClick} onBlur={handleContainerBlur} >
+                        <Input data-cy={'inputEditTaskId' + task.id}
                             ref={inputRef}
                             type="text"
                             value={editedText}
@@ -75,11 +75,13 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
                         />
                         <ButtonContainer>
                             <Button
+                                data-cy={'btnDeleteTaskId' + task.id}
                                 theme={deleteTheme}
                                 onButtonClick={handleDelete}>
                                 <MinusCircle size={25} weight="fill" />
                             </Button>
                             <Button
+                                data-cy={'btnTogleDoneTaskId' + task.id}
                                 theme={saveTheme}
                                 onButtonClick={handleToggleDone}>
                                 <CheckCircle size={25} weight="fill" />
@@ -88,7 +90,7 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
                     </TaskItemContainerEdit>
                 ) : (
                     <Tooltip title="Edit" arrow>
-                        <TaskItemContainer ref={containerRef} onClick={handleEditClick} onBlur={handleContainerBlur}>
+                        <TaskItemContainer data-cy={'openTask' + task.id}  ref={containerRef} onClick={handleEditClick} onBlur={handleContainerBlur}>
                             <ItemText>{task.taskText}</ItemText>
                         </TaskItemContainer>
                     </Tooltip>

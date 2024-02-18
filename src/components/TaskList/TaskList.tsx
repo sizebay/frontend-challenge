@@ -19,17 +19,17 @@ export function TaskList({ taskList, onDelete, onToggleDone, onTextEdit, filters
 
     if (noItemsMessage) {
       return (
-          <NoFoundMessageContainer>There are no items marked as {noItemsMessage}. <span onClick={clearFilters}>Clean the filter here </span> to see all items.</NoFoundMessageContainer>
+          <NoFoundMessageContainer data-cy="notFoundMessage">There are no items marked as {noItemsMessage}. <span onClick={clearFilters}>Clean the filter here </span> to see all items.</NoFoundMessageContainer>
       );
     } else if (filtersInfo.filterText.trim() !== "") {
       return (
-          <NoFoundMessageContainer>Your search found no results. <span onClick={clearFilters}>Clean the search here </span> to see all items.</NoFoundMessageContainer>
+          <NoFoundMessageContainer data-cy="notFoundMessage">Your search found no results. <span onClick={clearFilters}>Clean the search here </span> to see all items.</NoFoundMessageContainer>
       );
     }
   }
 
   return (
-    <TasksContainer>
+    <TasksContainer data-cy="taskList">
       {taskList.map(task => (
         <TaskItemComponent
           onTextEdit={onTextEdit}

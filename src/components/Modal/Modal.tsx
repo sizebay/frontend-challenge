@@ -103,7 +103,7 @@ export function Modal() {
     }
 
     return (
-        <ModalContent>
+        <ModalContent data-cy="modalContent">
             <Header doneTasksValue={progressPercentage}/>
             <ProgressBar value={progressPercentage} />
             <FilterHeader
@@ -114,7 +114,7 @@ export function Modal() {
                 setFiltersState={setFiltersState}
             />
             <NewTask addNewTask={handleCreateTask} isFilterActive={isFilterActive} />
-            <TaskList
+            <TaskList data-cy="taskList"
                 onDelete={handleDeleteTask}
                 onToggleDone={handleToggleDone}
                 onTextEdit={handleTextEdit}

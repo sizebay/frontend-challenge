@@ -7,8 +7,7 @@ interface ProgressBarProps {
 export function ProgressBar({ value }: ProgressBarProps) {
     return (
         <ProgressBarWrapper>
-            <StyledLinearProgress variant="determinate" value={value} />
-
+            <StyledLinearProgress variant="determinate" value={value} data-cy="progressBar"/>
         </ProgressBarWrapper>
     );
 }
