@@ -1,0 +1,43 @@
+
+.headerContentWrapper {
+    padding: 54px 0px 24px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+        padding: 32px 0px 24px 0px;
+    }
+}
+
+.headerContent {
+    display: flex;
+    height: 79px;
+    align-items: center;
+}
+
+.day {
+    font-size: 3.75rem;
+}
+
+.monthAndYear {
+    display: grid;
+    align-self: center;
+    font-size: 1.5rem;
+}
+
+.dayOfWeekContainer {
+    display: flex;
+    align-items: center;
+}
+
+.dayOfWeek {
+    font-size: 1.5rem;
+}
+
+.lottieContainer {
+    position: absolute;
+    margin-left: -60px;
+}
