@@ -35,6 +35,7 @@ export function Modal() {
 
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(originalTasks));
+        handleClearFilters()
     }, [originalTasks]);
 
     function handleFilterButtons(buttonName: 'done' | 'pending') {
@@ -81,7 +82,7 @@ export function Modal() {
     }
 
     function handleToggleDone(taskId: number) {
-        const updatedTasks = tasks.map(task => {
+        const updatedTasks = originalTasks.map(task => {
             if (task.id === taskId) {
                 return { ...task, completed: !task.completed };
             }
