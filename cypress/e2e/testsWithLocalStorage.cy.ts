@@ -87,7 +87,7 @@ describe('Tests on app open', () => {
     });
   })
 
-  it.only('check edit task', () => {
+  it('check edit task', () => {
     cy.visit("http://localhost:3024")
 
     cy.wait(150)
