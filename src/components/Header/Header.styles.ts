@@ -1,5 +1,6 @@
+import styled from "styled-components";
 
-.headerContentWrapper {
+export const HeaderContentWrapper = styled.div`
     padding: 54px 0px 24px 0px;
     width: 100%;
     display: flex;
@@ -10,34 +11,39 @@
     @media (max-width: 768px) {
         padding: 32px 0px 24px 0px;
     }
-}
+`
 
-.headerContent {
+export const HeaderContent = styled.div`
     display: flex;
     height: 79px;
     align-items: center;
-}
+`
 
-.day {
+export const Day = styled.span`
     font-size: 3.75rem;
-}
+    font-weight: 500;
+`
 
-.monthAndYear {
+export const Year = styled.span`
+    font-weight: 300;
+`
+
+export const MonthAndYear = styled.div`
     display: grid;
     align-self: center;
     font-size: 1.5rem;
-}
+`
 
-.dayOfWeekContainer {
+export const DayOfWeekContainer = styled.div`
     display: flex;
     align-items: center;
-}
+`
 
-.dayOfWeek {
+export const DayOfWeek = styled.span`
     font-size: 1.5rem;
-}
+`
 
-.lottieContainer {
+export const LottieContainer = styled.div`
     position: absolute;
     margin-left: -60px;
-}
+`

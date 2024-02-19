@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
-import styles from './Header.module.css';
 import Lottie from 'lottie-react';
 import animationData from '../../assets/confetti-animation.json';
+import { Day, DayOfWeek, DayOfWeekContainer, HeaderContent, HeaderContentWrapper, LottieContainer, MonthAndYear, Year } from './Header.styles';
 
 interface HeaderProps {
     doneTasksValue: number;
@@ -13,18 +13,18 @@ export function Header({ doneTasksValue }: HeaderProps) {
     const [day, month, year, dayOfWeek] = formattedDate.split(' ');
 
     return (
-        <div className={styles.headerContentWrapper}>
-            <div className={styles.headerContent}>
-                <span className={styles.day} data-cy="day">{day}</span>
-                <div className={styles.monthAndYear}>
+        <HeaderContentWrapper>
+            <HeaderContent>
+                <Day data-cy="day">{day}</Day>
+                <MonthAndYear>
                     <span data-cy="month">{month}</span>
-                    <span data-cy="year">{year}</span>
-                </div>
-            </div>
-            <div className={styles.dayOfWeekContainer}>
-                <span className={styles.dayOfWeek} data-cy="dayOfWeek">{dayOfWeek}</span>
+                    <Year data-cy="year">{year}</Year>
+                </MonthAndYear>
+            </HeaderContent>
+            <DayOfWeekContainer>
+                <DayOfWeek data-cy="dayOfWeek">{dayOfWeek}</DayOfWeek>
                 {doneTasksValue === 100 && (
-                    <div className={styles.lottieContainer}>
+                    <LottieContainer>
                         <Lottie
                             data-cy="confettiAnimation"
                             animationData={animationData}
@@ -32,9 +32,9 @@ export function Header({ doneTasksValue }: HeaderProps) {
                             autoplay
                             style={{ width: 200, height: 200 }}
                         />
-                    </div>
+                    </LottieContainer>
                 )}
-            </div>
-        </div>
+            </DayOfWeekContainer>
+        </HeaderContentWrapper>
     );
 }
