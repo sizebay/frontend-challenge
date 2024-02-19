@@ -87,7 +87,7 @@ describe('Tests on app open', () => {
     });
   })
 
-  it('check edit task', () => {
+  it.only('check edit task', () => {
     cy.visit("http://localhost:3024")
 
     cy.wait(150)
@@ -115,9 +115,16 @@ describe('Tests on app open', () => {
       });
     });
 
-    // cy.get('[data-cy="openTask2"]').click()
     cy.get('[data-cy="inputEditTaskId2"]').type("{backspace}, but editted.")
     cy.get('[data-cy="modalContent"]').click()
     cy.get('[data-cy="openTask2"]> :nth-child(1)' ).contains('Another task in localstorage as well, but editted.').should('exist')
+
+    cy.get('[data-cy="newItemInput"]').type('Task to be deleted.');
+    cy.get('[data-cy="newItemInput"]').next().click();
+    cy.get('[data-cy="searchTaskInput"]').type("Task to be deleted.")
+    cy.get('[data-cy="openTask3"]').click();
+    cy.get('[data-cy="editTaskId3"] > :nth-child(2)').children().eq(0).click();
+    cy.get('[data-cy="taskList"]').children().its('length').should('eq', 2);
+
   })
 })
