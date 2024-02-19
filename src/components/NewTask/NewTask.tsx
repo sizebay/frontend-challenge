@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PlusCircle } from "@phosphor-icons/react";
-import { Button } from "../Button/Button";
-import { addTheme } from "../Button/Button.styles";
+import { Button, ButtonProps } from "../Button/Button";
+import { addTheme, deleteTheme, saveTheme } from "../Button/Button.styles";
 import { NewTaskContainer, InputContainer } from "./NewTask.styles";
 
 interface NewTaskProps {
@@ -11,6 +11,7 @@ interface NewTaskProps {
 
 export function NewTask({ addNewTask, isFilterActive }: NewTaskProps) {
     const [inputValue, setInputValue] = useState('');
+    const [buttonTheme, setButtonTheme] = useState<ButtonProps>({ theme: addTheme });
 
     function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
         setInputValue(event.target.value);
@@ -20,12 +21,22 @@ export function NewTask({ addNewTask, isFilterActive }: NewTaskProps) {
         if (inputValue.trim() !== '' && !isFilterActive) {
             addNewTask(inputValue);
             setInputValue('');
+            setButtonTheme({ theme: saveTheme });
+            setTimeout(() => {
+                setButtonTheme({ theme: addTheme });
+            }, 1000);
+        } else {
+            setButtonTheme({ theme: { ...deleteTheme, radius: '0px 4px 4px 0px' } });
+            setTimeout(() => {
+                setButtonTheme({ theme: addTheme });
+            }, 1000);
         }
     }
 
     useEffect(() => {
         if (isFilterActive) {
             setInputValue('');
+            setButtonTheme({ theme: addTheme });
         }
     }, [isFilterActive]);
 
@@ -43,7 +54,7 @@ export function NewTask({ addNewTask, isFilterActive }: NewTaskProps) {
                 <Button
                     data-cy="addNewItemButton"
                     onButtonClick={handleAddTask}
-                    theme={addTheme}
+                    theme={buttonTheme.theme} // Acesso direto ao atributo theme
                     disabled={isFilterActive}
                 >
                     <PlusCircle size={25} weight="fill" />

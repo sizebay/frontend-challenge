@@ -10,6 +10,7 @@ const baseButtonTheme = {
 export const deleteTheme = {
     ...baseButtonTheme,
     background: "#E34F4F",
+    radius: "0px",
 };
 
 export const saveTheme = {
@@ -60,6 +61,7 @@ export const ButtonThemed = styled.button`
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   cursor: pointer;
+  transition: 500ms;
 
   &:hover {
     filter: opacity(0.8);
