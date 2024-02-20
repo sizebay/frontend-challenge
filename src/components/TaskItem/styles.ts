@@ -21,6 +21,11 @@ export const TaskItemContainer = styled.div<TaskItemProps>`
   border: 1px solid ${(props) => props.theme['gray-500']};
 
   background: ${(props) => props.theme['gray-100']};
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: ${(props) => props.theme.white};
+  }
 
   ${(props) =>
     props.isActive

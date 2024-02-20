@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useItemService, Item } from '../../services/itemService'
 import { AddItemBar } from '../AddItemBar'
 import { TaskItem } from '../TaskItem'
+import { Tooltip } from '@mui/material'
 
 import { CreateItemContainer, ItemsListWrapper } from './styles'
 
@@ -28,8 +29,9 @@ export function CreateItem({
   const [actualItem, setActualItem] = useState<number | null>(null);
 
   const handleItemClick = (index: number) => {
-    setActualItem(index === actualItem ? null : index);
-  };
+    setActualItem(index === actualItem ? null : index)
+    // edit
+  }
 
   const filteredItems = searchKey !== "" ? items.filter((item) => item.content.toLowerCase().includes(searchKey.toLowerCase())) : items
 
@@ -44,15 +46,17 @@ export function CreateItem({
         {itemsCounter > 0 ? (
           <>
             {showItems.map((item, index) => (
-              <TaskItem
-                key={index}
-                isActive={index === actualItem}
-                isChecked={completedItems.includes(item)} 
-                title={item.content}
-                onClick={() => handleItemClick(index)}
-                onCheckItem={() => onCheckItem(item.id)}
-                onDeleteItem={() => onDeleteItem(item.id)}
-              />
+              <Tooltip title="Edit task" arrow>
+                <TaskItem
+                  key={index}
+                  isActive={index === actualItem}
+                  isChecked={completedItems.includes(item)} 
+                  title={item.content}
+                  onClick={() => handleItemClick(index)}
+                  onCheckItem={() => onCheckItem(item.id)}
+                  onDeleteItem={() => onDeleteItem(item.id)}
+                />
+              </Tooltip>
             ))}
           </>
         ) : (<></>)}

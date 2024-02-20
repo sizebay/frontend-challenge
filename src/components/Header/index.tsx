@@ -31,8 +31,8 @@ export function Header({completedItemsCount, tasksCount, onSearch, selectedButto
       <ProgressBar completedItemsCount={completedItemsCount} tasksCount={tasksCount}/>
       
       <StatusFilterContainer>  
-        <StatusButton label="Done" selected={false} onClick={() => handleButtonClick("done")}/>
-        <StatusButton label="Pending" selected={false} onClick={() => handleButtonClick("pending")}/> 
+        <StatusButton label="Done" selected={selectedButton === "done"} onClick={() => handleButtonClick("done")} done={true}/>
+        <StatusButton label="Pending" selected={selectedButton === "pending"} onClick={() => handleButtonClick("pending")} done={false}/> 
         <SearchItems onSearch={handleSearch}/>
       </StatusFilterContainer>
     </HeaderContainer>
