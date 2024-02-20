@@ -1,6 +1,6 @@
-import { TaskItemComponent } from "./TaskItem/TaskItem";
-import { NoFoundMessageContainer, TasksContainer } from "./TaskList.styles";
-import { FilterProps, TaskProps } from '../Modal/Modal';
+import { TaskItemComponent } from './TaskItem/TaskItem';
+import { NoFoundMessageContainer, TasksContainer } from './TaskList.styles';
+import { FilterProps, TaskProps, FilterType } from '../Modal/Modal';
 
 interface TaskListProps {
   taskList: TaskProps[];
@@ -9,21 +9,30 @@ interface TaskListProps {
   onTextEdit: (taskId: number, newText: string) => void;
   filtersInfo: FilterProps;
   clearFilters: () => void;
-
 }
 
 export function TaskList({ taskList, onDelete, onToggleDone, onTextEdit, filtersInfo, clearFilters }: TaskListProps) {
-
+  const { activeFilter, filterText } = filtersInfo;
   if (taskList.length === 0) {
-    const noItemsMessage = filtersInfo.done ? " done" : filtersInfo.pending ? " pending" : null;
-
-    if (noItemsMessage) {
+    if (activeFilter !== FilterType.None) {
+      const noItemsMessage = activeFilter === FilterType.Done ? " done" : " pending";
       return (
-          <NoFoundMessageContainer data-cy="notFoundMessage">There are no items marked as {noItemsMessage}. <span onClick={clearFilters}>Clean the filter here </span> to see all items.</NoFoundMessageContainer>
+        <NoFoundMessageContainer data-cy="notFoundMessage">
+          There are no items marked as {noItemsMessage}.
+          <span onClick={clearFilters}>
+            Clean the filter here
+          </span> to see all items.
+        </NoFoundMessageContainer>
       );
-    } else if (filtersInfo.filterText.trim() !== "") {
+    } else if (filterText.trim() != "") {
       return (
-          <NoFoundMessageContainer data-cy="notFoundMessage">Your search found no results. <span onClick={clearFilters}>Clean the search here </span> to see all items.</NoFoundMessageContainer>
+        <NoFoundMessageContainer data-cy="notFoundMessage">
+          Your search found no results.
+          <span onClick={clearFilters}>
+            Clean the search here
+          </span>
+          to see all items.
+        </NoFoundMessageContainer>
       );
     }
   }

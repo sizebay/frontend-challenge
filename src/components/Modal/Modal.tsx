@@ -12,50 +12,45 @@ export interface TaskProps {
     taskText: string;
 }
 
+export enum FilterType {
+    None = 'none',
+    Done = 'done',
+    Pending = 'pending',
+}
+
 export interface FilterProps {
-    done: boolean;
-    pending: boolean;
+    activeFilter: FilterType;
     filterText: string;
 }
 
 export function Modal() {
     const [originalTasks, setOriginalTasks] = useState<TaskProps[]>([]);
-    const [tasks, setTasks] = useState<TaskProps[]>(originalTasks);
     const [filtersState, setFiltersState] = useState<FilterProps>({
-        done: false,
-        pending: false,
+        activeFilter: FilterType.None,
         filterText: ''
     });
 
     useEffect(() => {
         const savedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
         setOriginalTasks(savedTasks);
-        setTasks(savedTasks);
     }, []);
 
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(originalTasks));
     }, [originalTasks]);
 
-    function handleFilterButtons(buttonName: 'done' | 'pending') {
+    function handleFilterButtons(filterType: FilterType) {
         setFiltersState(prevState => ({
             ...prevState,
-            [buttonName]: !prevState[buttonName],
-            [buttonName === 'done' ? 'pending' : 'done']: false
+            activeFilter: filterType === prevState.activeFilter ? FilterType.None : filterType,
         }));
-    }
-
-    function handleFilteredTasks(filteredTasks: TaskProps[]) {
-        setTasks(filteredTasks);
     }
 
     function handleClearFilters() {
         setFiltersState({
-            done: false,
-            pending: false,
+            activeFilter: FilterType.None,
             filterText: ''
         });
-        setTasks(originalTasks);
     }
 
     const totalCards = originalTasks.length;
@@ -64,18 +59,16 @@ export function Modal() {
 
     function handleCreateTask(taskText: string) {
         const newTask: TaskProps = {
-            id: tasks.length > 0 ? Math.max(...tasks.map(task => task.id)) + 1 : 1,
+            id: originalTasks.length > 0 ? Math.max(...originalTasks.map(task => task.id)) + 1 : 1,
             completed: false,
             taskText: taskText
         };
         setOriginalTasks([...originalTasks, newTask]);
-        setTasks([...tasks, newTask]);
     }
 
     function handleDeleteTask(taskId: number) {
         const updatedTasks = originalTasks.filter(task => task.id !== taskId);
         setOriginalTasks(updatedTasks);
-        setTasks(updatedTasks);
     }
 
     function handleToggleDone(taskId: number) {
@@ -86,18 +79,35 @@ export function Modal() {
             return task;
         });
         setOriginalTasks(updatedTasks);
-        setTasks(updatedTasks);
     }
 
     function handleTextEdit(taskId: number, newText: string) {
-        const updatedTasks = tasks.map(task => {
+        const updatedTasks = originalTasks.map(task => {
             if (task.id === taskId) {
                 return { ...task, taskText: newText };
             }
             return task;
         });
         setOriginalTasks(updatedTasks);
-        setTasks(updatedTasks);
+    }
+
+    function filterTasks(): TaskProps[] {
+        const { activeFilter, filterText } = filtersState;
+        const filterTextLower = filterText.toLowerCase();
+
+        return originalTasks.filter(task => {
+            const taskText = task.taskText.toLowerCase();
+
+            if (activeFilter === FilterType.Done) {
+                return task.completed && taskText.includes(filterTextLower);
+            }
+
+            if (activeFilter === FilterType.Pending) {
+                return !task.completed && taskText.includes(filterTextLower);
+            }
+
+            return taskText.includes(filterTextLower);
+        });
     }
 
     return (
@@ -105,18 +115,17 @@ export function Modal() {
             <Header doneTasksValue={progressPercentage} />
             <ProgressBar value={progressPercentage} />
             <FilterHeader
-                tasks={originalTasks}
-                setFilteredTasks={handleFilteredTasks}
                 filterInfos={filtersState}
                 changeFilterButtons={handleFilterButtons}
                 setFiltersState={setFiltersState}
             />
             <NewTask addNewTask={handleCreateTask} />
-            <TaskList data-cy="taskList"
+            <TaskList
+                data-cy="taskList"
                 onDelete={handleDeleteTask}
                 onToggleDone={handleToggleDone}
                 onTextEdit={handleTextEdit}
-                taskList={tasks}
+                taskList={filterTasks()}
                 filtersInfo={filtersState}
                 clearFilters={handleClearFilters}
             />

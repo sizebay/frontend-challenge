@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { CheckCircle, MinusCircle } from "@phosphor-icons/react";
-import { Button } from "../../Button/Button";
-import { TaskProps } from "../../Modal/Modal";
-import { ItemText, TaskItemContainer, ButtonContainer, Input, TaskItemContainerEdit } from "./TaskItem.styles";
-import { deleteTheme, saveTheme } from "../../Button/Button.styles";
+import { CheckCircle, MinusCircle } from '@phosphor-icons/react';
+import { Button } from '../../Button/Button';
+import { TaskProps } from '../../Modal/Modal';
+import { ItemText, TaskItemContainer, ButtonContainer, Input, TaskItemContainerEdit } from './TaskItem.styles';
+import { deleteTheme, saveTheme } from '../../Button/Button.styles';
 import { Tooltip } from '@mui/material';
 import { toast } from 'react-toastify';
 
