@@ -5,6 +5,8 @@ import { TaskProps } from "../../Modal/Modal";
 import { ItemText, TaskItemContainer, ButtonContainer, Input, TaskItemContainerEdit } from "./TaskItem.styles";
 import { deleteTheme, saveTheme } from "../../Button/Button.styles";
 import { Tooltip } from '@mui/material';
+import { toast } from 'react-toastify';
+
 
 interface TaskItemProps {
     task: TaskProps;
@@ -20,12 +22,25 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
     const inputRef = useRef<HTMLInputElement>(null);
     const blurTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    const successToaster = (taskText: string) => toast.success(taskText, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+
     const handleDelete = () => {
         onDelete(task.id);
+        successToaster('Task deleted: ' + (task.taskText.length > 50 ? task.taskText.substring(0, 50) + '...' : task.taskText))
     };
 
     const handleToggleDone = () => {
         onToggleDone(task.id);
+        successToaster('Task done: ' + (task.taskText.length > 50 ? task.taskText.substring(0, 50) + '...' : task.taskText))
     };
 
     const handleEditClick = () => {
@@ -39,6 +54,7 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
     const handleSaveChanges = () => {
         if (editedText !== task.taskText) {
             onTextEdit(task.id, editedText);
+            successToaster('Task edited: ' + (task.taskText.length > 50 ? task.taskText.substring(0, 50) + '...' : task.taskText))
         }
         setIsEditing(false);
         if (blurTimeoutRef.current) {
