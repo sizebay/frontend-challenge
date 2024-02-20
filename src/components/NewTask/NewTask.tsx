@@ -7,10 +7,9 @@ import { toast } from 'react-toastify';
 
 interface NewTaskProps {
     addNewTask: (taskText: string) => void;
-    isFilterActive?: boolean;
 }
 
-export function NewTask({ addNewTask, isFilterActive }: NewTaskProps) {
+export function NewTask({ addNewTask }: NewTaskProps) {
     const [inputValue, setInputValue] = useState('');
     const [buttonTheme, setButtonTheme] = useState<ButtonProps>({ theme: addTheme });
 
@@ -41,7 +40,7 @@ export function NewTask({ addNewTask, isFilterActive }: NewTaskProps) {
     }
 
     function handleAddTask() {
-        if (inputValue.trim() !== '' && !isFilterActive) {
+        if (inputValue.trim() !== '') {
             addNewTask(inputValue);
             setInputValue('');
             setButtonTheme({ theme: saveTheme });
@@ -58,12 +57,7 @@ export function NewTask({ addNewTask, isFilterActive }: NewTaskProps) {
         }
     }
 
-    useEffect(() => {
-        if (isFilterActive) {
-            setInputValue('');
-            setButtonTheme({ theme: addTheme });
-        }
-    }, [isFilterActive]);
+
 
     return (
         <NewTaskContainer>
@@ -74,13 +68,11 @@ export function NewTask({ addNewTask, isFilterActive }: NewTaskProps) {
                     placeholder="Add new item..."
                     value={inputValue}
                     onChange={handleInputChange}
-                    disabled={isFilterActive}
                 />
                 <Button
                     data-cy="addNewItemButton"
                     onButtonClick={handleAddTask}
                     theme={buttonTheme.theme} // Acesso direto ao atributo theme
-                    disabled={isFilterActive}
                 >
                     <PlusCircle size={25} weight="fill" />
                 </Button>

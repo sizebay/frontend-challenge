@@ -35,7 +35,6 @@ export function Modal() {
 
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(originalTasks));
-        handleClearFilters()
     }, [originalTasks]);
 
     function handleFilterButtons(buttonName: 'done' | 'pending') {
@@ -56,10 +55,8 @@ export function Modal() {
             pending: false,
             filterText: ''
         });
-        setTasks(originalTasks); 
+        setTasks(originalTasks);
     }
-    
-    const isFilterActive = filtersState.done || filtersState.pending || filtersState.filterText !== '';
 
     const totalCards = originalTasks.length;
     const completedCards = originalTasks.filter(task => task.completed).length;
@@ -105,7 +102,7 @@ export function Modal() {
 
     return (
         <ModalContent data-cy="modalContent">
-            <Header doneTasksValue={progressPercentage}/>
+            <Header doneTasksValue={progressPercentage} />
             <ProgressBar value={progressPercentage} />
             <FilterHeader
                 tasks={originalTasks}
@@ -114,7 +111,7 @@ export function Modal() {
                 changeFilterButtons={handleFilterButtons}
                 setFiltersState={setFiltersState}
             />
-            <NewTask addNewTask={handleCreateTask} isFilterActive={isFilterActive} />
+            <NewTask addNewTask={handleCreateTask} />
             <TaskList data-cy="taskList"
                 onDelete={handleDeleteTask}
                 onToggleDone={handleToggleDone}
