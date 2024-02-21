@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import defaultTheme from "../../styles/themes/default";
+import defaultTheme from '../../styles/themes/default';
 
 export const FilterHeaderContainer = styled.div`
     display: flex;

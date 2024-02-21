@@ -1,6 +1,6 @@
-import { Check } from "@phosphor-icons/react";
-import { ButtonThemed } from "./Button.styles";
-import { ThemeProvider } from "styled-components";
+import { Check } from '@phosphor-icons/react';
+import { ButtonThemed } from './Button.styles';
+import { ThemeProvider } from 'styled-components';
 
 export interface ButtonProps {
     theme: { text?: string; border?: string; background?: string, radius?: string };

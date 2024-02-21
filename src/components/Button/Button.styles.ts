@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import defaultTheme from "../../styles/themes/default";
+import styled, { css } from 'styled-components';
+import defaultTheme from '../../styles/themes/default';
 
 const baseButtonTheme = {
     text: defaultTheme.white,

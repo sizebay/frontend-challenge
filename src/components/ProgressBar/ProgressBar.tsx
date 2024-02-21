@@ -1,4 +1,4 @@
-import { StyledLinearProgress, ProgressBarWrapper } from "./ProgressBar.styles";
+import { StyledLinearProgress, ProgressBarWrapper } from './ProgressBar.styles';
 
 interface ProgressBarProps {
     value: number;

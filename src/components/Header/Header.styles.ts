@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HeaderContentWrapper = styled.div`
     padding: 54px 0px 24px 0px;

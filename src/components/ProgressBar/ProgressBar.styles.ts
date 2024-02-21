@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import LinearProgress from "@mui/material/LinearProgress";
-import defaultTheme from "../../styles/themes/default";
+import LinearProgress from '@mui/material/LinearProgress';
+import defaultTheme from '../../styles/themes/default';
 
 export const ProgressBarWrapper = styled.div`
     width: 100%;

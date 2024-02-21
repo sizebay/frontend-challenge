@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { PlusCircle } from "@phosphor-icons/react";
-import { Button, ButtonProps } from "../Button/Button";
-import { addTheme, deleteTheme, saveTheme } from "../Button/Button.styles";
-import { NewTaskContainer, InputContainer } from "./NewTask.styles";
+import { useState } from 'react';
+import { PlusCircle } from '@phosphor-icons/react';
+import { Button, ButtonProps } from '../Button/Button';
+import { addTheme, deleteTheme, saveTheme } from '../Button/Button.styles';
+import { NewTaskContainer, InputContainer } from './NewTask.styles';
 import { toast } from 'react-toastify';
 
 interface NewTaskProps {
@@ -57,8 +57,6 @@ export function NewTask({ addNewTask }: NewTaskProps) {
         }
     }
 
-
-
     return (
         <NewTaskContainer>
             <InputContainer>
@@ -78,5 +76,5 @@ export function NewTask({ addNewTask }: NewTaskProps) {
                 </Button>
             </InputContainer>
         </NewTaskContainer>
-    )
+    );
 }
