@@ -42,7 +42,7 @@ export function FilterHeader({ changeFilterButtons, filterInfos, setFiltersState
                         value={filterInfos.filterText}
                         onChange={handleInputChange}
                     />
-                    {(!filterInfos.activeFilter && !filterInfos.filterText) ?
+                    {(filterInfos.activeFilter == 'none' && !filterInfos.filterText) ?
                         <MagnifyingGlass size={17.49} weight="bold" style={{ position: 'absolute', right: '13.51px', top: '50%', transform: 'translateY(-50%)' }} /> :
                         <X data-cy="clearFiltersIcon" onClick={handleClearFilters} size={17.49} weight="bold" style={{ position: 'absolute', right: '13.51px', top: '50%', transform: 'translateY(-50%)' }} />
                     }
