@@ -66,7 +66,7 @@ export const ItemButton = styled.button<DeleteButtonProps>`
   border-radius: ${({ isChecked, theme }) =>
     isChecked
       ? "0px 4px 4px 0px"
-      : "0px"};;
+      : "0px"};
 `
 
 export const IconDelete = styled(IoMdRemoveCircle)`

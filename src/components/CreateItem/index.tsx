@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useItemService, Item } from '../../services/itemService'
 import { AddItemBar } from '../AddItemBar'
 import { TaskItem } from '../TaskItem'
-import { Tooltip } from '@mui/material'
 
 import { CreateItemContainer, ItemsListWrapper } from './styles'
 
@@ -25,12 +24,16 @@ export function CreateItem({
   onDeleteItem,
   onCheckItem,
 }: ItemsProps) {
-  const { addItem } = useItemService()
-  const [actualItem, setActualItem] = useState<number | null>(null);
+  const { addItem, editItem } = useItemService()
 
-  const handleItemClick = (index: number) => {
+  const [actualItem, setActualItem] = useState<number | null>(null)
+  const [actualId, setActualId] = useState(0)
+  const [inputValue, setInputValue] = useState("Add new item...")
+
+  const handleItemClick = (index: number, content: string, id: number) => {
+    setActualId(id)
     setActualItem(index === actualItem ? null : index)
-    // edit
+    setInputValue(index === actualItem ? "Add new item..." : content)
   }
 
   const filteredItems = searchKey !== "" ? items.filter((item) => item.content.toLowerCase().includes(searchKey.toLowerCase())) : items
@@ -41,22 +44,20 @@ export function CreateItem({
   
   return (
     <CreateItemContainer>
-      <AddItemBar onAddItem={(content) => addItem(content)}/>
+      <AddItemBar onAddItem={(content) => addItem(content)} onEditItem={(content) => editItem(content, actualId)} actualItem={actualItem} inputValue={inputValue} resetInputValue={() => setInputValue("Add new item...")}/>
       <ItemsListWrapper>
         {itemsCounter > 0 ? (
           <>
             {showItems.map((item, index) => (
-              <Tooltip title="Edit task" arrow>
-                <TaskItem
-                  key={index}
-                  isActive={index === actualItem}
-                  isChecked={completedItems.includes(item)} 
-                  title={item.content}
-                  onClick={() => handleItemClick(index)}
-                  onCheckItem={() => onCheckItem(item.id)}
-                  onDeleteItem={() => onDeleteItem(item.id)}
-                />
-              </Tooltip>
+              <TaskItem
+                key={index}
+                isActive={index === actualItem}
+                isChecked={completedItems.includes(item)} 
+                title={item.content}
+                onClick={() => handleItemClick(index, item.content, item.id)}
+                onCheckItem={() => onCheckItem(item.id)}
+                onDeleteItem={() => onDeleteItem(item.id)}
+              />
             ))}
           </>
         ) : (<></>)}

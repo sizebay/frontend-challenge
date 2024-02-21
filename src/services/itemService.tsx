@@ -47,11 +47,11 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
     setItems(newItems)
   }
 
-  const editItem = (id: number, newContent: string) => {
-    const updatedItems = items.map((item) =>
+  const editItem = (newContent: string, id: number) => {
+      const updatedItems = items.map((item) =>
       item.id === id ? { ...item, content: newContent } : item
     )
-    setItems(updatedItems);
+    setItems(updatedItems)
   }
 
   const deleteItem = (id: number) => {

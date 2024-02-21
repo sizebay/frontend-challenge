@@ -7,22 +7,29 @@ interface FormProps {
 
 interface NewItemBarProps {
   onAddItem: (item: string) => void;
+  onEditItem: (item: string, id: number | null,) => void;
+  resetInputValue: () => void;
+  actualItem: number | null;
+  inputValue: string;
 }
 
-export function AddItemBar({ onAddItem }: NewItemBarProps) {
+export function AddItemBar({ onAddItem, onEditItem, actualItem, inputValue, resetInputValue }: NewItemBarProps) {
   const { register, handleSubmit, setValue } = useForm<FormProps>();
 
   const handleAddItem: SubmitHandler<FormProps> = (data) => {
-    if (data.newItem.trim() !== "") {
+    if (data.newItem.trim() !== "" && actualItem === null) {
       onAddItem(data.newItem);
-      setValue("newItem", "");
+    } else if (data.newItem.trim() !== "") {
+      onEditItem(data.newItem, actualItem)
     }
+    setValue("newItem", "");
+    resetInputValue()
   };
 
   return (
     <AddItemBarContainer>
       <ItemForm onSubmit={handleSubmit(handleAddItem)}>
-        <ItemInput type="text" placeholder="Add new item..." {...register("newItem")}/>
+        <ItemInput type="text" placeholder={inputValue || "Add new item..."} {...register("newItem")}/>
 
         <SubmitButton>
           <AddIcon />
