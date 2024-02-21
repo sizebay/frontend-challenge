@@ -1,21 +1,20 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { CheckCircle, MinusCircle } from '@phosphor-icons/react';
 import { Button } from '../../Button/Button';
-import { TaskProps } from '../../Modal/Modal';
 import { ItemText, TaskItemContainer, ButtonContainer, Input, TaskItemContainerEdit } from './TaskItem.styles';
 import { deleteTheme, saveTheme } from '../../Button/Button.styles';
 import { Tooltip } from '@mui/material';
 import { toast } from 'react-toastify';
+import { TaskProps, useTaskContext } from '../../../context/TaskContext';
 
 
 interface TaskItemProps {
     task: TaskProps;
-    onDelete: (taskId: number) => void;
-    onToggleDone: (taskId: number) => void;
-    onTextEdit: (taskId: number, newText: string) => void;
 }
 
-export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: TaskItemProps) {
+export function TaskItemComponent({ task }: TaskItemProps) {
+    const { deleteTask, toggleDone, editTask } = useTaskContext();
+
     const [isEditing, setIsEditing] = useState(false);
     const [editedText, setEditedText] = useState(task.taskText);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -24,7 +23,18 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
 
     const successToaster = (taskText: string) => toast.success(taskText, {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
+
+    const warningToaster = (taskText: string) => toast.warning(taskText, {
+        position: "top-right",
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -34,13 +44,20 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
     });
 
     const handleDelete = () => {
-        onDelete(task.id);
+        deleteTask(task.id);
         successToaster('Task deleted: ' + (task.taskText.length > 50 ? task.taskText.substring(0, 50) + '...' : task.taskText))
     };
 
     const handleToggleDone = () => {
-        onToggleDone(task.id);
-        successToaster('Task done: ' + (task.taskText.length > 50 ? task.taskText.substring(0, 50) + '...' : task.taskText))
+        const taskStatus = !task.completed;
+
+        toggleDone(task.id);
+
+        if(taskStatus){
+            successToaster('Task done: ' + (task.taskText.length > 50 ? task.taskText.substring(0, 50) + '...' : task.taskText))
+        }else{
+            warningToaster('Task pending: ' + (task.taskText.length > 50 ? task.taskText.substring(0, 50) + '...' : task.taskText))
+        }
     };
 
     const handleEditClick = () => {
@@ -53,8 +70,8 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
 
     const handleSaveChanges = () => {
         if (editedText !== task.taskText) {
-            onTextEdit(task.id, editedText);
-            successToaster('Task edited: ' + (task.taskText.length > 50 ? task.taskText.substring(0, 50) + '...' : task.taskText))
+            editTask(task.id, editedText);
+            successToaster('Task edited: ' + (editedText.length > 50 ? editedText.substring(0, 50) + '...' : editedText))
         }
         setIsEditing(false);
         if (blurTimeoutRef.current) {
@@ -81,11 +98,12 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
             {
                 isEditing ? (
                     <TaskItemContainerEdit data-cy={'editTaskId' + task.id} ref={containerRef} onClick={handleEditClick} onBlur={handleContainerBlur} >
-                        <Input data-cy={'inputEditTaskId' + task.id}
+                        <Input
+                            data-cy={'inputEditTaskId' + task.id}
                             ref={inputRef}
                             type="text"
                             value={editedText}
-                            onChange={handleInputChange}
+                            onChange={(e) => handleInputChange(e)}
                             onKeyDown={handleKeyDown}
                             autoFocus
                         />
@@ -106,7 +124,7 @@ export function TaskItemComponent({ task, onDelete, onToggleDone, onTextEdit }: 
                     </TaskItemContainerEdit>
                 ) : (
                     <Tooltip title="Edit" arrow>
-                        <TaskItemContainer data-cy={'openTask' + task.id}  ref={containerRef} onClick={handleEditClick} onBlur={handleContainerBlur}>
+                        <TaskItemContainer data-cy={'openTask' + task.id} ref={containerRef} onClick={handleEditClick} onBlur={handleContainerBlur}>
                             <ItemText>{task.taskText}</ItemText>
                         </TaskItemContainer>
                     </Tooltip>

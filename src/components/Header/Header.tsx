@@ -2,12 +2,10 @@ import { format } from 'date-fns';
 import Lottie from 'lottie-react';
 import animationData from '../../assets/confetti-animation.json';
 import { Day, DayOfWeek, DayOfWeekContainer, HeaderContent, HeaderContentWrapper, LottieContainer, MonthAndYear, Year } from './Header.styles';
+import { useTaskContext } from '../../context/TaskContext';
 
-interface HeaderProps {
-    doneTasksValue: number;
-}
-
-export function Header({ doneTasksValue }: HeaderProps) {
+export function Header() {
+    const { progressPercentage } = useTaskContext();
     const today = new Date();
     const formattedDate = format(today, 'dd MMM yyyy EEEE');
     const [day, month, year, dayOfWeek] = formattedDate.split(' ');
@@ -23,7 +21,7 @@ export function Header({ doneTasksValue }: HeaderProps) {
             </HeaderContent>
             <DayOfWeekContainer>
                 <DayOfWeek data-cy="dayOfWeek">{dayOfWeek}</DayOfWeek>
-                {doneTasksValue === 100 && (
+                {progressPercentage === 100 && (
                     <LottieContainer>
                         <Lottie
                             data-cy="confettiAnimation"

@@ -1,13 +1,12 @@
+import { useTaskContext } from '../../context/TaskContext';
 import { StyledLinearProgress, ProgressBarWrapper } from './ProgressBar.styles';
 
-interface ProgressBarProps {
-    value: number;
-}
-
-export function ProgressBar({ value }: ProgressBarProps) {
+export function ProgressBar() {
+    const { progressPercentage } = useTaskContext();
+    
     return (
         <ProgressBarWrapper>
-            <StyledLinearProgress variant="determinate" value={value} data-cy="progressBar"/>
+            <StyledLinearProgress variant="determinate" value={progressPercentage} data-cy="progressBar" />
         </ProgressBarWrapper>
     );
 }

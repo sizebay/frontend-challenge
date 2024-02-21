@@ -4,18 +4,17 @@ import { Button, ButtonProps } from '../Button/Button';
 import { addTheme, deleteTheme, saveTheme } from '../Button/Button.styles';
 import { NewTaskContainer, InputContainer } from './NewTask.styles';
 import { toast } from 'react-toastify';
+import { useTaskContext } from '../../context/TaskContext';
 
-interface NewTaskProps {
-    addNewTask: (taskText: string) => void;
-}
+export function NewTask() {
+    const { addTask } = useTaskContext();
 
-export function NewTask({ addNewTask }: NewTaskProps) {
     const [inputValue, setInputValue] = useState('');
     const [buttonTheme, setButtonTheme] = useState<ButtonProps>({ theme: addTheme });
 
     const createdTaskToast = () => toast.success('New task created!', {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -26,7 +25,7 @@ export function NewTask({ addNewTask }: NewTaskProps) {
 
     const errorTaskToast = () => toast.error('Error! Please insert an task title.', {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -41,7 +40,7 @@ export function NewTask({ addNewTask }: NewTaskProps) {
 
     function handleAddTask() {
         if (inputValue.trim() !== '') {
-            addNewTask(inputValue);
+            addTask(inputValue);
             setInputValue('');
             setButtonTheme({ theme: saveTheme });
             createdTaskToast();
