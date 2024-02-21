@@ -14,19 +14,13 @@ export function TaskList() {
       const noItemsMessage = activeFilter === FilterType.Done ? " done" : " pending";
       return (
         <NoFoundMessageContainer data-cy="notFoundMessage">
-          There are no items marked as {noItemsMessage}.
-          <span onClick={clearFilters}>
-            Clean the filter here
-          </span> to see all items.
+          There are no items marked as {noItemsMessage}. <span onClick={clearFilters}> Clean the filter here</span> to see all items.
         </NoFoundMessageContainer>
       );
     } else if (filterText.trim() !== "") {
       return (
         <NoFoundMessageContainer data-cy="notFoundMessage">
-          Your search found no results.
-          <span onClick={clearFilters}>
-            Clean the search here
-          </span> to see all items.
+          Your search found no results. <span onClick={clearFilters}>Clean the search here</span> to see all items.
         </NoFoundMessageContainer>
       );
     }

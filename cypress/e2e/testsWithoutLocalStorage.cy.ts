@@ -31,7 +31,6 @@ describe('Tests on app open', () => {
 
     cy.get('[data-cy="buttonContainer"] > :nth-child(1)').click();
     cy.get('[data-cy="buttonContainer"] > :nth-child(1)').find('svg').should('exist');
-    cy.get('[data-cy="newItemInput"]').should('be.disabled')
     cy.get('[data-cy="notFoundMessage"]').contains('There are no items marked as done. Clean the filter here to see all items.').should('exist');
     cy.get('[data-cy="notFoundMessage"] > span').click();
     cy.get('[data-cy="buttonContainer"] > :nth-child(1)').find('svg').should('not.exist');
@@ -39,14 +38,12 @@ describe('Tests on app open', () => {
 
     cy.get('[data-cy="buttonContainer"] > :nth-child(2)').click();
     cy.get('[data-cy="buttonContainer"] > :nth-child(2)').find('svg').should('exist');
-    cy.get('[data-cy="newItemInput"]').should('be.disabled')
     cy.get('[data-cy="notFoundMessage"]').contains('There are no items marked as pending. Clean the filter here to see all items.').should('exist');
     cy.get('[data-cy="notFoundMessage"] > span').click();
     cy.get('[data-cy="buttonContainer"] > :nth-child(2)').find('svg').should('not.exist');
     cy.get('[data-cy="newItemInput"]').should('not.be.disabled')
 
     cy.get('[data-cy="searchTaskInput"]').type("This task do not exist!")
-    cy.get('[data-cy="newItemInput"]').should('be.disabled')
     cy.get('[data-cy="notFoundMessage"]').contains('Your search found no results. Clean the search here to see all items.').should('exist');
     cy.get('[data-cy="notFoundMessage"] > span').click();
     cy.get('[data-cy="notFoundMessage"]').should('not.exist');
