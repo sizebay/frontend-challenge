@@ -16,6 +16,8 @@ interface ItemsProps {
   pendingItems: Item[];
   selectedButton: string | null;
   searchKey: string;
+  addItem: (content: string) => void;
+  editItem: (content: string, id: number) => void;
   onDeleteItem: (id: number) => void;
   onCheckItem: (id: number) => void;
 }
@@ -23,13 +25,13 @@ interface ItemsProps {
 export function CreateItem({
   items,
   completedItems,
-  pendingItems,
   selectedButton,
   searchKey,
+  addItem,
+  editItem,
   onDeleteItem,
   onCheckItem,
 }: ItemsProps) {
-  const { addItem, editItem } = useItemService()
 
   const { register, handleSubmit, setValue } = useForm<FormProps>();
   const [isActive, setIsActive] = useState(false);

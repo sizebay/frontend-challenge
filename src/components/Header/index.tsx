@@ -1,10 +1,9 @@
-import { DateHeader } from '../DateHeader'
 import { ProgressBar } from '../ProgressBar'
-import { SearchItems } from '../SearchItems'
 import { StatusButton } from '../StatusButton'
-import { FaCheck } from 'react-icons/fa'
+import { format } from 'date-fns'
 
-import { HeaderContainer, StatusFilterContainer } from './styles'
+import { HeaderContainer, StatusFilterContainer, DateHeaderWrapper, DateContainer, WeekDay, SearchButton, SearchContainer, SearchIcon, SearchInput, CancelIcon } from './styles'
+import { useRef, useState } from 'react'
 
 interface HeaderProps {
   completedItemsCount: number;
@@ -15,25 +14,68 @@ interface HeaderProps {
 }
 
 export function Header({completedItemsCount, tasksCount, onSearch, selectedButton, setSelectedButton}: HeaderProps) {
+  const date = new Date()
+  const weekDay = format(date, "EEEE")
+  const day = format(date, "dd")
+  const month = format(date, "MMM")
+  const year = format(date, "yyyy")
+
+  const [isSearchActive, setIsSearchActive] = useState(false)
+  const searchInputRef = useRef<HTMLInputElement>(null)
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchTerm = event.target.value
+    onSearch(newSearchTerm)
+    setIsSearchActive(newSearchTerm !== "")
+  }
+
   const handleButtonClick = (button: string) => {
     setSelectedButton((prevSelectedButton) =>
       prevSelectedButton === button ? null : button
-    );
-  };
+    )
+  }
 
-  const handleSearch = (searchTerm: string) => {
-    onSearch(searchTerm);
-  };
+  const handleCancelSearch = () => {
+    if (searchInputRef.current !== null) {
+      searchInputRef.current.value = ''
+      onSearch(searchInputRef.current.value)
+    }
+    setIsSearchActive(false)
+  }
 
   return (
     <HeaderContainer>
-      <DateHeader />
+      <DateHeaderWrapper>
+        <DateContainer>
+          <span className="day">{day}</span>
+          <div className="monthAndYear">
+            <span className="month">{month}</span>
+            <span className="year">{year}</span>
+          </div>
+        </DateContainer>
+
+        <WeekDay>{weekDay}</WeekDay>
+      </DateHeaderWrapper>
+
       <ProgressBar completedItemsCount={completedItemsCount} tasksCount={tasksCount}/>
       
       <StatusFilterContainer>  
         <StatusButton label="Done" selected={selectedButton === "done"} onClick={() => handleButtonClick("done")} done={true}/>
         <StatusButton label="Pending" selected={selectedButton === "pending"} onClick={() => handleButtonClick("pending")} done={false}/> 
-        <SearchItems onSearch={handleSearch}/>
+        
+        <SearchContainer>
+          <SearchInput
+            ref={searchInputRef}
+            type="text"
+            placeholder="Search items"
+            onChange={handleInputChange}
+          />
+
+          <SearchButton onClick={handleCancelSearch}>
+          { isSearchActive ? 
+            ( <CancelIcon /> ) : ( <SearchIcon /> ) }
+          </SearchButton>
+        </SearchContainer>
       </StatusFilterContainer>
     </HeaderContainer>
   )

@@ -41,6 +41,8 @@ export function TasksModal() {
         pendingItems={pendingItems}
         selectedButton={selectedButton}
         searchKey={searchKey}
+        addItem={addItem}
+        editItem={editItem}
         onDeleteItem={(id) => deleteItem(id)}
         onCheckItem={(id) => checkItem(id)}
       />
