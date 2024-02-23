@@ -8,25 +8,38 @@ import { useRef, useState } from 'react'
 interface HeaderProps {
   completedItemsCount: number;
   tasksCount: number;
-  onSearch: (searchTerm: string) => void;
   selectedButton: string | null;
+  isSearchActive: boolean;
+  handleSearchChange: (isActive: boolean) => void;
+  handleAddChange: (isActive: boolean) => void;
+  onSearch: (searchTerm: string) => void;
   setSelectedButton: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export function Header({completedItemsCount, tasksCount, onSearch, selectedButton, setSelectedButton}: HeaderProps) {
+export function Header({
+  completedItemsCount, 
+  tasksCount, 
+  isSearchActive, 
+  selectedButton,
+  onSearch,  
+  handleSearchChange, 
+  handleAddChange, 
+  setSelectedButton
+}: HeaderProps) {
+
   const date = new Date()
   const weekDay = format(date, "EEEE")
   const day = format(date, "dd")
   const month = format(date, "MMM")
   const year = format(date, "yyyy")
 
-  const [isSearchActive, setIsSearchActive] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchTerm = event.target.value
     onSearch(newSearchTerm)
-    setIsSearchActive(newSearchTerm !== "")
+    handleSearchChange(newSearchTerm !== "")
+    handleAddChange(false)
   }
 
   const handleButtonClick = (button: string) => {
@@ -40,7 +53,7 @@ export function Header({completedItemsCount, tasksCount, onSearch, selectedButto
       searchInputRef.current.value = ''
       onSearch(searchInputRef.current.value)
     }
-    setIsSearchActive(false)
+    handleSearchChange(false)
   }
 
   return (

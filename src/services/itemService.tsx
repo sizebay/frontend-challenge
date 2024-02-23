@@ -61,7 +61,7 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
 
   const checkItem = (id: number) => {
     const updatedItems = items.map((item) =>
-      item.id === id ? { ...item, completed: true } : item
+      item.id === id ? { ...item, completed: !item.completed } : item
     )
     setItems(updatedItems)
   }

@@ -1,19 +1,22 @@
-import { IconAdd, IconDelete, IconCheck, ButtonDefault } from './styles'
+import { IconAdd, IconDelete, IconCheck, IconUncheck, ButtonDefault } from './styles'
 
 interface DefaultButtonProps {
   onClick?: () => void;
-  isChecked: boolean;
+  isCheckItem: boolean;
+  isChecked?: boolean;
   isSubmit: boolean;
   isButtonActive: boolean;
   children?: React.ReactNode;
 }
 
-export function DefaultButton({ onClick, isButtonActive, isChecked, isSubmit }: DefaultButtonProps) {
+export function DefaultButton({ onClick, isButtonActive, isCheckItem, isChecked = false, isSubmit }: DefaultButtonProps) {
   return(
     <>
-      <ButtonDefault disabled={!isButtonActive} onClick={onClick} isButtonActive={isButtonActive} isChecked={isChecked} isSubmit={isSubmit}>
-        { isChecked ?
-          ( <IconCheck /> )
+      <ButtonDefault disabled={!isButtonActive} onClick={onClick} isButtonActive={isButtonActive} isCheckItem={isCheckItem} isSubmit={isSubmit}>
+        { isCheckItem && !isChecked ?
+          ( <IconCheck /> ) 
+        : isCheckItem ? 
+        ( <IconUncheck /> )
         : isSubmit ?
          ( <IconAdd /> ) 
         : ( <IconDelete /> )

@@ -19,6 +19,8 @@ export function TasksModal() {
   } = useItemService()
 
   const [searchKey, setSearchKey] = useState('')
+  const [isSearchActive, setIsSearchActive] = useState(false)
+  const [isAddActive, setIsAddActive] = useState(false)
 
   const handleSearch = (searchKey: string) => {
     setSearchKey(searchKey)
@@ -34,6 +36,9 @@ export function TasksModal() {
         tasksCount={totalItemsCount}
         selectedButton={selectedButton}
         setSelectedButton={setSelectedButton}
+        isSearchActive={isSearchActive}
+        handleSearchChange={(isActive) => setIsSearchActive(isActive)}
+        handleAddChange={(isActive) => setIsAddActive(isActive)}
       />
       <CreateItem 
         items={items}
@@ -43,6 +48,9 @@ export function TasksModal() {
         searchKey={searchKey}
         addItem={addItem}
         editItem={editItem}
+        isSearchActive={isSearchActive}
+        isAddActive={isAddActive}
+        handleAddChange={(isActive) => setIsAddActive(isActive)}
         onDeleteItem={(id) => deleteItem(id)}
         onCheckItem={(id) => checkItem(id)}
       />

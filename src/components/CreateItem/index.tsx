@@ -16,6 +16,9 @@ interface ItemsProps {
   pendingItems: Item[];
   selectedButton: string | null;
   searchKey: string;
+  isAddActive: boolean;
+  isSearchActive: boolean;
+  handleAddChange: (isActive: boolean) => void;
   addItem: (content: string) => void;
   editItem: (content: string, id: number) => void;
   onDeleteItem: (id: number) => void;
@@ -27,14 +30,16 @@ export function CreateItem({
   completedItems,
   selectedButton,
   searchKey,
+  isAddActive,
+  isSearchActive,
+  handleAddChange,
   addItem,
   editItem,
   onDeleteItem,
   onCheckItem,
 }: ItemsProps) {
 
-  const { register, handleSubmit, setValue } = useForm<FormProps>();
-  const [isActive, setIsActive] = useState(false);
+  const { register, handleSubmit, setValue } = useForm<FormProps>()
 
   const [actualItem, setActualItem] = useState<number | null>(null)
   const [actualId, setActualId] = useState(0)
@@ -44,7 +49,7 @@ export function CreateItem({
     setActualId(index === actualItem ? 0 : id)
     setActualItem(index === actualItem ? null : index)
     setInputValue(index === actualItem ? "Add new item..." : content)
-    setIsActive(true)
+    handleAddChange(true)
   }
 
   const handleAddItem: SubmitHandler<FormProps> = (data) => {
@@ -58,18 +63,18 @@ export function CreateItem({
   }
 
   const handleFocus = () => {
-    setIsActive(true)
+    handleAddChange(true)
   }
 
   const handleBlur = () => {
-    setIsActive(false)
+    handleAddChange(false)
     setValue("newItem", ""); 
     setInputValue("Add new item...")
   }
 
   const filteredItems = searchKey !== "" ? items.filter((item) => item.content.toLowerCase().includes(searchKey.toLowerCase())) : items
 
-  const showItems = selectedButton === "done" ? filteredItems.filter((item) => item.completed) :  filteredItems.filter((item) => !item.completed)
+  const showItems = selectedButton === null ? items : selectedButton === "done" ? filteredItems.filter((item) => item.completed) :  filteredItems.filter((item) => !item.completed)
 
   const itemsCounter = items.length
   
@@ -77,16 +82,18 @@ export function CreateItem({
     <CreateItemContainer>
       <AddItemBarContainer>
         <ItemForm onSubmit={handleSubmit(handleAddItem)}>
-          <ItemInput type="text"
+          <ItemInput 
+            type="text"
+            disabled={isSearchActive}
             placeholder={inputValue || "Add new item..."}
             {...register("newItem")} 
             maxLength={60}
-            isActive={isActive}
+            isActive={isAddActive}
             onFocus={handleFocus}
             onBlur={handleBlur}
           />
 
-          <DefaultButton  isChecked={false} isButtonActive={isActive} isSubmit/>
+          <DefaultButton isCheckItem={false} onClick={handleSubmit(handleAddItem)} isButtonActive={isAddActive && !isSearchActive} isSubmit/>
         </ItemForm>
       </AddItemBarContainer>
       

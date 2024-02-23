@@ -20,10 +20,10 @@ export function TaskItem({title, isContainerActive, isChecked, onClick, onCheckI
           {title}
         </TaskItemTitle>
 
-        {isContainerActive && !isChecked && (
+        {isContainerActive && (
           <ItemButtonsContainer>
-            <DefaultButton onClick={onDeleteItem} isButtonActive={isContainerActive} isChecked={false} isSubmit={false} />
-            <DefaultButton onClick={onCheckItem} isButtonActive={isContainerActive} isChecked={true} isSubmit={false} />
+            <DefaultButton onClick={onDeleteItem} isButtonActive={isContainerActive} isCheckItem={false} isSubmit={false} />
+            <DefaultButton onClick={onCheckItem} isButtonActive={isContainerActive} isChecked={isChecked} isCheckItem={true} isSubmit={false} />
           </ItemButtonsContainer>
         )}
       </TaskItemContainer>

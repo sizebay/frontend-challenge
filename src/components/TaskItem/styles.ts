@@ -7,8 +7,8 @@ interface TaskItemProps {
 
 export const TaskItemContainer = styled.div<TaskItemProps>`
   width: 42.4rem;
-  height: 2.9rem;
   max-height: 48px;
+  min-height: 48px;
   display: flex;
   align-items: center;
 
