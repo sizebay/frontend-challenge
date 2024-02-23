@@ -1,31 +1,29 @@
-import { Tooltip } from '@mui/material';
-import { IconCheck, IconDelete, ItemButton, ItemButtonsContainer, TaskItemContainer, TaskItemTitle } from './styles'
+import { Tooltip } from '@mui/material'
+import { ItemButtonsContainer, TaskItemContainer, TaskItemTitle } from './styles'
+
+import { DefaultButton } from '../DefaultButton'
 
 export interface TaskItemProps {
   title: string;
-  isActive: boolean;
+  isContainerActive: boolean;
   isChecked: boolean;
   onClick: () => void;
   onCheckItem: () => void;
   onDeleteItem: () => void;
 }
 
-export function TaskItem({title, isActive, isChecked, onClick, onCheckItem, onDeleteItem}: TaskItemProps) {
+export function TaskItem({title, isContainerActive, isChecked, onClick, onCheckItem, onDeleteItem}: TaskItemProps) {
   return(
     <Tooltip title="Edit task" arrow>
-      <TaskItemContainer onClick={onClick} isActive={isActive} isChecked={isChecked}>
+      <TaskItemContainer onClick={onClick} isContainerActive={isContainerActive} isChecked={isChecked}>
         <TaskItemTitle>
           {title}
         </TaskItemTitle>
 
-        {isActive && !isChecked && (
+        {isContainerActive && !isChecked && (
           <ItemButtonsContainer>
-            <ItemButton onClick={onDeleteItem} isChecked={isChecked}>
-              <IconDelete />
-            </ItemButton>
-            <ItemButton onClick={onCheckItem} isChecked={true}>
-              <IconCheck />
-            </ItemButton>
+            <DefaultButton onClick={onDeleteItem} isButtonActive={isContainerActive} isChecked={false} isSubmit={false} />
+            <DefaultButton onClick={onCheckItem} isButtonActive={isContainerActive} isChecked={true} isSubmit={false} />
           </ItemButtonsContainer>
         )}
       </TaskItemContainer>

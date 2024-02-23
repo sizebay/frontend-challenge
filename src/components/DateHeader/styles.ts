@@ -20,14 +20,15 @@ export const DateContainer = styled.div`
   .monthAndYear {
     display: flex;
     flex-direction: column;
+    font-size: 1.5rem;
   }
 
   .monthAndYear > .month {
-    font-weight: 600;
+    font-weight: normal;
   }
 
   .monthAndYear > .year {
-    font-weight: 400;
+    font-weight: 300;
   }
 `
 

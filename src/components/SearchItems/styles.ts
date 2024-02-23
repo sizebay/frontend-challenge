@@ -38,6 +38,7 @@ export const SearchButton = styled.button`
 
   margin: 1px;
   border: none;
+  border-radius: 4px;
   right: 0;
   top: 0;
 
