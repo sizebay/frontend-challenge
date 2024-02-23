@@ -1,5 +1,6 @@
 :root {
   --grey-dark: #848484;
+  --grey-darker: #555555;
   --blue-light: #4DA6B3;
   --blue-darker: #4DA6B3;
   --white: #FFFFFF;
@@ -20,6 +21,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   z-index: 0;
+  background-color: var(--grey-darker);
 }
 
 code {

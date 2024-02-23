@@ -13,6 +13,7 @@ export const TooltipContainer = styled.div`
   font-weight: 400;
   font-size: 14px;
   border-radius: 4px;
+  z-index: 99999999999999999 !important;
 `;
 
 export const TooltipSpan = styled.span`

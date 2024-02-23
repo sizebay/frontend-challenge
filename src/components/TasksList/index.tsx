@@ -1,20 +1,18 @@
-import ITasks from "../../types/ITasks";
+import { useTaskContext } from "../../context/TasksContext";
 import Card from "./Task";
 import { SecaoCard } from "./styles";
 
-interface Props {
-  tasks: ITasks[] | null;
-  onRemoveTask: (taskId: string) => void;
-}
+interface Props {}
 
-const TasksList = ({ tasks, onRemoveTask }: Props) => {
+const TasksList = ({}: Props) => {
+  const task = useTaskContext();
   return (
     <SecaoCard>
-      {tasks?.map((task) => {
+      {task?.map((tasked) => {
         return (
           <Card
             key={task.id}
-            data={task}
+            data={tasked}
             onRemove={() => onRemoveTask(task.id)}
           />
         );

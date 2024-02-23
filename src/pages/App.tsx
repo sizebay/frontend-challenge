@@ -7,6 +7,7 @@ import useData from "../useTasks";
 import AddTaskBar from "../components/AddTaskBar";
 import ITasks from "../types/ITasks";
 import { useEffect, useState } from "react";
+import { TaskContext } from "../context/TasksContext";
 
 function App() {
   const { data: tasks, error: tasksError } = useData();
@@ -33,10 +34,10 @@ function App() {
   return (
     <Container>
       <Header />
-      <ProgressBar />
-      <SearchBar />
-      <AddTaskBar tasksDb={tasksDb} addNewTask={handleAddTask} />
-      <TasksList tasks={tasksDb} onRemoveTask={removeTask}/>
+        <ProgressBar />
+        <SearchBar />
+        <AddTaskBar tasksDb={tasksDb} addNewTask={handleAddTask} />
+        <TasksList tasks={tasksDb} onRemoveTask={removeTask} />
     </Container>
   );
 }
