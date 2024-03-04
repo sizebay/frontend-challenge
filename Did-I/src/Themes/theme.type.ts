@@ -1,5 +1,6 @@
 export interface ThemeType {
   colors: {
+    grayLight: string;
     whiteBasic: string;
     whiteAlmostGray: string;
     whiteALittleMoreStrength: string;

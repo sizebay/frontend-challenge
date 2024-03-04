@@ -2,6 +2,7 @@ import { ThemeType } from "./theme.type";
 
 export const primaryTheme: ThemeType = {
   colors: {
+    grayLight: "#E4E4E4",
     whiteBasic: "#FFFFFF",
     whiteAlmostGray: "#F7F7F7",
     whiteALittleMoreStrength: "#F4F4F4",

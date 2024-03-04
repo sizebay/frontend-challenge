@@ -20,6 +20,12 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Roboto';
         margin: 0;
         padding:0;
+       
+    }
+    body {
+        padding-left: 60px;
+        padding-right: 60px;
+        padding-top: 54px;
     }
    
 
