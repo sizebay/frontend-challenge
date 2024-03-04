@@ -1,0 +1,51 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.modal {
+  width: 800px;
+  margin: 60px;
+  font-family: "Roboto", sans-serif;
+  color: #848484;
+  display: flex;
+  justify-content: center;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 4px;
+}
+
+.height-modal {
+  margin-bottom: 68px;
+}
+
+.modal-content {
+  width: 680px;
+  height: 79px;
+  display: flex;
+  align-items: center;
+  margin: 54px 60px 24px 60px;
+}
+
+.day {
+  text-align: left;
+  letter-spacing: 0px;
+  opacity: 1;
+  font-size: 60px;
+}
+
+.align-monthyear {
+  :last-child {
+    font-weight: 400;
+  }
+}
+
+.weekday {
+  margin-left: auto;
+}

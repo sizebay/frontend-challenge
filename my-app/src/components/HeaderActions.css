@@ -1,0 +1,31 @@
+.headerActions {
+  margin-left: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.actionButtons {
+  display: flex;
+}
+
+button.selected {
+  border: 1px solid #4da6b3;
+  color: #4da6b3;
+  flex: none;
+}
+
+.customButton {
+  margin-right: 75px;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 75px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.searchContainer {
+  position: relative;
+}

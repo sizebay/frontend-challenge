@@ -1,0 +1,32 @@
+button {
+  cursor: pointer;
+  padding: 0 16px;
+  height: 33px;
+  border: 1px solid #dbdbdb;
+  border-radius: 17px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  margin: 27px 8px 28px 0;
+  color: #848484;
+  font-family: "Roboto";
+}
+
+input {
+  width: -webkit-fill-available;
+  margin: 0 60px 0 60px;
+  padding: 0 16px 0 16px;
+  height: 40px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  outline: none;
+  color: #848484;
+}
+
+.searchBar {
+  width: 415px;
+  margin: 0 60px 0 auto;
+}
+
+.inputAddItem {
+  height: 48px;
+}
