@@ -1,0 +1,1 @@
+export type KeysMapped = 'control' | 'shift' | 'alt' | 'enter' | 'd' | 'f' | 'p' | 's';

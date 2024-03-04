@@ -1,0 +1,1 @@
+export type InputSizes = 'normal' | 'large';
