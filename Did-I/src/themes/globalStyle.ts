@@ -23,9 +23,12 @@ export const GlobalStyle = createGlobalStyle`
        
     }
     body {
-        padding-left: 60px;
-        padding-right: 60px;
-        padding-top: 54px;
+        height: 100vh;
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #555555;
     }
    
 
