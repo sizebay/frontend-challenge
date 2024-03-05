@@ -1,4 +1,5 @@
-import { styled } from "styled-components";
+import { css, styled } from "styled-components";
+import { ListStyle } from "./list.types";
 
 export const ListContainer = styled.section`
   width: 100%;
@@ -22,33 +23,65 @@ export const FiltersContainer = styled.div`
   width: 100%;
 `;
 export const ItemsContainer = styled.div`
-  width: 100%;
-`;
-export const ItemBox = styled.div`
   display: flex;
-  height: 48px;
+  flex-direction: column;
   width: 100%;
-  border: ${({ theme }) => `1px solid ${theme.colors.grayBackgroundItem}`};
-  background-color: ${({ theme }) => theme.colors.grayBackgroundItem};
-  border-radius: 4px;
+  gap: 16px;
+`;
+
+export const ItemBox = styled.div<ListStyle>`
+  ${({ $hasOpacity, theme }) => css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    max-width: 100%;
+    border: ${`1px solid ${theme.colors.grayBackgroundItem}`};
+    background-color: ${theme.colors.grayBackgroundItem};
+    border-radius: 4px;
+    opacity: ${$hasOpacity ? 0.5 : 1};
+    padding-left: 10.5px;
+    flex-wrap: -ms-wrap-flow;
+    font-family: ${theme.font.Regular};
+    font-size: ${theme.fontSizes.Regular14};
+    color: ${theme.colors.grayMiddle};
+    &:focus-within {
+      opacity: 1;
+      background-color: ${theme.colors.whiteBasic};
+    }
+    &:hover {
+      opacity: 1;
+    }
+  `}
 `;
 export const InputAddItem = styled.input`
-  all: unset;
-  flex-grow: 1;
-  padding-left: 10.5px;
-  &:focus {
-    background-color: ${({ theme }) => theme.colors.whiteBasic};
+  ${({ theme }) => css`
+    all: unset;
+    flex-grow: 1;
+    font-family: ${theme.font.Regular};
+    font-size: ${theme.fontSizes.Regular14};
+    color: ${theme.colors.grayMiddle};
+  `}
+`;
+
+export const ButtonsTaskContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 0;
+  transition: width 0.3s linear;
+  border: 0 transparent;
+  gap: 0px;
+  ${ItemBox}:hover & {
+    width: 87px;
   }
 `;
 
-export const AddButton = styled.button`
-  cursor: pointer;
-  border: 0 transparent;
-  background-color: ${({ theme }) => theme.colors.greenAddItem};
-  width: 44px;
-  height: 48px;
-  border-radius: 0px 4px 4px 0px;
+export const Icon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 100%;
+  width: 24;
+  height: 24;
+  background-color: ${({ theme }) => theme.colors.whiteBasic};
 `;

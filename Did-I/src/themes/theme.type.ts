@@ -11,6 +11,7 @@ export interface ThemeType {
     greenTaskBar: string;
     greenAddItem: string;
     grayBackgroundButton: string;
+    redExcludeButton: string;
   };
   font: {
     Regular: string;

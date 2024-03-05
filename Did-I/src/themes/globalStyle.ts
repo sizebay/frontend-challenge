@@ -22,6 +22,9 @@ export const GlobalStyle = createGlobalStyle`
         padding:0;
        
     }
+    input{
+        font-family: 'Roboto';
+    }
     body {
         height: 100vh;
         flex-wrap: wrap;

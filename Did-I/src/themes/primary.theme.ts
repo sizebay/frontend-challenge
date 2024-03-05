@@ -13,6 +13,7 @@ export const primaryTheme: ThemeType = {
     greenTaskBar: "#5DE290",
     greenAddItem: "#4DA6B3",
     grayBackgroundButton: "#F7F7F8",
+    redExcludeButton: "#E34F4F",
   },
   font: {
     Regular: "Roboto",
