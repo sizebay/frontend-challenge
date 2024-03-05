@@ -9,9 +9,10 @@ export const primaryTheme: ThemeType = {
     grayToolTip: "#555555",
     grayMiddle: "#848484",
     gray: "#00000029",
-    grayBakgroundItem: "#DBDBDB",
+    grayBackgroundItem: "#DBDBDB",
     greenTaskBar: "#5DE290",
     greenAddItem: "#4DA6B3",
+    grayBackgroundButton: "#F7F7F8",
   },
   font: {
     Regular: "Roboto",

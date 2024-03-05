@@ -7,9 +7,10 @@ export interface ThemeType {
     grayToolTip: string;
     grayMiddle: string;
     gray: string;
-    grayBakgroundItem: string;
+    grayBackgroundItem: string;
     greenTaskBar: string;
     greenAddItem: string;
+    grayBackgroundButton: string;
   };
   font: {
     Regular: string;
