@@ -7,7 +7,7 @@ import useData from "../useTasks";
 import AddTaskBar from "../components/AddTaskBar";
 import ITasks from "../types/ITasks";
 import { useEffect, useState } from "react";
-import { TaskContext } from "../context/TasksContext";
+import { TasksProvider } from "../context/TasksContext";
 
 function App() {
   const { data: tasks, error: tasksError } = useData();
@@ -17,28 +17,17 @@ function App() {
     setTasksDb(tasks);
   }, [tasks]);
 
-  const handleAddTask = (newTask: ITasks) => {
-    setTasksDb((currentTasks) =>
-      currentTasks ? [...currentTasks, newTask] : [newTask]
-    );
-  };
-
-  if (tasksError) {
-    console.log("Erro na requisição");
-  }
-
-  const removeTask = (taskId: string) => {
-    tasksDb && setTasksDb(tasksDb.filter((task) => task.id !== taskId));
-  };
 
   return (
-    <Container>
-      <Header />
+    <TasksProvider>
+      <Container>
+        <Header />
         <ProgressBar />
         <SearchBar />
-        <AddTaskBar tasksDb={tasksDb} addNewTask={handleAddTask} />
-        <TasksList tasks={tasksDb} onRemoveTask={removeTask} />
-    </Container>
+        <AddTaskBar />
+        <TasksList />
+      </Container>
+    </TasksProvider>
   );
 }
 

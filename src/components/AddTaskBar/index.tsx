@@ -2,15 +2,12 @@ import { useState } from "react";
 import { AddTaskContainer, AddTaskForm, AddTaskInput } from "./styles";
 import TaskButton from "../TaskButtons";
 import { FaCirclePlus } from "react-icons/fa6";
-import ITasks from "../../types/ITasks";
+import { useTasksContext } from "../../context/TasksContext";
 import { v4 as uuidv4 } from "uuid";
 
-interface Props {
-  tasksDb: ITasks[] | null;
-  addNewTask: (task: ITasks) => void;
-}
+const AddTaskBar = () => {
+  const { addTask } = useTasksContext();
 
-const AddTaskBar = ({ tasksDb, addNewTask }: Props) => {
   const [editing, setIsEditing] = useState("notActive");
   const editNotActive = editing === "notActive";
 
@@ -23,12 +20,12 @@ const AddTaskBar = ({ tasksDb, addNewTask }: Props) => {
   const handleAddTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (taskDescription.trim() !== "") {
-      const newTask: ITasks = {
+      const newTask = {
         id: uuidv4(),
         description: taskDescription,
         isCompleted: false,
       };
-      addNewTask(newTask);
+      addTask(newTask);
       setTaskDescription("");
     }
   };
