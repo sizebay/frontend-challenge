@@ -26,13 +26,20 @@ export const List = () => {
 
   const listAfterFilters = useCallback(() => {
     if (filter !== "none") {
-      // const tasksSearchFiltered = list.filter((element) =>
-      //   element.task.toLowerCase().includes(filterInput.toLowerCase())
-      // );
-      // const tasksFiltered =
-      //   tasksSearchFiltered.length > 0 ? tasksSearchFiltered : list;
-      return list.filter((element) => element.status === filter);
+      const tasksSearchFiltered = filterInput
+        ? list.filter((element) =>
+            element.task.toLowerCase().includes(filterInput.toLowerCase())
+          )
+        : list;
+
+      return tasksSearchFiltered.filter((element) => element.status === filter);
     }
+    if (filter === "none" && filterInput !== "") {
+      return list.filter((element) =>
+        element.task.toLowerCase().includes(filterInput.toLowerCase())
+      );
+    }
+
     return list;
   }, [list, filter, filterInput]);
 
@@ -109,7 +116,6 @@ export const List = () => {
         <InputFilter
           width="450px"
           height="40px"
-          onClick={() => setFilter("search")}
           onChange={(e) => setFilterInput(e.target.value)}
           value={filterInput}
           placeholder="Pesquisar"

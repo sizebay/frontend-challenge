@@ -24,4 +24,8 @@ export interface ThemeType {
     Medium60: string;
     Light24: string;
   };
+  breakPoints: {
+    Mobile: number;
+    Tablets: number;
+  };
 }

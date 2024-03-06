@@ -11,6 +11,9 @@ export const InputBox = styled.div<InputFilterStyles>`
       border-radius: 4px;
       width: ${width ?? "auto"};
       height: ${height ?? "auto"};
+      @media (max-width: ${theme.breakPoints.Tablets}px) {
+        width: 100%;
+      }
     `}
 `;
 

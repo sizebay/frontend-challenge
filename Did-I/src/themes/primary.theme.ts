@@ -26,4 +26,8 @@ export const primaryTheme: ThemeType = {
     Medium60: "60px",
     Light24: "24px",
   },
+  breakPoints: {
+    Mobile: 400,
+    Tablets: 768,
+  },
 };

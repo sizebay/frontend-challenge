@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
 
     * {
         font-family: 'Roboto';
-        margin: 0;
+        margin:0;
         padding:0;
        
     }
