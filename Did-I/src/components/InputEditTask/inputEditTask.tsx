@@ -9,9 +9,10 @@ export const InputEditTask = ({
   height,
   onClickCheck,
   onClickMinus,
+  $hasDone,
   ...props
 }: InputEditProps) => (
-  <S.InputBox width={width} height={height}>
+  <S.InputBox width={width} height={height} $hasDone={$hasDone}>
     <S.Input {...props} />
     <S.Span>
       <Button $excludeButton onClick={onClickMinus}>

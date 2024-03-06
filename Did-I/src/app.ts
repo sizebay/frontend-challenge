@@ -6,8 +6,8 @@ export const Box = styled.section`
   padding-left: 60px;
   padding-right: 60px;
   padding-top: 54px;
-  width: 800px;
-  height: 650px;
+  width: 42.7vw;
+  height: 70.3vh;
   gap: 24px;
   background-color: ${({ theme }) => theme.colors.whiteBasic};
 `;

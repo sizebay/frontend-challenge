@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { InputEditStyles } from "./inputEditTask.types";
 
 export const InputBox = styled.div<InputEditStyles>`
-  ${({ theme, width, height }) =>
+  ${({ theme, width, height, $hasDone }) =>
     css`
       display: flex;
       flex-wrap: wrap;
@@ -12,7 +12,9 @@ export const InputBox = styled.div<InputEditStyles>`
       align-items: center;
       height: 48px;
       max-width: 100%;
-      border: ${`1px solid ${theme.colors.grayBackgroundItem}`};
+      border: ${$hasDone
+        ? `2px solid ${theme.colors.greenTaskBar} `
+        : `1px solid ${theme.colors.grayBackgroundItem}`};
       background-color: ${theme.colors.grayBackgroundItem};
       border-radius: 4px;
       opacity: 1;
@@ -21,6 +23,7 @@ export const InputBox = styled.div<InputEditStyles>`
       font-family: ${theme.font.Regular};
       font-size: ${theme.fontSizes.Regular14};
       color: ${theme.colors.grayMiddle};
+      transition: border 0.2s ease-out;
       &:focus-within {
         opacity: 1;
         background-color: ${theme.colors.whiteBasic};
