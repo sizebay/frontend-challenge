@@ -25,7 +25,6 @@ export const FiltersContainer = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     height: 40px;
