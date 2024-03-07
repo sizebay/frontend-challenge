@@ -5,12 +5,16 @@ export interface TasksContextProps {
   tasks: ITasks[];
   addTask: (task: ITasks) => void;
   removeTask: (taskId: string) => void;
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
 }
 
 export const TasksContext = createContext<TasksContextProps>({
   tasks: [],
   addTask: () => {},
   removeTask: () => {},
+  searchTerm: "",
+  setSearchTerm: () => {},
 });
 
 interface TasksProviderProps {
@@ -21,6 +25,7 @@ export const useTasksContext = () => useContext(TasksContext);
 
 export function TasksProvider({ children }: TasksProviderProps) {
   const [tasks, setTasks] = useState<ITasks[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   function addTask(task: ITasks) {
     setTasks([...tasks, task]);
@@ -31,7 +36,9 @@ export function TasksProvider({ children }: TasksProviderProps) {
   }
 
   return (
-    <TasksContext.Provider value={{ tasks, addTask, removeTask }}>
+    <TasksContext.Provider
+      value={{ tasks, addTask, removeTask, searchTerm, setSearchTerm }}
+    >
       {children}
     </TasksContext.Provider>
   );

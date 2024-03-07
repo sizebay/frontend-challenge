@@ -3,16 +3,20 @@ import Card from "./Task";
 import { SecaoCard } from "./styles";
 
 const TasksList = () => {
-  const { tasks, removeTask } = useTasksContext();
+  const { tasks, removeTask, searchTerm } = useTasksContext();
+
+  const filteredTasks = tasks.filter((task) =>
+    task.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <SecaoCard>
-      {tasks.map((task) => {
+      {filteredTasks.map((task) => {
         return (
           <Card
             key={task.id}
             data={task}
-            onRemove={() => removeTask(task.id)} // Use removeTask do contexto
+            onRemove={() => removeTask(task.id)}
           />
         );
       })}

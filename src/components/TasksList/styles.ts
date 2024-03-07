@@ -5,9 +5,14 @@ export const SecaoCard = styled.section`
   width: 100%;
   margin: 0;
   padding: 0;
-  justify-content: center;
   flex-direction: column;
+  height: 216px;
   overflow: scroll;
   z-index: 999999;
   overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 10px;
+    background: #848484;
+    border-radius:20px;
+  }
 `;

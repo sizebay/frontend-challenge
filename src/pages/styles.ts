@@ -2,10 +2,11 @@ import styled from 'styled-components'
 
 export const Container = styled.main`
   text-align: center;
-  max-width: 700px;
+  width: 800px;
+  height: 650px;
   margin: 0 auto 300px;
   background-color: #efefef;
-  padding: 20px 30px;
+  padding: 40px 60px;
   border-radius: 5px;
 `;
 
