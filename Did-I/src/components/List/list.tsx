@@ -8,6 +8,7 @@ import { InputAddTask } from "../InputAddTask/inputAddTask";
 import { InputEditTask } from "../InputEditTask/inputEditTask";
 import { ProgressiveBar } from "../ProgressiveBar/progressiveBar";
 import * as S from "./list.style";
+import { LottieAnimation } from "../LottieAnimation/lottieAnimation";
 
 export const List = () => {
   const [item, setItem] = useState("");
