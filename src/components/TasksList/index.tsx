@@ -22,7 +22,7 @@ const TasksList = () => {
         : true
     )
     .filter((task) =>
-      task.description.toLowerCase().includes(searchTerm.toLowerCase())
+      task.description.toLowerCase().includes(value.toLowerCase())
     );
 
   const noResults =
@@ -40,7 +40,7 @@ const TasksList = () => {
 
   return (
     <SecaoCard>
-      {noResults && activeFilter && (
+      {!value && noResults && activeFilter && (
         <NoResultsMessage>
           {`There are no items marked as ${
             activeFilter === "done" ? "done" : "pending"
