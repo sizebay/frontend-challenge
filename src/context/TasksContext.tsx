@@ -29,8 +29,8 @@ const TasksContext = createContext<TasksContextProps>({
   activeFilter: null,
   setActiveFilter: () => {},
   clearFilter: () => {},
-  value: '',
-  setValue: () => {}
+  value: "",
+  setValue: () => {},
 });
 
 interface TasksProviderProps {
@@ -44,9 +44,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
-
-  const [value, setValue] = useState('');
-  
+  const [value, setValue] = useState("");
 
   function addTask(task: ITasks) {
     setTasks([...tasks, task]);
@@ -76,9 +74,6 @@ export function TasksProvider({ children }: TasksProviderProps) {
   }
 
   function clearSearchTerm() {
-    console.log('here');
-    
-
     setSearchTerm("");
   }
 

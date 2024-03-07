@@ -1,34 +1,55 @@
-import React, { useEffect, useState } from "react";
-import { linearProgressClasses, styled, LinearProgress } from "@mui/material";
 import { useTasksContext } from "../../context/TasksContext";
+import styled from "styled-components";
 
+interface ProgressProps {
+  divide: number;
+}
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 24,
-  marginTop: 20,
-  borderRadius: 5,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor:
-      theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-    backgroundColor: theme.palette.mode === "light" ? "#5DE290" : "#53db87",
-  },
-}));
+const ProgressBar = styled.progress`
+  width: ${(props: ProgressProps) => props.divide}% !important;
+  border-radius: 4px !important;
+  height: 24px;
+  position: relative;
+  background-color: var(--done-green);
 
-const ProgressBar = () => {
+  &::-webkit-progress-bar {
+    background-color: #e4e4e4;
+  }
+
+  &::-moz-progress-bar {
+    background-color: #e4e4e4 0% 0% no-repeat padding-box;
+  }
+
+  &::-webkit-progress-value {
+    background-color: var(--done-green);
+    transition: 0.5s width;
+  }
+
+  &::-moz-progress-bar {
+    background-color: #e4e4e4 !important;
+  }
+`;
+
+const ProgressDiv = styled.div`
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #e4e4e4;
+  height: 24px;
+  display: flex;
+`;
+
+const Progress = () => {
   const { tasks } = useTasksContext();
-  const [divide, setDivide] = useState(0);
 
-  useEffect(() => {
-    const totalTasks = tasks.length;
-    const completedTasks = tasks.filter((task) => task.isCompleted).length;
-    const percentage =
-      totalTasks === 0 ? 0 : (completedTasks / totalTasks) * 100;
-    setDivide(percentage);
-  }, [tasks]);
-  return <BorderLinearProgress variant="determinate" value={divide} />;
+  const totalTasks = tasks.length;
+  const completedTasks = tasks.filter((task) => task.isCompleted).length;
+  const divide = totalTasks === 0 ? 0 : (completedTasks / totalTasks) * 100;
+
+  return (
+    <ProgressDiv>
+      <ProgressBar divide={divide} value={divide} max={100} />
+    </ProgressDiv>
+  );
 };
 
-export default ProgressBar;
+export default Progress;
