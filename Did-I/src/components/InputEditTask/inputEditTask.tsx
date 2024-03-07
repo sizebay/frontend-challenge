@@ -1,8 +1,8 @@
 import { InputEditProps } from "./inputEditTask.types";
 import * as S from "./inputEditTask.styles";
 import { Button } from "../Button/button.style";
-import Check from "../../assets/check.svg?react";
-import Minus from "../../assets/minus.svg?react";
+import Check from "../../assets/icons/check.svg?react";
+import Minus from "../../assets/icons/minus.svg?react";
 
 export const InputEditTask = ({
   width,

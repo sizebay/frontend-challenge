@@ -1,7 +1,7 @@
 import { InputAddProps } from "./inputAddTask.types";
 import * as S from "./inputAddTask.styles";
 import { Button } from "../Button/button.style";
-import Plus from "../../assets/plus.svg?react";
+import Plus from "../../assets/icons/plus.svg?react";
 
 export const InputAddTask = ({
   width,

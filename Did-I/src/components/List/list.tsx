@@ -1,14 +1,13 @@
 import { Fragment, useCallback, useMemo, useState } from "react";
 import { Button } from "../Button/button";
 import { InputFilter } from "../InputFilter/inputFilter";
-import Check from "../../assets/check-filter.svg?react";
 import { FilterType, ListType } from "./list.types";
-import Search from "../../assets/search.svg?react";
 import { InputAddTask } from "../InputAddTask/inputAddTask";
 import { InputEditTask } from "../InputEditTask/inputEditTask";
 import { ProgressiveBar } from "../ProgressiveBar/progressiveBar";
+import Check from "../../assets/icons/check-filter.svg?react";
+import Search from "../../assets/icons/search.svg?react";
 import * as S from "./list.style";
-import { LottieAnimation } from "../LottieAnimation/lottieAnimation";
 
 export const List = () => {
   const [item, setItem] = useState("");
