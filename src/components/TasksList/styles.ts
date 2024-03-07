@@ -16,3 +16,13 @@ export const SecaoCard = styled.section`
     border-radius:20px;
   }
 `;
+
+export const NoResultsMessage = styled.span`
+  text-align: left;
+  display: flex;
+  color: var(--grey-dark);
+`;
+export const ClearSearchButton = styled.span`
+  padding: 0px 4px 0px 4px;
+  text-decoration: underline;
+`;

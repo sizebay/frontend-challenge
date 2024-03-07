@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 interface TaskContainerProps {
   taskStyle?: string;
   backgroundColor?: string;

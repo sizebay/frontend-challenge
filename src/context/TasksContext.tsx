@@ -7,6 +7,7 @@ export interface TasksContextProps {
   removeTask: (taskId: string) => void;
   searchTerm: string;
   setSearchTerm: (term: string) => void;
+  clearSearch: () => void;
 }
 
 export const TasksContext = createContext<TasksContextProps>({
@@ -15,6 +16,7 @@ export const TasksContext = createContext<TasksContextProps>({
   removeTask: () => {},
   searchTerm: "",
   setSearchTerm: () => {},
+  clearSearch: () => {},
 });
 
 interface TasksProviderProps {
@@ -35,9 +37,20 @@ export function TasksProvider({ children }: TasksProviderProps) {
     setTasks(tasks.filter((task) => task.id !== taskId));
   }
 
+  function clearSearch() {
+    setSearchTerm("");
+  }
+
   return (
     <TasksContext.Provider
-      value={{ tasks, addTask, removeTask, searchTerm, setSearchTerm }}
+      value={{
+        tasks,
+        addTask,
+        removeTask,
+        searchTerm,
+        setSearchTerm,
+        clearSearch,
+      }}
     >
       {children}
     </TasksContext.Provider>

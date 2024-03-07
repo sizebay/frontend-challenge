@@ -1,12 +1,12 @@
+import React, { useState } from "react";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { SearchContainer, SearchInput, IconButton } from "./styles";
-import { useState } from "react";
 import { useTasksContext } from "../../context/TasksContext";
 
 const SearchBar = () => {
   const [active, setActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const { setSearchTerm } = useTasksContext();
+  const { setSearchTerm, clearSearch } = useTasksContext();
 
   const changeStatus = () => {
     setActive(!active);
@@ -18,6 +18,11 @@ const SearchBar = () => {
     setSearchTerm(value);
   };
 
+  const handleClearSearch = () => {
+    setSearchValue("");
+    clearSearch();
+  };
+
   return (
     <SearchContainer>
       <SearchInput
@@ -27,7 +32,7 @@ const SearchBar = () => {
         value={searchValue}
         placeholder="Search items"
       />
-      <IconButton>
+      <IconButton onClick={handleClearSearch}>
         {active ? (
           <AiOutlineClose size={25} color="var(--grey-dark)" />
         ) : (
