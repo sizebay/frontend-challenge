@@ -1,4 +1,4 @@
-import { ComponentProps, ReactElement } from "react";
+import { ComponentProps } from "react";
 
 export type InputAddStyles = {
   width?: string;
