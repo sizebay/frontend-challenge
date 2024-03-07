@@ -5,6 +5,10 @@ export const HeaderContainer = styled.div`
   display: flex;
   overflow: hidden;
   position: relative;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 3rem
+    }
 `;
 
 export const YearMonthContainer = styled.div`

@@ -11,6 +11,11 @@ export const SearchContainer = styled.div`
   transition: all 0.3s ease;
   border: 1px solid var(--grey-light);
   border-radius: 4px;
+
+  @media screen and (max-width: 768px) {
+    order: 1!important;
+    width: 100%;
+  }
 `;
 
 export const SearchInput = styled.input`

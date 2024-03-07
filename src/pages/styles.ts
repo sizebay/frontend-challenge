@@ -4,13 +4,20 @@ export const Container = styled.main`
   text-align: center;
   width: 800px;
   height: 650px;
-  margin: 0 auto 300px;
-  background-color: #efefef;
+  margin: 0;
+  background-color: #ffffff;
   padding: 40px 60px;
   border-radius: 5px;
   gap: 1rem;
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 768px) {
+    height: 97vh;
+    width: 84vw;
+    margin: 0px;
+    padding: 0px 20px;
+  }
 `;
 
 export const Logo = styled.img`
@@ -32,6 +39,11 @@ export const Header = styled.div`
 export const Filter = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: end;
   justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;

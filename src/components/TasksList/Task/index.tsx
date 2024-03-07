@@ -53,7 +53,9 @@ const Task = ({ data, onRemove }: Props) => {
         onClick={editTask}
         contentEditable={true}
         onInput={handleDescriptionChange}
-        taskStyle={editNotActive ? "var(--grey)" : "var(--white)"}
+        taskStyle={
+          editNotActive ? "var(--grey)" : "var(--white)" || editNotActive
+        }
       >
         <TaskCard>
           <DescriptionText>{description}</DescriptionText>

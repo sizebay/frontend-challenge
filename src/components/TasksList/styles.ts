@@ -22,12 +22,22 @@ export const SecaoCard = styled.section`
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+  @media screen and (max-width: 768px) {
+     width: 100%;
+  }
+
 `;
 
 export const NoResultsMessage = styled.span`
   text-align: left;
   display: flex;
   color: var(--grey-dark);
+
+  @media screen and (max-width: 768px) {
+    font-size: 15px;
+    display: unset;
+  }
 `;
 export const ClearSearchButton = styled.span`
   padding: 0px 4px 0px 4px;

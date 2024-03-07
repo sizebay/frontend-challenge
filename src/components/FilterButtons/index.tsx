@@ -5,7 +5,6 @@ import { FilterType } from "../../types/ITasks";
 
 const ButtonFilter = styled.button<ButtonProps>`
   padding: 8px 16px;
-  margin-right: 10px;
   cursor: pointer;
   background-color: ${(props) => (props.active ? "#F7F7F8" : "#FFFFFF")};
   color: ${(props) => (props.active ? "#4DA6B3" : "#848484")};
@@ -21,7 +20,14 @@ const FilterContainer = styled.div`
   flex-direction: row;
   align-items: center;
   height: 40px;
+  gap: 10px;
   bottom: 0;
+
+  @media screen and (max-width: 768px) {
+    order: 2 !important;
+    justify-content: right;
+    width: 100%;
+  }
 `;
 
 interface ButtonProps {

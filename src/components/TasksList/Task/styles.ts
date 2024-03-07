@@ -5,7 +5,7 @@ interface TaskContainerProps {
 }
 
 export const TaskContainer = styled.div<TaskContainerProps>`
-  border: 1px solid var(--grey-dark);
+  border: 1px solid var(--grey-light);
   background-color: ${(props) => props.taskStyle};
   border-radius: 8px;
   color: var(--grey-dark);
