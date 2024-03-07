@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { InputEditStyles } from "./inputEditTask.types";
+import { Tooltip } from "../tooltip/tooltip.styles";
 
 export const InputBox = styled.div<InputEditStyles>`
   ${({ theme, width, height, $hasDone }) =>
@@ -17,7 +18,6 @@ export const InputBox = styled.div<InputEditStyles>`
         : `1px solid ${theme.colors.grayBackgroundItem}`};
       background-color: ${theme.colors.grayBackgroundItem};
       border-radius: 4px;
-      opacity: 1;
       padding-left: 10.5px;
       flex-wrap: wrap;
       font-family: ${theme.font.Regular};
@@ -25,7 +25,9 @@ export const InputBox = styled.div<InputEditStyles>`
       color: ${theme.colors.grayMiddle};
       transition: border 0.2s ease-out;
       &:focus-within {
-        opacity: 1;
+        background-color: ${theme.colors.whiteBasic};
+      }
+      &:hover {
         background-color: ${theme.colors.whiteBasic};
       }
     `}
@@ -33,6 +35,7 @@ export const InputBox = styled.div<InputEditStyles>`
 
 export const Input = styled.input`
   ${({ theme }) => css`
+    position: relative;
     all: unset;
     max-width: 100%;
     padding-left: 10.5px;
@@ -40,6 +43,14 @@ export const Input = styled.input`
     font-family: ${theme.font.Regular};
     font-size: ${theme.fontSizes.Regular14};
     color: ${theme.colors.grayMiddle};
+    &:hover + ${Tooltip} {
+      visibility: visible;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.8);
+      width: 230px;
+      padding: 8px 8px;
+      border-radius: 4px;
+    }
   `}
 `;
 

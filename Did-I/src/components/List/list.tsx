@@ -8,6 +8,7 @@ import { ProgressiveBar } from "../ProgressiveBar/progressiveBar";
 import Check from "../../assets/icons/check-filter.svg?react";
 import Search from "../../assets/icons/search.svg?react";
 import * as S from "./list.style";
+import { Tooltip } from "../tooltip/tolltip";
 
 export const List = () => {
   const [item, setItem] = useState("");
@@ -132,14 +133,16 @@ export const List = () => {
       <S.ItemsContainer>
         {listAfterFilters()?.map((item) => (
           <Fragment key={item.id + Math.random()}>
-            <InputEditTask
-              $hasDone={thisItemHasDone(item.id)}
-              onClickCheck={() => doneItem(item.id)}
-              onClickMinus={() => excludeThisItem(item.id)}
-              height="40px"
-              readOnly
-              value={item.task}
-            />
+            <Tooltip toolTipContent={item.task}>
+              <InputEditTask
+                $hasDone={thisItemHasDone(item.id)}
+                onClickCheck={() => doneItem(item.id)}
+                onClickMinus={() => excludeThisItem(item.id)}
+                height="40px"
+                readOnly
+                value={item.task}
+              />
+            </Tooltip>
           </Fragment>
         ))}
       </S.ItemsContainer>
