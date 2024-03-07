@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 export const SearchContainer = styled.div`
   position: relative;
-  width: 100%;
+  width: 60%;
   height: 48px;
   background: var(--branco);
   display: flex;
   align-items: center;
-  margin-top: 2rem;
   justify-content: space-between;
   transition: all 0.3s ease;
   border: 1px solid var(--grey-light);

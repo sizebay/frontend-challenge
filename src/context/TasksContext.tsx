@@ -1,22 +1,26 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import ITasks from "../types/ITasks";
+import ITasks, { FilterType } from "../types/ITasks";
 
-export interface TasksContextProps {
+interface TasksContextProps {
   tasks: ITasks[];
   addTask: (task: ITasks) => void;
   removeTask: (taskId: string) => void;
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   clearSearch: () => void;
+  activeFilter: FilterType | null;
+  setActiveFilter: (filter: FilterType | null) => void;
 }
 
-export const TasksContext = createContext<TasksContextProps>({
+const TasksContext = createContext<TasksContextProps>({
   tasks: [],
   addTask: () => {},
   removeTask: () => {},
   searchTerm: "",
   setSearchTerm: () => {},
   clearSearch: () => {},
+  activeFilter: null,
+  setActiveFilter: () => {},
 });
 
 interface TasksProviderProps {
@@ -28,6 +32,7 @@ export const useTasksContext = () => useContext(TasksContext);
 export function TasksProvider({ children }: TasksProviderProps) {
   const [tasks, setTasks] = useState<ITasks[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
   function addTask(task: ITasks) {
     setTasks([...tasks, task]);
@@ -50,6 +55,8 @@ export function TasksProvider({ children }: TasksProviderProps) {
         searchTerm,
         setSearchTerm,
         clearSearch,
+        activeFilter,
+        setActiveFilter,
       }}
     >
       {children}

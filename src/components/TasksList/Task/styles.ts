@@ -9,7 +9,6 @@ export const TaskContainer = styled.div<TaskContainerProps>`
   background-color: ${(props) => props.taskStyle};
   border-radius: 8px;
   color: var(--grey-dark);
-  margin: 1em 0em;
   justify-content: left;
   border-radius: 4px;
   padding-left: 1em;

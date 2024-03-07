@@ -3,3 +3,5 @@ export default interface ITasks {
   description: string;
   isCompleted: boolean;
 }
+
+export type FilterType = "" | "done" | "pending";

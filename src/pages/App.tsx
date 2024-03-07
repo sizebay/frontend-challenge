@@ -2,9 +2,10 @@ import Header from "../components/Header";
 import ProgressBar from "../components/ProgressBar";
 import SearchBar from "../components/SearchBar";
 import TasksList from "../components/TasksList/index";
-import { Container } from "./styles";
+import { Container, Filter } from "./styles";
 import useData from "../useTasks";
 import AddTaskBar from "../components/AddTaskBar";
+import FilterButtons from "../components/FilterButtons";
 import ITasks from "../types/ITasks";
 import { useEffect, useState } from "react";
 import { TasksProvider } from "../context/TasksContext";
@@ -23,7 +24,10 @@ function App() {
       <Container>
         <Header />
         <ProgressBar />
-        <SearchBar />
+        <Filter>
+          <FilterButtons />
+          <SearchBar />
+        </Filter>
         <AddTaskBar />
         <TasksList />
       </Container>

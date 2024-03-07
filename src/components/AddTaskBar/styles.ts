@@ -12,7 +12,6 @@ export const AddTaskContainer = styled.div<TaskContainerProps>`
   background: ${(props) => props.styleBackground};
   display: flex;
   align-items: center;
-  margin-top: 1rem;
   justify-content: space-between;
   transition: all 0.3s ease;
   border: 1px solid var(--grey-light);

@@ -6,6 +6,7 @@ export const SecaoCard = styled.section`
   margin: 0;
   padding: 0;
   flex-direction: column;
+  gap: 13px;
   height: 216px;
   overflow: scroll;
   z-index: 999999;
@@ -13,7 +14,7 @@ export const SecaoCard = styled.section`
   &::-webkit-scrollbar {
     width: 10px;
     background: #848484;
-    border-radius:20px;
+    border-radius: 20px;
   }
 `;
 
