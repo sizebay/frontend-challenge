@@ -19,8 +19,8 @@ const SearchBar = () => {
   };
 
   const handleClearSearch = () => {
-    setSearchValue("");
     clearSearch();
+    setSearchValue("");
   };
 
   return (

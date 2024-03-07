@@ -11,6 +11,7 @@ interface TasksContextProps {
   clearSearch: () => void;
   activeFilter: FilterType | null;
   setActiveFilter: (filter: FilterType | null) => void;
+  clearFilter: () => void;
 }
 
 const TasksContext = createContext<TasksContextProps>({
@@ -23,6 +24,7 @@ const TasksContext = createContext<TasksContextProps>({
   clearSearch: () => {},
   activeFilter: null,
   setActiveFilter: () => {},
+  clearFilter: () => {},
 });
 
 interface TasksProviderProps {
@@ -59,6 +61,10 @@ export function TasksProvider({ children }: TasksProviderProps) {
     setSearchTerm("");
   }
 
+  function clearFilter() {
+    setActiveFilter(null);
+  }
+
   return (
     <TasksContext.Provider
       value={{
@@ -71,6 +77,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         activeFilter,
         setActiveFilter,
         completeTask,
+        clearFilter,
       }}
     >
       {children}

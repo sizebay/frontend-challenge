@@ -9,7 +9,7 @@ const TasksList = () => {
     searchTerm,
     setSearchTerm,
     activeFilter,
-    setActiveFilter,
+    clearFilter,
   } = useTasksContext();
 
   const filteredTasks = tasks
@@ -24,45 +24,48 @@ const TasksList = () => {
       task.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-  const noResults = filteredTasks.length === 0 && searchTerm !== "";
+  const noResults =
+    filteredTasks.filter((task) =>
+      activeFilter
+        ? activeFilter === "done"
+          ? task.isCompleted
+          : !task.isCompleted
+        : true
+    ).length === 0;
 
   const handleClearSearch = () => {
     setSearchTerm("");
   };
 
-  const handleClearFilter = () => {
-    setActiveFilter(null);
-  };
-
   return (
     <SecaoCard>
-      {noResults ? (
-        activeFilter ? (
-          <NoResultsMessage>
-            There are no items marked as{" "}
-            {activeFilter === "done" ? "done" : "pending"}.{" "}
-            <ClearSearchButton onClick={handleClearFilter}>
-              Clear the filter here
-            </ClearSearchButton>{" "}
-            to see all items.
-          </NoResultsMessage>
-        ) : (
-          <NoResultsMessage>
-            Your search found no results.{" "}
-            <ClearSearchButton onClick={handleClearSearch}>
-              Clean the search here
-            </ClearSearchButton>{" "}
-            to see all items.
-          </NoResultsMessage>
-        )
-      ) : (
+      {noResults && activeFilter && (
+        <NoResultsMessage>
+          {`There are no items marked as ${
+            activeFilter === "done" ? "done" : "pending"
+          }.`}{" "}
+          <ClearSearchButton onClick={clearFilter}>
+            Clear the filter here
+          </ClearSearchButton>{" "}
+          to see all items.
+        </NoResultsMessage>
+      )}
+      {!noResults &&
         filteredTasks.map((task) => (
           <Card
             key={task.id}
             data={task}
             onRemove={() => removeTask(task.id)}
           />
-        ))
+        ))}
+      {noResults && !activeFilter && (
+        <NoResultsMessage>
+          Your search found no results.{" "}
+          <ClearSearchButton onClick={handleClearSearch}>
+            Clean the search here
+          </ClearSearchButton>{" "}
+          to see all items.
+        </NoResultsMessage>
       )}
     </SecaoCard>
   );
