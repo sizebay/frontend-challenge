@@ -1,14 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import ITasks from "../../../types/ITasks";
-import TaskButton from "../../TaskButtons";
 import { IoRemoveCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
-
+import TaskTooltip from "../../TaskTooltip";
+import TaskButton from "../../TaskButtons";
 import {
   TaskCard,
   TaskContainer,
   DescriptionText,
   TaskButtonsContainer,
+  TaskTooltipContainer,
   TaskPseudoContainer,
 } from "./styles";
 import { useTasksContext } from "../../../context/TasksContext";
@@ -21,8 +22,13 @@ interface Props {
 const Task = ({ data, onRemove }: Props) => {
   const { completeTask } = useTasksContext();
   const isCompleted = data.isCompleted;
-
+  const [editing, setEditing] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
   const [description, setDescription] = useState(data.description);
+
+  const toggleEditing = () => {
+    setEditing(!editing);
+  };
 
   const handleDescriptionChange = (event: React.FocusEvent<HTMLDivElement>) => {
     setDescription(event.currentTarget.textContent || "");
@@ -33,28 +39,34 @@ const Task = ({ data, onRemove }: Props) => {
     onRemove(data);
   };
 
-  const handleCompleteClick = () => {
+  const handleCompleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     completeTask(data.id);
   };
 
-  const handleTaskContainerClick = () => {
-    if (!isCompleted) {
-      handleCompleteClick();
-    }
+  const handleMouseEnter = () => {
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
   };
 
   return (
     <TaskPseudoContainer>
       <TaskContainer
-        onClick={handleTaskContainerClick}
-        contentEditable={!isCompleted}
+        onClick={toggleEditing}
+        contentEditable={!isCompleted && editing}
+        onBlur={() => setEditing(false)}
         onInput={handleDescriptionChange}
-        taskStyle={isCompleted ? "var(--grey)" : "var(--white)"}
+        taskStyle={editing ? "var(--white)" : "var(--grey)"}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <TaskCard>
           <DescriptionText>{description}</DescriptionText>
         </TaskCard>
-        {!isCompleted && (
+        {!isCompleted && editing && (
           <TaskButtonsContainer>
             <TaskButton
               name="remove"
@@ -73,6 +85,11 @@ const Task = ({ data, onRemove }: Props) => {
           </TaskButtonsContainer>
         )}
       </TaskContainer>
+      {showTooltip && !isCompleted && !editing && (
+        <TaskTooltipContainer>
+          <TaskTooltip />
+        </TaskTooltipContainer>
+      )}
     </TaskPseudoContainer>
   );
 };

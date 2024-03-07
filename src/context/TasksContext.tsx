@@ -56,7 +56,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
 
   function completeTask(taskId: string) {
     setTasks(
-      tasks.map((task) => {
+      tasks?.map((task) => {
         if (task.id === taskId) {
           return { ...task, isCompleted: !task.isCompleted };
         }

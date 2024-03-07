@@ -6,7 +6,6 @@ const TasksList = () => {
   const {
     tasks,
     removeTask,
-    searchTerm,
     activeFilter,
     clearFilter,
     value,
@@ -14,19 +13,19 @@ const TasksList = () => {
   } = useTasksContext();
 
   const filteredTasks = tasks
-    .filter((task) =>
+    ?.filter((task) =>
       activeFilter
         ? activeFilter === "done"
           ? task.isCompleted
           : !task.isCompleted
         : true
     )
-    .filter((task) =>
-      task.description.toLowerCase().includes(value.toLowerCase())
+    ?.filter((task) =>
+      task?.description?.toLowerCase().includes(value.toLowerCase())
     );
 
   const noResults =
-    filteredTasks.filter((task) =>
+    filteredTasks?.filter((task) =>
       activeFilter
         ? activeFilter === "done"
           ? task.isCompleted
@@ -52,7 +51,7 @@ const TasksList = () => {
         </NoResultsMessage>
       )}
       {!noResults &&
-        filteredTasks.map((task) => (
+        filteredTasks?.map((task) => (
           <Card
             key={task.id}
             data={task}

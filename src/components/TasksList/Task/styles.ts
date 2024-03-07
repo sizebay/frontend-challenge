@@ -18,6 +18,9 @@ export const TaskContainer = styled.div<TaskContainerProps>`
   align-items: center;
   overflow: hidden;
   z-index: 0;
+  &:div:focus {
+    outline: none;
+    }
 `;
 
 export const TaskCard = styled.ul`
@@ -52,6 +55,7 @@ export const TaskTooltipContainer = styled.div<TaskContainerProps>`
   display: ${(props) => props.taskStyle};
   z-index: 100000 !important;
   left: calc(50% - 40px);
+  trasition: 0.5s;
 `;
 
 export const TaskPseudoContainer = styled.div`
