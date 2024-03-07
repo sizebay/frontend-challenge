@@ -44,7 +44,6 @@ const Task = ({ data, onRemove }: Props) => {
   const handleCompleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     completeTask(data.id);
-    console.log("completado")
   };
 
 
