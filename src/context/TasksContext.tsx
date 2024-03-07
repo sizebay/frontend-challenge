@@ -13,6 +13,8 @@ interface TasksContextProps {
   activeFilter: FilterType | null;
   setActiveFilter: (filter: FilterType | null) => void;
   clearFilter: () => void;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const TasksContext = createContext<TasksContextProps>({
@@ -27,6 +29,8 @@ const TasksContext = createContext<TasksContextProps>({
   activeFilter: null,
   setActiveFilter: () => {},
   clearFilter: () => {},
+  value: '',
+  setValue: () => {}
 });
 
 interface TasksProviderProps {
@@ -39,6 +43,10 @@ export function TasksProvider({ children }: TasksProviderProps) {
   const [tasks, setTasks] = useState<ITasks[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
+
+
+  const [value, setValue] = useState('');
+  
 
   function addTask(task: ITasks) {
     setTasks([...tasks, task]);
@@ -68,6 +76,9 @@ export function TasksProvider({ children }: TasksProviderProps) {
   }
 
   function clearSearchTerm() {
+    console.log('here');
+    
+
     setSearchTerm("");
   }
 
@@ -85,6 +96,8 @@ export function TasksProvider({ children }: TasksProviderProps) {
         setActiveFilter,
         completeTask,
         clearFilter,
+        value,
+        setValue,
       }}
     >
       {children}

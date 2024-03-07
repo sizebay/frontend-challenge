@@ -9,7 +9,8 @@ const TasksList = () => {
     searchTerm,
     activeFilter,
     clearFilter,
-    clearSearchTerm,
+    value,
+    setValue,
   } = useTasksContext();
 
   const filteredTasks = tasks
@@ -33,9 +34,9 @@ const TasksList = () => {
         : true
     ).length === 0;
 
-  const handleClearSearch = () => {
-    clearSearchTerm();
-  };
+  function handleClearValue() {
+    setValue("");
+  }
 
   return (
     <SecaoCard>
@@ -58,10 +59,10 @@ const TasksList = () => {
             onRemove={() => removeTask(task.id)}
           />
         ))}
-      {searchTerm && noResults && (
+      {value && noResults && (
         <NoResultsMessage>
           Your search found no results.{" "}
-          <ClearSearchButton onClick={handleClearSearch}>
+          <ClearSearchButton onClick={handleClearValue}>
             Clean the search here
           </ClearSearchButton>{" "}
           to see all items.

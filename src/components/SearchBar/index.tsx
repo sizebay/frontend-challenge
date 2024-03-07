@@ -1,43 +1,42 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 import { SearchContainer, SearchInput, IconButton } from "./styles";
 import { useTasksContext } from "../../context/TasksContext";
 
 const SearchBar = () => {
   const [active, setActive] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-  const { setSearchTerm, clearSearchTerm } = useTasksContext();
+  const { value, setValue } = useTasksContext();
 
   const changeStatus = () => {
     setActive(!active);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setSearchValue(value);
-    setSearchTerm(value);
-  };
+  function handleLocalValue(e: any) {
+    setValue(e.target.value);
+  }
 
-  const handleClearSearch = () => {
-    clearSearchTerm();
-  };
-  
+  function handleClearValue() {
+    setValue("");
+  }
+
   return (
     <SearchContainer>
       <SearchInput
         onBlur={changeStatus}
         onFocus={changeStatus}
-        onChange={handleChange}
-        value={searchValue}
+        onChange={handleLocalValue}
+        value={value}
         placeholder="Search items"
       />
-      <IconButton onClick={handleClearSearch}>
-        {active ? (
+      {value !== "" ? (
+        <IconButton onClick={handleClearValue}>
           <AiOutlineClose size={25} color="var(--grey-dark)" />
-        ) : (
+        </IconButton>
+      ) : (
+        <IconButton>
           <AiOutlineSearch size={25} color="var(--grey-dark)" />
-        )}
-      </IconButton>
+        </IconButton>
+      )}
     </SearchContainer>
   );
 };
