@@ -33,6 +33,7 @@ export const NoResultsMessage = styled.span`
   text-align: left;
   display: flex;
   color: var(--grey-dark);
+  font-size: 14px;
 
   @media screen and (max-width: 768px) {
     font-size: 15px;

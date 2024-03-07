@@ -41,10 +41,6 @@ const FilterButtons = () => {
     setActiveFilter(filter);
   };
 
-  const handleClearFilter = () => {
-    setActiveFilter(null);
-  };
-
   return (
     <FilterContainer>
       <ButtonFilter
