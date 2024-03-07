@@ -1,5 +1,12 @@
-# Sizebay Frontend Challenge
+### Running the app
 
-## Desafios disponíveis
+1. cd Did-I ( enter inside the folder )
+2. npm i (Install all dependencies and running the project )
 
-Pleno: https://github.com/sizebay/frontend-challenge/blob/main/MIDLEVEL.md
+## Technologies
+
+1. React + Vite
+2. Styled Components
+3. lottie react
+
+- This project is a simple to-do list where you can add tasks, delete tasks, and track the percentage of tasks completed.
