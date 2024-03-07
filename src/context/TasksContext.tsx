@@ -9,6 +9,7 @@ interface TasksContextProps {
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   clearSearch: () => void;
+  clearSearchTerm: () => void;
   activeFilter: FilterType | null;
   setActiveFilter: (filter: FilterType | null) => void;
   clearFilter: () => void;
@@ -22,6 +23,7 @@ const TasksContext = createContext<TasksContextProps>({
   searchTerm: "",
   setSearchTerm: () => {},
   clearSearch: () => {},
+  clearSearchTerm: () => {},
   activeFilter: null,
   setActiveFilter: () => {},
   clearFilter: () => {},
@@ -65,6 +67,10 @@ export function TasksProvider({ children }: TasksProviderProps) {
     setActiveFilter(null);
   }
 
+  function clearSearchTerm() {
+    setSearchTerm("");
+  }
+
   return (
     <TasksContext.Provider
       value={{
@@ -74,6 +80,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         searchTerm,
         setSearchTerm,
         clearSearch,
+        clearSearchTerm,
         activeFilter,
         setActiveFilter,
         completeTask,

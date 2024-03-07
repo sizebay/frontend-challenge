@@ -3,18 +3,24 @@ import styled from "styled-components";
 export const SecaoCard = styled.section`
   display: flex;
   width: 100%;
-  margin: 0;
-  padding: 0;
+  padding-bottom: 20px;
   flex-direction: column;
   gap: 13px;
   height: 216px;
-  overflow: scroll;
+  overflow: auto
   z-index: 999999;
   overflow-x: hidden;
   &::-webkit-scrollbar {
-    width: 10px;
-    background: #848484;
+    width: 8px;
+    background: #E4E4E4;
     border-radius: 20px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #848484;
+    border-radius: 9px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 `;
 

@@ -7,9 +7,9 @@ const TasksList = () => {
     tasks,
     removeTask,
     searchTerm,
-    setSearchTerm,
     activeFilter,
     clearFilter,
+    clearSearchTerm,
   } = useTasksContext();
 
   const filteredTasks = tasks
@@ -34,7 +34,7 @@ const TasksList = () => {
     ).length === 0;
 
   const handleClearSearch = () => {
-    setSearchTerm("");
+    clearSearchTerm();
   };
 
   return (
@@ -58,7 +58,7 @@ const TasksList = () => {
             onRemove={() => removeTask(task.id)}
           />
         ))}
-      {noResults && !activeFilter && (
+      {searchTerm && noResults && (
         <NoResultsMessage>
           Your search found no results.{" "}
           <ClearSearchButton onClick={handleClearSearch}>

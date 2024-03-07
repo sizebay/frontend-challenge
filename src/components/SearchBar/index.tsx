@@ -6,7 +6,7 @@ import { useTasksContext } from "../../context/TasksContext";
 const SearchBar = () => {
   const [active, setActive] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const { setSearchTerm, clearSearch } = useTasksContext();
+  const { setSearchTerm, clearSearchTerm } = useTasksContext();
 
   const changeStatus = () => {
     setActive(!active);
@@ -19,10 +19,9 @@ const SearchBar = () => {
   };
 
   const handleClearSearch = () => {
-    clearSearch();
-    setSearchValue("");
+    clearSearchTerm();
   };
-
+  
   return (
     <SearchContainer>
       <SearchInput
