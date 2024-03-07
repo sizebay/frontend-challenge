@@ -5,6 +5,7 @@ interface TasksContextProps {
   tasks: ITasks[];
   addTask: (task: ITasks) => void;
   removeTask: (taskId: string) => void;
+  completeTask: (taskId: string) => void;
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   clearSearch: () => void;
@@ -16,6 +17,7 @@ const TasksContext = createContext<TasksContextProps>({
   tasks: [],
   addTask: () => {},
   removeTask: () => {},
+  completeTask: () => {},
   searchTerm: "",
   setSearchTerm: () => {},
   clearSearch: () => {},
@@ -42,6 +44,17 @@ export function TasksProvider({ children }: TasksProviderProps) {
     setTasks(tasks.filter((task) => task.id !== taskId));
   }
 
+  function completeTask(taskId: string) {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === taskId) {
+          return { ...task, isCompleted: !task.isCompleted };
+        }
+        return task;
+      })
+    );
+  }
+
   function clearSearch() {
     setSearchTerm("");
   }
@@ -57,6 +70,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         clearSearch,
         activeFilter,
         setActiveFilter,
+        completeTask,
       }}
     >
       {children}

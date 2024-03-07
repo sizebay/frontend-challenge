@@ -13,6 +13,7 @@ import {
   TaskTooltipContainer,
   TaskPseudoContainer,
 } from "./styles";
+import { useTasksContext } from "../../../context/TasksContext";
 
 interface Props {
   data: ITasks;
@@ -20,6 +21,9 @@ interface Props {
 }
 
 const Task = ({ data, onRemove }: Props) => {
+    const { completeTask } = useTasksContext();
+  const isCompleted = data.isCompleted;
+
   const [editing, setIsEditing] = useState("notActive");
   const editNotActive = editing === "notActive";
   const [description, setDescription] = useState(data.description);
@@ -36,6 +40,13 @@ const Task = ({ data, onRemove }: Props) => {
     event.stopPropagation();
     onRemove(data);
   };
+
+  const handleCompleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    completeTask(data.id);
+    console.log("completado")
+  };
+
 
   return (
     <TaskPseudoContainer>
@@ -56,7 +67,11 @@ const Task = ({ data, onRemove }: Props) => {
           >
             <IoRemoveCircle color="white" size={27} />
           </TaskButton>
-          <TaskButton name="done" backgroundColor="var(--done-green)">
+          <TaskButton
+            name="done"
+            backgroundColor="var(--done-green)"
+            onClick={handleCompleteClick}
+          >
             <FaCheckCircle color="white" size={22} />
           </TaskButton>
         </TaskButtonsContainer>
