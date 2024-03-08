@@ -4,4 +4,4 @@ export default interface ITasks {
   isCompleted: boolean;
 }
 
-export type FilterType = "" | "done" | "pending";
+export type FilterType =  "done" | "pending" | "unset";

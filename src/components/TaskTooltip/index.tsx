@@ -1,4 +1,3 @@
-import React from "react";
 import { TooltipContainer,TooltipSpan} from "./styles";
 
 const TaskTooltip=()=>{

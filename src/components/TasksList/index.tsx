@@ -5,7 +5,6 @@ import { ClearSearchButton, NoResultsMessage, SecaoCard } from "./styles";
 const TasksList = () => {
   const {
     tasks,
-    removeTask,
     activeFilter,
     clearFilter,
     value,

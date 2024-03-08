@@ -16,30 +16,15 @@ interface TasksContextProps {
   setSearchTerm: (term: string) => void;
   clearSearch: () => void;
   clearSearchTerm: () => void;
-  activeFilter: FilterType | null;
-  setActiveFilter: (filter: FilterType | null) => void;
+  activeFilter: string;
+  handleFilterActive: (filter: FilterType) => void;
   clearFilter: () => void;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   handleClearValue: () => void;
 }
 
-const TasksContext = createContext<TasksContextProps>({
-  tasks: [],
-  addTask: () => {},
-  removeTask: () => {},
-  completeTask: () => {},
-  searchTerm: "",
-  setSearchTerm: () => {},
-  clearSearch: () => {},
-  clearSearchTerm: () => {},
-  activeFilter: null,
-  setActiveFilter: () => {},
-  clearFilter: () => {},
-  value: "",
-  setValue: () => {},
-  handleClearValue: () => {},
-});
+const TasksContext = createContext<TasksContextProps>({} as TasksContextProps);
 
 interface TasksProviderProps {
   children: ReactNode;
@@ -52,7 +37,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
     JSON.parse(localStorage.getItem("tasks") || "[]")
   );
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
+  const [activeFilter, setActiveFilter] = useState("unset");
   const [value, setValue] = useState("");
 
   useEffect(() => {
@@ -83,7 +68,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
   }
 
   function clearFilter() {
-    setActiveFilter(null);
+    setActiveFilter("unset");
 
     handleClearValue();
   }
@@ -94,6 +79,12 @@ export function TasksProvider({ children }: TasksProviderProps) {
 
   function clearSearchTerm() {
     setSearchTerm("");
+  }
+
+  function handleFilterActive(nextFilter: FilterType) {
+    nextFilter === activeFilter
+      ? setActiveFilter("unset")
+      : setActiveFilter(nextFilter);
   }
 
   return (
@@ -107,7 +98,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         clearSearch,
         clearSearchTerm,
         activeFilter,
-        setActiveFilter,
+        handleFilterActive,
         completeTask,
         clearFilter,
         value,
