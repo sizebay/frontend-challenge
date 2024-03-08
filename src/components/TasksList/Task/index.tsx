@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ITasks from "../../../types/ITasks";
 import { IoRemoveCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
@@ -52,15 +52,31 @@ const Task = ({ data }: Props) => {
     if (!editing) {
       setShowTooltip(false);
     }
-    setEditing(false);
   };
-  
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
       setEditing(false);
     }
   };
+
+  const taskContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (
+      taskContainerRef.current &&
+      !taskContainerRef.current.contains(event.target as Node)
+    ) {
+      setEditing(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => document.removeEventListener("mousedown", handleOutsideClick);
+  }, []);
+
 
   return (
     <TaskPseudoContainer>
@@ -69,6 +85,7 @@ const Task = ({ data }: Props) => {
         taskStyle={editing ? "var(--white)" : "var(--grey)"}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        ref={taskContainerRef}
       >
         <TaskCard>
           {editing ? (

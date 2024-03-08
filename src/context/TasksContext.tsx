@@ -68,8 +68,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
   }
 
   function clearFilter() {
-    setActiveFilter("unset");
-
+    setActiveFilter("");
     handleClearValue();
   }
 
