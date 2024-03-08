@@ -16,7 +16,6 @@
     "@types/react-i18next": "^8.1.0",
     "@types/styled-components": "^5.1.11",
     "@types/styled-system": "^5.1.12",
-    "again": "^0.0.1",
     "axios": "^0.21.1",
     "i18next": "^20.3.2",
     "lodash": "^4.17.21",

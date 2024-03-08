@@ -2839,11 +2839,6 @@ adjust-sourcemap-loader@^4.0.0:
     loader-utils "^2.0.0"
     regex-parser "^2.2.11"
 
-again@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/again/-/again-0.0.1.tgz#3dfe63dd2222d9719545f871a5125b7118393d96"
-  integrity sha512-7RwRcQP1LstJTiKG5CSa/DTEWprnEUVbIg8YYMowQTEzWT4sGYOvp418l2wskC2Mo1uZ6f1pFFgqh7qxCxo5pQ==
-
 agent-base@6:
   version "6.0.2"
   resolved "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz"
