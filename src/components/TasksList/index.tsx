@@ -9,7 +9,7 @@ const TasksList = () => {
     activeFilter,
     clearFilter,
     value,
-    setValue,
+    handleClearValue,
   } = useTasksContext();
 
   const filteredTasks = tasks
@@ -33,10 +33,6 @@ const TasksList = () => {
         : true
     ).length === 0;
 
-  function handleClearValue() {
-    setValue("");
-  }
-
   return (
     <SecaoCard>
       {!value && noResults && activeFilter && (
@@ -52,11 +48,7 @@ const TasksList = () => {
       )}
       {!noResults &&
         filteredTasks?.map((task) => (
-          <Card
-            key={task.id}
-            data={task}
-            onRemove={() => removeTask(task.id)}
-          />
+          <Card key={task.id} data={task}/>
         ))}
       {value && noResults && (
         <NoResultsMessage>

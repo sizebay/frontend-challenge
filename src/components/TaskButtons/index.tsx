@@ -16,7 +16,6 @@ const TaskButton = styled.button<TaskContainerProps>`
   height: 111%;
   margin-top: 3px !important;
   width: 48px;
-  margin-top: 0px;
   align-items: center;
   justify-content: center;
   margin: 0;

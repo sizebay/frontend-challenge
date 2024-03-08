@@ -16,11 +16,10 @@ import { useTasksContext } from "../../../context/TasksContext";
 
 interface Props {
   data: ITasks;
-  onRemove: (task: ITasks) => void;
 }
 
-const Task = ({ data, onRemove }: Props) => {
-  const { completeTask } = useTasksContext();
+const Task = ({ data }: Props) => {
+  const { removeTask, completeTask } = useTasksContext();
   const isCompleted = data.isCompleted;
   const [editing, setEditing] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -30,44 +29,62 @@ const Task = ({ data, onRemove }: Props) => {
     setEditing(!editing);
   };
 
-  const handleDescriptionChange = (event: React.FocusEvent<HTMLDivElement>) => {
-    setDescription(event.currentTarget.textContent || "");
+  const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDescription(event.target.value);
   };
 
   const handleRemoveClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    onRemove(data);
+    removeTask(data.id);
   };
 
-  const handleCompleteClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
+  const handleCompleteClick = () => {
     completeTask(data.id);
   };
 
   const handleMouseEnter = () => {
-    setShowTooltip(true);
+    if (!editing) {
+      setShowTooltip(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    setShowTooltip(false);
+    if (!editing) {
+      setShowTooltip(false);
+    }
+    setEditing(false);
+  };
+  
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      setEditing(false);
+    }
   };
 
   return (
     <TaskPseudoContainer>
       <TaskContainer
         onClick={toggleEditing}
-        contentEditable={!isCompleted && editing}
-        onBlur={() => setEditing(false)}
-        onInput={handleDescriptionChange}
         taskStyle={editing ? "var(--white)" : "var(--grey)"}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <TaskCard>
-          <DescriptionText>{description}</DescriptionText>
+          {editing ? (
+            <input
+              type="text"
+              value={description}
+              onChange={handleDescriptionChange}
+              onKeyDown={handleKeyDown}
+              autoFocus
+            />
+          ) : (
+            <DescriptionText>{description}</DescriptionText>
+          )}
         </TaskCard>
         {!isCompleted && editing && (
-          <TaskButtonsContainer>
+          <TaskButtonsContainer taskStyle={editing ? "block" : "none"}>
             <TaskButton
               name="remove"
               backgroundColor="var(--warning-red)"
@@ -85,11 +102,12 @@ const Task = ({ data, onRemove }: Props) => {
           </TaskButtonsContainer>
         )}
       </TaskContainer>
-      {showTooltip && !isCompleted && !editing && (
-        <TaskTooltipContainer>
-          <TaskTooltip />
-        </TaskTooltipContainer>
-      )}
+      <TaskTooltipContainer
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+      >
+        {showTooltip && !isCompleted && !editing && <TaskTooltip />}
+      </TaskTooltipContainer>
     </TaskPseudoContainer>
   );
 };

@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import ITasks, { FilterType } from "../types/ITasks";
 
 interface TasksContextProps {
@@ -15,6 +21,7 @@ interface TasksContextProps {
   clearFilter: () => void;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  handleClearValue: () => void;
 }
 
 const TasksContext = createContext<TasksContextProps>({
@@ -31,6 +38,7 @@ const TasksContext = createContext<TasksContextProps>({
   clearFilter: () => {},
   value: "",
   setValue: () => {},
+  handleClearValue: () => {},
 });
 
 interface TasksProviderProps {
@@ -40,11 +48,16 @@ interface TasksProviderProps {
 export const useTasksContext = () => useContext(TasksContext);
 
 export function TasksProvider({ children }: TasksProviderProps) {
-  const [tasks, setTasks] = useState<ITasks[]>([]);
+  const [tasks, setTasks] = useState<ITasks[]>(
+    JSON.parse(localStorage.getItem("tasks") || "[]")
+  );
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
-
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function addTask(task: ITasks) {
     setTasks([...tasks, task]);
@@ -71,6 +84,12 @@ export function TasksProvider({ children }: TasksProviderProps) {
 
   function clearFilter() {
     setActiveFilter(null);
+
+    handleClearValue();
+  }
+
+  function handleClearValue() {
+    setValue("");
   }
 
   function clearSearchTerm() {
@@ -93,6 +112,7 @@ export function TasksProvider({ children }: TasksProviderProps) {
         clearFilter,
         value,
         setValue,
+        handleClearValue,
       }}
     >
       {children}

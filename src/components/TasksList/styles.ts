@@ -7,14 +7,14 @@ export const SecaoCard = styled.section`
   flex-direction: column;
   gap: 13px;
   height: 276px;
-  overflow: auto
+  overflow: auto;
   z-index: 999999;
   overflow-x: hidden;
+  padding-right: 4px;
   &::-webkit-scrollbar {
     width: 8px;
-    background: #E4E4E4;
+    background: #e4e4e4;
     border-radius: 20px;
-    margin-left: 10px;
   }
   ::-webkit-scrollbar-thumb {
     background: #848484;
@@ -25,9 +25,8 @@ export const SecaoCard = styled.section`
   }
 
   @media screen and (max-width: 768px) {
-     width: 100%;
+    width: 100%;
   }
-
 `;
 
 export const NoResultsMessage = styled.span`

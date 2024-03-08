@@ -3,6 +3,7 @@ import styled from "styled-components";
 interface TaskContainerProps {
   styleBackground?: string;
   styleBorder?: string;
+  colorFont?: string;
 }
 
 export const AddTaskContainer = styled.div<TaskContainerProps>`
@@ -27,10 +28,10 @@ export const AddTaskForm = styled.form`
   width: 100%;
 `;
 
-export const AddTaskInput = styled.input`
+export const AddTaskInput = styled.input<TaskContainerProps>`
   padding-left: 30px;
   border: none;
-  color: var(--grey-dark);
+  color: ${(props) => props.colorFont};
   top: 0;
   height: 100%;
   width: 100%;
@@ -38,7 +39,14 @@ export const AddTaskInput = styled.input`
   outline: none;
   font-size: 16px;
 
+  &::placeholder {
+    color: ${(props) => props.colorFont};
+  }
+
   &:focus {
     border-color: rgba(0, 0, 0, 0.3);
+    &::placeholder {
+      color: ${(props) => props.colorFont};
+    }
   }
 `;

@@ -30,9 +30,15 @@ const AddTaskBar = () => {
     }
   };
 
+  const handleBlur = () => {
+    setIsEditing("notActive");
+  };
+
   return (
     <AddTaskContainer
       onClick={editTask}
+      onBlur={handleBlur}
+      tabIndex={0}
       styleBackground={editNotActive ? "var(--white-darker)" : "var(--white)"}
       styleBorder={editNotActive ? "var(--grey)" : "var(--white)"}
     >
@@ -42,6 +48,7 @@ const AddTaskBar = () => {
           value={taskDescription}
           placeholder="Add new item..."
           type="text"
+          colorFont={editNotActive ? "var(--grey-light)" : "var(--grey-dark)"}
         />
         <TaskButton
           type="submit"
