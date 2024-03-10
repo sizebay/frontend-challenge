@@ -7,17 +7,11 @@ const SearchBar = () => {
   const [active, setActive] = useState(false);
   const { value, setValue } = useTasksContext();
 
-  const changeStatus = () => {
-    setActive(!active);
-  };
+  const changeStatus = () => setActive(!active);
 
-  function handleLocalValue(e: any) {
-    setValue(e.target.value);
-  }
+  const handleLocalValue = (e: any) => setValue(e.target.value);
 
-  function handleClearValue() {
-    setValue("");
-  }
+  const handleClearValue = () => setValue("")
 
   return (
     <SearchContainer>

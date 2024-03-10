@@ -7,15 +7,14 @@ import { v4 as uuidv4 } from "uuid";
 
 const AddTaskBar = () => {
   const { addTask } = useTasksContext();
-
+  
   const [editing, setIsEditing] = useState("notActive");
   const editNotActive = editing === "notActive";
-
-  const editTask = () => {
-    setIsEditing(editNotActive ? "active" : "notActive");
-  };
-
   const [taskDescription, setTaskDescription] = useState("");
+
+  const editTask = () => setIsEditing(editNotActive ? "active" : "notActive");
+
+  const handleBlur = () => setIsEditing("notActive");
 
   const handleAddTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,10 +27,6 @@ const AddTaskBar = () => {
       addTask(newTask);
       setTaskDescription("");
     }
-  };
-
-  const handleBlur = () => {
-    setIsEditing("notActive");
   };
 
   return (

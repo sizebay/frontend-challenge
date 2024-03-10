@@ -37,9 +37,7 @@ interface ButtonProps {
 const FilterButtons = () => {
   const { activeFilter, handleFilterActive } = useTasksContext();
 
-  const handleFilterClick = (filter: FilterType) => {
-    handleFilterActive(filter);
-  };
+  const handleFilterClick = (filter: FilterType) => handleFilterActive(filter);
 
   return (
     <FilterContainer>

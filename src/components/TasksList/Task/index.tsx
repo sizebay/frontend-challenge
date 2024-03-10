@@ -20,16 +20,17 @@ interface Props {
 
 const Task = ({ data }: Props) => {
   const { removeTask, completeTask } = useTasksContext();
+
   const isCompleted = data.isCompleted;
   const [editing, setEditing] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [description, setDescription] = useState(data.description);
 
-  const toggleEditing = () => {
-    setEditing(!editing);
-  };
+  const toggleEditing = () => setEditing(!editing);
 
-  const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDescriptionChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setDescription(event.target.value);
   };
 
@@ -38,20 +39,14 @@ const Task = ({ data }: Props) => {
     removeTask(data.id);
   };
 
-  const handleCompleteClick = () => {
-    completeTask(data.id);
-  };
+  const handleCompleteClick = () =>  completeTask(data.id);
 
   const handleMouseEnter = () => {
-    if (!editing) {
-      setShowTooltip(true);
-    }
+    if (!editing) setShowTooltip(true);
   };
 
   const handleMouseLeave = () => {
-    if (!editing) {
-      setShowTooltip(false);
-    }
+    if (!editing) setShowTooltip(false);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -76,7 +71,6 @@ const Task = ({ data }: Props) => {
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, []);
-
 
   return (
     <TaskPseudoContainer>
