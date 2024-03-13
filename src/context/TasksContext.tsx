@@ -4,7 +4,6 @@ import React, {
   useState,
   ReactNode,
   useEffect,
-  useCallback,
 } from "react";
 import ITasks, { FilterType } from "../types/ITasks";
 
@@ -25,11 +24,11 @@ interface TasksContextProps {
   handleClearValue: () => void;
 }
 
+const TasksContext = createContext<TasksContextProps>({} as TasksContextProps);
+
 interface TasksProviderProps {
   children: ReactNode;
 }
-
-const TasksContext = createContext<TasksContextProps>({} as TasksContextProps);
 
 export const useTasksContext = () => useContext(TasksContext);
 
@@ -45,24 +44,13 @@ export function TasksProvider({ children }: TasksProviderProps) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = useCallback(
-    (task: ITasks) => {
-      const allCompleted = tasks.every((task) => task.isCompleted);
-      allCompleted ? setTasks([task]) : setTasks([...tasks, task]);
-    },
-    [tasks]
-  );
+  function addTask(task: ITasks) {
+    setTasks([...tasks, task]);
+  }
 
-  const handleClearValue = useCallback(() => setValue(""), []);
-
-  const clearSearchTerm = useCallback(() => setSearchTerm(""), []);
-
-  const removeTask = useCallback(
-    (taskId: string) => setTasks(tasks.filter((task) => task.id !== taskId)),
-    [tasks]
-  );
-
-  const clearSearch = useCallback(() => setSearchTerm(""), []);
+  function removeTask(taskId: string) {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  }
 
   function completeTask(taskId: string) {
     setTasks(
@@ -75,9 +63,21 @@ export function TasksProvider({ children }: TasksProviderProps) {
     );
   }
 
+  function clearSearch() {
+    setSearchTerm("");
+  }
+
   function clearFilter() {
     setActiveFilter("");
     handleClearValue();
+  }
+
+  function handleClearValue() {
+    setValue("");
+  }
+
+  function clearSearchTerm() {
+    setSearchTerm("");
   }
 
   function handleFilterActive(nextFilter: FilterType) {
