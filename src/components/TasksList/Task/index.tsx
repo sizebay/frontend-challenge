@@ -43,19 +43,19 @@ const Task = ({ data }: Props) => {
   const handleCompleteClick = () => completeTask(data.id);
 
   const handleMouseEnter = () => {
-    if (!editing) {
+    if (!editing && !showTooltip) {
       tooltipTimeout.current = window.setTimeout(() => {
         setShowTooltip(true);
       }, 70);
     }
   };
 
-const handleMouseLeave = () => {
-  if (!editing && tooltipTimeout.current !== undefined) {
-    clearTimeout(tooltipTimeout.current);
-    setShowTooltip(false);
-  }
-};
+  const handleMouseLeave = () => {
+    if (!editing && tooltipTimeout.current !== undefined) {
+      clearTimeout(tooltipTimeout.current);
+      setShowTooltip(false);
+    }
+  };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
