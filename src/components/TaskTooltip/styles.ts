@@ -17,7 +17,6 @@ export const TooltipContainer = styled.div`
 `;
 
 export const TooltipSpan = styled.span`
-  background-color: pink;
   background-color: var(--grey-dark);
   width: 10px;
   height: 10px;

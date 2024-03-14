@@ -49,7 +49,7 @@ export const TaskButtonsContainer = styled.div`
 export const TaskTooltipContainer = styled.div<TaskContainerProps>`
   position: absolute;
   overflow: visible !important;
-  bottom: -20px;
+  bottom: -30px;
   position: absolute;
   display: ${(props) => props.taskStyle};
   z-index: 100000 !important;

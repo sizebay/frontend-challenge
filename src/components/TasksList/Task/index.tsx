@@ -25,6 +25,7 @@ const Task = ({ data }: Props) => {
   const [editing, setEditing] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [description, setDescription] = useState(data.description);
+  const tooltipTimeout = useRef<number | undefined>(undefined);
 
   const toggleEditing = () => setEditing(!editing);
 
@@ -39,15 +40,22 @@ const Task = ({ data }: Props) => {
     removeTask(data.id);
   };
 
-  const handleCompleteClick = () =>  completeTask(data.id);
+  const handleCompleteClick = () => completeTask(data.id);
 
   const handleMouseEnter = () => {
-    if (!editing) setShowTooltip(true);
+    if (!editing) {
+      tooltipTimeout.current = window.setTimeout(() => {
+        setShowTooltip(true);
+      }, 70);
+    }
   };
 
-  const handleMouseLeave = () => {
-    if (!editing) setShowTooltip(false);
-  };
+const handleMouseLeave = () => {
+  if (!editing && tooltipTimeout.current !== undefined) {
+    clearTimeout(tooltipTimeout.current);
+    setShowTooltip(false);
+  }
+};
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -115,12 +123,16 @@ const Task = ({ data }: Props) => {
           </TaskButtonsContainer>
         )}
       </TaskContainer>
-      <TaskTooltipContainer
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-      >
-        {showTooltip && !isCompleted && !editing && <TaskTooltip />}
-      </TaskTooltipContainer>
+      {showTooltip && !editing && (
+        <TaskTooltipContainer
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          taskStyle={editing ? "none" : "flex"}
+          ref={taskContainerRef}
+        >
+          <TaskTooltip />
+        </TaskTooltipContainer>
+      )}
     </TaskPseudoContainer>
   );
 };
