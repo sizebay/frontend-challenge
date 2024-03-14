@@ -29,12 +29,13 @@ export const TaskCard = styled.ul`
   line-height: 0px;
 `;
 
-export const DescriptionText = styled.p`
+export const DescriptionText = styled.p<TaskContainerProps>`
   font-size: 15px;
   text-align: left;
+  text-decoration-line: ${(props) => props.taskStyle};
 `;
 
-export const TaskButtonsContainer = styled.div<TaskContainerProps>`
+export const TaskButtonsContainer = styled.div`
   position: absolute;
   right: 0px;
   height: 119%;
@@ -43,7 +44,6 @@ export const TaskButtonsContainer = styled.div<TaskContainerProps>`
   width: 96px;
   align-items: center;
   justify-content: center;
-  display: ${(props) => props.taskStyle};
 `;
 
 export const TaskTooltipContainer = styled.div<TaskContainerProps>`

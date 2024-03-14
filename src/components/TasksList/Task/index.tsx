@@ -91,11 +91,13 @@ const Task = ({ data }: Props) => {
               autoFocus
             />
           ) : (
-            <DescriptionText>{description}</DescriptionText>
+            <DescriptionText taskStyle={isCompleted ? "line-through" : "none"}>
+              {description}
+            </DescriptionText>
           )}
         </TaskCard>
-        {!isCompleted && editing && (
-          <TaskButtonsContainer taskStyle={editing ? "block" : "none"}>
+        {editing && (
+          <TaskButtonsContainer>
             <TaskButton
               name="remove"
               backgroundColor="var(--warning-red)"
