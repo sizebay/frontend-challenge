@@ -13,20 +13,24 @@ const ProgressBar = styled.progress`
   background-color: var(--done-green);
 
   &::-webkit-progress-bar {
-    background-color: #e4e4e4;
+    background-color: var(--done-green);
+    border-color: var(--done-green);
   }
 
   &::-moz-progress-bar {
-    background-color: #e4e4e4 0% 0% no-repeat padding-box;
+    background-color: var(--done-green) 0% 0% no-repeat padding-box;
+    border-color: var(--done-green);
   }
 
   &::-webkit-progress-value {
     background-color: var(--done-green);
+    border-color: var(--done-green);
     transition: 0.5s width;
   }
 
   &::-moz-progress-bar {
-    background-color: #e4e4e4 !important;
+    background-color: var(--done-green) !important;
+    border-color: var(--done-green);
   }
 `;
 
