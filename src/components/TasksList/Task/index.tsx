@@ -25,6 +25,7 @@ const Task = ({ data }: Props) => {
   const [editing, setEditing] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [description, setDescription] = useState(data.description);
+  const tooltipTimeout = useRef<number | undefined>(undefined);
 
   const toggleEditing = () => setEditing(!editing);
 
@@ -39,14 +40,21 @@ const Task = ({ data }: Props) => {
     removeTask(data.id);
   };
 
-  const handleCompleteClick = () =>  completeTask(data.id);
+  const handleCompleteClick = () => completeTask(data.id);
 
   const handleMouseEnter = () => {
-    if (!editing) setShowTooltip(true);
+    if (!editing && !showTooltip) {
+      tooltipTimeout.current = window.setTimeout(() => {
+        setShowTooltip(true);
+      }, 70);
+    }
   };
 
   const handleMouseLeave = () => {
-    if (!editing) setShowTooltip(false);
+    if (!editing && tooltipTimeout.current !== undefined) {
+      clearTimeout(tooltipTimeout.current);
+      setShowTooltip(false);
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -91,11 +99,13 @@ const Task = ({ data }: Props) => {
               autoFocus
             />
           ) : (
-            <DescriptionText>{description}</DescriptionText>
+            <DescriptionText taskStyle={isCompleted ? "line-through" : "none"}>
+              {description}
+            </DescriptionText>
           )}
         </TaskCard>
-        {!isCompleted && editing && (
-          <TaskButtonsContainer taskStyle={editing ? "block" : "none"}>
+        {editing && (
+          <TaskButtonsContainer>
             <TaskButton
               name="remove"
               backgroundColor="var(--warning-red)"
@@ -113,12 +123,16 @@ const Task = ({ data }: Props) => {
           </TaskButtonsContainer>
         )}
       </TaskContainer>
-      <TaskTooltipContainer
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-      >
-        {showTooltip && !isCompleted && !editing && <TaskTooltip />}
-      </TaskTooltipContainer>
+      {showTooltip && !editing && (
+        <TaskTooltipContainer
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          taskStyle={editing ? "none" : "flex"}
+          ref={taskContainerRef}
+        >
+          <TaskTooltip />
+        </TaskTooltipContainer>
+      )}
     </TaskPseudoContainer>
   );
 };

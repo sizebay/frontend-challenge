@@ -7,14 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const AddTaskBar = () => {
   const { addTask } = useTasksContext();
-  
-  const [editing, setIsEditing] = useState("notActive");
-  const editNotActive = editing === "notActive";
   const [taskDescription, setTaskDescription] = useState("");
-
-  const editTask = () => setIsEditing(editNotActive ? "active" : "notActive");
-
-  const handleBlur = () => setIsEditing("notActive");
 
   const handleAddTask = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,11 +24,7 @@ const AddTaskBar = () => {
 
   return (
     <AddTaskContainer
-      onClick={editTask}
-      onBlur={handleBlur}
       tabIndex={0}
-      styleBackground={editNotActive ? "var(--white-darker)" : "var(--white)"}
-      styleBorder={editNotActive ? "var(--grey)" : "var(--white)"}
     >
       <AddTaskForm onSubmit={handleAddTask}>
         <AddTaskInput
@@ -43,11 +32,9 @@ const AddTaskBar = () => {
           value={taskDescription}
           placeholder="Add new item..."
           type="text"
-          colorFont={editNotActive ? "var(--grey-light)" : "var(--grey-dark)"}
         />
         <TaskButton
           type="submit"
-          opacity={editNotActive ? 0.5 : 1}
           name="done"
           backgroundColor="var(--blue-light)"
         >

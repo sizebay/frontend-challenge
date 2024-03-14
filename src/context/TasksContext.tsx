@@ -44,13 +44,16 @@ export function TasksProvider({ children }: TasksProviderProps) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  function addTask(task: ITasks) {
-    setTasks([...tasks, task]);
-  }
+  const addTask = (task: ITasks) => setTasks([...tasks, task]);
 
-  function removeTask(taskId: string) {
+  const removeTask = (taskId: string) =>
     setTasks(tasks.filter((task) => task.id !== taskId));
-  }
+
+  const clearSearch = () => setSearchTerm("");
+
+  const handleClearValue = () => setValue("");
+
+  const clearSearchTerm = () => setSearchTerm("");
 
   function completeTask(taskId: string) {
     setTasks(
@@ -63,21 +66,9 @@ export function TasksProvider({ children }: TasksProviderProps) {
     );
   }
 
-  function clearSearch() {
-    setSearchTerm("");
-  }
-
   function clearFilter() {
     setActiveFilter("");
     handleClearValue();
-  }
-
-  function handleClearValue() {
-    setValue("");
-  }
-
-  function clearSearchTerm() {
-    setSearchTerm("");
   }
 
   function handleFilterActive(nextFilter: FilterType) {
