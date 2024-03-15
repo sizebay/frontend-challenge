@@ -25,7 +25,7 @@ const AddTaskBar = () => {
     <AddTaskContainer tabIndex={0}>
       <AddTaskForm onSubmit={handleAddTask}>
         <AddTaskInput
-          onChange={(e) => setTaskDescription(e.target.value)}
+          onChange={(e) => setTaskDescription(e?.target?.value)}
           value={taskDescription}
           placeholder="Add new item..."
           type="text"

@@ -34,7 +34,7 @@ const TasksList = () => {
         />
       )}
       {!noResults &&
-        filteredTasks.map((task) => <Card key={task.id} data={task} />)}
+        filteredTasks?.map((task) => <Card key={task.id} data={task} />)}
     </SectionCard>
   );
 };
