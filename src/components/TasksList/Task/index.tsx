@@ -1,19 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import TaskTooltip from "../../TaskTooltip";
 import ITasks from "../../../types/ITasks";
+import React, { useEffect, useRef, useState } from "react";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { useTasksContext } from "../../../context/TasksContext";
 import { IoRemoveCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
-import TaskTooltip from "../../TaskTooltip";
-import TaskButton from "../../TaskButtons";
 import {
   TaskCard,
   TaskContainer,
   DescriptionText,
   TaskButtonsContainer,
   TaskTooltipContainer,
-  TaskPseudoContainer,
+  TaskMainContainer,
+  RemoveTaskButton,
+  ActionTaskButton,
 } from "./styles";
-import { useTasksContext } from "../../../context/TasksContext";
-
 interface Props {
   data: ITasks;
 }
@@ -29,6 +30,10 @@ const Task = ({ data }: Props) => {
 
   const toggleEditing = () => setEditing(!editing);
 
+  const handleCompleteClick = () => completeTask(data.id);
+
+  const taskContainerRef = useRef<HTMLDivElement>(null);
+
   const handleDescriptionChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -39,8 +44,6 @@ const Task = ({ data }: Props) => {
     event.stopPropagation();
     removeTask(data.id);
   };
-
-  const handleCompleteClick = () => completeTask(data.id);
 
   const handleMouseEnter = () => {
     if (!editing && !showTooltip) {
@@ -64,8 +67,6 @@ const Task = ({ data }: Props) => {
     }
   };
 
-  const taskContainerRef = useRef<HTMLDivElement>(null);
-
   const handleOutsideClick = (event: MouseEvent) => {
     if (
       taskContainerRef.current &&
@@ -81,10 +82,10 @@ const Task = ({ data }: Props) => {
   }, []);
 
   return (
-    <TaskPseudoContainer>
+    <TaskMainContainer>
       <TaskContainer
         onClick={toggleEditing}
-        taskStyle={editing ? "var(--white)" : "var(--grey)"}
+        backgroundColor={!editing ? "true" : "false"}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         ref={taskContainerRef}
@@ -106,20 +107,20 @@ const Task = ({ data }: Props) => {
         </TaskCard>
         {editing && (
           <TaskButtonsContainer>
-            <TaskButton
-              name="remove"
-              backgroundColor="var(--warning-red)"
-              onClick={handleRemoveClick}
-            >
+            <RemoveTaskButton name="remove" onClick={handleRemoveClick}>
               <IoRemoveCircle color="white" size={27} />
-            </TaskButton>
-            <TaskButton
+            </RemoveTaskButton>
+            <ActionTaskButton
               name="done"
-              backgroundColor="var(--done-green)"
+              backgroundColor={isCompleted ? "true" : "false"}
               onClick={handleCompleteClick}
             >
-              <FaCheckCircle color="white" size={22} />
-            </TaskButton>
+              {isCompleted ? (
+                <BsFillArrowRightCircleFill color="white" size={22} />
+              ) : (
+                <FaCheckCircle color="white" size={22} />
+              )}
+            </ActionTaskButton>
           </TaskButtonsContainer>
         )}
       </TaskContainer>
@@ -133,7 +134,7 @@ const Task = ({ data }: Props) => {
           <TaskTooltip />
         </TaskTooltipContainer>
       )}
-    </TaskPseudoContainer>
+    </TaskMainContainer>
   );
 };
 

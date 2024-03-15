@@ -6,7 +6,7 @@ import { FilterType } from "../../types/ITasks";
 const ButtonFilter = styled.button<ButtonProps>`
   padding: 8px 16px;
   cursor: pointer;
-  background-color: ${(props) => (props.active ? "#F7F7F8" : "#FFFFFF")};
+  background-color: ${(props) => (props.active ? "#F4f4f4" : "#FFFFFF")};
   color: ${(props) => (props.active ? "#4DA6B3" : "#848484")};
   border: 1px solid ${(props) => (props.active ? "#4DA6B3" : "#DBDBDB")};
   border-radius: 20px;

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const TooltipContainer = styled.div`
-  background-color: var(--grey-dark);
+  background-color: ${({ theme }) => theme.colors.grey};
   width: 80px;
   height: 40px;
-  color: var(--white);
+  color: ${({ theme }) => theme.colors.white};
   position: relative;
   align-items: center;
   display: flex;
@@ -17,7 +17,7 @@ export const TooltipContainer = styled.div`
 `;
 
 export const TooltipSpan = styled.span`
-  background-color: var(--grey-dark);
+  background-color: ${({ theme }) => theme.colors.grey};
   width: 10px;
   height: 10px;
   position: absolute;
