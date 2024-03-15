@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
 
 export const SearchContainer = styled.div`
   position: relative;
@@ -65,4 +66,11 @@ export const IconButton = styled.button`
     transform: scale(0.6);
     opacity: 0;
   }
+`;
+export const CloseIcon = styled(AiOutlineClose)`
+  color: ${({ theme }) => theme.colors.grey};
+`;
+
+export const SearchIcon = styled(AiOutlineSearch)`
+  color: ${({ theme }) => theme.colors.grey};
 `;

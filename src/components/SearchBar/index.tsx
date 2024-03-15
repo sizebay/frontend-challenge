@@ -1,6 +1,11 @@
 import { useState } from "react";
-import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
-import { SearchContainer, SearchInput, IconButton } from "./styles";
+import {
+  SearchContainer,
+  SearchInput,
+  IconButton,
+  CloseIcon,
+  SearchIcon,
+} from "./styles";
 import { useTasksContext } from "../../context/TasksContext";
 
 const SearchBar = () => {
@@ -24,14 +29,11 @@ const SearchBar = () => {
       />
       {value !== "" ? (
         <IconButton onClick={handleClearValue}>
-          <AiOutlineClose
-            size={25}
-            color="${({ theme }) => theme.colors.grey}"
-          />
+          <CloseIcon size={25} />
         </IconButton>
       ) : (
         <IconButton>
-          <AiOutlineSearch size={25} color="${({ theme }) => theme.colors.grey}" />
+          <SearchIcon size={25}/>
         </IconButton>
       )}
     </SearchContainer>
