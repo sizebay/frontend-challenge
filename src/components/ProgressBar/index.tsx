@@ -38,7 +38,7 @@ const ProgressBar = styled.progress`
 const ProgressDiv = styled.div`
   border-radius: 4px;
   overflow: hidden;
-  background-color: #e4e4e4;
+  background-color: ${({ theme }) => theme.colors.progressInactive};
   height: 24px;
   display: flex;
 `;

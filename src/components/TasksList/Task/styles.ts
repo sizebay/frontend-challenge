@@ -61,7 +61,7 @@ export const TaskTooltipContainer = styled.div<TaskContainerProps>`
   left: calc(50% - 40px);
 `;
 
-export const TaskPseudoContainer = styled.div`
+export const TaskMainContainer = styled.div`
   position: relative;
 `;
 

@@ -1,17 +1,17 @@
+import TaskTooltip from "../../TaskTooltip";
+import ITasks from "../../../types/ITasks";
 import React, { useEffect, useRef, useState } from "react";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { useTasksContext } from "../../../context/TasksContext";
-import ITasks from "../../../types/ITasks";
 import { IoRemoveCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
-import TaskTooltip from "../../TaskTooltip";
 import {
   TaskCard,
   TaskContainer,
   DescriptionText,
   TaskButtonsContainer,
   TaskTooltipContainer,
-  TaskPseudoContainer,
+  TaskMainContainer,
   RemoveTaskButton,
   ActionTaskButton,
 } from "./styles";
@@ -30,6 +30,10 @@ const Task = ({ data }: Props) => {
 
   const toggleEditing = () => setEditing(!editing);
 
+  const handleCompleteClick = () => completeTask(data.id);
+
+  const taskContainerRef = useRef<HTMLDivElement>(null);
+
   const handleDescriptionChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -40,8 +44,6 @@ const Task = ({ data }: Props) => {
     event.stopPropagation();
     removeTask(data.id);
   };
-
-  const handleCompleteClick = () => completeTask(data.id);
 
   const handleMouseEnter = () => {
     if (!editing && !showTooltip) {
@@ -65,8 +67,6 @@ const Task = ({ data }: Props) => {
     }
   };
 
-  const taskContainerRef = useRef<HTMLDivElement>(null);
-
   const handleOutsideClick = (event: MouseEvent) => {
     if (
       taskContainerRef.current &&
@@ -82,7 +82,7 @@ const Task = ({ data }: Props) => {
   }, []);
 
   return (
-    <TaskPseudoContainer>
+    <TaskMainContainer>
       <TaskContainer
         onClick={toggleEditing}
         backgroundColor={!editing ? "true" : "false"}
@@ -107,10 +107,7 @@ const Task = ({ data }: Props) => {
         </TaskCard>
         {editing && (
           <TaskButtonsContainer>
-            <RemoveTaskButton
-              name="remove"
-              onClick={handleRemoveClick}
-            >
+            <RemoveTaskButton name="remove" onClick={handleRemoveClick}>
               <IoRemoveCircle color="white" size={27} />
             </RemoveTaskButton>
             <ActionTaskButton
@@ -137,7 +134,7 @@ const Task = ({ data }: Props) => {
           <TaskTooltip />
         </TaskTooltipContainer>
       )}
-    </TaskPseudoContainer>
+    </TaskMainContainer>
   );
 };
 

@@ -3,7 +3,6 @@ import {themeInterface} from "../styles/theme"
 
 const Global = createGlobalStyle<{ theme: themeInterface }>`
   body {
-    margin: 0;
     font-family: ${(props) => props.theme.fontFamily};
     position: relative;
     z-index: 0;

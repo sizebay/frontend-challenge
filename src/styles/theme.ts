@@ -9,7 +9,7 @@ export type themeInterface = DefaultTheme & {
     blue:string;
     border:string;
     inactive:string;
-    progressToFill:string;
+    progressInactive:string;
     orange:string;
     darker:string;
   };
@@ -25,7 +25,7 @@ export const mainTheme: themeInterface = {
     blue: "#4DA6B3",
     border: "#DBDBDB",
     inactive: "#f4f4f4",
-    progressToFill: "555",
+    progressInactive: "#e4e4e4",
     orange: "#FDA50F",
     darker: "#555",
   },

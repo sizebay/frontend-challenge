@@ -35,34 +35,34 @@ export const SearchInput = styled.input`
 `;
 
 export const IconButton = styled.button`
-    position: relative;
-    height: 36px;
-    width: 36px;
-    right: 10px;
-    border: none;
-    z-index: 1;
-    cursor: pointer;
-    background: none;
+  position: relative;
+  height: 36px;
+  width: 36px;
+  right: 10px;
+  border: none;
+  z-index: 1;
+  cursor: pointer;
+  background: none;
 
-    &:hover{
-        color: white;
-        &::after{
-            opacity: 1;
-            transform: scale(1);
-        }
+  &:hover {
+    color: white;
+    &::after {
+      opacity: 1;
+      transform: scale(1);
     }
+  }
 
-    &::after{
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        heigth: 100%;
-        border-radius: 50%;
-        z-index: -1;
-        background: #000;
-        transition: 0.2s ease;
-        transform: scale(0.6);
-        opacity: 0;
-    }
-`
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border-radius: 50%;
+    z-index: -1;
+    background: #000;
+    transition: 0.2s ease;
+    transform: scale(0.6);
+    opacity: 0;
+  }
+`;
