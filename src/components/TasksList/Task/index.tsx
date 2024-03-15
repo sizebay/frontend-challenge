@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { useTasksContext } from "../../../context/TasksContext";
 import ITasks from "../../../types/ITasks";
 import { IoRemoveCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import TaskTooltip from "../../TaskTooltip";
-import TaskButton from "../../TaskButtons";
 import {
   TaskCard,
   TaskContainer,
@@ -11,9 +12,9 @@ import {
   TaskButtonsContainer,
   TaskTooltipContainer,
   TaskPseudoContainer,
+  RemoveTaskButton,
+  ActionTaskButton,
 } from "./styles";
-import { useTasksContext } from "../../../context/TasksContext";
-
 interface Props {
   data: ITasks;
 }
@@ -84,7 +85,7 @@ const Task = ({ data }: Props) => {
     <TaskPseudoContainer>
       <TaskContainer
         onClick={toggleEditing}
-        taskStyle={editing ? "var(--white)" : "var(--grey)"}
+        backgroundColor={!editing ? "true" : "false"}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         ref={taskContainerRef}
@@ -106,20 +107,23 @@ const Task = ({ data }: Props) => {
         </TaskCard>
         {editing && (
           <TaskButtonsContainer>
-            <TaskButton
+            <RemoveTaskButton
               name="remove"
-              backgroundColor="var(--warning-red)"
               onClick={handleRemoveClick}
             >
               <IoRemoveCircle color="white" size={27} />
-            </TaskButton>
-            <TaskButton
+            </RemoveTaskButton>
+            <ActionTaskButton
               name="done"
-              backgroundColor="var(--done-green)"
+              backgroundColor={isCompleted ? "true" : "false"}
               onClick={handleCompleteClick}
             >
-              <FaCheckCircle color="white" size={22} />
-            </TaskButton>
+              {isCompleted ? (
+                <BsFillArrowRightCircleFill color="white" size={22} />
+              ) : (
+                <FaCheckCircle color="white" size={22} />
+              )}
+            </ActionTaskButton>
           </TaskButtonsContainer>
         )}
       </TaskContainer>

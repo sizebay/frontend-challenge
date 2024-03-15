@@ -4,16 +4,16 @@ export const SearchContainer = styled.div`
   position: relative;
   width: 60%;
   height: 48px;
-  background: var(--branco);
+  background: ${({ theme }) => theme.colors.white};
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: all 0.3s ease;
-  border: 1px solid var(--grey-light);
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 4px;
 
   @media screen and (max-width: 768px) {
-    order: 1!important;
+    order: 1 !important;
     width: 100%;
   }
 `;
@@ -21,7 +21,7 @@ export const SearchContainer = styled.div`
 export const SearchInput = styled.input`
   padding-left: 30px;
   border: none;
-  color: var(--grey-dark);
+  color: ${({ theme }) => theme.colors.grey};
   top: 0;
   height: 100%;
   width: 80%;

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { AddTaskContainer, AddTaskForm, AddTaskInput } from "./styles";
-import TaskButton from "../TaskButtons";
+import { AddTaskContainer, AddTaskForm, AddTaskInput, SubmitTaskButton } from "./styles";
 import { FaCirclePlus } from "react-icons/fa6";
 import { useTasksContext } from "../../context/TasksContext";
 import { v4 as uuidv4 } from "uuid";
@@ -23,9 +22,7 @@ const AddTaskBar = () => {
   };
 
   return (
-    <AddTaskContainer
-      tabIndex={0}
-    >
+    <AddTaskContainer tabIndex={0}>
       <AddTaskForm onSubmit={handleAddTask}>
         <AddTaskInput
           onChange={(e) => setTaskDescription(e.target.value)}
@@ -33,13 +30,12 @@ const AddTaskBar = () => {
           placeholder="Add new item..."
           type="text"
         />
-        <TaskButton
+        <SubmitTaskButton
           type="submit"
           name="done"
-          backgroundColor="var(--blue-light)"
         >
           <FaCirclePlus color="white" size={21} />
-        </TaskButton>
+        </SubmitTaskButton>
       </AddTaskForm>
     </AddTaskContainer>
   );

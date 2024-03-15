@@ -10,27 +10,28 @@ const ProgressBar = styled.progress`
   border-radius: 4px !important;
   height: 24px;
   position: relative;
-  background-color: var(--done-green);
+  transition: 0.5s width;
+  background-color: ${({ theme }) => theme.colors.green};
 
   &::-webkit-progress-bar {
-    background-color: var(--done-green);
-    border-color: var(--done-green);
+    background-color: ${({ theme }) => theme.colors.green};
+    border-color: ${({ theme }) => theme.colors.green};
   }
 
   &::-moz-progress-bar {
-    background-color: var(--done-green) 0% 0% no-repeat padding-box;
-    border-color: var(--done-green);
+    background-color: ${({ theme }) => theme.colors.green} 0% 0% no-repeat padding-box;
+    border-color: ${({ theme }) => theme.colors.green};
   }
 
   &::-webkit-progress-value {
-    background-color: var(--done-green);
-    border-color: var(--done-green);
+    background-color: ${({ theme }) => theme.colors.green};
+    border-color: ${({ theme }) => theme.colors.green};
     transition: 0.5s width;
   }
 
   &::-moz-progress-bar {
-    background-color: var(--done-green) !important;
-    border-color: var(--done-green);
+    background-color: ${({ theme }) => theme.colors.green} !important;
+    border-color: ${({ theme }) => theme.colors.green};
   }
 `;
 

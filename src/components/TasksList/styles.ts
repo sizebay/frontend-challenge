@@ -32,7 +32,7 @@ export const SecaoCard = styled.section`
 export const NoResultsMessage = styled.span`
   text-align: left;
   display: flex;
-  color: var(--grey-dark);
+  color: ${({ theme }) => theme.colors.grey};
   font-size: 14px;
 
   @media screen and (max-width: 768px) {

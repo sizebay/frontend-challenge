@@ -24,11 +24,14 @@ const SearchBar = () => {
       />
       {value !== "" ? (
         <IconButton onClick={handleClearValue}>
-          <AiOutlineClose size={25} color="var(--grey-dark)" />
+          <AiOutlineClose
+            size={25}
+            color="${({ theme }) => theme.colors.grey}"
+          />
         </IconButton>
       ) : (
         <IconButton>
-          <AiOutlineSearch size={25} color="var(--grey-dark)" />
+          <AiOutlineSearch size={25} color="${({ theme }) => theme.colors.grey}" />
         </IconButton>
       )}
     </SearchContainer>
