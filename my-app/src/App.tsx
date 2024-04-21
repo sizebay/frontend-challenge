@@ -1,6 +1,11 @@
+import * as S from 'styles/appStyles'
+import { Modal } from 'components'
+
 function App() {
   return (
-    <div>hello</div>
+    <S.Container>
+      <Modal />
+    </S.Container>
   )
 }
 
