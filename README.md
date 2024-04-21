@@ -13,7 +13,7 @@ UI/UX: https://xd.adobe.com/view/1dd85ae3-466a-46b4-8d38-f1c054d42ef4-488b/
 
 1. Faça um clone deste repositório:
 ```bash
-https://github.com/drewcosta/Sizebay-desafio.git
+https://github.com/drewcosta/frontend-challenge.git
 ```
 2. Instale as dependências:
 ```bash
