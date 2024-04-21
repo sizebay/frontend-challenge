@@ -5,6 +5,7 @@ import App from './App'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from 'styles/globalStyles'
 import { defaultTheme } from 'styles/theme/defaultTheme'
+import { TaskContextProvider } from 'context/TaskContext'
 
 
 const AppContainer = () => {
@@ -12,7 +13,9 @@ const AppContainer = () => {
     <React.StrictMode>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
+        <TaskContextProvider>
           <App />
+        </TaskContextProvider>
       </ThemeProvider>
     </React.StrictMode>
   )
