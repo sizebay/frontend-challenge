@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from 'styles/globalStyles'
 import { defaultTheme } from 'styles/theme/defaultTheme'
 import { TaskContextProvider } from 'context/TaskContext'
-
+import { Toaster } from 'sonner'
 
 const AppContainer = () => {
   return (
@@ -15,6 +15,7 @@ const AppContainer = () => {
         <GlobalStyle />
         <TaskContextProvider>
           <App />
+          <Toaster richColors />
         </TaskContextProvider>
       </ThemeProvider>
     </React.StrictMode>
