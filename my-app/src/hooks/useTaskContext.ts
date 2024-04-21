@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { TaskContext } from "context/TaskContext";
 
-export function useTaskOperations() {
+export function useTaskContext() {
   return useContext(TaskContext);
 }
